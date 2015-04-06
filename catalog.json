@@ -1,0 +1,12 @@
+{
+  "packages": [
+    {
+      "name":"core-elements",
+      "title":"Core Elements"
+    },
+    {
+      "name":"paper-elements",
+      "title":"Paper Elements"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "polymer-element-catalog",
+  "version": "0.1.0",
+  "authors": [
+    "Google"
+  ],
+  "description": "A catalog showcasing Google's Web Components",
+  "main": "dist/index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "private": true,
+  "dependencies": {
+    "polymer": "0.8.0"
+  }
+}
