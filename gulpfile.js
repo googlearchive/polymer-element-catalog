@@ -171,7 +171,8 @@ gulp.task('serve', ['styles', 'elements'], function () {
       baseDir: ['.tmp','app'],
       middleware: [
         superstatic({config: {root: '.tmp'}}),
-        superstatic({config: {root: 'app'}})
+        superstatic({config: {root: 'app'}}),
+        superstatic({config: {root: 'fixtures'}})
       ],
       routes: {
         '/bower_components':'bower_components'

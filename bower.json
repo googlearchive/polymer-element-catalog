@@ -16,6 +16,11 @@
   ],
   "private": true,
   "dependencies": {
+    "polymer": "0.8.0",
+    "core-ajax": "Polymer/core-ajax#0.8-preview",
+    "layout": "Polymer/layout#0.8-preview"
+  },
+  "resolutions": {
     "polymer": "0.8.0"
   }
 }

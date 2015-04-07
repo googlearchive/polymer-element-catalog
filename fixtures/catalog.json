@@ -1,0 +1,29 @@
+{
+  "packages": [
+    {
+      "name":"core-elements",
+      "title":"Core Elements",
+      "description":"Polymer's core elements are a set of visual and non-visual utility elements. They include elements for working with layout, user input, selection, and scaffolding apps.",
+      "elements":["core-ajax", "core-toolbar"]
+    }
+  ],
+  "elements": {
+    "core-ajax": {
+      "name":"core-ajax",
+      "description":"The core-ajax element exposes XMLHttpRequest functionality.",
+      "tags":["utility","data","app"]
+    },
+    "core-toolbar": {
+      "name":"core-toolbar",
+      "description":"core-toolbar is a horizontal bar containing items that can be used for label, navigation, search and actions.",
+      "tags":["ui","layout"]
+    }
+  },
+  "tags": {
+    "app":["core-ajax"],
+    "layout":["core-toolbar"],
+    "data":["core-ajax"],
+    "utility":["core-ajax"],
+    "ui":["core-toolbar"]
+  }
+}

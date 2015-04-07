@@ -1,0 +1,55 @@
+<link rel="import" href="../../bower_components/core-ajax/core-ajax.html">
+
+<dom-module id="catalog-data">
+  <template>
+    <core-ajax id="req" url="/catalog.json" method="get" handle-as="json" on-response="handleResponse">
+  </template>
+</dom-module>
+
+<script>
+  (function() {
+    var _data = {};
+    var _els = [];
+
+    var _setData = function(data) {
+      _data = data;
+      _els.forEach(function(el){ el.load(_data) });
+    }
+
+    Polymer({
+      is: 'catalog-data',
+      created: function() {
+        this.load(_data)
+      },
+      attached: function() {
+        if (_els.length === 0) { this.$.req.generateRequest(); }
+        _els.push(this);
+      },
+      detached: function() {
+        _els.splice(_els.indexOf(this), 1);
+      },
+      properties: {
+        packages: {
+          type: Array,
+          readOnly: true
+        },
+        elements: {
+          type: Object,
+          readOnly: true
+        },
+        tags: {
+          type: Object,
+          readOnly: true
+        }
+      },
+      load: function(data) {
+        this.packages = data.packages;
+        this.elements = data.tags;
+        this.tags = data.tags;
+      },
+      handleResponse: function(_, data) {
+        this.load(data);
+      }
+    })
+  })();
+</script>

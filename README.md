@@ -2,14 +2,11 @@
 
 ## Getting Started
 
-To work on the Polymer Elements Catalog, clone the repository. You must have
-Bower and Gulp installed on your machine:
+To work on the Polymer Elements Catalog, clone the repository.
 
-    npm install -g bower
-    
 To install dependencies:
 
-    npm install && bower install
+    npm run deps
     
 To start a local development server:
 
@@ -18,6 +15,13 @@ To start a local development server:
 To prepare the repo for publication:
 
     npm run build
+    
+### Fixtures
+
+While parts of the system are still in flux, it will be necessary to have stubbed
+data and other bits to be able to work against. Anything in the `fixtures`
+directory will be available when running a development server. By the time
+the catalog ships, the `fixtures` directory should be empty.
 
 ## Managing Catalog Packages
 
