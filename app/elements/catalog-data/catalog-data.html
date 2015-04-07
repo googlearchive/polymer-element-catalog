@@ -31,21 +31,26 @@
       properties: {
         packages: {
           type: Array,
-          readOnly: true
+          readOnly: true,
+          notify: true
         },
         elements: {
           type: Object,
-          readOnly: true
+          readOnly: true,
+          notify: true
         },
         tags: {
           type: Object,
-          readOnly: true
+          readOnly: true,
+          notify: true
         }
       },
       load: function(data) {
-        this.packages = data.packages;
-        this.elements = data.tags;
-        this.tags = data.tags;
+        if (data.packages) {
+          this._setPackages(data.packages);
+          this._setElements(data.elements);
+          this._setTags(data.tags);
+        }
       },
       handleResponse: function(_, data) {
         this.load(data);

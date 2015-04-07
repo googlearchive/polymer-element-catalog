@@ -1,0 +1,31 @@
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../catalog-data/catalog-data.html">
+
+<dom-module id="nav-packages">
+  <style>
+    .package-version {
+      color: #999;
+      margin-left: 4px;
+    }
+  </style>
+  <template>
+    <catalog-data id="catalog" packages="{{packages}}"></catalog-data>
+    <template is="x-repeat" items="[[packages]]">
+      <paper-item>
+        <span class="package-title">[[item.title]]</span>
+        <span class="package-version">(<span>[[item.version]]</span>)</span>
+      </paper-item>
+    </template>
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: 'nav-packages',
+    properties: {
+      packages: {
+        type: Array
+      }
+    }
+  });
+</script>

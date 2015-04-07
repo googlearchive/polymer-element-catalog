@@ -3,6 +3,7 @@
     {
       "name":"core-elements",
       "title":"Core Elements",
+      "version":"1.0.0",
       "description":"Polymer's core elements are a set of visual and non-visual utility elements. They include elements for working with layout, user input, selection, and scaffolding apps.",
       "elements":["core-ajax", "core-toolbar"]
     }
