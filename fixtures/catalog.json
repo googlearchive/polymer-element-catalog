@@ -4,8 +4,14 @@
       "name":"core-elements",
       "title":"Core Elements",
       "version":"1.0.0",
-      "description":"Polymer's core elements are a set of visual and non-visual utility elements. They include elements for working with layout, user input, selection, and scaffolding apps.",
+      "description":"Core elements are a set of visual and non-visual utility elements. They include elements for working with layout, user input, selection, and scaffolding apps.",
       "elements":["core-ajax", "core-toolbar"]
+    },
+    {
+      "name":"business-elements",
+      "title":"Business Elements",
+      "version":"1.0.0",
+      "description":"Business elements provide UI and common utility components for eCommerce. They include elements such as checkout forms, product listings, and shopping carts."
     }
   ],
   "elements": {
