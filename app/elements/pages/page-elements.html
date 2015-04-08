@@ -37,7 +37,7 @@
           </tr>
         </thead>
         <tbody>
-          <template is="x-repeat" items="{{elements}}">
+          <template is="x-repeat" items="{{elements}}" filter="filter" observe="tag package">
             <tr>
               <td class="name"><a href="{{item.elementLink}}">{{item.name}}</a></td>
               <td class="description">{{item.description}}</td>
@@ -71,14 +71,15 @@
       var out = [];
       for (var el in rawElements) {
         rawElements[el].elementLink = "/#/elements/" + rawElements[el].name;
-        rawElements[el].packageLink = "/#/elements/" + rawElements[el].package;
+        rawElements[el].packageLink = "/#/elements?package=" + rawElements[el].package;
         out.push(rawElements[el]);
       }
       return out;
     },
-
-    elementLink: function(el) { return "/#/elements/" + el.name; },
-    packageLink: function(el) { return "/#/packages/" + el.package; },
-    tagLink: function(tag)    { return "/#/tags/" + tag; }
+    filter(element) {
+      if (this.tag && this.tag.length && element.tags.indexOf(this.tag) < 0) return false;
+      if (this.package && this.package.length && element.package !== this.package) return false;
+      return true;
+    }
   });
 </script>
