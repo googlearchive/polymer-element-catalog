@@ -1,23 +1,18 @@
 #!/usr/bin/env node
 
-var through = require('through2');
+var fs = require('fs');
 
+var stream = require('./utils/stream');
 var packages = require('./packages');
 var objectFromStreams = require('./utils/object-from-streams');
 
-module.exports = objectFromStreams({
-  packages: packages(),
-  elements: {},
-  tags: {}
-});
+var exports = module.exports = function (srcFilepath) {
+  
+  return objectFromStreams({
+    packages: fs.createReadStream(srcFilepath).pipe(packages()),
+    elements: {},
+    tags: {}
+  });
+};
 
-// TEMP: For output view
-.pipe(through.obj(function (chunk, enc, done) {
-  
-  // console.log('here');
-  console.log(chunk);
-  
-  done();
-}));
- 
- 
+exports.stream = stream;

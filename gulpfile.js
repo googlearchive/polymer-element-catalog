@@ -2,6 +2,7 @@
 
 // Include Gulp & Tools We'll Use
 var gulp = require('gulp');
+var gutil = require('gulp-util');
 var $ = require('gulp-load-plugins')();
 var del = require('del');
 var runSequence = require('run-sequence');
@@ -10,6 +11,8 @@ var pagespeed = require('psi');
 var reload = browserSync.reload;
 var merge = require('merge-stream');
 var superstatic = require('superstatic');
+
+var catalogBuilder = require('./build/catalog');
 
 function serve(directories, callback) {
   var port = process.env.PORT || 3000;
@@ -37,6 +40,8 @@ var AUTOPREFIXER_BROWSERS = [
   'android >= 4.4',
   'bb >= 10'
 ];
+
+var CATALOG_FILEPATH = __dirname + '/catalog.json';
 
 // Lint JavaScript
 gulp.task('jshint', function () {
@@ -206,6 +211,7 @@ gulp.task('default', ['clean'], function (cb) {
     'elements',
     ['jshint', 'images', 'fonts', 'html'],
     'vulcanize',
+    'build-catalog',
     cb);
 });
 
@@ -220,6 +226,26 @@ gulp.task('pagespeed', function (cb) {
     // key: 'YOUR_API_KEY'
   }, cb);
 });
+
+// Build element catalog JSON file
+gulp.task('catalog:dist', function () {
+  
+  var distFilePath = './dist/catalog.json';
+  
+  return catalogBuilder(CATALOG_FILEPATH)
+    .pipe(catalogBuilder.stream.stringify.obj())
+    .pipe(catalogBuilder.stream.writeFile(distFilePath));
+});
+
+gulp.task('catalog:dev', function () {
+  
+  var distFilePath = './.tmp/catalog.json';
+  
+  return catalogBuilder(CATALOG_FILEPATH)
+    .pipe(catalogBuilder.stream.stringify.obj({space: 2}))
+    .pipe(catalogBuilder.stream.writeFile(distFilePath));
+});
+
 
 // Load tasks for web-component-tester
 // Adds tasks for `gulp test:local` and `gulp test:remote`
