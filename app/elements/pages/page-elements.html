@@ -1,0 +1,22 @@
+<dom-module id="page-elements">
+  <template>
+    <responsive-element class="horizontal layout flex">
+      <catalog-tile>
+        <h3><a href="/#/packages">Browse Packages</a></h3>
+      </catalog-tile>
+      <catalog-tile>
+        <h3>Paper Elements</h3>
+      </catalog-tile>
+    </responsive-element>
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: 'page-elements',
+    properties: {
+      tag: String,
+      package: String
+    }
+  });
+</script>

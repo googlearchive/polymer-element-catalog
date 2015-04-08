@@ -24,7 +24,14 @@
 <body id="app" flex>
   <h1>Polymer Element Catalog</h1>
 
-  <nav-packages></nav-packages>
+  <app-router>
+    <app-route path="/" import="/elements/pages/page-home.html"></app-route>
+    <app-route path="/packages" import="/elements/pages/page-packages.html"></app-route>
+    <app-route path="/packages/:package" import="/elements/pages/page-package.html"></app-route>
+    <app-route path="/elements" import="/elements/pages/page-elements.html"></app-route>
+    <app-route path="/elements/:element" import="/elements/pages/page-element.html"></app-route>
+    <app-route path="/tags/:tag" import="/elements/pages/page-elements.html"></app-route>
+  </app-router>
 
   <!-- build:js /scripts/app.js -->
   <script src="/scripts/app.js"></script>

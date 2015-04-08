@@ -19,7 +19,8 @@
     "polymer": "0.8.0",
     "core-ajax": "Polymer/core-ajax#0.8-preview",
     "layout": "Polymer/layout",
-    "paper-item": "PolymerElements/paper-item"
+    "paper-item": "PolymerElements/paper-item",
+    "app-router": "~2.6.0"
   },
   "resolutions": {
     "polymer": "0.8.0"
