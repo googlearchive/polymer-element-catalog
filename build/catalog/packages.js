@@ -2,9 +2,8 @@ var path = require('path');
 
 var _ = require('lodash');
 var fs = require('fs-extra');
-var asyncMap = require('through2-asyncmap');
-var filter = require('through2-filter');
 var jsonStream = require('JSONStream');
+var fns = require('./utils/functional-streams');
 
 var packageDetails = require('./utils/package-details');
 var packageElements = require('./utils/package-elements');
@@ -25,11 +24,11 @@ module.exports = function () {
  
  return catalogFileStream
    .pipe(jsonStream.parse('packages.*'))
-   .pipe(filter.obj(function (package) {
+   .pipe(fns.filter.obj(function (package) {
      
      return bowerDeps[package.name];
    }))
-   .pipe(asyncMap.obj(function (package, done) {
+   .pipe(fns.asyncMap.obj(function (package, done) {
      
      var details = packageDetails(package.name);
      var elements = packageElements(package.name, details.dependencies);

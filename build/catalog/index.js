@@ -9,7 +9,7 @@ module.exports = objectFromStreams({
   packages: packages(),
   elements: {},
   tags: {}
-})
+});
 
 // TEMP: For output view
 .pipe(through.obj(function (chunk, enc, done) {
