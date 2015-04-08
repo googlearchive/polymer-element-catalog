@@ -21,10 +21,14 @@
   <!-- endreplace-->
 </head>
 
-<body id="app" flex>
-  <h1>Polymer Element Catalog</h1>
+<body id="app" class="fullbleed flex layout vertical">
+  <core-toolbar>
+    <div class="flex">Polymer Element Catalog</div>
+    <a href="/#/packages">Sets</a>
+    <a href="/#/elements">Elements</a>
+  </core-toolbar>
 
-  <app-router>
+  <app-router class="flex">
     <app-route path="/" import="/elements/pages/page-home.html"></app-route>
     <app-route path="/packages" import="/elements/pages/page-packages.html"></app-route>
     <app-route path="/packages/:package" import="/elements/pages/page-package.html"></app-route>

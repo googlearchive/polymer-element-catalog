@@ -20,7 +20,8 @@
     "core-ajax": "Polymer/core-ajax#0.8-preview",
     "layout": "Polymer/layout",
     "paper-item": "PolymerElements/paper-item",
-    "app-router": "~2.6.0"
+    "app-router": "~2.6.0",
+    "core-toolbar": "Polymer/core-toolbar#0.8-preview"
   },
   "resolutions": {
     "polymer": "0.8.0"

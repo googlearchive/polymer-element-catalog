@@ -1,12 +1,56 @@
+<link rel="import" href="../tag-link/tag-link.html">
+
 <dom-module id="page-elements">
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    td, th {
+      padding: 8px;
+      border-bottom: 1px solid #eee;
+    }
+
+    a {
+      font-weight: bold;
+      color: black;
+      text-decoration: none;
+    }
+
+    [size=xs] .description {
+      display: none;
+    }
+  </style>
   <template>
-    <responsive-element class="horizontal layout flex">
-      <catalog-tile>
-        <h3><a href="/#/packages">Browse Packages</a></h3>
-      </catalog-tile>
-      <catalog-tile>
-        <h3>Paper Elements</h3>
-      </catalog-tile>
+    <catalog-data elements="{{rawElements}}"></catalog-data>
+
+    <responsive-element>
+      <table>
+        <thead>
+          <tr>
+            <th class="name">Element Name</th>
+            <th class="description">Description</th>
+            <th class="package">Package</th>
+            <th class="tags">Tags</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <template is="x-repeat" items="{{elements}}">
+            <tr>
+              <td class="name"><a href="{{item.elementLink}}">{{item.name}}</a></td>
+              <td class="description">{{item.description}}</td>
+              <td class="package"><a href="{{item.packageLink}}">{{item.package}}</a></td>
+              <td class="tags">
+                <template is="x-repeat" items="{{item.tags}}">
+                  <tag-link name="[[item]]"></tag-link>
+                </template>
+              </td>
+            </tr>
+          </template>
+        </tbody>
+      </table>
     </responsive-element>
   </template>
 </dom-module>
@@ -16,7 +60,25 @@
     is: 'page-elements',
     properties: {
       tag: String,
-      package: String
-    }
+      package: String,
+      rawElements: Object,
+      elements: {
+        type: Array,
+        computed: 'populateElements(rawElements)'
+      }
+    },
+    populateElements: function(rawElements) {
+      var out = [];
+      for (var el in rawElements) {
+        rawElements[el].elementLink = "/#/elements/" + rawElements[el].name;
+        rawElements[el].packageLink = "/#/elements/" + rawElements[el].package;
+        out.push(rawElements[el]);
+      }
+      return out;
+    },
+
+    elementLink: function(el) { return "/#/elements/" + el.name; },
+    packageLink: function(el) { return "/#/packages/" + el.package; },
+    tagLink: function(tag)    { return "/#/tags/" + tag; }
   });
 </script>

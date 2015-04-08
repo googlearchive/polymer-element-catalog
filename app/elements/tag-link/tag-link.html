@@ -1,0 +1,37 @@
+<dom-module id="tag-link">
+  <style>
+    :host, a {
+      display: inline-block;
+    }
+
+    a {
+      background: #2196F3;
+      text-transform: uppercase;
+      font-size: 12px;
+      padding: 6px 8px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+      color: white;
+      text-decoration: none;
+      border-radius: 2px;
+    }
+  </style>
+  <template>
+    <a href="{{href}}">{{name}}</a>
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: 'tag-link',
+    properties: {
+      name: String,
+      href: {
+        type: String,
+        computed: 'tagLink(name)'
+      }
+    },
+    tagLink: function(name) {
+      return "/#/tags/" + name;
+    }
+  });
+</script>
