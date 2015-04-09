@@ -1,13 +1,46 @@
+<link rel="import" href="../catalog-data/catalog-data.html">
+
 <dom-module id="catalog-search">
   <style>
     :host {
-      
+      z-index: 1000;
+      width: 240px;
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100vh;
+      background: white;
+      box-shadow: 0 0 8px rgba(0,0,0,0.5);
+      will-change: transform;
+      transition: transform 0.15s;
+      transform: translateX(240px);
+    }
+
+    :host([active]) {
+      transform: translateX(0);
+    }
+
+    #q {
+      font-family: RobotoDraft, sans-serif;
+      font-size: 16px;
+      padding: 8px 12px;
+      border: 0;
     }
   </style>
   <template>
-    <input type="search" value="{{query::keyup}}">
-    
-    <div>{{query}}</div>
+    <catalog-data packages="{{packages}}" elements="{{elements}}"></catalog-data>
+    <div class="vertical layout">
+      <input id="q" placeholder="Search the Catalog" type="search" value="{{query::keyup}}">
+      <div class="flex">
+        <template is="x-repeat" items="[[packageMatches]]">
+          <div>{{item.name}}</div>
+        </template>
+        <template is="x-repeat" items="[[elementMatches]]">
+          <div>{{item.name}}</div>
+        </template>
+      </div>
+    </div>
   </template>
 </dom-module>
 
@@ -21,7 +54,38 @@
       active: {
         type: Boolean,
         value: false,
-        notify: true
+        notify: true,
+        reflectToAttribute: true
+      },
+      packages: {
+        type: Array,
+        value: []
+      },
+      elements: {
+        type: Object,
+        value: {}
+      }
+    },
+    observers: {
+      'active': 'activeChanged',
+      'query':  'queryChanged'
+    },
+    activeChanged: function() {
+      if (this.active) {
+        this.$.q.focus();
+      }
+    },
+    queryChanged: function() {
+      this.packageMatches = [];
+      this.elementMatches = [];
+
+      if (!this.query.length) { return; }
+      var q = this.query.toLowerCase();
+      
+      for (var i = 0; i < this.packages.length; i++) {
+        if (this.packages[i].name.indexOf(q) >= 0) {
+          this.packageMatches.push(this.packages[i]);
+        }
       }
     }
   });

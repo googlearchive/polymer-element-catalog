@@ -24,7 +24,8 @@
         <app-route path="/elements/:element" import="/elements/pages/page-element.html"></app-route>
       </app-router>
     </core-header-panel>
-    <catalog-search></catalog-search>
+    
+    <catalog-search id="search"></catalog-search>
   </template>
 </dom-module>
 
@@ -32,7 +33,7 @@
   Polymer({
     is: 'catalog-app',
     toggleSearch: function() {
-      
+      this.$.search.active = !this.$.search.active;
     }
   });
 </script>
