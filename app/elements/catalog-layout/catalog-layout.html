@@ -1,0 +1,24 @@
+<dom-module id="catalog-layout">
+  <style>
+    :host {
+      display: block;
+    }
+  </style>
+  <template>
+    <content></content>
+  </template>
+</dom-module>
+
+<script src="/bower_components/packery/dist/packery.pkgd.js"></script>
+
+<script>
+  Polymer({
+    is: 'catalog-layout',
+    attached: function() {
+      this.packery = new Packery(this, {
+        itemSelector: 'catalog-tile',
+        transitionDuration: '0.2s'
+      });
+    }
+  });
+</script>

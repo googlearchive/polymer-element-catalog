@@ -1,0 +1,62 @@
+<dom-module id="catalog-tile">
+  <style>
+    :host {
+      display: block;
+      min-width: 50%;
+      min-height: 200px;
+      padding: 10px;
+      background: #ccc;
+      border: 2px solid #fff;
+      box-sizing: border-box;
+      will-change: transform;
+      /*cursor: pointer;*/
+    }
+    :host(.horizontal.double) {
+      min-width: 50%;
+    }
+    :host(.vertical.double) {
+      min-height: 400px;
+    }
+    @media (min-width: 767px) {
+      :host {
+        min-width: 25%;
+      }
+    }
+    ::content a {
+      color: #fff;
+      text-decoration: none;
+    }
+    .details {
+      display: block;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      padding: 20px;
+      background: rgba(0,0,0,.4);
+      color: #fff;
+      font-weight: 300;
+      text-decoration: none;
+      box-sizing: border-box;
+    }
+    .details ::content h3 {
+      margin: 0;
+    }
+    .details ::content .author {
+      display: block;
+      margin-top: 5px;
+    }
+  </style>
+  <template>
+    <div class="details">
+      <content select="h3"></content>
+      <content select=".author"></content>
+    </div>
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: 'catalog-tile'
+  });
+</script>

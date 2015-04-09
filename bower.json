@@ -21,7 +21,8 @@
     "layout": "Polymer/layout",
     "paper-item": "PolymerElements/paper-item",
     "app-router": "~2.6.0",
-    "core-toolbar": "Polymer/core-toolbar#0.8-preview"
+    "core-toolbar": "Polymer/core-toolbar#0.8-preview",
+    "packery": "~1.3.2"
   },
   "resolutions": {
     "polymer": "0.8.0"
