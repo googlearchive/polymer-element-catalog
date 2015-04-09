@@ -7,6 +7,7 @@ var _ = require('lodash');
 var stream = require('./utils/stream');
 var packages = require('./packages');
 var elements = require('./elements');
+var tags = require('./tags');
 var objectFromStreams = require('./utils/object-from-streams');
 
 var exports = module.exports = function (srcFilepath) {
@@ -19,7 +20,10 @@ var exports = module.exports = function (srcFilepath) {
       data: srcCatalog.pipe(elements()),
       onArray: _.first
     },
-    tags: {}
+    tags: {
+      data: srcCatalog.pipe(tags()),
+      onArray: _.first
+    }
   });
 };
 
