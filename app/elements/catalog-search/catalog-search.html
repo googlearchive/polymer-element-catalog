@@ -1,0 +1,28 @@
+<dom-module id="catalog-search">
+  <style>
+    :host {
+      
+    }
+  </style>
+  <template>
+    <input type="search" value="{{query::keyup}}">
+    
+    <div>{{query}}</div>
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: 'catalog-search',
+    properties: {
+      query: {
+        type: String
+      },
+      active: {
+        type: Boolean,
+        value: false,
+        notify: true
+      }
+    }
+  });
+</script>

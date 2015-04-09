@@ -21,20 +21,8 @@
   <!-- endreplace-->
 </head>
 
-<body id="app" class="fullbleed flex layout vertical">
-  <core-toolbar>
-    <div class="flex">Polymer Element Catalog</div>
-    <a href="/#/packages">Sets</a>
-    <a href="/#/elements">Elements</a>
-  </core-toolbar>
-
-  <app-router class="flex">
-    <app-route path="/" import="/elements/pages/page-home.html"></app-route>
-    <app-route path="/packages" import="/elements/pages/page-packages.html"></app-route>
-    <app-route path="/packages/:package" import="/elements/pages/page-package.html"></app-route>
-    <app-route path="/elements" import="/elements/pages/page-elements.html"></app-route>
-    <app-route path="/elements/:element" import="/elements/pages/page-element.html"></app-route>
-  </app-router>
+<body id="app" class="fullbleed">
+  <catalog-app class="content fit"></catalog-app>
 
   <!-- build:js /scripts/app.js -->
   <script src="/scripts/app.js"></script>
