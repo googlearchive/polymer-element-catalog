@@ -1,7 +1,6 @@
 var path = require('path');
 
 var _ = require('lodash');
-var jsonStream = require('JSONStream');
 
 var stream = require('./utils/stream');
 var packageDetails = require('./utils/package-details');

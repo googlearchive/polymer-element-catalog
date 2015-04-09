@@ -31,8 +31,9 @@ exports.stringify.obj = jsonStream.stringifyObject = function (options) {
 }
 exports.validate = isStream;
 
+exports.concat = concat;
+exports.compose = pumpify;
+
 exports.reduce = reduce;
 exports.filter = filter;
 exports.asyncMap = asyncMap;
-exports.concat = concat;
-exports.compose = pumpify;

@@ -7,6 +7,7 @@ module.exports = function (spec) {
   
   var objectStream = stream.create.obj();
   
+  
   asyncEach(Object.keys(spec), function (key, done) {
     
     if (stream.validate(spec[key])) {
@@ -19,6 +20,19 @@ module.exports = function (spec) {
         done();
       }));
     }
+    
+    else if (typeof spec[key] === 'object' && spec[key].onArray && stream.validate(spec[key].data)) {
+      
+      spec[key].data.pipe(stream.concat(function (data) {
+        
+        var obj = {};
+        obj[key] = spec[key].onArray(data);
+        objectStream.push(obj);
+        
+        done();
+      }));
+    }
+    
     else {
       var obj = {};
       obj[key] = spec[key];
