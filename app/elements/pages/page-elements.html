@@ -76,7 +76,7 @@
       }
       return out;
     },
-    filter(element) {
+    filter: function(element) {
       if (this.tag && this.tag.length && element.tags.indexOf(this.tag) < 0) return false;
       if (this.package && this.package.length && element.package !== this.package) return false;
       return true;
