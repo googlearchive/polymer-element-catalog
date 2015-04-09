@@ -7,6 +7,7 @@ var jsonStream = require('JSONStream');
 var isStream = require('is-stream');
 var split = require('split');
 var writeStreamP = require('writestreamp');
+var pumpify = require('pumpify');
 
 reduce.obj = function (fn) {
   
@@ -34,3 +35,4 @@ exports.reduce = reduce;
 exports.filter = filter;
 exports.asyncMap = asyncMap;
 exports.concat = concat;
+exports.compose = pumpify;

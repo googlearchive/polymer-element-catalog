@@ -2,7 +2,6 @@ var path = require('path');
 
 var _ = require('lodash');
 var jsonStream = require('JSONStream');
-var pumpify = require('pumpify');
 
 var stream = require('./utils/stream');
 var packageDetails = require('./utils/package-details');
@@ -21,7 +20,7 @@ module.exports = function () {
     'paper-elements': '1.1.4'
   });
  
-  return pumpify.obj(
+  return stream.compose.obj(
     stream.parse('packages.*'),
     stream.filter.obj(function (package) {
       
