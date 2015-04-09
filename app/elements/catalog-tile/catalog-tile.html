@@ -3,13 +3,21 @@
     :host {
       display: block;
       min-width: 50%;
-      min-height: 200px;
+      min-height: 300px;
       padding: 10px;
       background: #ccc;
       border: 2px solid #fff;
       box-sizing: border-box;
       will-change: transform;
+      -webkit-transform: translate(0, 100px);
+      transition: all 450ms cubic-bezier(0.55, 0, 0.1, 1);
       /*cursor: pointer;*/
+      opacity: 0;
+    }
+
+    :host(.active) {
+      -webkit-transform: translate(0, 0);
+      opacity: 1;
     }
 
     :host(.horizontal.double) {
@@ -17,7 +25,7 @@
     }
 
     :host(.vertical.double) {
-      min-height: 400px;
+      min-height: 600px;
     }
 
     @media (min-width: 767px) {

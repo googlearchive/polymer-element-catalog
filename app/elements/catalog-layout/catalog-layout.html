@@ -2,6 +2,7 @@
   <style>
     :host {
       display: block;
+      padding: 2px 0;
     }
   </style>
   <template>
@@ -15,10 +16,23 @@
   Polymer({
     is: 'catalog-layout',
     attached: function() {
+      var context = this;
       this.packery = new Packery(this, {
         itemSelector: 'catalog-tile',
-        transitionDuration: '0.2s'
+        transitionDuration: '0.2s',
+        isInitLayout: false
       });
+      this.packery.on('layoutComplete', function(inst, items) {
+        for (var i in items) {
+          context.activateTile(items, i);
+        }
+      });
+      this.packery.layout();
+    },
+    activateTile: function(items, i) {
+      setTimeout(function() {
+        items[i].element.classList.add('active');
+      }, i * 100);
     }
   });
 </script>
