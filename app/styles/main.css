@@ -3,8 +3,10 @@ body {
 }
 
 core-toolbar {
+  height: 64px;
   background: #2196F3;
   color: white;
+  transition: height 450ms cubic-bezier(0.55, 0, 0.1, 1);
 }
 
 core-toolbar a {
