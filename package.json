@@ -4,11 +4,11 @@
   "description": "A catalog of Google's Web Components",
   "main": "index.js",
   "scripts": {
-    "serve": "./node_modules/.bin/gulp serve",
-    "serve:dist": "./node_modules/.bin/gulp serve",
-    "build": "./node_modules/.bin/gulp",
-    "clean": "./node_modules/.bin/gulp clean",
-    "deps": "npm install && ./node_modules/.bin/bower install"
+    "serve": "gulp serve",
+    "serve:dist": "gulp serve",
+    "build": "gulp",
+    "clean": "gulp clean",
+    "deps": "npm install && bower install"
   },
   "repository": {
     "type": "git",
