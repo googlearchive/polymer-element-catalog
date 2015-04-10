@@ -1,12 +1,24 @@
 {
   "packages": [
     {
-      "name":"core-elements",
-      "title":"Core Elements"
+      "name":"iron-elements",
+      "title":"Iron Elements",
+      "symbol": "Fe"
     },
     {
       "name":"paper-elements",
-      "title":"Paper Elements"
+      "title":"Paper Elements",
+      "symbol": "Md"
+    },
+    {
+      "name":"gold-elements",
+      "title":"Gold Elements",
+      "symbol": "Au"
+    },
+    {
+      "name":"oxygen-elements",
+      "title":"Oxygen Elements",
+      "symbol":"O"
     }
   ]
 }

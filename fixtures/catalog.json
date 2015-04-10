@@ -1,17 +1,36 @@
 {
   "packages": [
     {
-      "name":"core-elements",
-      "title":"Core Elements",
+      "name":"iron-elements",
+      "title":"Iron Elements",
       "version":"1.0.0",
-      "description":"Core elements are a set of visual and non-visual utility elements. They include elements for working with layout, user input, selection, and scaffolding apps.",
-      "elements":["core-ajax", "core-toolbar"]
+      "symbol":"Fe",
+      "tagline":"Polymer core elements",
+      "description":"Iron elements are a set of visual and non-visual utility elements. They include elements for working with layout, user input, selection, and scaffolding apps."
     },
     {
-      "name":"business-elements",
-      "title":"Business Elements",
+      "name":"gold-elements",
+      "title":"Gold Elements",
+      "symbol":"Au",
       "version":"1.0.0",
+      "tagline":"Business elements",
       "description":"Business elements provide UI and common utility components for eCommerce. They include elements such as checkout forms, product listings, and shopping carts."
+    },
+    {
+      "name":"paper-elements",
+      "title":"Paper Elements",
+      "symbol":"Md",
+      "version":"1.0.0",
+      "tagline":"Material design elements",
+      "description":"--TBD--"
+    },
+    {
+      "name":"oxygen-elements",
+      "title":"Oxygen Elements",
+      "symbol":"O",
+      "version":"1.0.0",
+      "tagline":"Data-pipes and specialized services",
+      "description":"--TBD--"
     }
   ],
   "elements": {
