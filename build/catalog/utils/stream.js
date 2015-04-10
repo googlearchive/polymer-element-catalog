@@ -37,3 +37,21 @@ reduce.obj = function (fn) {
 exports.reduce = reduce;
 exports.filter = filter;
 exports.asyncMap = asyncMap;
+
+// Object mode
+exports.obj = {
+  create: exports.create.obj,
+  split: exports.split.obj,
+  writeFile: exports.writeFile,
+  
+  parse: exports.parse,
+  stringify: exports.stringify.obj,
+  validate: exports.validate,
+  
+  concat: exports.concat,
+  compose: exports.compose.obj,
+  
+  reduce: exports.reduce.obj,
+  filter: exports.filter.obj,
+  asyncMap: exports.asyncMap.obj
+};

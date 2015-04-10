@@ -1,11 +1,11 @@
 var _ = require('lodash');
 var asyncEach = require('async-each');
 
-var stream = require('./stream');
+var stream = require('./stream').obj;
 
 module.exports = function (spec) {
   
-  var objectStream = stream.create.obj();
+  var objectStream = stream.create();
   
   
   asyncEach(Object.keys(spec), function (key, done) {
@@ -47,5 +47,5 @@ module.exports = function (spec) {
   // TODO: right now this returns a stream containing the whole object.
   // It might be could to split it by key?
   return objectStream
-    .pipe(stream.reduce.obj(_.extend));
+    .pipe(stream.reduce(_.extend));
 };

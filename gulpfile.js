@@ -12,6 +12,7 @@ var reload = browserSync.reload;
 var merge = require('merge-stream');
 var superstatic = require('superstatic');
 
+var stream = require('./build/catalog/utils/stream').obj;
 var catalogBuilder = require('./build/catalog');
 
 function serve(directories, callback) {
@@ -169,7 +170,7 @@ gulp.task('vulcanize', function () {
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 
 // Watch Files For Changes & Reload
-gulp.task('serve', ['styles', 'elements'], function () {
+gulp.task('serve', ['styles', 'elements', 'catalog:dev'], function () {
   browserSync({
     notify: true,
     server: {
@@ -211,7 +212,7 @@ gulp.task('default', ['clean'], function (cb) {
     'elements',
     ['jshint', 'images', 'fonts', 'html'],
     'vulcanize',
-    'build-catalog',
+    'catalog:dist',
     cb);
 });
 
@@ -233,8 +234,8 @@ gulp.task('catalog:dist', function () {
   var distFilePath = './dist/catalog.json';
   
   return catalogBuilder(CATALOG_FILEPATH)
-    .pipe(catalogBuilder.stream.stringify.obj())
-    .pipe(catalogBuilder.stream.writeFile(distFilePath));
+    .pipe(stream.stringify())
+    .pipe(stream.writeFile(distFilePath));
 });
 
 gulp.task('catalog:dev', function () {
@@ -242,8 +243,8 @@ gulp.task('catalog:dev', function () {
   var distFilePath = './.tmp/catalog.json';
   
   return catalogBuilder(CATALOG_FILEPATH)
-    .pipe(catalogBuilder.stream.stringify.obj({space: 2}))
-    .pipe(catalogBuilder.stream.writeFile(distFilePath));
+    .pipe(stream.stringify({space: 2}))
+    .pipe(stream.writeFile(distFilePath));
 });
 
 

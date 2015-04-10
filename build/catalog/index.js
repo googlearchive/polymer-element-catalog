@@ -4,7 +4,6 @@ var fs = require('fs');
 
 var _ = require('lodash');
 
-var stream = require('./utils/stream');
 var packages = require('./packages');
 var elements = require('./elements');
 var tags = require('./tags');
@@ -26,5 +25,3 @@ var exports = module.exports = function (srcFilepath) {
     }
   });
 };
-
-exports.stream = stream;
