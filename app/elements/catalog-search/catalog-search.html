@@ -61,15 +61,15 @@
       <div id="results" class="flex">
         <h3 hidden$="[[!anyPackages]]">Packages</h3>
         <template is="x-repeat" items="[[packageMatches]]">
-          <div><div class="result" data-id="[[item.name]]" on-click="navigatePackage">
+          <div class="result" package$="[[item.name]]" on-click="navigatePackage">
             <h4>[[item.title]]</h4>
             <p>[[item.description]]</p>
-          </div></div>
+          </div>
         </template>
 
         <h3 hidden$="[[!anyElements]]">Elements</h3>
         <template is="x-repeat" items="[[elementMatches]]">
-          <div class="result" data-id="[[item.name]]" on-click="navigateElement">
+          <div class="result" el$="[[item.name]]" on-click="navigateElement">
             <h4>{{item.name}}</h4>
             <p>[[item.description]]</p>
           </div>
@@ -135,14 +135,10 @@
       }
     },
     navigatePackage: function(e) {
-      e = Polymer.dom(e);
-      for (var i = 0; i < e.path.length; i++) {
-        console.log(e.path[i]);
-        if (e.path[i].getAttribute('data-id')) { console.log(e.path[i].getAttribute('data-id')) };
-      }
+      window.location = "#/packages/" + e.currentTarget.getAttribute('package');
     },
     navigateElement: function(e) {
-      console.log(Polymer.dom(e));
+      window.location = "#/elements/" + e.currentTarget.getAttribute('el');
     }
   });
 </script>
