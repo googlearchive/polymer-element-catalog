@@ -2,6 +2,7 @@
 
 // Include Gulp & Tools We'll Use
 var gulp = require('gulp');
+var gutil = require('gulp-util');
 var $ = require('gulp-load-plugins')();
 var del = require('del');
 var runSequence = require('run-sequence');
@@ -10,6 +11,9 @@ var pagespeed = require('psi');
 var reload = browserSync.reload;
 var merge = require('merge-stream');
 var superstatic = require('superstatic');
+
+var stream = require('./build/catalog/utils/stream').obj;
+var catalogBuilder = require('./build/catalog');
 
 function serve(directories, callback) {
   var port = process.env.PORT || 3000;
@@ -37,6 +41,8 @@ var AUTOPREFIXER_BROWSERS = [
   'android >= 4.4',
   'bb >= 10'
 ];
+
+var CATALOG_FILEPATH = __dirname + '/catalog.json';
 
 // Lint JavaScript
 gulp.task('jshint', function () {
@@ -164,7 +170,7 @@ gulp.task('vulcanize', function () {
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 
 // Watch Files For Changes & Reload
-gulp.task('serve', ['styles', 'elements'], function () {
+gulp.task('serve', ['styles', 'elements', 'catalog:dev'], function () {
   browserSync({
     notify: true,
     server: {
@@ -206,6 +212,7 @@ gulp.task('default', ['clean'], function (cb) {
     'elements',
     ['jshint', 'images', 'fonts', 'html'],
     'vulcanize',
+    'catalog:dist',
     cb);
 });
 
@@ -220,6 +227,26 @@ gulp.task('pagespeed', function (cb) {
     // key: 'YOUR_API_KEY'
   }, cb);
 });
+
+// Build element catalog JSON file
+gulp.task('catalog:dist', function () {
+  
+  var distFilePath = './dist/catalog.json';
+  
+  return catalogBuilder(CATALOG_FILEPATH)
+    .pipe(stream.stringify())
+    .pipe(stream.writeFile(distFilePath));
+});
+
+gulp.task('catalog:dev', function () {
+  
+  var distFilePath = './.tmp/catalog.json';
+  
+  return catalogBuilder(CATALOG_FILEPATH)
+    .pipe(stream.stringify({space: 2}))
+    .pipe(stream.writeFile(distFilePath));
+});
+
 
 // Load tasks for web-component-tester
 // Adds tasks for `gulp test:local` and `gulp test:remote`

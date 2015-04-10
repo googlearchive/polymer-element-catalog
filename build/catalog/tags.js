@@ -1,0 +1,40 @@
+var path = require('path');
+
+var _ = require('lodash');
+
+var stream = require('./utils/stream').obj;
+var packageDetails = require('./utils/package-details');
+var packageElements = require('./utils/package-elements');
+
+module.exports = function () {
+  
+  var bowerFile = require(path.resolve(__dirname, '../../bower.json'));
+  
+  // TODO: uncomment this to work with real data
+  // var bowerDeps = bowerFile.dependencies;
+  // 
+  // TEMP: mock data
+  var bowerDeps = _.extend(bowerFile.dependencies, {
+    'core-elements': '1.0.0',
+    'paper-elements': '1.1.4'
+  });
+ 
+  return stream.compose(
+    stream.parse('packages.*'),
+    stream.filter(function (package) {
+      
+      return bowerDeps[package.name];
+    }),
+    stream.asyncMap(function (package, done) {
+      
+      var details = packageDetails(package.name);
+      var elements = packageElements(package.name, details.dependencies);
+      
+      // Using dummy data now until we have the actual elements
+      done(null, {
+        'tag-name': ['core-custom', 'core-another'],
+        'another-tag': ['paper-custom', 'core-custom']
+      });
+    })
+  ); 
+};
