@@ -1,38 +1,57 @@
 {
   "packages": [
     {
-      "name":"core-elements",
-      "title":"Core Elements",
+      "name":"iron-elements",
+      "title":"Iron Elements",
       "version":"1.0.0",
-      "description":"Core elements are a set of visual and non-visual utility elements. They include elements for working with layout, user input, selection, and scaffolding apps.",
-      "elements":["core-ajax", "core-toolbar"]
+      "symbol":"Fe",
+      "tagline":"Polymer core elements",
+      "description":"Iron elements are a set of visual and non-visual utility elements. They include elements for working with layout, user input, selection, and scaffolding apps."
     },
     {
-      "name":"business-elements",
-      "title":"Business Elements",
+      "name":"gold-elements",
+      "title":"Gold Elements",
+      "symbol":"Au",
       "version":"1.0.0",
+      "tagline":"Business elements",
       "description":"Business elements provide UI and common utility components for eCommerce. They include elements such as checkout forms, product listings, and shopping carts."
+    },
+    {
+      "name":"paper-elements",
+      "title":"Paper Elements",
+      "symbol":"Md",
+      "version":"1.0.0",
+      "tagline":"Material design elements",
+      "description":"--TBD--"
+    },
+    {
+      "name":"oxygen-elements",
+      "title":"Oxygen Elements",
+      "symbol":"O",
+      "version":"1.0.0",
+      "tagline":"Data-pipes and specialized services",
+      "description":"--TBD--"
     }
   ],
   "elements": {
-    "core-ajax": {
-      "name":"core-ajax",
-      "package":"core-elements",
-      "description":"The core-ajax element exposes XMLHttpRequest functionality.",
+    "iron-ajax": {
+      "name":"iron-ajax",
+      "package":"iron-elements",
+      "description":"Make requests using AJAX",
       "tags":["utility","data","app"]
     },
-    "core-toolbar": {
-      "name":"core-toolbar",
-      "package":"core-elements",
-      "description":"core-toolbar is a horizontal bar containing items that can be used for label, navigation, search and actions.",
+    "iron-toolbar": {
+      "name":"iron-toolbar",
+      "package":"iron-elements",
+      "description":"A horizontal bar useful for layout and navigation",
       "tags":["ui","layout"]
     }
   },
   "tags": {
-    "app":["core-ajax"],
-    "layout":["core-toolbar"],
-    "data":["core-ajax"],
-    "utility":["core-ajax"],
-    "ui":["core-toolbar"]
+    "app":["iron-ajax"],
+    "layout":["iron-toolbar"],
+    "data":["iron-ajax"],
+    "utility":["iron-ajax"],
+    "ui":["iron-toolbar"]
   }
 }

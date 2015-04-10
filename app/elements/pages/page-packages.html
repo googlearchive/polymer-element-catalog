@@ -1,16 +1,50 @@
+<link rel="import" href="../catalog-data/catalog-data.html">
+
 <dom-module id="page-packages">
+  <style>
+    package-tile {
+      display: block;
+      position: relative;
+      width: 160px;
+      margin: 8px;
+      padding: 8px;
+      box-shadow: 2px 2px 12px rgba(0,0,0,0.2);
+    }
+
+    package-tile h2 {
+      font-size: 4em;
+      text-align: center;
+      margin: 8px 0;
+    }
+
+    package-tile .version {
+      color: #666;
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      font-size: 12px;
+    }
+  </style>
   <template>
-    <responsive-element class="horizontal layout flex">
-      <catalog-tile>
-        <h3><a href="/#/packages/core-elements">Core Elements</a></h3>
-      </catalog-tile>
-      <catalog-tile>
-        <h3><a href="/#/packages/paper-elements">Paper Elements</a></h3>
-      </catalog-tile>
+    <catalog-data packages="{{packages}}"></catalog-data>
+    <responsive-element class="horizontal layout flex wrap">
+      <template is="x-repeat" items="[[packages]]">
+        <package-tile class="vertical layout" name$="[[item.name]]" on-click="select">
+          <span class="version">[[item.version]]</span>
+          <h2 class="symbol">[[item.symbol]]</h2>
+          <h3 class="title">[[item.title]]</h3>
+          <p class="tagline">[[item.tagline]]</p>
+        </package-tile>
+      </template>
     </responsive-element>
   </template>
 </dom-module>
 
 <script>
-  Polymer({is: 'page-packages'});
+  Polymer({
+    is: 'page-packages',
+    select: function(e) {
+      this.router.go('/packages/' + e.currentTarget.getAttribute('name'));
+    }
+  });
 </script>

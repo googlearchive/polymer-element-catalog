@@ -4,36 +4,45 @@
 <link rel="import" href="../../bower_components/core-header-panel/core-header-panel.html">
 <link rel="import" href="../../bower_components/app-router/app-router.html">
 
-<link rel="import" href="../catalog-search/catalog-search.html">
+<link rel="import" href="../pages/page-packages.html">
+<link rel="import" href="../pages/page-browse.html">
+<link rel="import" href="../pages/page-element.html">
 
 <dom-module id="catalog-app">
   <template>
-    <core-header-panel class="fit" mode="waterfall-tall">
+    <core-header-panel class="fit">
       <core-toolbar>
-        <div class="bottom flex">Polymer Element Catalog</div>
-        <div class="flex"></div>
-        <core-icon icon="search" on-click="toggleSearch"></core-icon>
-        <a href="/#/packages">Sets</a>
-        <a href="/#/elements">Elements</a>
+        <div class="flex">Polymer Element Catalog</div>
+        <form on-submit="performSearch"><input id="query" type="search" value="{{query::keyup}}"></form>
       </core-toolbar>
 
-      <app-router class="flex">
-        <app-route path="/" import="/elements/pages/page-home.html"></app-route>
-        <app-route path="/packages" import="/elements/pages/page-packages.html"></app-route>
-        <app-route path="/packages/:package" import="/elements/pages/page-package.html"></app-route>
-        <app-route path="/elements" import="/elements/pages/page-elements.html"></app-route>
-        <app-route path="/elements/:element" import="/elements/pages/page-element.html"></app-route>
+      <app-router id="router" class="flex">
+        <app-route path="/" element="page-packages" bindRouter></app-route>
+        <app-route path="/packages/:package" element="page-browse" bindRouter></app-route>
+        <app-route path="/elements" element="page-browse" bindRouter></app-route>
+        <app-route path="/elements/:element/:view" element="page-element" bindRouter></app-route>
       </app-router>
     </core-header-panel>
-    <catalog-search></catalog-search>
+
+    <catalog-search id="search"></catalog-search>
   </template>
 </dom-module>
 
 <script>
   Polymer({
     is: 'catalog-app',
+    listeners: {
+      'nav': 'handleNav'
+    },
     toggleSearch: function() {
-      
+      this.$.search.active = !this.$.search.active;
+    },
+    performSearch: function(e) {
+      e.preventDefault();
+      if (this.query.length) this.$.router.go('/elements?q=' + this.query);
+    },
+    handleNav: function(_, nav) {
+      this.$.router.go(nav.url);
     }
   });
 </script>
