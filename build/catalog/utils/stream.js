@@ -9,11 +9,6 @@ var split = require('split');
 var writeStreamP = require('writestreamp');
 var pumpify = require('pumpify');
 
-reduce.obj = function (fn) {
-  
-  return reduce.call(null, {objectMode: true}, fn);
-}
-
 exports.create = through;
 exports.split = split;
 exports.writeFile = writeStreamP;
@@ -33,6 +28,11 @@ exports.validate = isStream;
 
 exports.concat = concat;
 exports.compose = pumpify;
+
+reduce.obj = function (fn) {
+  
+  return reduce.call(null, {objectMode: true}, fn);
+}
 
 exports.reduce = reduce;
 exports.filter = filter;
