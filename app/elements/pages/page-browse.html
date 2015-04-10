@@ -1,15 +1,36 @@
+<link rel="import" href="../../bower_components/core-icons/core-icons.html">
+<link rel="import" href="../../bower_components/core-icons/av-icons.html">
+
 <link rel="import" href="../tag-link/tag-link.html">
 
 <dom-module id="page-browse">
   <style>
+    :host {
+      background; #eee;
+    }
+
     table {
-      width: 100%;
+      max-width: 800px;
       border-collapse: collapse;
+      margin: 25px auto;
+      background: white;
+      border: 1px solid #ccc;
+      border-bottom: 0;
+      box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
+    }
+
+    thead td, thead th {
+      background: #ddd;
+      padding: 24px 8px 8px;
+    }
+
+    tbody tr:even-child {
+      background: #f5f5f5;
     }
 
     td, th {
       padding: 8px;
-      border-bottom: 1px solid #eee;
+      border-bottom: 1px solid #ccc;
     }
 
     a {
@@ -21,36 +42,62 @@
     [size=xs] .description {
       display: none;
     }
+
+    #container {
+      background: #eee;
+    }
+
+    #sidebar {
+      padding: 16px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.2);
+    }
   </style>
   <template>
-    <catalog-data elements="{{rawElements}}"></catalog-data>
-
-    <responsive-element>
-      <table>
-        <thead>
-          <tr>
-            <th class="name">Element Name</th>
-            <th class="description">Description</th>
-            <th class="package">Package</th>
-            <th class="tags">Tags</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <template is="x-repeat" items="{{elements}}" filter="filter" observe="tag package">
-            <tr>
-              <td class="name"><a href="{{item.elementLink}}">{{item.name}}</a></td>
-              <td class="description">{{item.description}}</td>
-              <td class="package"><a href="{{item.packageLink}}">{{item.package}}</a></td>
-              <td class="tags">
-                <template is="x-repeat" items="{{item.tags}}">
-                  <tag-link name="[[item]]"></tag-link>
-                </template>
-              </td>
-            </tr>
+    <catalog-data elements="{{rawElements}}" packages="{{packages}}"></catalog-data>
+    <responsive-element class="horizontal layout fit">
+      <aside id="sidebar" class="vertical layout">
+        <h1>Polymer Catalog</h1>
+        <input type="search" value="{{q::keyup}}">
+        <select value="{{package}}">
+          <option value="">All Packages</option>
+          <template is="x-repeat" items="{{packages}}">
+            <option value="{{item.name}}">{{item.title}}</option>
           </template>
-        </tbody>
-      </table>
+        </select>
+        <hr>
+      </aside>
+
+      <div id="container" class="flex">
+        <table>
+          <thead>
+            <tr>
+              <th class="name">Name</th>
+              <th class="description">Description</th>
+              <th class="tags">Tags</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <template is="x-repeat" items="{{elements}}" filter="filter" observe="tag package">
+              <tr>
+                <td class="name">
+                  <a href="{{item.elementLink}}">{{item.name}}</a>
+                </td>
+                <td class="description">{{item.description}}</td>
+                <td class="tags">
+                  <template is="x-repeat" items="{{item.tags}}">
+                    <tag-link name="[[item]]"></tag-link>
+                  </template>
+                </td>
+                <td>
+                  <core-icon icon="subject" title="Documentation"></core-icon>
+                  <core-icon icon="av:play-circle-outline" title="Demos"></core-icon>
+                </td>
+              </tr>
+            </template>
+          </tbody>
+        </table>
+      </div>
     </responsive-element>
   </template>
 </dom-module>
@@ -59,7 +106,9 @@
   Polymer({
     is: 'page-browse',
     properties: {
-      tag: String,
+      router: Object,
+      q: {type: String, notify: true},
+      tag: {type: String, notify: true},
       package: String,
       rawElements: Object,
       elements: {
@@ -77,6 +126,7 @@
       return out;
     },
     filter(element) {
+      if (this.q && this.q.length && element.name.indexOf(this.q) < 0) return false;
       if (this.tag && this.tag.length && element.tags.indexOf(this.tag) < 0) return false;
       if (this.package && this.package.length && element.package !== this.package) return false;
       return true;

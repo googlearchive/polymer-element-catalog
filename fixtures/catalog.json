@@ -34,24 +34,24 @@
     }
   ],
   "elements": {
-    "core-ajax": {
-      "name":"core-ajax",
-      "package":"core-elements",
-      "description":"The core-ajax element exposes XMLHttpRequest functionality.",
+    "iron-ajax": {
+      "name":"iron-ajax",
+      "package":"iron-elements",
+      "description":"Make requests using AJAX",
       "tags":["utility","data","app"]
     },
-    "core-toolbar": {
-      "name":"core-toolbar",
-      "package":"core-elements",
-      "description":"core-toolbar is a horizontal bar containing items that can be used for label, navigation, search and actions.",
+    "iron-toolbar": {
+      "name":"iron-toolbar",
+      "package":"iron-elements",
+      "description":"A horizontal bar useful for layout and navigation",
       "tags":["ui","layout"]
     }
   },
   "tags": {
-    "app":["core-ajax"],
-    "layout":["core-toolbar"],
-    "data":["core-ajax"],
-    "utility":["core-ajax"],
-    "ui":["core-toolbar"]
+    "app":["iron-ajax"],
+    "layout":["iron-toolbar"],
+    "data":["iron-ajax"],
+    "utility":["iron-ajax"],
+    "ui":["iron-toolbar"]
   }
 }

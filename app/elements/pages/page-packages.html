@@ -4,6 +4,7 @@
   <style>
     package-tile {
       display: block;
+      position: relative;
       width: 160px;
       margin: 8px;
       padding: 8px;
@@ -15,12 +16,21 @@
       text-align: center;
       margin: 8px 0;
     }
+
+    package-tile .version {
+      color: #666;
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      font-size: 12px;
+    }
   </style>
   <template>
     <catalog-data packages="{{packages}}"></catalog-data>
     <responsive-element class="horizontal layout flex wrap">
       <template is="x-repeat" items="[[packages]]">
         <package-tile class="vertical layout" name$="[[item.name]]" on-click="select">
+          <span class="version">[[item.version]]</span>
           <h2 class="symbol">[[item.symbol]]</h2>
           <h3 class="title">[[item.title]]</h3>
           <p class="tagline">[[item.tagline]]</p>
@@ -34,7 +44,7 @@
   Polymer({
     is: 'page-packages',
     select: function(e) {
-      this.fire('nav', {url: '/packages/' + e.currentTarget.getAttribute('name')});
+      this.router.go('/packages/' + e.currentTarget.getAttribute('name'));
     }
   });
 </script>

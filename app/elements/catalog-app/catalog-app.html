@@ -17,10 +17,10 @@
       </core-toolbar>
 
       <app-router id="router" class="flex">
-        <app-route path="/" element="page-packages"></app-route>
-        <app-route path="/packages/:package" element="page-browse"></app-route>
-        <app-route path="/elements" element="page-browse"></app-route>
-        <app-route path="/elements/:element/:view" onUrlChange="updateModel" element="page-element"></app-route>
+        <app-route path="/" element="page-packages" bindRouter></app-route>
+        <app-route path="/packages/:package" element="page-browse" bindRouter></app-route>
+        <app-route path="/elements" element="page-browse" bindRouter></app-route>
+        <app-route path="/elements/:element/:view" element="page-element" bindRouter></app-route>
       </app-router>
     </core-header-panel>
 
@@ -37,8 +37,9 @@
     toggleSearch: function() {
       this.$.search.active = !this.$.search.active;
     },
-    performSearch: function() {
-
+    performSearch: function(e) {
+      e.preventDefault();
+      if (this.query.length) this.$.router.go('/elements?q=' + this.query);
     },
     handleNav: function(_, nav) {
       this.$.router.go(nav.url);
