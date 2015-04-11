@@ -5,3 +5,11 @@ body {
 catalog-app {
   overflow: hidden;
 }
+
+.logo {
+  font-size: 20px;
+}
+
+.logo img {
+  margin: 0 12px 0 0;
+}

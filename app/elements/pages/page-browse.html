@@ -11,7 +11,32 @@
       background: #eee;
     }
 
-    table {
+    a {
+      color: black;
+      text-decoration: none;
+    }
+
+    core-toolbar {
+      background: none;
+    }
+
+    core-toolbar::shadow #topBar {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      font-size: 20px;
+      font-weight: 400;
+      margin: 0;
+    }
+
+    #container {
+      background: #eee;
+    }
+
+    .elements {
       max-width: 920px;
       border-collapse: collapse;
       margin: 25px auto;
@@ -20,45 +45,41 @@
       box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
     }
 
-    td, th {
+    .elements td, .elements th {
       padding: 20px 30px;
     }
 
-    thead th {
+    .elements th {
       color: #666;
       font-size: 15px;
       text-align: left;
       border-bottom: 1px solid #eee;
     }
 
-    tbody tr:hover {
+    .elements tbody tr:hover {
       background: #fafafa;
     }
 
-    a {
+    .elements a {
       font-weight: bold;
-      color: black;
-      text-decoration: none;
     }
 
-    a, core-icon { cursor: pointer; }
+    .elements a, .elements core-icon {
+      cursor: pointer;
+    }
 
-    [size=xs] .description {
+    [size=xs] .elements .description {
       display: none;
     }
 
-    .description {
+    .elements .description {
       color: #666;
       line-height: 24px;
     }
 
-    #container {
-      background: #eee;
-    }
-
     #sidebar {
       width: 240px;
-      padding: 16px;
+      padding: 0 16px;
       box-shadow: 0 0 8px rgba(0,0,0,0.2);
     }
 
@@ -94,7 +115,13 @@
 
     <responsive-element class="horizontal layout fit">
       <aside id="sidebar" class="vertical layout">
-        <h1><a href="/#/">Polymer Catalog</a></h1>
+        <core-toolbar class="horizontal layout center">
+          <div class="logo horizontal layout center flex">
+            <img src="/images/polymer.svg" width="40">
+            <h1 class="flex"><a href="/#/">Catalog</a></h1>
+          </div>
+          <core-icon icon="search" on-click="toggleSearch"></core-icon>
+        </core-toolbar>
         <input type="search" value="{{q::keyup}}">
         <div hidden$="[[!tag]]">
           <span>[[tag]]</span> <core-icon icon="clear" on-click="clearTag"></core-icon>
@@ -118,7 +145,7 @@
       </aside>
 
       <div id="container" class="flex">
-        <table>
+        <table class="elements">
           <thead>
             <tr>
               <th class="name">Name</th>
