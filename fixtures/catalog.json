@@ -5,6 +5,7 @@
       "title":"Iron Elements",
       "version":"1.0.0",
       "symbol":"Fe",
+      "color":"#B71C1C",
       "tagline":"Polymer core elements",
       "description":"Iron elements are a set of visual and non-visual utility elements. They include elements for working with layout, user input, selection, and scaffolding apps."
     },
@@ -12,6 +13,7 @@
       "name":"gold-elements",
       "title":"Gold Elements",
       "symbol":"Au",
+      "color":"#FFC107",
       "version":"1.0.0",
       "tagline":"Business elements",
       "description":"Business elements provide UI and common utility components for eCommerce. They include elements such as checkout forms, product listings, and shopping carts."
@@ -20,6 +22,7 @@
       "name":"paper-elements",
       "title":"Paper Elements",
       "symbol":"Md",
+      "color":"#00BCD4",
       "version":"1.0.0",
       "tagline":"Material design elements",
       "description":"--TBD--"
@@ -28,6 +31,7 @@
       "name":"oxygen-elements",
       "title":"Oxygen Elements",
       "symbol":"O",
+      "color":"#3F51B5",
       "version":"1.0.0",
       "tagline":"Data-pipes and specialized services",
       "description":"--TBD--"

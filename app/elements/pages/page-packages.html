@@ -1,4 +1,5 @@
 <link rel="import" href="../catalog-data/catalog-data.html">
+<link rel="import" href="../package-tile/package-tile.html">
 
 <dom-module id="page-packages">
   <style>
@@ -20,32 +21,6 @@
       padding: 0 8px;
       margin: 0 4px;
     }
-
-    package-tile {
-      cursor: pointer;
-      background: white;
-      display: block;
-      position: relative;
-      width: 160px;
-      height: 200px;
-      margin: 8px;
-      padding: 16px;
-      box-shadow: 2px 2px 12px rgba(0,0,0,0.2);
-    }
-
-    package-tile h2 {
-      font-size: 4em;
-      font-weight: normal;
-      margin: 8px 0;
-    }
-
-    package-tile .version {
-      color: #666;
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      font-size: 12px;
-    }
   </style>
   <template>
     <catalog-data packages="{{packages}}"></catalog-data>
@@ -57,12 +32,7 @@
 
       <responsive-element class="content fit horizontal layout wrap">
         <template is="x-repeat" items="[[packages]]">
-          <package-tile class="vertical layout" name$="[[item.name]]" on-click="select">
-            <span class="version">[[item.version]]</span>
-            <h2 class="symbol">[[item.symbol]]</h2>
-            <h3 class="title">[[item.title]]</h3>
-            <p class="tagline">[[item.tagline]]</p>
-          </package-tile>
+          <package-tile name$="[[item.name]]" on-click="select"></package-tile>
         </template>
       </responsive-element>
     </core-header-panel>

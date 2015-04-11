@@ -1,0 +1,66 @@
+<link rel="import" href="../catalog-package/catalog-package.html">
+
+<dom-module id="package-tile">
+  <style>
+    :host {
+      display: block;
+    }
+
+    #content {
+      cursor: pointer;
+      color: white;
+      display: block;
+      position: relative;
+      width: 160px;
+      height: 200px;
+      margin: 8px;
+      padding: 16px;
+      box-shadow: 2px 2px 12px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      font-size: 4em;
+      font-weight: normal;
+      margin: 8px 0;
+    }
+
+    .version {
+      opacity: 0.8;
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      font-size: 12px;
+    }
+  </style>
+  <template>
+    <catalog-package name="[[name]]" data="{{package}}"></catalog-package>
+    <div id="content" class="vertical layout">
+      <span class="version">[[package.version]]</span>
+      <h2 class="symbol">[[package.symbol]]</h2>
+      <h3 class="title">[[package.title]]</h3>
+      <p class="tagline">[[package.tagline]]</p>
+    </div>
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: 'package-tile',
+    properties: {
+      name: {type: String, notify: true},
+      package: {type: Object}
+    },
+    observers: {
+      package: 'updateColors'
+    },
+    updateColors: function() {
+      if (this.package && this.package.color) {
+        this.$.content.style.backgroundColor = this.package.color;
+        this.$.content.style.color = "white";
+      } else {
+        this.$.content.style.backgroundColor = "white";
+        this.$.content.style.color = "#333333";
+      }
+    }
+  });
+</script>
