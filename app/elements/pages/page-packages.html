@@ -24,15 +24,53 @@
     }
 
     .logo img {
-      margin: 0 15px 0 0;
+      margin: 0 12px 0 0;
+    }
+
+    .search {
+      position: relative;
+    }
+
+    .search core-icon {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      z-index: 2;
+      cursor: pointer;
+    }
+
+    .search input {
+      font-family: RobotoDraft, Helvetica, Arial, sans-serif;
+      font-size: 15px;
+      width: 0;
+      padding: 10px 10px 10px 30px;
+      border: 1px solid #ccc;
+      border-radius: 2px;
+      opacity: 0;
+      -webkit-appearance: none;
+      visibility: hidden;
+      transition: all 450ms cubic-bezier(0.55, 0, 0.1, 1);
+    }
+
+    .search.active input {
+      width: 300px;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .search input:focus {
+      outline: 0;
     }
   </style>
   <template>
     <catalog-data packages="{{packages}}"></catalog-data>
     <core-header-panel class="fit">
-      <core-toolbar class="tall">
-        <div class="logo horizontal layout center flex"><img src="/images/polymer.svg" width="40"> Polymer Element Catalog</div>
-        <form on-submit="performSearch"><input id="query" type="search" value="{{query::keyup}}"></form>
+      <core-toolbar>
+        <div class="logo horizontal layout center flex"><img src="/images/polymer.svg" width="40"> Catalog</div>
+        <div class="search">  
+          <core-icon icon="search" on-click="toggleSearch"></core-icon>
+          <form on-submit="performSearch"><input id="query" type="search" value="{{query::keyup}}"></form>
+        </div>
       </core-toolbar>
 
       <div class="content fit">
@@ -51,6 +89,9 @@
     is: 'page-packages',
     select: function(e) {
       this.router.go('/browse?package=' + e.currentTarget.getAttribute('name'));
+    },
+    toggleSearch: function(e) {
+      e.target.parentNode.classList.toggle('active');
     },
     performSearch: function(e) {
       e.preventDefault();
