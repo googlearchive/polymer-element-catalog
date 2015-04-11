@@ -81,17 +81,17 @@
             <template is="x-repeat" items="{{elements}}" filter="filter" observe="tag package">
               <tr>
                 <td class="name">
-                  <a href="{{item.elementLink}}">{{item.name}}</a>
+                  <a on-click="nav" target="[[item.name]]" view="demo">[[item.name]]</a>
                 </td>
-                <td class="description">{{item.description}}</td>
+                <td class="description">[[item.description]]</td>
                 <td class="tags">
-                  <template is="x-repeat" items="{{item.tags}}">
+                  <template is="x-repeat" items="[[item.tags]]">
                     <tag-link name="[[item]]"></tag-link>
                   </template>
                 </td>
                 <td>
-                  <core-icon icon="subject" title="Documentation"></core-icon>
-                  <core-icon icon="av:play-circle-outline" title="Demos"></core-icon>
+                  <core-icon icon="subject" title="Documentation" on-click="nav" target$="[[item.name]]" view="docs"></core-icon>
+                  <core-icon icon="av:play-circle-outline" title="Demos" on-click="nav" target$="[[item.name]]" view="demo"></core-icon>
                 </td>
               </tr>
             </template>
@@ -107,12 +107,12 @@
     is: 'page-browse',
     properties: {
       router: Object,
-      
+
       // Query Paramters
       q: {type: String, notify: true},
       tag: {type: String, notify: true},
       package: {type: String, notify: true},
-      
+
       elements: {type: Array, notify: true}
     },
     filter(element) {
@@ -120,6 +120,12 @@
       if (this.tag && this.tag.length && element.tags.indexOf(this.tag) < 0) return false;
       if (this.package && this.package.length && element.package !== this.package) return false;
       return true;
+    },
+    nav: function(e) {
+      e.preventDefault();
+      var view = e.currentTarget.getAttribute('view');
+      var el = e.currentTarget.getAttribute('target');
+      this.router.go("/elements/" + el + "/" + view);
     }
   });
 </script>
