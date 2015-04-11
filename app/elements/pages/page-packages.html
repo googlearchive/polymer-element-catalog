@@ -3,9 +3,12 @@
 
 <dom-module id="page-packages">
   <style>
+    core-header-panel /deep/ #mainContainer {
+      background: #eee;
+    }
+
     .content {
       display: block;
-      background: #eee;
       padding: 16px;
     }
 
@@ -60,6 +63,13 @@
 
     .search input:focus {
       outline: 0;
+    }
+
+    @media (max-width: 639px) {
+      .logo {
+        margin: 8px 0 0 0;
+        padding: 0 16px;
+      }
     }
   </style>
   <template>

@@ -1,3 +1,7 @@
 body {
   font-family: RobotoDraft, Helvetica, Arial, sans-serif;
 }
+
+catalog-app {
+  overflow: hidden;
+}
