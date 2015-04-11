@@ -11,15 +11,29 @@
     var _data = {};
     var _els = [];
 
-    var _setData = function(data) {
-      _data = data;
+    var _generateMap = function(list) {
+      var out = {};
+      for (var i = 0; i < list.length; i++) {
+        out[list[i].name] = list[i];
+      }
+      console.log(out);
+      return out;
+    }
+
+    var _setPackageData = function(data) {
+      console.log('_setPackageData',data);
+      _data = data || {};
+      if (data) {
+        _data.packageMap = _generateMap(data.packages);
+        _data.elementMap = _generateMap(data.elements);
+      }
       _els.forEach(function(el){ el.load(_data) });
     }
 
     Polymer({
       is: 'catalog-data',
-      created: function() {
-        this.load(_data)
+      ready: function() {
+        this.load(_data);
       },
       attached: function() {
         if (_els.length === 0 && !_data.packages) { this.$.req.generateRequest(); }
@@ -58,21 +72,14 @@
       load: function(data) {
         if (data.packages) {
           this._setPackages(data.packages);
-          this._setPackageMap(this._generateMap(data.packages));
+          this._setPackageMap(data.packageMap);
           this._setElements(data.elements);
-          this._setElementMap(this._generateMap(data.elements));
+          this._setElementMap(data.elementMap);
           this._setTags(data.tags);
         }
       },
       handleResponse: function(_, data) {
-        this.load(data);
-      },
-      _generateMap: function(list) {
-        var out = {};
-        for (var i = 0; i < list.length; i++) {
-          out[list[i].name] = list[i];
-        }
-        return out;
+        _setPackageData(data);
       }
     })
   })();

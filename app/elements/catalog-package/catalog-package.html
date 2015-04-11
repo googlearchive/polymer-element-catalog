@@ -1,0 +1,21 @@
+<link rel="import" href="../catalog-data/catalog-data.html">
+
+<dom-module id="catalog-package">
+  <template>
+    <catalog-data package-map="{{packages}}"></catalog-data>
+  </template>
+</dom-module>
+<script>
+  Polymer({
+    is: 'catalog-package',
+    properties: {
+      name: {type: String, notify: true},
+      packages: {type: String, notify: true},
+      data: {type: Object, notify: true, computed: 'getData(packages,name)'}
+    },
+    getData: function(packages,name) {
+      if (!packages) return;
+      return packages[name];
+    }
+  });
+</script>

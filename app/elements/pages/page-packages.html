@@ -27,16 +27,23 @@
   </style>
   <template>
     <catalog-data packages="{{packages}}"></catalog-data>
-    <responsive-element class="horizontal layout flex wrap">
-      <template is="x-repeat" items="[[packages]]">
-        <package-tile class="vertical layout" name$="[[item.name]]" on-click="select">
-          <span class="version">[[item.version]]</span>
-          <h2 class="symbol">[[item.symbol]]</h2>
-          <h3 class="title">[[item.title]]</h3>
-          <p class="tagline">[[item.tagline]]</p>
-        </package-tile>
-      </template>
-    </responsive-element>
+    <core-header-panel class="fit">
+      <core-toolbar>
+        <div class="flex">Polymer Element Catalog</div>
+        <form on-submit="performSearch"><input id="query" type="search" value="{{query::keyup}}"></form>
+      </core-toolbar>
+
+      <responsive-element class="horizontal layout flex wrap">
+        <template is="x-repeat" items="[[packages]]">
+          <package-tile class="vertical layout" name$="[[item.name]]" on-click="select">
+            <span class="version">[[item.version]]</span>
+            <h2 class="symbol">[[item.symbol]]</h2>
+            <h3 class="title">[[item.title]]</h3>
+            <p class="tagline">[[item.tagline]]</p>
+          </package-tile>
+        </template>
+      </responsive-element>
+    </core-header-panel>
   </template>
 </dom-module>
 

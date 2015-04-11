@@ -1,6 +1,8 @@
 <link rel="import" href="../../bower_components/core-icons/core-icons.html">
 <link rel="import" href="../../bower_components/core-icons/av-icons.html">
 
+<link rel="import" href="../catalog-data/catalog-data.html">
+<link rel="import" href="../catalog-package/catalog-package.html">
 <link rel="import" href="../tag-link/tag-link.html">
 
 <dom-module id="page-browse">
@@ -50,26 +52,63 @@
     }
 
     #sidebar {
+      width: 240px;
       padding: 16px;
       box-shadow: 0 0 8px rgba(0,0,0,0.2);
+    }
+
+    #package-info .symbol {
+      font-size: 2.5em;
+      margin: 0 0 8px;
+    }
+
+    #package-info [icon=clear] {
+      float: right;
+    }
+
+    #package-list .package {
+      display: block;
+      margin: 4px;
+      padding: 8px;
+      border: 1px solid #eee;
+      font-weight: normal;
+    }
+
+    #package-list .package .symbol {
+      display: inline-block;
+      width: 20px;
+      text-align: center;
+      margin-right: 6px;
+      font-weight: bold;
     }
   </style>
   <template>
     <catalog-data elements="{{elements}}" packages="{{packages}}"></catalog-data>
+    <catalog-package name="[[package]]" data="{{packageInfo}}"></catalog-package>
+
     <responsive-element class="horizontal layout fit">
       <aside id="sidebar" class="vertical layout">
-        <h1>Polymer Catalog</h1>
+        <h1><a href="/#/">Polymer Catalog</a></h1>
         <input type="search" value="{{q::keyup}}">
-        <select value="{{package::change}}">
-          <option value="">All Packages</option>
-          <template is="x-repeat" items="{{packages}}">
-            <option value="{{item.name}}">{{item.title}}</option>
-          </template>
-        </select>
         <div hidden$="[[!tag]]">
           <span>[[tag]]</span> <core-icon icon="clear" on-click="clearTag"></core-icon>
         </div>
-        <hr>
+        <div id="package-list" hidden$="[[packageInfo]]">
+          <template is="x-repeat" items="[[packages]]">
+            <a class="package" on-click="updatePackage" name="[[item.name]]">
+              <span class="symbol">[[item.symbol]]</span>
+              <span class="title">[[item.title]]</span>
+            </a>
+          </template>
+        </div>
+        <div id="package-info" hidden$="[[!packageInfo]]">
+          <core-icon icon="clear" on-click="clearPackage"></core-icon>
+
+          <h3 class="symbol">[[packageInfo.symbol]]</h3>
+          <h2>[[packageInfo.title]]</h2>
+
+          <p>[[packageInfo.description]]</p>
+        </div>
       </aside>
 
       <div id="container" class="flex">
@@ -119,6 +158,7 @@
         q: {type: String, notify: true},
         tag: {type: String, notify: true},
         package: {type: String, notify: true},
+        packageInfo: {type: Object, notify: true},
 
         queryString: {type: String, computed: 'buildQueryString(q,tag,package)'},
 
@@ -133,12 +173,12 @@
         if (this.package && this.package.length && element.package !== this.package) { console.log('package fail', this.package); return false; }
         return true;
       },
-      updateTag: function(e) {
-        this.tag = e.currentTarget.name;
-      },
-      clearTag: function() {
-        this.tag = null;
-      },
+
+      updateTag: function(e) { this.tag = e.currentTarget.name; },
+      clearTag: function() { this.tag = null; },
+      updatePackage: function(e) { this.package = e.currentTarget.name; },
+      clearPackage: function() { this.package = null; },
+
       nav: function(e) {
         e.preventDefault();
         var view = e.currentTarget.getAttribute('view');

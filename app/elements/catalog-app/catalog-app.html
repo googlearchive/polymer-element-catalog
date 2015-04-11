@@ -10,20 +10,11 @@
 
 <dom-module id="catalog-app">
   <template>
-    <core-header-panel class="fit">
-      <core-toolbar>
-        <div class="flex">Polymer Element Catalog</div>
-        <form on-submit="performSearch"><input id="query" type="search" value="{{query::keyup}}"></form>
-      </core-toolbar>
-
-      <app-router id="router" class="flex">
-        <app-route path="/" element="page-packages" bindRouter></app-route>
-        <app-route path="/browse" element="page-browse" bindRouter onUrlChange="updateModel"></app-route>
-        <app-route path="/elements/:element/:view" element="page-element" bindRouter></app-route>
-      </app-router>
-    </core-header-panel>
-
-    <catalog-search id="search"></catalog-search>
+    <app-router id="router" class="flex">
+      <app-route path="/" element="page-packages" bindRouter></app-route>
+      <app-route path="/browse" element="page-browse" bindRouter onUrlChange="updateModel"></app-route>
+      <app-route path="/elements/:element/:view" element="page-element" bindRouter></app-route>
+    </app-router>
   </template>
 </dom-module>
 
