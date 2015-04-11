@@ -2,10 +2,32 @@
 
 <dom-module id="page-packages">
   <style>
+    .content {
+      background: #ddd;
+      padding: 16px;
+    }
+
+    core-toolbar {
+      background: white;
+      color: #333;
+      transition: height 450ms cubic-bezier(0.55, 0, 0.1, 1);
+    }
+
+    core-toolbar a {
+      text-decoration: none;
+      color: white;
+      display: inline-block;
+      padding: 0 8px;
+      margin: 0 4px;
+    }
+
     package-tile {
+      cursor: pointer;
+      background: white;
       display: block;
       position: relative;
       width: 160px;
+      height: 200px;
       margin: 8px;
       padding: 8px;
       box-shadow: 2px 2px 12px rgba(0,0,0,0.2);
@@ -28,12 +50,12 @@
   <template>
     <catalog-data packages="{{packages}}"></catalog-data>
     <core-header-panel class="fit">
-      <core-toolbar>
+      <core-toolbar class="tall">
         <div class="flex">Polymer Element Catalog</div>
         <form on-submit="performSearch"><input id="query" type="search" value="{{query::keyup}}"></form>
       </core-toolbar>
 
-      <responsive-element class="horizontal layout flex wrap">
+      <responsive-element class="content fit horizontal layout wrap">
         <template is="x-repeat" items="[[packages]]">
           <package-tile class="vertical layout" name$="[[item.name]]" on-click="select">
             <span class="version">[[item.version]]</span>
