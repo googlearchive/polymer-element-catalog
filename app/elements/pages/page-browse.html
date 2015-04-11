@@ -8,31 +8,31 @@
 <dom-module id="page-browse">
   <style>
     :host {
-      background; #eee;
+      background: #eee;
     }
 
     table {
-      max-width: 800px;
+      max-width: 920px;
       border-collapse: collapse;
       margin: 25px auto;
       background: white;
-      border: 1px solid #ccc;
-      border-bottom: 0;
+      border-radius: 3px;
       box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
     }
 
-    thead td, thead th {
-      background: #ddd;
-      padding: 24px 8px 8px;
-    }
-
-    tbody tr:even-child {
-      background: #f5f5f5;
-    }
-
     td, th {
-      padding: 8px;
-      border-bottom: 1px solid #ccc;
+      padding: 20px 30px;
+    }
+
+    thead th {
+      color: #666;
+      font-size: 15px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+
+    tbody tr:hover {
+      background: #fafafa;
     }
 
     a {
@@ -45,6 +45,11 @@
 
     [size=xs] .description {
       display: none;
+    }
+
+    .description {
+      color: #666;
+      line-height: 24px;
     }
 
     #container {
@@ -62,8 +67,9 @@
       margin: 0 0 8px;
     }
 
-    #package-info [icon=clear] {
+    #package-info [icon=menu] {
       float: right;
+      margin: 10px 0 0 0;
     }
 
     #package-list .package {
@@ -102,7 +108,7 @@
           </template>
         </div>
         <div id="package-info" hidden$="[[!packageInfo]]">
-          <core-icon icon="clear" on-click="clearPackage"></core-icon>
+          <core-icon icon="menu" on-click="clearPackage"></core-icon>
 
           <h3 class="symbol">[[packageInfo.symbol]]</h3>
           <h2>[[packageInfo.title]]</h2>
