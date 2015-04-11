@@ -52,6 +52,10 @@
     is: 'page-packages',
     select: function(e) {
       this.router.go('/browse?package=' + e.currentTarget.getAttribute('name'));
+    },
+    performSearch: function(e) {
+      e.preventDefault();
+      this.router.go('/browse?q=' + this.query);
     }
   });
 </script>
