@@ -197,8 +197,9 @@
         if (this.queryString !== _lastNavigated) {
           _lastNavigated = this.queryString;
          this.router.go("/browse" + (this.queryString.length ? "?" + this.queryString : ""), {replace: true});
-         this.$['el-repeat'].render();
         }
+        // HACK: Why does this require a manual render?
+        this.$['el-repeat'].render();
       }
     });
   })();
