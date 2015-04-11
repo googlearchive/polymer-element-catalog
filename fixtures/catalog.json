@@ -49,6 +49,18 @@
       "package":"iron-elements",
       "description":"A horizontal bar useful for layout and navigation",
       "tags":["ui","layout"]
+    },
+    {
+      "name":"gold-checkout",
+      "package":"gold-elements",
+      "description":"A checkout form for collecting payment info.",
+      "tags":["ui","payments"]
+    },
+    {
+      "name":"paper-item",
+      "package":"paper-elements",
+      "description":"A list item",
+      "tags":["ui","lists"]
     }
   ],
   "tags": {
