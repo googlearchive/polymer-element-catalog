@@ -34,7 +34,17 @@
           readOnly: true,
           notify: true
         },
+        packageMap: {
+          type: Object,
+          readOnly: true,
+          notify: true
+        },
         elements: {
+          type: Object,
+          readOnly: true,
+          notify: true
+        },
+        elementMap: {
           type: Object,
           readOnly: true,
           notify: true
@@ -48,12 +58,21 @@
       load: function(data) {
         if (data.packages) {
           this._setPackages(data.packages);
+          this._setPackageMap(this._generateMap(data.packages));
           this._setElements(data.elements);
+          this._setElementMap(this._generateMap(data.elements));
           this._setTags(data.tags);
         }
       },
       handleResponse: function(_, data) {
         this.load(data);
+      },
+      _generateMap: function(list) {
+        var out = {};
+        for (var i = 0; i < list.length; i++) {
+          out[list[i].name] = list[i];
+        }
+        return out;
       }
     })
   })();

@@ -33,20 +33,20 @@
       "description":"--TBD--"
     }
   ],
-  "elements": {
-    "iron-ajax": {
+  "elements": [
+    {
       "name":"iron-ajax",
       "package":"iron-elements",
       "description":"Make requests using AJAX",
       "tags":["utility","data","app"]
     },
-    "iron-toolbar": {
+    {
       "name":"iron-toolbar",
       "package":"iron-elements",
       "description":"A horizontal bar useful for layout and navigation",
       "tags":["ui","layout"]
     }
-  },
+  ],
   "tags": {
     "app":["iron-ajax"],
     "layout":["iron-toolbar"],
