@@ -24,10 +24,13 @@
     "core-toolbar": "Polymer/core-toolbar#0.8-preview",
     "core-icons": "polymer/core-icons#0.8-preview",
     "core-drawer-panel": "polymer/core-drawer-panel#0.8-preview",
-    "core-header-panel": "polymer/core-header-panel#0.8-preview"
+    "core-header-panel": "polymer/core-header-panel#0.8-preview",
+    "iron-doc-viewer": "PolymerElements/iron-doc-viewer",
+    "core-selector": "Polymer/core-selector#0.8-preview"
   },
   "resolutions": {
     "polymer": "0.8.0",
-    "layout": "master"
+    "layout": "master",
+    "paper-styles": "master"
   }
 }

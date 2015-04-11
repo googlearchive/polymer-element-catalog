@@ -1,6 +1,17 @@
+<link rel="import" href="../../bower_components/core-selector/core-selector.html">
+<link rel="import" href="../../bower_components/iron-doc-viewer/iron-doc-viewer.html">
+
 <dom-module id="page-element">
+  <style>
+    #doc-viewer { margin: 0 auto; max-width: 48em; }
+  </style>
   <template>
-    <responsive-element class="horizontal layout flex">[[element]]</responsive-element>
+    <core-selector attr-for-selected="id" selected="{{view}}">
+      <div id="demo"><h1>Demo Content</h1></div>
+      <div id="docs">
+        <iron-doc-viewer id="doc-viewer" src="[[importPath]]"></iron-doc-viewer>
+      </div>
+    </core-selector>
   </template>
 </dom-module>
 
@@ -8,7 +19,18 @@
   Polymer({
     is: 'page-element',
     properties: {
-      element: String
+      element: {type: String, notify: true},
+      view: {type: String, notify: true},
+      importPath: {type: String, computed: 'importPathFor(element)'}
+    },
+    observers: {
+      importPath: 'importPathChanged'
+    },
+    importPathFor: function(element) {
+      return ["/bower_components", element, element + ".html"].join("/");
+    },
+    importPathChanged: function() {
+      this.$['doc-viewer'].load();
     }
   });
 </script>
