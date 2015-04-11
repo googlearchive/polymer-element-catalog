@@ -10,6 +10,17 @@ catalog-app {
   font-size: 20px;
 }
 
+.logo a {
+  color: #000;
+  text-decoration: none;
+}
+
+.logo h1 {
+  font-size: 20px;
+  font-weight: 400;
+  margin: 0;
+}
+
 .logo img {
   margin: 0 12px 0 0;
 }
