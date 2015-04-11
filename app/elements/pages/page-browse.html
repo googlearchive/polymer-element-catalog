@@ -39,6 +39,8 @@
       text-decoration: none;
     }
 
+    a, core-icon { cursor: pointer; }
+
     [size=xs] .description {
       display: none;
     }
@@ -58,12 +60,15 @@
       <aside id="sidebar" class="vertical layout">
         <h1>Polymer Catalog</h1>
         <input type="search" value="{{q::keyup}}">
-        <select value="{{package}}">
+        <select value="{{package::change}}">
           <option value="">All Packages</option>
           <template is="x-repeat" items="{{packages}}">
             <option value="{{item.name}}">{{item.title}}</option>
           </template>
         </select>
+        <div hidden$="[[!tag]]">
+          <span>[[tag]]</span> <core-icon icon="clear" on-click="clearTag"></core-icon>
+        </div>
         <hr>
       </aside>
 
@@ -78,7 +83,7 @@
             </tr>
           </thead>
           <tbody>
-            <template is="x-repeat" items="{{elements}}" filter="filter" observe="tag package">
+            <template id="el-repeat" is="x-repeat" items="{{elements}}" filter="filter" observe="tag package q">
               <tr>
                 <td class="name">
                   <a on-click="nav" target="[[item.name]]" view="demo">[[item.name]]</a>
@@ -86,7 +91,7 @@
                 <td class="description">[[item.description]]</td>
                 <td class="tags">
                   <template is="x-repeat" items="[[item.tags]]">
-                    <tag-link name="[[item]]"></tag-link>
+                    <tag-link name="[[item]]" on-click="updateTag"></tag-link>
                   </template>
                 </td>
                 <td>
@@ -103,29 +108,58 @@
 </dom-module>
 
 <script>
-  Polymer({
-    is: 'page-browse',
-    properties: {
-      router: Object,
+  (function() {
+    var _lastNavigated = null;
+    Polymer({
+      is: 'page-browse',
+      properties: {
+        router: Object,
 
-      // Query Paramters
-      q: {type: String, notify: true},
-      tag: {type: String, notify: true},
-      package: {type: String, notify: true},
+        // Query Parameters
+        q: {type: String, notify: true},
+        tag: {type: String, notify: true},
+        package: {type: String, notify: true},
 
-      elements: {type: Array, notify: true}
-    },
-    filter(element) {
-      if (this.q && this.q.length && element.name.indexOf(this.q) < 0) return false;
-      if (this.tag && this.tag.length && element.tags.indexOf(this.tag) < 0) return false;
-      if (this.package && this.package.length && element.package !== this.package) return false;
-      return true;
-    },
-    nav: function(e) {
-      e.preventDefault();
-      var view = e.currentTarget.getAttribute('view');
-      var el = e.currentTarget.getAttribute('target');
-      this.router.go("/elements/" + el + "/" + view);
-    }
-  });
+        queryString: {type: String, computed: 'buildQueryString(q,tag,package)'},
+
+        elements: {type: Array, notify: true}
+      },
+      observers: {
+        queryString: 'updateURL'
+      },
+      filter(element) {
+        if (this.q && this.q.length && element.name.indexOf(this.q) < 0) { console.log('q fail', this.q); return false; }
+        if (this.tag && this.tag.length && element.tags.join(" ").indexOf(this.tag) < 0) { console.log('tag fail', this.tag, element.tags); return false; }
+        if (this.package && this.package.length && element.package !== this.package) { console.log('package fail', this.package); return false; }
+        return true;
+      },
+      updateTag: function(e) {
+        this.tag = e.currentTarget.name;
+      },
+      clearTag: function() {
+        this.tag = null;
+      },
+      nav: function(e) {
+        e.preventDefault();
+        var view = e.currentTarget.getAttribute('view');
+        var el = e.currentTarget.getAttribute('target');
+        this.router.go("/elements/" + el + "/" + view);
+      },
+      buildQueryString: function(q,tag,package) {
+        var out = [];
+        if (q && q.length) out.push("q=" + q);
+        if (tag && tag.length) out.push("tag=" + tag);
+        if (package && package.length) out.push("package=" + package);
+
+        return out.join("&");
+      },
+      updateURL: function() {
+        if (this.queryString !== _lastNavigated) {
+          _lastNavigated = this.queryString;
+         this.router.go("/browse" + (this.queryString.length ? "?" + this.queryString : ""), {replace: true});
+         this.$['el-repeat'].render();
+        }
+      }
+    });
+  })();
 </script>

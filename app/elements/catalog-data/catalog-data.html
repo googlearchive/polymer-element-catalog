@@ -22,7 +22,7 @@
         this.load(_data)
       },
       attached: function() {
-        if (_els.length === 0) { this.$.req.generateRequest(); }
+        if (_els.length === 0 && !_data.packages) { this.$.req.generateRequest(); }
         _els.push(this);
       },
       detached: function() {

@@ -44,7 +44,7 @@
   Polymer({
     is: 'page-packages',
     select: function(e) {
-      this.router.go('/packages/' + e.currentTarget.getAttribute('name'));
+      this.router.go('/browse?package=' + e.currentTarget.getAttribute('name'));
     }
   });
 </script>

@@ -18,8 +18,7 @@
 
       <app-router id="router" class="flex">
         <app-route path="/" element="page-packages" bindRouter></app-route>
-        <app-route path="/packages/:package" element="page-browse" bindRouter></app-route>
-        <app-route path="/elements" element="page-browse" bindRouter></app-route>
+        <app-route path="/browse" element="page-browse" bindRouter onUrlChange="updateModel"></app-route>
         <app-route path="/elements/:element/:view" element="page-element" bindRouter></app-route>
       </app-router>
     </core-header-panel>

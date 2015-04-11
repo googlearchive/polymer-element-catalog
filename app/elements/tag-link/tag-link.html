@@ -25,13 +25,6 @@
     is: 'tag-link',
     properties: {
       name: String,
-      href: {
-        type: String,
-        computed: 'tagLink(name)'
-      }
-    },
-    tagLink: function(name) {
-      return "/#/elements?tag=" + name;
     }
   });
 </script>
