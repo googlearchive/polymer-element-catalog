@@ -3,25 +3,36 @@
 <dom-module id="package-tile">
   <style>
     :host {
-      display: block;
+      display: flex;
+      min-width: 200px;
     }
 
     #content {
-      cursor: pointer;
-      color: white;
       display: block;
       position: relative;
-      width: 160px;
-      height: 200px;
+      width: 100%;
       margin: 8px;
       padding: 16px;
-      box-shadow: 2px 2px 12px rgba(0,0,0,0.2);
+      color: #333;
+      background: #fafafa;
+      border: 1px solid rgba(0,0,0,0.2);
+      transition: all 320ms cubic-bezier(0.55, 0, 0.1, 1);
+      border-radius: 2px;
+      box-sizing: border-box;
+      cursor: pointer;
     }
 
     h2 {
       font-size: 4em;
       font-weight: normal;
       margin: 8px 0;
+    }
+
+    hr {
+      border: 0;
+      background: #fff;
+      height: 1px;
+      opacity: 0.2;
     }
 
     .version {
@@ -31,6 +42,10 @@
       right: 8px;
       font-size: 12px;
     }
+
+    .tagline {
+      line-height: 24px;
+    }
   </style>
   <template>
     <catalog-package name="[[name]]" data="{{package}}"></catalog-package>
@@ -38,10 +53,13 @@
       <span class="version">[[package.version]]</span>
       <h2 class="symbol">[[package.symbol]]</h2>
       <h3 class="title">[[package.title]]</h3>
+      <hr>
       <p class="tagline">[[package.tagline]]</p>
     </div>
   </template>
 </dom-module>
+
+<script src="/bower_components/color/one-color.js"></script>
 
 <script>
   Polymer({
@@ -55,11 +73,14 @@
     },
     updateColors: function() {
       if (this.package && this.package.color) {
+        var lightness = one.color(this.package.color).lightness();
+        var textColor = (lightness > 0.5) ? one.color(this.package.color).lightness(0.15).hex() : '#fff';
         this.$.content.style.backgroundColor = this.package.color;
-        this.$.content.style.color = "white";
+        this.$.content.style.color = textColor;
+        this.$.content.querySelector('hr').style.background = textColor;
       } else {
-        this.$.content.style.backgroundColor = "white";
-        this.$.content.style.color = "#333333";
+        this.$.content.style.backgroundColor = "#fff";
+        this.$.content.style.color = "#333";
       }
     }
   });

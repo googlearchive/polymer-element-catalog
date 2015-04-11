@@ -4,7 +4,8 @@
 <dom-module id="page-packages">
   <style>
     .content {
-      background: #ddd;
+      display: block;
+      background: #eee;
       padding: 16px;
     }
 
@@ -21,20 +22,26 @@
       padding: 0 8px;
       margin: 0 4px;
     }
+
+    .logo img {
+      margin: 0 15px 0 0;
+    }
   </style>
   <template>
     <catalog-data packages="{{packages}}"></catalog-data>
     <core-header-panel class="fit">
       <core-toolbar class="tall">
-        <div class="flex">Polymer Element Catalog</div>
+        <div class="logo horizontal layout center flex"><img src="/images/polymer.svg" width="40"> Polymer Element Catalog</div>
         <form on-submit="performSearch"><input id="query" type="search" value="{{query::keyup}}"></form>
       </core-toolbar>
 
-      <responsive-element class="content fit horizontal layout wrap">
-        <template is="x-repeat" items="[[packages]]">
-          <package-tile name$="[[item.name]]" on-click="select"></package-tile>
-        </template>
-      </responsive-element>
+      <div class="content fit">
+        <responsive-element class="horizontal layout wrap">
+          <template is="x-repeat" items="[[packages]]">
+            <package-tile class="flex" name$="[[item.name]]" on-click="select"></package-tile>
+          </template>
+        </responsive-element>
+      </div>
     </core-header-panel>
   </template>
 </dom-module>
