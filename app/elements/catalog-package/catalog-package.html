@@ -10,8 +10,9 @@
     is: 'catalog-package',
     properties: {
       name: {type: String, notify: true},
-      packages: {type: String, notify: true},
-      data: {type: Object, notify: true, computed: 'getData(packages,name)'}
+      _packages: {type: Object, notify: true},
+
+      data: {type: Object, notify: true, computed: 'getData(_packages,name)'}
     },
     getData: function(packages,name) {
       if (!packages) return;

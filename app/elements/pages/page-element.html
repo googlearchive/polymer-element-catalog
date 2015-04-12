@@ -1,15 +1,39 @@
 <link rel="import" href="../../bower_components/core-selector/core-selector.html">
 <link rel="import" href="../../bower_components/iron-doc-viewer/iron-doc-viewer.html">
 
+<link rel="import" href="../catalog-element/catalog-element.html">
+<link rel="import" href="../doc-loader/doc-loader.html">
+<link rel="import" href="../doc-viewer/doc-viewer.html">
+
 <dom-module id="page-element">
   <style>
-    #doc-viewer { margin: 0 auto; max-width: 48em; }
+    #docs {
+      max-width: 36em;
+      margin: 0 auto;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+
+    #docs h3 {
+      padding: 20px 30px;
+      margin: 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    #docs-content {
+      padding: 20px;
+    }
   </style>
   <template>
+    <catalog-element name="[[element]]" data="{{metadata}}"></catalog-element>
+    <doc-loader src="[[importPath]]" data="{{docs}}"></doc-loader>
+
     <core-selector attr-for-selected="id" selected="{{view}}">
       <div id="demo"><h1>Demo Content</h1></div>
-      <div id="docs">
-        <iron-doc-viewer id="doc-viewer" src="[[importPath]]"></iron-doc-viewer>
+      <div id="docs" class="vertical layout">
+        <h3 class="paper-font-title">[[element]]</h3>
+        <div id="docs-content" class="flex">
+          <doc-viewer element="[[element]]" data="[[docs]]"></doc-viewer>
+        </div>
       </div>
     </core-selector>
   </template>
@@ -21,16 +45,12 @@
     properties: {
       element: {type: String, notify: true},
       view: {type: String, notify: true},
-      importPath: {type: String, computed: 'importPathFor(element)'}
-    },
-    observers: {
-      importPath: 'importPathChanged'
+      importPath: {type: String, computed: 'importPathFor(element)'},
+      docs: Object,
+      metadata: Object
     },
     importPathFor: function(element) {
       return ["/bower_components", element, element + ".html"].join("/");
-    },
-    importPathChanged: function() {
-      this.$['doc-viewer'].load();
     }
   });
 </script>

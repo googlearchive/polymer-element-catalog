@@ -1,0 +1,22 @@
+<link rel="import" href="../catalog-data/catalog-data.html">
+
+<dom-module id="catalog-element">
+  <template>
+    <catalog-data element-map="{{_elements}}"></catalog-data>
+  </template>
+</dom-module>
+<script>
+  Polymer({
+    is: 'catalog-element',
+    properties: {
+      name: {type: String, notify: true},
+      _elements: Object,
+
+      data: {type: Object, notify: true, computed: 'getData(_elements,name)'}
+    },
+    getData: function(_elements,name) {
+      if (!_elements) return;
+      return _elements[name];
+    }
+  });
+</script>
