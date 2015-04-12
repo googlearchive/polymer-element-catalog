@@ -25,6 +25,12 @@
     is: 'tag-link',
     properties: {
       name: String,
+    },
+    listeners: {
+      click: 'nav'
+    },
+    nav: function() {
+      window.location.hash = "#/browse?tag=" + this.name;
     }
   });
 </script>

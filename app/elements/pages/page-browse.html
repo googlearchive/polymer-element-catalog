@@ -61,6 +61,10 @@
       border-bottom: 1px solid #eee;
     }
 
+    .elements tbody tr {
+      cursor: pointer;
+    }
+    
     .elements tbody tr:hover {
       background: #fafafa;
     }
@@ -174,24 +178,17 @@
               <th class="name">Name</th>
               <th class="description">Description</th>
               <th class="tags">Tags</th>
-              <th></th>
             </tr>
           </thead>
           <tbody>
             <template id="el-repeat" is="x-repeat" items="{{elements}}" filter="filter" observe="tag package q">
-              <tr>
-                <td class="name">
-                  <a on-click="nav" target="[[item.name]]" view="demo">[[item.name]]</a>
-                </td>
+              <tr on-click="nav" target$="[[item.name]]">
+                <td class="name">[[item.name]]</td>
                 <td class="description">[[item.description]]</td>
                 <td class="tags">
                   <template is="x-repeat" items="[[item.tags]]">
                     <tag-link name="[[item]]" on-click="updateTag"></tag-link>
                   </template>
-                </td>
-                <td>
-                  <core-icon icon="subject" title="Documentation" on-click="nav" target$="[[item.name]]" view="docs"></core-icon>
-                  <core-icon icon="av:play-circle-outline" title="Demos" on-click="nav" target$="[[item.name]]" view="demo"></core-icon>
                 </td>
               </tr>
             </template>
@@ -224,22 +221,22 @@
         queryString: 'updateURL'
       },
       filter(element) {
-        if (this.q && this.q.length && element.name.indexOf(this.q) < 0) { console.log('q fail', this.q); return false; }
-        if (this.tag && this.tag.length && element.tags.join(" ").indexOf(this.tag) < 0) { console.log('tag fail', this.tag, element.tags); return false; }
-        if (this.package && this.package.length && element.package !== this.package) { console.log('package fail', this.package); return false; }
+        if (this.q && this.q.length && element.name.indexOf(this.q) < 0) { return false; }
+        if (this.tag && this.tag.length && element.tags.join(" ").indexOf(this.tag) < 0) { return false; }
+        if (this.package && this.package.length && element.package !== this.package) { return false; }
         return true;
       },
 
-      updateTag: function(e) { this.tag = e.currentTarget.name; },
+      updateTag: function(e) { e.stopPropagation(); e.preventDefault(); this.tag = e.currentTarget.name; },
       clearTag: function() { this.tag = null; },
       updatePackage: function(e) { this.package = e.currentTarget.name; },
       clearPackage: function() { this.package = null; },
 
       nav: function(e) {
         e.preventDefault();
-        var view = e.currentTarget.getAttribute('view');
+        e.stopPropagation();
         var el = e.currentTarget.getAttribute('target');
-        this.router.go("/elements/" + el + "/" + view);
+        this.router.go("/elements/" + el + "/docs");
       },
       buildQueryString: function(q,tag,package) {
         var out = [];

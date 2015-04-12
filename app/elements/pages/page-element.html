@@ -76,6 +76,11 @@
     #content > .core-selected {
       display: block;
     }
+
+    #links .core-selected {
+      background: #2196F3;
+      color: white;
+    }
   </style>
   <template>
     <catalog-element name="[[element]]" data="{{metadata}}"></catalog-element>
@@ -107,6 +112,13 @@
           <paper-item view="docs">Documentation</paper-item>
           <paper-item view="demo">Demo</paper-item>
         </core-selector>
+        
+        <h4>Tags</h4>
+        <div>
+          <template is="x-repeat" items="[[metadata.tags]]">
+            <tag-link name="[[item]]"></tag-link>
+          </template>
+        </div>
       </aside>
       <core-selector id="content" attr-for-selected="id" selected="{{view}}" class="flex horizontal layout center center-justified">
         <div id="demo"><h1>Demo Content</h1></div>
