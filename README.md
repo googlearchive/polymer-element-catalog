@@ -12,6 +12,10 @@ To start a local development server:
 
     npm run serve
     
+To start a local development server with `fixtures` turned on:
+
+    FIXTURES=true npm run serve
+    
 To prepare the repo for publication:
 
     npm run build

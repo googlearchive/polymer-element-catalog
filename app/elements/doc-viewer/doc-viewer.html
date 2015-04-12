@@ -1,0 +1,43 @@
+<link rel="import" href="../../bower_components/marked-element/marked-element.html">
+
+<dom-module id="doc-viewer">
+  <style>
+    marked-element::shadow p {
+      line-height: 20px;
+    }
+
+    marked-element::shadow p:first-child { margin-top: 0; }
+    marked-element::shadow p:last-child { margin-bottom: 0; }
+  </style>
+  <template>
+    <marked-element markdown="[[_element.desc]]"></marked-element>
+    
+    <template is="x-repeat" items="[[_element.properties]]">
+      <h4 class="paper-font-subhead">[[item.name]]</h4>
+    </template>
+  </template>
+</dom-module>
+
+<script>
+(function() {
+  Polymer({
+    is: 'doc-viewer',
+    properties: {
+      data: Object,
+      element: String,
+      _element: {type: Object, notify: true}
+    },
+    observers: {
+      data: 'loadData'
+    },
+    loadData: function() {
+      if (!this.data) return;
+      for (var i = 0; i < this.data.elements.length; i++) {
+        if (this.data.elements[i].is === this.element) {
+          this._element = this.data.elements[i];
+        }
+      }
+    }
+  });
+})();
+</script>

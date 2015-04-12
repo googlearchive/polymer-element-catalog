@@ -1,17 +1,123 @@
 <link rel="import" href="../../bower_components/core-selector/core-selector.html">
+<link rel="import" href="../../bower_components/core-icons/core-icons.html">
 <link rel="import" href="../../bower_components/iron-doc-viewer/iron-doc-viewer.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+
+<link rel="import" href="../catalog-element/catalog-element.html">
+<link rel="import" href="../catalog-package/catalog-package.html">
+<link rel="import" href="../doc-loader/doc-loader.html">
+<link rel="import" href="../doc-viewer/doc-viewer.html">
 
 <dom-module id="page-element">
   <style>
-    #doc-viewer { margin: 0 auto; max-width: 48em; }
+    #docs {
+      background: white;
+      max-width: 44em;
+      margin: 0 auto;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+
+    #docs h3 {
+      padding: 20px 30px;
+      margin: 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    #docs-content {
+      padding: 20px;
+    }
+
+    #sidebar {
+      width: 240px;
+      padding: 0 16px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.2);
+      z-index: 2;
+    }
+
+    #name {
+      margin-top: 0;
+    }
+
+    #package {
+      font-size: 1.1em;
+      margin: 8px;
+      margin: 12px 0;
+    }
+
+    #package-symbol {
+      display: inline-block;
+      padding: 6px;
+      margin-right: 8px;
+      font-size: 18px;
+      line-height: 18px;
+    }
+
+    paper-item { cursor: pointer; }
+
+    core-toolbar {
+      background: none;
+    }
+
+    core-toolbar::shadow #topBar {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    #content {
+      background: #eee;
+      padding: 30px;
+    }
+
+    #content > div {
+      display: none;
+    }
+
+    #content > .core-selected {
+      display: block;
+    }
   </style>
   <template>
-    <core-selector attr-for-selected="id" selected="{{view}}">
-      <div id="demo"><h1>Demo Content</h1></div>
-      <div id="docs">
-        <iron-doc-viewer id="doc-viewer" src="[[importPath]]"></iron-doc-viewer>
-      </div>
-    </core-selector>
+    <catalog-element name="[[element]]" data="{{metadata}}"></catalog-element>
+    <catalog-package name="[[metadata.package]]" data="{{package}}"></catalog-package>
+
+    <doc-loader src="[[importPath]]" data="{{docs}}"></doc-loader>
+
+    <responsive-element class="horizontal layout fit">
+      <aside id="sidebar" class="vertical layout">
+        <core-toolbar class="horizontal layout center">
+          <div class="logo flex">
+            <a href="/#/" class="horizontal layout center">
+              <img src="/images/polymer.svg" width="40">
+              <h1 class="flex">Catalog</h1>
+            </a>
+          </div>
+          <core-icon icon="search" on-click="toggleSearch"></core-icon>
+        </core-toolbar>
+
+        <h3 id="name" class="paper-font-title">
+          <core-icon on-click="navToPackage" icon="chevron-left"></core-icon>
+          <span id="package-symbol" on-click="navToPackage">[[package.symbol]]</span>
+          <span>[[element]]</span>
+        </h3>
+
+        <p class="paper-font-body2">[[metadata.description]]</p>
+
+        <core-selector attr-for-selected="view" selected="{{view}}" id="links">
+          <paper-item view="docs">Documentation</paper-item>
+          <paper-item view="demo">Demo</paper-item>
+        </core-selector>
+      </aside>
+      <core-selector id="content" attr-for-selected="id" selected="{{view}}" class="flex horizontal layout center center-justified">
+        <div id="demo"><h1>Demo Content</h1></div>
+        <div id="docs" class="vertical layout">
+          <h3 class="paper-font-title">Documentation</h3>
+          <div id="docs-content" class="flex">
+            <doc-viewer element="[[element]]" data="[[docs]]"></doc-viewer>
+          </div>
+        </div>
+      </core-selector>
+    </responsive-element>
   </template>
 </dom-module>
 
@@ -21,16 +127,36 @@
     properties: {
       element: {type: String, notify: true},
       view: {type: String, notify: true},
-      importPath: {type: String, computed: 'importPathFor(element)'}
+      importPath: {type: String, computed: 'importPathFor(element)'},
+      docs: Object,
+      metadata: Object,
+      package: Object,
+      router: Object
     },
     observers: {
-      importPath: 'importPathChanged'
+      package: 'updateColors',
+      view: 'updateURL'
     },
     importPathFor: function(element) {
       return ["/bower_components", element, element + ".html"].join("/");
     },
-    importPathChanged: function() {
-      this.$['doc-viewer'].load();
+    updateColors: function() {
+      if (this.package && this.package.color) {
+        var lightness = one.color(this.package.color).lightness();
+        var textColor = (lightness > 0.5) ? one.color(this.package.color).lightness(0.15).hex() : '#fff';
+        this.$['package-symbol'].style.backgroundColor = this.package.color;
+        this.$['package-symbol'].style.color = textColor;
+        this.$['package-symbol'].querySelector('hr').style.background = textColor;
+      } else {
+        this.$['package-symbol'].style.backgroundColor = "#fff";
+        this.$['package-symbol'].style.color = "#333";
+      }
+    },
+    updateURL: function() {
+      if (this.router) this.router.go("/elements/" + this.element + "/" + this.view, {replace: true});
+    },
+    navToPackage: function() {
+      this.router.go("/browse?package=" + this.package.name);
     }
   });
 </script>

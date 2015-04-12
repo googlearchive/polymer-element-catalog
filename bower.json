@@ -25,9 +25,11 @@
     "core-icons": "polymer/core-icons#0.8-preview",
     "core-drawer-panel": "polymer/core-drawer-panel#0.8-preview",
     "core-header-panel": "polymer/core-header-panel#0.8-preview",
-    "iron-doc-viewer": "PolymerElements/iron-doc-viewer",
+    "hydrolysis": "PolymerLabs/hydrolysis",
     "core-selector": "Polymer/core-selector#0.8-preview",
-    "color": "~2.5.0"
+    "color": "~2.5.0",
+    "marked-element": "PolymerLabs/marked-element#0.8-preview",
+    "paper-styles": "PolymerLabs/paper-styles#~0.8.1"
   },
   "resolutions": {
     "polymer": "0.8.0",
