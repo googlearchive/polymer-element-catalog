@@ -29,11 +29,13 @@
     "core-selector": "Polymer/core-selector#0.8-preview",
     "color": "~2.5.0",
     "marked-element": "PolymerLabs/marked-element#0.8-preview",
-    "paper-styles": "PolymerLabs/paper-styles#~0.8.1"
+    "paper-styles": "PolymerLabs/paper-styles#~0.8.1",
+    "prism-highlighter": "PolymerElements/prism-highlighter"
   },
   "resolutions": {
     "polymer": "0.8.0",
     "layout": "master",
-    "paper-styles": "master"
+    "paper-styles": "master",
+    "prism-highlighter": "master"
   }
 }

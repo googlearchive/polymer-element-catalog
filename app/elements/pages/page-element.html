@@ -24,7 +24,7 @@
     }
 
     #docs-content {
-      padding: 20px;
+      padding: 30px;
     }
 
     #sidebar {
@@ -67,6 +67,7 @@
     #content {
       background: #eee;
       padding: 30px;
+      overflow: auto;
     }
 
     #content > div {
@@ -112,7 +113,7 @@
           <paper-item view="docs">Documentation</paper-item>
           <paper-item view="demo">Demo</paper-item>
         </core-selector>
-        
+
         <h4>Tags</h4>
         <div>
           <template is="x-repeat" items="[[metadata.tags]]">
@@ -122,7 +123,7 @@
       </aside>
       <core-selector id="content" attr-for-selected="id" selected="{{view}}" class="flex horizontal layout center center-justified">
         <div id="demo"><h1>Demo Content</h1></div>
-        <div id="docs" class="vertical layout">
+        <div id="docs" class="vertical layout self-start">
           <h3 class="paper-font-title">Documentation</h3>
           <div id="docs-content" class="flex">
             <doc-viewer element="[[element]]" data="[[docs]]"></doc-viewer>

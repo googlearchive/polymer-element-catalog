@@ -1,4 +1,5 @@
 <link rel="import" href="../../bower_components/marked-element/marked-element.html">
+<link rel="import" href="../../bower_components/prism-highlighter/prism-highlighter.html">
 
 <dom-module id="doc-viewer">
   <style>
@@ -10,10 +11,12 @@
     marked-element::shadow p:last-child { margin-bottom: 0; }
   </style>
   <template>
+    <prism-highlighter></prism-highlighter>
     <marked-element markdown="[[_element.desc]]"></marked-element>
-    
+
     <template is="x-repeat" items="[[_element.properties]]">
-      <h4 class="paper-font-subhead">[[item.name]]</h4>
+      <h4 class="paper-font-title">[[item.name]]</h4>
+      <marked-element markdown="[[item.jsdoc.body]]"></marked-element>
     </template>
   </template>
 </dom-module>
