@@ -2,7 +2,7 @@
 
 <dom-module id="catalog-package">
   <template>
-    <catalog-data package-map="{{packages}}"></catalog-data>
+    <catalog-data package-map="{{_packages}}"></catalog-data>
   </template>
 </dom-module>
 <script>
@@ -14,9 +14,9 @@
 
       data: {type: Object, notify: true, computed: 'getData(_packages,name)'}
     },
-    getData: function(packages,name) {
-      if (!packages) return;
-      return packages[name];
+    getData: function(_packages,name) {
+      if (!_packages) return;
+      return _packages[name];
     }
   });
 </script>
