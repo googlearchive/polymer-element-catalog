@@ -15,7 +15,7 @@ module.exports = function () {
   // 
   // TEMP: mock data
   var bowerDeps = _.extend(bowerFile.dependencies, {
-    'core-elements': '1.0.0',
+    'iron-elements': '1.0.0',
     'paper-elements': '1.1.4'
   });
  

@@ -15,10 +15,7 @@ var exports = module.exports = function (srcFilepath) {
   
   return objectFromStreams({
     packages: srcCatalog.pipe(packages()),
-    elements: {
-      data: srcCatalog.pipe(elements()),
-      onArray: _.first
-    },
+    elements: srcCatalog.pipe(elements()),
     tags: {
       data: srcCatalog.pipe(tags()),
       onArray: _.first
