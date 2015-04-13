@@ -1,0 +1,26 @@
+<link rel="import" href="../catalog-data/catalog-data.html">
+
+<dom-module id="page-guides">
+  <template>
+    <catalog-data guides="{{guides}}"></catalog-data>
+    <h1>Guides</h1>
+    <ul>
+    <template is="x-repeat" items="[[guides]]">
+      <li><a on-click="nav" guide$="[[item.name]]">[[item.title]]</a></li>
+    </template>
+    </ul>
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: 'page-guides',
+    properties: {
+      router: Object,
+      guides: Array
+    },
+    nav: function(e) {
+      this.router.go('/guides/' + e.currentTarget.getAttribute('guide'));
+    }
+  });
+</script>

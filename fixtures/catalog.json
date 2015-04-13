@@ -99,6 +99,15 @@
       "tags":["ui","lists"]
     }
   ],
+  "guides": [
+    {
+      "name":"example",
+      "title":"Example Guide",
+      "summary":"An example guide to live in place of all guides since we don't have any yet.",
+      "packages":["iron-elements","oxygen-elements"],
+      "elements":["iron-ajax","oxygen-foobar"]
+    }
+  ],
   "tags": {
     "app":["iron-ajax"],
     "layout":["iron-toolbar"],

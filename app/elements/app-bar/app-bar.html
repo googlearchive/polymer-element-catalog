@@ -62,7 +62,7 @@
     <div id="search" class="horizontal layout center" show$="{{showingSearch}}" on-click="toggleSearch">
       <core-icon icon="search"></core-icon>
       <form on-submit="performSearch" class="flex">
-        <input type="search" id="query" value="{{query::keyup}}" autocomplete="off" placeholder="Search Elements">
+        <input type="search" id="query" value="{{query::keyup}}" autocomplete="off" placeholder="Search Elements" on-blur="clearSearch">
       </form>
     </div>
   </template>
@@ -72,10 +72,17 @@
   Polymer({
     is: 'app-bar',
     properties: {
+      query: {type: String, notify: true},
       showingSearch: {
         type: Boolean,
         value: false
       }
+    },
+    observers: {
+      showingSearch: 'updateSearchDisplay'
+    },
+    listeners: {
+      keyup: 'hotkeys'
     },
     toggleSearch: function(e) {
       if (e) {
@@ -86,14 +93,29 @@
       }
 
       this.showingSearch = !this.showingSearch;
-      this.classList.toggle('search-on');
-      this.async(function() {
-        this.$.query.focus();
-      });
+    },
+    clearSearch: function() {
+      this.showingSearch = false;
+    },
+    updateSearchDisplay: function() {
+      if (this.showingSearch) {
+        this.classList.add('search-on');
+        this.async(function() {
+          this.$.query.focus();
+        });
+      } else {
+        this.classList.remove('search-on');
+      }
+    },
+    hotkeys: function(e) {
+      // ESC
+      if (e.keyCode === 27 && Polymer.dom(e).rootTarget === this.$.query) {
+        this.showingSearch = false;
+      }
     },
     performSearch: function(e) {
       e.preventDefault();
-      document.querySelector('#router').go('/browse?q=' + this.query);
+      this.fire('nav', {url: '/browse?q=' + this.query});
     }
   });
 </script>

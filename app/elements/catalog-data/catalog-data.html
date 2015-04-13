@@ -16,16 +16,15 @@
       for (var i = 0; i < list.length; i++) {
         out[list[i].name] = list[i];
       }
-      console.log(out);
       return out;
     }
 
     var _setPackageData = function(data) {
-      console.log('_setPackageData',data);
       _data = data || {};
       if (data) {
         _data.packageMap = _generateMap(data.packages);
         _data.elementMap = _generateMap(data.elements);
+        _data.guideMap = _generateMap(data.guides);
       }
       _els.forEach(function(el){ el.load(_data) });
     }
@@ -54,11 +53,21 @@
           notify: true
         },
         elements: {
-          type: Object,
+          type: Array,
           readOnly: true,
           notify: true
         },
         elementMap: {
+          type: Object,
+          readOnly: true,
+          notify: true
+        },
+        guides: {
+          type: Array,
+          readOnly: true,
+          notify: true
+        },
+        guideMap: {
           type: Object,
           readOnly: true,
           notify: true
@@ -75,6 +84,8 @@
           this._setPackageMap(data.packageMap);
           this._setElements(data.elements);
           this._setElementMap(data.elementMap);
+          this._setGuides(data.guides);
+          this._setGuideMap(data.guideMap);
           this._setTags(data.tags);
         }
       },

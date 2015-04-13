@@ -132,7 +132,7 @@
               <h1>Catalog</h1>
             </a>
           </div>
-          <app-bar class="horizontal layout center end-justified">
+          <app-bar class="horizontal layout center end-justified" query="{{q}}">
             <core-icon icon="menu" on-click="clearPackage"></core-icon>
           </app-bar>
         </core-toolbar>
@@ -197,15 +197,15 @@
         q: {type: String, notify: true},
         tag: {type: String, notify: true},
         package: {type: String, notify: true},
-        packageInfo: {type: Object, notify: true},
 
-        queryString: {type: String, computed: 'buildQueryString(q,tag,package)'},
-
-        elements: {type: Array, notify: true}
+        packages: Array,
+        packageInfo: Object,
+        elements: Array
       },
       observers: {
-        queryString: 'updateURL'
+        'q': 'updateURL'
       },
+
       filter(element) {
         if (this.q && this.q.length && element.name.indexOf(this.q) < 0) { return false; }
         if (this.tag && this.tag.length && element.tags.join(" ").indexOf(this.tag) < 0) { return false; }
@@ -224,18 +224,19 @@
         var el = e.currentTarget.getAttribute('target');
         this.router.go("/elements/" + el + "/docs");
       },
-      buildQueryString: function(q,tag,package) {
+      _buildQueryString: function() {
         var out = [];
-        if (q && q.length) out.push("q=" + q);
-        if (tag && tag.length) out.push("tag=" + tag);
-        if (package && package.length) out.push("package=" + package);
+        if (this.q && this.q.length) out.push("q=" + this.q);
+        if (this.tag && this.tag.length) out.push("tag=" + this.tag);
+        if (this.package && this.package.length) out.push("package=" + this.package);
 
         return out.join("&");
       },
       updateURL: function() {
-        if (this.queryString !== _lastNavigated) {
-          _lastNavigated = this.queryString;
-         this.router.go("/browse" + (this.queryString.length ? "?" + this.queryString : ""), {replace: true});
+        var qs = this._buildQueryString();
+        if (qs !== _lastNavigated && this.router) {
+          _lastNavigated = qs;
+         this.router.go("/browse" + (qs.length ? "?" + qs : ""), {replace: true});
         }
         // HACK: Why does this require a manual render?
         this.$['el-repeat'].render();
