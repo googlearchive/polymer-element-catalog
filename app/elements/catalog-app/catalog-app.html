@@ -7,6 +7,8 @@
 <link rel="import" href="../pages/page-packages.html">
 <link rel="import" href="../pages/page-browse.html">
 <link rel="import" href="../pages/page-element.html">
+<link rel="import" href="../pages/page-guide.html">
+<link rel="import" href="../pages/page-guides.html">
 
 <dom-module id="catalog-app">
   <template>
@@ -14,6 +16,11 @@
       <app-route path="/" element="page-packages" bindRouter></app-route>
       <app-route path="/browse" element="page-browse" bindRouter onUrlChange="updateModel"></app-route>
       <app-route path="/elements/:element/:view" element="page-element" bindRouter onUrlChange="updateModel"></app-route>
+      <app-route path="/guides" element="page-guides" bindRouter></app-route>
+      <app-route path="/guides/*" element="page-guide" bindRouter></app-route>
+      <app-route path="*">
+        <template><h1>Not Found</h1></template>
+      </app-route
     </app-router>
   </template>
 </dom-module>

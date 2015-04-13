@@ -1,0 +1,35 @@
+<link rel="import" href="../catalog-guide/catalog-guide.html">
+
+<dom-module id="page-guide">
+  <template>
+    <catalog-guide name="[[name]]" data="{{guide}}" content="{{content}}"></catalog-guide>
+    <h1>{{guide.title}}</h1>
+    <p>{{guide.summary}}</p>
+    <div id="content"></div>
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: 'page-guide',
+    properties: {
+      router: Object,
+      guide: Object,
+      name: {
+        type: String,
+        notify: true
+      },
+      content: String
+    },
+    observers: {
+      content: 'contentChanged'
+    },
+    attached: function() {
+      // TODO: Change this when we switch to pushState URLs
+      this.name = window.location.hash.substring(9);
+    },
+    contentChanged: function() {
+      this.$.content.innerHTML = this.content;
+    }
+  });
+</script>

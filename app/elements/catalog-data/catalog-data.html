@@ -26,6 +26,7 @@
       if (data) {
         _data.packageMap = _generateMap(data.packages);
         _data.elementMap = _generateMap(data.elements);
+        _data.guideMap = _generateMap(data.guides);
       }
       _els.forEach(function(el){ el.load(_data) });
     }
@@ -54,11 +55,21 @@
           notify: true
         },
         elements: {
-          type: Object,
+          type: Array,
           readOnly: true,
           notify: true
         },
         elementMap: {
+          type: Object,
+          readOnly: true,
+          notify: true
+        },
+        guides: {
+          type: Array,
+          readOnly: true,
+          notify: true
+        },
+        guideMap: {
           type: Object,
           readOnly: true,
           notify: true
@@ -75,6 +86,8 @@
           this._setPackageMap(data.packageMap);
           this._setElements(data.elements);
           this._setElementMap(data.elementMap);
+          this._setGuides(data.guides);
+          this._setGuideMap(data.guideMap);
           this._setTags(data.tags);
         }
       },
