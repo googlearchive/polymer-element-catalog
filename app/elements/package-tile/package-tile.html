@@ -5,6 +5,14 @@
     :host {
       display: flex;
       min-width: 220px;
+      transition: all 320ms cubic-bezier(0.55, 0, 0.1, 1);
+      -webkit-transform: translate(0, 60px);
+      opacity: 0;
+    }
+
+    :host(.active) {
+      -webkit-transform: translate(0, 0);
+      opacity: 1;
     }
 
     #content {
@@ -19,6 +27,7 @@
       border: 8px solid #fff;
       border-radius: 2px;
       box-sizing: border-box;
+      overflow: hidden;
       cursor: pointer;
     }
 
@@ -26,21 +35,54 @@
       font-size: 4.2em;
       font-weight: 900;
       margin: 20px 0;
+      -webkit-transform: translate(-50px, 0);
+      opacity: 0;
+      transition: all 500ms 320ms cubic-bezier(0.55, 0, 0.1, 1);
+    }
+
+    :host(.active) h2 {
+      -webkit-transform: translate(0, 0);
+      opacity: 1;
+    }
+
+    h3 {
+      -webkit-transform: translate(-50px, 0);
+      opacity: 0;
+      transition: all 600ms 320ms cubic-bezier(0.55, 0, 0.1, 1);
+    }
+
+    :host(.active) h3 {
+      -webkit-transform: translate(0, 0);
+      opacity: 1;
     }
 
     hr {
       border: 0;
       background: #fff;
+      width: 0;
       height: 1px;
       opacity: 0.2;
+      margin: 0;
+      transition: width 400ms 620ms cubic-bezier(0.55, 0, 0.1, 1);
+    }
+
+    :host(.active) hr {
+      width: 100%;
     }
 
     .version {
-      opacity: 0.8;
       position: absolute;
       top: 8px;
       right: 8px;
       font-size: 12px;
+      transition: all 400ms 320ms cubic-bezier(0.55, 0, 0.1, 1);
+      -webkit-transform: translate(50px, 0);
+      opacity: 0;
+    }
+
+    :host(.active) .version {
+      -webkit-transform: translate(0, 0);
+      opacity: 0.8;
     }
 
     .symbol {
@@ -51,10 +93,19 @@
       margin-top: 0;
       font-size: 18px;
       font-weight: 600;
+      line-height: 26px;
     }
 
     .tagline {
-      margin: 20px 0 0 0;
+      margin: 15px 0 0 0;
+      transition: all 700ms 320ms cubic-bezier(0.55, 0, 0.1, 1);
+      -webkit-transform: translate(-50px, 0);
+      opacity: 0;
+    }
+
+    :host(.active) .tagline {
+      -webkit-transform: translate(0, 0);
+      opacity: 1;
     }
   </style>
   <template>
@@ -80,6 +131,13 @@
     },
     observers: {
       package: 'updateColors'
+    },
+    attached: function() {
+      var tiles = this.parentNode.querySelectorAll('package-tile');
+      var index = Array.prototype.indexOf.call(tiles, this);
+      setTimeout(function() {
+        this.classList.add('active');
+      }.bind(this), (index + 1) * 50);
     },
     updateColors: function() {
       if (this.package && this.package.color) {
