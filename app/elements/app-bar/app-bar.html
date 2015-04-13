@@ -11,7 +11,7 @@
     }
 
     ::content core-icon {
-      margin-right: 10px;
+      margin-right: 15px;
       cursor: pointer;
     }
 
@@ -59,8 +59,8 @@
   </style>
   <template>
     <content></content>
-    <div id="search" class="horizontal layout center" show$="{{showingSearch}}">
-      <core-icon icon="search" on-click="toggleSearch"></core-icon>
+    <div id="search" class="horizontal layout center" show$="{{showingSearch}}" on-click="toggleSearch">
+      <core-icon icon="search"></core-icon>
       <form on-submit="performSearch" class="flex">
         <input type="search" id="query" value="{{query::keyup}}" autocomplete="off" placeholder="Search Elements">
       </form>
@@ -78,6 +78,13 @@
       }
     },
     toggleSearch: function(e) {
+      if (e) {
+        e.stopPropagation();
+      }
+      if (e.target === this.$.query) {
+        return;
+      }
+
       this.showingSearch = !this.showingSearch;
       this.classList.toggle('search-on');
       this.async(function() {
