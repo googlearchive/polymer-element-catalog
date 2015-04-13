@@ -35,22 +35,20 @@
     }
 
     #search input {
+      display: none;
       font-family: RobotoDraft, 'Noto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-size: 15px;
-      width: 0;
-      padding: 0;
+      width: 100%;
+      padding: 10px;
       border: 0;
       border-radius: 2px;
       -webkit-appearance: none;
-      visibility: hidden;
       box-sizing: border-box;
       /*transition: all 280ms cubic-bezier(0.55, 0, 0.1, 1);*/
     }
 
     #search[show] input {
-      width: 100%;
-      padding: 10px;
-      visibility: visible;
+      display: block;
     }
 
     #search input:focus {
