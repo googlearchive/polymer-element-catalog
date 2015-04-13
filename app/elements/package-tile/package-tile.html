@@ -1,0 +1,97 @@
+<link rel="import" href="../catalog-package/catalog-package.html">
+
+<dom-module id="package-tile">
+  <style>
+    :host {
+      display: flex;
+      min-width: 220px;
+    }
+
+    #content {
+      display: block;
+      position: relative;
+      width: 100%;
+      margin: 8px;
+      padding: 16px;
+      color: #333;
+      background: #fafafa;
+      transition: all 320ms cubic-bezier(0.55, 0, 0.1, 1);
+      border: 8px solid #fff;
+      border-radius: 2px;
+      box-sizing: border-box;
+      cursor: pointer;
+    }
+
+    h2 {
+      font-size: 4.2em;
+      font-weight: 900;
+      margin: 20px 0;
+    }
+
+    hr {
+      border: 0;
+      background: #fff;
+      height: 1px;
+      opacity: 0.2;
+    }
+
+    .version {
+      opacity: 0.8;
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      font-size: 12px;
+    }
+
+    .symbol {
+      padding-top: 60px;
+    }
+
+    .title {
+      margin-top: 0;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .tagline {
+      margin: 20px 0 0 0;
+    }
+  </style>
+  <template>
+    <catalog-package name="[[name]]" data="{{package}}"></catalog-package>
+    <div id="content" class="vertical layout">
+      <span class="version">[[package.version]]</span>
+      <h2 class="symbol">[[package.symbol]]</h2>
+      <h3 class="title">[[package.title]]</h3>
+      <hr>
+      <p class="tagline">[[package.tagline]]</p>
+    </div>
+  </template>
+</dom-module>
+
+<script src="/bower_components/color/one-color.js"></script>
+
+<script>
+  Polymer({
+    is: 'package-tile',
+    properties: {
+      name: {type: String, notify: true},
+      package: {type: Object}
+    },
+    observers: {
+      package: 'updateColors'
+    },
+    updateColors: function() {
+      if (this.package && this.package.color) {
+        var lightness = one.color(this.package.color).lightness();
+        var textColor = (lightness > 0.5) ? one.color(this.package.color).lightness(0.15).hex() : '#fff';
+        this.$.content.style.backgroundColor = this.package.color;
+        this.$.content.style.color = textColor;
+        this.$.content.querySelector('hr').style.background = textColor;
+      } else {
+        this.$.content.style.backgroundColor = "#fff";
+        this.$.content.style.color = "#333";
+      }
+    }
+  });
+</script>

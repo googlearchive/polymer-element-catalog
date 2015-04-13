@@ -15,7 +15,7 @@ module.exports = function () {
   // 
   // TEMP: mock data
   var bowerDeps = _.extend(bowerFile.dependencies, {
-    'core-elements': '1.0.0',
+    'iron-elements': '1.0.0',
     'paper-elements': '1.1.4'
   });
   
@@ -56,17 +56,12 @@ module.exports = function () {
       },
       function (done) {
         
-        data = _(data)
+        var sortedData = _(data)
           .flatten()
-          .map(function (d) {
-            
-            return [d.name, d];
-          })
-          .zipObject()
+          .sortBy('name')
           .value();
-          
         
-        this.push(data);
+        this.push(sortedData);
         done();
       }
     )

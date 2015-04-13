@@ -1,0 +1,51 @@
+<link rel="import" href="../../bower_components/hydrolysis/hydrolysis.html">
+
+<script>
+(function() {
+  var hydrolysis = require('hydrolysis');
+
+  Polymer({
+    is: 'doc-loader',
+    properties: {
+      src: {type: String, notify: true},
+      data: {type: Object, notify: true}
+    },
+    observers: {
+      src: 'load'
+    },
+    load: function() {
+      if (!this.src) {
+        console.error('Expected src to be set for', this);
+        return;
+      }
+      var baseUri = this.ownerDocument.baseURI;
+      var srcUrl  = new URL(this.src, baseUri).toString();
+      var rootUrl;
+      if (this.rootUrl) {
+        rootUrl = new URL(this.rootUrl).toString();
+      } else {
+        rootUrl = new URL('.', srcUrl).toString();
+      }
+      this._loader = new hydrolysis.Loader();
+      this._loader.addResolver(new hydrolysis.XHRResolver());
+      // The *last* resolver is the most specific.
+      this._loader.addResolver(new hydrolysis.NoopResolver({
+        test: function(uri) {
+          var fullUrl = new URL(uri, baseUri).toString();
+          return fullUrl.indexOf(rootUrl) !== 0;
+        },
+      }));
+      this._analyzer = new hydrolysis.Analyzer(false, this._loader);
+      this._analyzer.metadataTree(srcUrl.toString())
+          .then(this._loaded.bind(this))
+          .catch(function(error) {
+            console.error('Failed to load source at:', this.src, error);
+          }.bind(this));
+    },
+    _loaded: function(root) {
+      root.elements.forEach(hydrolysis.docs.annotateElement);
+      this.data = root;      
+    }
+  });
+})();
+</script>

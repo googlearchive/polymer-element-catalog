@@ -1,0 +1,46 @@
+<link rel="import" href="../../bower_components/marked-element/marked-element.html">
+<link rel="import" href="../../bower_components/prism-highlighter/prism-highlighter.html">
+
+<dom-module id="doc-viewer">
+  <style>
+    marked-element::shadow p {
+      line-height: 20px;
+    }
+
+    marked-element::shadow p:first-child { margin-top: 0; }
+    marked-element::shadow p:last-child { margin-bottom: 0; }
+  </style>
+  <template>
+    <prism-highlighter></prism-highlighter>
+    <marked-element markdown="[[_element.desc]]"></marked-element>
+
+    <template is="x-repeat" items="[[_element.properties]]">
+      <h4 class="paper-font-title">[[item.name]]</h4>
+      <marked-element markdown="[[item.jsdoc.body]]"></marked-element>
+    </template>
+  </template>
+</dom-module>
+
+<script>
+(function() {
+  Polymer({
+    is: 'doc-viewer',
+    properties: {
+      data: Object,
+      element: String,
+      _element: {type: Object, notify: true}
+    },
+    observers: {
+      data: 'loadData'
+    },
+    loadData: function() {
+      if (!this.data) return;
+      for (var i = 0; i < this.data.elements.length; i++) {
+        if (this.data.elements[i].is === this.element) {
+          this._element = this.data.elements[i];
+        }
+      }
+    }
+  });
+})();
+</script>

@@ -8,8 +8,8 @@
       background: #2196F3;
       text-transform: uppercase;
       font-size: 12px;
-      padding: 6px 8px;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+      margin: 2px;
+      padding: 0 10px;
       color: white;
       text-decoration: none;
       border-radius: 2px;
@@ -25,13 +25,12 @@
     is: 'tag-link',
     properties: {
       name: String,
-      href: {
-        type: String,
-        computed: 'tagLink(name)'
-      }
     },
-    tagLink: function(name) {
-      return "/#/elements?tag=" + name;
+    listeners: {
+      click: 'nav'
+    },
+    nav: function() {
+      window.location.hash = "#/browse?tag=" + this.name;
     }
   });
 </script>

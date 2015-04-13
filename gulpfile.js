@@ -171,15 +171,17 @@ gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 
 // Watch Files For Changes & Reload
 gulp.task('serve', ['styles', 'elements', 'catalog:dev'], function () {
+  var mw = [
+    superstatic({config: {root: 'app'}}),
+    superstatic({config: {root: '.tmp'}})
+  ];
+  if (process.env.FIXTURES) mw.unshift(superstatic({config: {root: 'fixtures'}}));
+
   browserSync({
     notify: true,
     server: {
       baseDir: ['.tmp','app'],
-      middleware: [
-        superstatic({config: {root: '.tmp'}}),
-        superstatic({config: {root: 'app'}}),
-        superstatic({config: {root: 'fixtures'}})
-      ],
+      middleware: mw,
       routes: {
         '/bower_components':'bower_components'
       }
@@ -230,18 +232,18 @@ gulp.task('pagespeed', function (cb) {
 
 // Build element catalog JSON file
 gulp.task('catalog:dist', function () {
-  
+
   var distFilePath = './dist/catalog.json';
-  
+
   return catalogBuilder(CATALOG_FILEPATH)
     .pipe(stream.stringify())
     .pipe(stream.writeFile(distFilePath));
 });
 
 gulp.task('catalog:dev', function () {
-  
+
   var distFilePath = './.tmp/catalog.json';
-  
+
   return catalogBuilder(CATALOG_FILEPATH)
     .pipe(stream.stringify({space: 2}))
     .pipe(stream.writeFile(distFilePath));

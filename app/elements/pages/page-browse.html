@@ -1,0 +1,259 @@
+<link rel="import" href="../../bower_components/core-icons/core-icons.html">
+<link rel="import" href="../../bower_components/core-icons/av-icons.html">
+
+<link rel="import" href="../catalog-data/catalog-data.html">
+<link rel="import" href="../catalog-package/catalog-package.html">
+<link rel="import" href="../tag-link/tag-link.html">
+
+<dom-module id="page-browse">
+  <style>
+    :host {
+      background: #eee;
+    }
+
+    a {
+      color: black;
+      text-decoration: none;
+    }
+
+    core-toolbar {
+      background: none;
+      padding: 0 16px;
+      border-bottom: 1px solid #eee;
+    }
+
+    core-toolbar::shadow #topBar {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    core-toolbar core-icon {
+      margin-right: 20px;
+      cursor: pointer;
+    }
+
+    core-toolbar core-icon:last-child {
+      margin-right: 0;
+    }
+
+    #container {
+      background: #eee;
+    }
+
+    .elements {
+      max-width: 920px;
+      border-collapse: collapse;
+      margin: 25px auto;
+      background: white;
+      border-radius: 3px;
+      /*box-shadow: 3px 3px 10px rgba(0,0,0,0.2);*/
+    }
+
+    .elements td, .elements th {
+      padding: 20px 30px;
+    }
+
+    .elements th {
+      color: #666;
+      font-size: 15px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+
+    .elements tbody tr {
+      cursor: pointer;
+    }
+
+    .elements tbody tr:hover {
+      background: #fafafa;
+    }
+
+    .elements a {
+      font-weight: bold;
+    }
+
+    .elements a, .elements core-icon {
+      cursor: pointer;
+    }
+
+    [size=xs] .elements .description {
+      display: none;
+    }
+
+    .elements .description {
+      color: #666;
+      line-height: 24px;
+    }
+
+    #sidebar {
+      width: 272px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.2);
+      box-sizing: border-box;
+      z-index: 2;
+    }
+
+    #sidebar .content {
+      padding: 0 16px;
+    }
+
+    #sidebar p {
+      color: #666;
+    }
+
+    #package-info .symbol {
+      font-size: 2.5em;
+      margin: 0 0 8px;
+    }
+
+    #package-info [icon=menu] {
+      float: right;
+      margin: 10px 0 0 0;
+    }
+
+    #package-list .package {
+      display: block;
+      margin: 4px;
+      padding: 8px;
+      border: 1px solid #eee;
+      font-weight: normal;
+    }
+
+    #package-list .package .symbol {
+      display: inline-block;
+      width: 20px;
+      text-align: center;
+      margin-right: 6px;
+      font-weight: bold;
+    }
+
+    @media (max-width: 1200px) {
+      .elements {
+        margin: 0;
+      }
+    }
+  </style>
+  <template>
+    <catalog-data elements="{{elements}}" packages="{{packages}}"></catalog-data>
+    <catalog-package name="[[package]]" data="{{packageInfo}}"></catalog-package>
+
+    <responsive-element class="horizontal layout fit">
+      <aside id="sidebar" class="vertical layout">
+        <core-toolbar class="horizontal layout center">
+          <div class="logo flex">
+            <a href="/#/" class="horizontal layout center">
+              <img src="/images/polymer.svg" width="36">
+              <h1>Catalog</h1>
+            </a>
+          </div>
+          <core-icon icon="menu" on-click="clearPackage"></core-icon>
+          <core-icon icon="search" on-click="toggleSearch"></core-icon>
+        </core-toolbar>
+        <input type="search" value="{{q::keyup}}">
+        <div hidden$="[[!tag]]">
+          <span>[[tag]]</span> <core-icon icon="clear" on-click="clearTag"></core-icon>
+        </div>
+        <div id="package-list" hidden$="[[packageInfo]]">
+          <template is="x-repeat" items="[[packages]]">
+            <a class="package" on-click="updatePackage" name="[[item.name]]">
+              <span class="symbol">[[item.symbol]]</span>
+              <span class="title">[[item.title]]</span>
+            </a>
+          </template>
+        </div>
+        <div id="package-info" hidden$="[[!packageInfo]]">
+          <core-icon icon="menu" on-click="clearPackage"></core-icon>
+
+          <h3 class="symbol">[[packageInfo.symbol]]</h3>
+          <h2>[[packageInfo.title]]</h2>
+
+          <p>[[packageInfo.description]]</p>
+        </div>
+      </aside>
+
+      <div id="container" class="flex">
+        <table class="elements">
+          <thead>
+            <tr>
+              <th class="name">Name</th>
+              <th class="description">Description</th>
+              <th class="tags">Tags</th>
+            </tr>
+          </thead>
+          <tbody>
+            <template id="el-repeat" is="x-repeat" items="{{elements}}" filter="filter" observe="tag package q">
+              <tr on-click="nav" target$="[[item.name]]">
+                <td class="name">[[item.name]]</td>
+                <td class="description">[[item.description]]</td>
+                <td class="tags">
+                  <template is="x-repeat" items="[[item.tags]]">
+                    <tag-link name="[[item]]" on-click="updateTag"></tag-link>
+                  </template>
+                </td>
+              </tr>
+            </template>
+          </tbody>
+        </table>
+      </div>
+    </responsive-element>
+  </template>
+</dom-module>
+
+<script>
+  (function() {
+    var _lastNavigated = null;
+    Polymer({
+      is: 'page-browse',
+      properties: {
+        router: Object,
+
+        // Query Parameters
+        q: {type: String, notify: true},
+        tag: {type: String, notify: true},
+        package: {type: String, notify: true},
+        packageInfo: {type: Object, notify: true},
+
+        queryString: {type: String, computed: 'buildQueryString(q,tag,package)'},
+
+        elements: {type: Array, notify: true}
+      },
+      observers: {
+        queryString: 'updateURL'
+      },
+      filter(element) {
+        if (this.q && this.q.length && element.name.indexOf(this.q) < 0) { return false; }
+        if (this.tag && this.tag.length && element.tags.join(" ").indexOf(this.tag) < 0) { return false; }
+        if (this.package && this.package.length && element.package !== this.package) { return false; }
+        return true;
+      },
+
+      updateTag: function(e) { e.stopPropagation(); e.preventDefault(); this.tag = e.currentTarget.name; },
+      clearTag: function() { this.tag = null; },
+      updatePackage: function(e) { this.package = e.currentTarget.name; },
+      clearPackage: function() { this.package = null; },
+
+      nav: function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var el = e.currentTarget.getAttribute('target');
+        this.router.go("/elements/" + el + "/docs");
+      },
+      buildQueryString: function(q,tag,package) {
+        var out = [];
+        if (q && q.length) out.push("q=" + q);
+        if (tag && tag.length) out.push("tag=" + tag);
+        if (package && package.length) out.push("package=" + package);
+
+        return out.join("&");
+      },
+      updateURL: function() {
+        if (this.queryString !== _lastNavigated) {
+          _lastNavigated = this.queryString;
+         this.router.go("/browse" + (this.queryString.length ? "?" + this.queryString : ""), {replace: true});
+        }
+        // HACK: Why does this require a manual render?
+        this.$['el-repeat'].render();
+      }
+    });
+  })();
+</script>
