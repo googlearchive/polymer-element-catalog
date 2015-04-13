@@ -15,7 +15,7 @@ module.exports = function () {
   // 
   // TEMP: mock data
   var bowerDeps = _.extend(bowerFile.dependencies, {
-    'core-elements': '1.0.0',
+    'iron-elements': '1.0.0',
     'paper-elements': '1.1.4'
   });
  
@@ -32,8 +32,8 @@ module.exports = function () {
       
       // Using dummy data now until we have the actual elements
       done(null, {
-        'tag-name': ['core-custom', 'core-another'],
-        'another-tag': ['paper-custom', 'core-custom']
+        'tag-name': ['iron-custom', 'iron-another'],
+        'another-tag': ['paper-custom', 'iron-custom']
       });
     })
   ); 

@@ -13,8 +13,8 @@ module.exports = function (name) {
     description: 'This is the temporary element description',
     version: '0.1.0',
     dependencies: {
-      'core-custom': '0.2.0',
-      'core-another': '1.0.0',
+      'iron-custom': '0.2.0',
+      'iron-another': '1.0.0',
       'paper-custom': '0.3.1'
     }
   };
