@@ -18,23 +18,7 @@
 
     core-toolbar {
       background: none;
-      padding: 0 16px;
       border-bottom: 1px solid #eee;
-    }
-
-    core-toolbar::shadow #topBar {
-      width: 100%;
-      margin: 0;
-      padding: 0;
-    }
-
-    core-toolbar core-icon {
-      margin-right: 20px;
-      cursor: pointer;
-    }
-
-    core-toolbar core-icon:last-child {
-      margin-right: 0;
     }
 
     #container {
@@ -130,6 +114,8 @@
     @media (max-width: 1200px) {
       .elements {
         margin: 0;
+        width: 100%;
+        border-radius: 0;
       }
     }
   </style>
@@ -140,34 +126,34 @@
     <responsive-element class="horizontal layout fit">
       <aside id="sidebar" class="vertical layout">
         <core-toolbar class="horizontal layout center">
-          <div class="logo flex">
+          <div class="logo">
             <a href="/#/" class="horizontal layout center">
               <img src="/images/polymer.svg" width="36">
               <h1>Catalog</h1>
             </a>
           </div>
-          <core-icon icon="menu" on-click="clearPackage"></core-icon>
-          <core-icon icon="search" on-click="toggleSearch"></core-icon>
+          <app-bar class="horizontal layout center end-justified">
+            <core-icon icon="menu" on-click="clearPackage"></core-icon>
+          </app-bar>
         </core-toolbar>
-        <input type="search" value="{{q::keyup}}">
-        <div hidden$="[[!tag]]">
-          <span>[[tag]]</span> <core-icon icon="clear" on-click="clearTag"></core-icon>
-        </div>
-        <div id="package-list" hidden$="[[packageInfo]]">
-          <template is="x-repeat" items="[[packages]]">
-            <a class="package" on-click="updatePackage" name="[[item.name]]">
-              <span class="symbol">[[item.symbol]]</span>
-              <span class="title">[[item.title]]</span>
-            </a>
-          </template>
-        </div>
-        <div id="package-info" hidden$="[[!packageInfo]]">
-          <core-icon icon="menu" on-click="clearPackage"></core-icon>
+        <div class="content">
+          <div hidden$="[[!tag]]">
+            <span>[[tag]]</span> <core-icon icon="clear" on-click="clearTag"></core-icon>
+          </div>
+          <div id="package-list" hidden$="[[packageInfo]]">
+            <template is="x-repeat" items="[[packages]]">
+              <a class="package" on-click="updatePackage" name="[[item.name]]">
+                <span class="symbol">[[item.symbol]]</span>
+                <span class="title">[[item.title]]</span>
+              </a>
+            </template>
+          </div>
+          <div id="package-info" hidden$="[[!packageInfo]]">
+            <h3 class="symbol">[[packageInfo.symbol]]</h3>
+            <h2>[[packageInfo.title]]</h2>
 
-          <h3 class="symbol">[[packageInfo.symbol]]</h3>
-          <h2>[[packageInfo.title]]</h2>
-
-          <p>[[packageInfo.description]]</p>
+            <p>[[packageInfo.description]]</p>
+          </div>
         </div>
       </aside>
 

@@ -18,39 +18,8 @@
       transition: height 450ms cubic-bezier(0.55, 0, 0.1, 1);
     }
 
-    .search {
-      position: relative;
-    }
-
-    .search core-icon {
-      position: absolute;
-      top: 8px;
-      left: 8px;
-      z-index: 2;
-      cursor: pointer;
-    }
-
-    .search input {
-      font-family: RobotoDraft, 'Noto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      font-size: 15px;
-      width: 0;
-      padding: 10px 10px 10px 30px;
-      border: 1px solid #ccc;
-      border-radius: 2px;
-      opacity: 0;
-      -webkit-appearance: none;
-      visibility: hidden;
-      transition: all 450ms cubic-bezier(0.55, 0, 0.1, 1);
-    }
-
-    .search.active input {
-      width: 300px;
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .search input:focus {
-      outline: 0;
+    .search.active {
+      left: 15px;
     }
 
     @media (max-width: 639px) {
@@ -70,10 +39,7 @@
             <h1>Catalog</h1>
           </a>
         </div>
-        <div class="search">  
-          <core-icon icon="search" on-click="toggleSearch"></core-icon>
-          <form on-submit="performSearch"><input id="query" type="search" value="{{query::keyup}}"></form>
-        </div>
+        <app-bar class="horizontal layout center end-justified"></app-bar>
       </core-toolbar>
 
       <div class="content fit">
@@ -92,13 +58,6 @@
     is: 'page-packages',
     select: function(e) {
       this.router.go('/browse?package=' + e.currentTarget.getAttribute('name'));
-    },
-    toggleSearch: function(e) {
-      e.target.parentNode.classList.toggle('active');
-    },
-    performSearch: function(e) {
-      e.preventDefault();
-      this.router.go('/browse?q=' + this.query);
     }
   });
 </script>
