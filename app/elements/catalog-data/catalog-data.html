@@ -16,12 +16,10 @@
       for (var i = 0; i < list.length; i++) {
         out[list[i].name] = list[i];
       }
-      console.log(out);
       return out;
     }
 
     var _setPackageData = function(data) {
-      console.log('_setPackageData',data);
       _data = data || {};
       if (data) {
         _data.packageMap = _generateMap(data.packages);
