@@ -3,6 +3,7 @@
 <link rel="import" href="../../bower_components/iron-doc-viewer/iron-doc-viewer.html">
 <link rel="import" href="../../bower_components/paper-item/paper-item.html">
 
+<link rel="import" href="../responsive-element/responsive-element.html">
 <link rel="import" href="../catalog-element/catalog-element.html">
 <link rel="import" href="../catalog-package/catalog-package.html">
 <link rel="import" href="../doc-loader/doc-loader.html">
@@ -82,6 +83,10 @@
       background: #2196F3;
       color: white;
     }
+
+    [size=xs] #content, [size=s] #content {
+      padding: 0;
+    }
   </style>
   <template>
     <catalog-element name="[[element]]" data="{{metadata}}"></catalog-element>
@@ -124,7 +129,7 @@
       <core-selector id="content" attr-for-selected="id" selected="{{view}}" class="flex horizontal layout center center-justified">
         <div id="demo"><h1>Demo Content</h1></div>
         <div id="docs" class="vertical layout self-start">
-          <h3 class="paper-font-title">Documentation</h3>
+          <h3 id="doc-heading" class="paper-font-title">[[element]]</h3>
           <div id="docs-content" class="flex">
             <doc-viewer element="[[element]]" data="[[docs]]"></doc-viewer>
           </div>
@@ -159,10 +164,8 @@
         var textColor = (lightness > 0.5) ? one.color(this.package.color).lightness(0.15).hex() : '#fff';
         this.$['package-symbol'].style.backgroundColor = this.package.color;
         this.$['package-symbol'].style.color = textColor;
-        this.$['package-symbol'].querySelector('hr').style.background = textColor;
-      } else {
-        this.$['package-symbol'].style.backgroundColor = "#fff";
-        this.$['package-symbol'].style.color = "#333";
+        this.$['doc-heading'].style.backgroundColor = this.package.color;
+        this.$['doc-heading'].style.color = textColor;
       }
     },
     updateURL: function() {

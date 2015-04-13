@@ -35,6 +35,42 @@
       "version":"1.0.0",
       "tagline":"Data-pipes and specialized services",
       "description":"--TBD--"
+    },
+    {
+      "name":"neon-elements",
+      "title":"Neon Elements",
+      "symbol":"Ne",
+      "color":"#E91E63",
+      "version":"1.0.0",
+      "tagline":"Elements that implement special effects",
+      "description":"--TBD--"
+    },
+    {
+      "name":"carbon-elements",
+      "title":"Carbon Elements",
+      "symbol":"C",
+      "color":"#424242",
+      "version":"1.0.0",
+      "tagline":"Magical unknown element group",
+      "description":"--TBD--"
+    },
+    {
+      "name":"molecules",
+      "title":"Molecules",
+      "symbol":"Mo",
+      "color":"#673AB7",
+      "version":"1.0.0",
+      "tagline":"Third-party library wrappers",
+      "description":"--TBD--"
+    },
+    {
+      "name":"service-worker-elements",
+      "title":"Service Worker Elements",
+      "symbol":"Sw",
+      "color":"#009688",
+      "version":"1.0.0",
+      "tagline":"Offline and networking",
+      "description":"--TBD--"
     }
   ],
   "elements": [

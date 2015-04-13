@@ -3,22 +3,50 @@
     {
       "name":"iron-elements",
       "title":"Iron Elements",
+      "color":"#F44336",
       "symbol": "Fe"
     },
     {
       "name":"paper-elements",
       "title":"Paper Elements",
+      "color":"#FAFAFA",
       "symbol": "Md"
     },
     {
       "name":"gold-elements",
+      "color":"#FFC107",
       "title":"Gold Elements",
       "symbol": "Au"
     },
     {
       "name":"oxygen-elements",
       "title":"Oxygen Elements",
+      "color":"#03A9F4",
       "symbol":"O"
+    },
+    {
+      "name":"neon-elements",
+      "title":"Neon Elements",
+      "color":"#E91E63",
+      "symbol":"Ne"
+    },
+    {
+      "name":"carbon-elements",
+      "title":"Carbon Elements",
+      "color":"#424242",
+      "symbol":"C"
+    },
+    {
+      "name":"molecules",
+      "title":"Molecules",
+      "color":"#673AB7",
+      "symbol":"Mo"
+    },
+    {
+      "name":"service-worker-elements",
+      "title":"Service Worker Elements",
+      "color":"#009688",
+      "symbol":"Sw"
     }
   ]
 }

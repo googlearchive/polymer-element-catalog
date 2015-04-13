@@ -16,7 +16,7 @@
   ],
   "private": true,
   "dependencies": {
-    "polymer": "0.8.0",
+    "polymer": "Polymer/polymer#0.8-preview",
     "core-ajax": "Polymer/core-ajax#0.8-preview",
     "layout": "Polymer/layout",
     "paper-item": "PolymerElements/paper-item",
