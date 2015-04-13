@@ -11,7 +11,7 @@
 <link rel="import" href="../pages/page-guide.html">
 <link rel="import" href="../pages/page-guides.html">
 
-<dom-module id="catalog-app">
+<dom-module id="app-shell">
   <template>
     <app-router id="router" class="flex">
       <app-route path="/" element="page-packages" bindRouter></app-route>
@@ -28,7 +28,7 @@
 
 <script>
   Polymer({
-    is: 'catalog-app',
+    is: 'app-shell',
     listeners: {
       'nav': 'handleNav'
     },
