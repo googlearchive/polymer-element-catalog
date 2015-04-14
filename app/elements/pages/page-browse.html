@@ -303,8 +303,8 @@
 
       updateTag: function(e) { e.stopPropagation(); e.preventDefault(); this.tag = e.currentTarget.name; },
       clearTag: function() { this.tag = null; },
-      updatePackage: function(e) { this.package = e.currentTarget.name; },
-      clearPackage: function() { this.package = null; },
+      updatePackage: function(e) { this.package = e.currentTarget.name; this.updateURL(); },
+      clearPackage: function() { this.package = null; this.updateURL(); },
 
       nav: function(e) {
         e.preventDefault();
