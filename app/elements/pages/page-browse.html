@@ -202,7 +202,7 @@
 
     .active #package-version {
       -webkit-transform: translate(0, 0);
-      opacity: 0.6;     
+      opacity: 0.6;
     }
 
     #package-list {
@@ -244,6 +244,19 @@
       width: 100%;
       border-radius: 0;
     }
+
+    #current-tag {
+      background: #2196F3;
+      color: rgba(255,255,255,0.87);
+      padding: 12px;
+      font-size: 16px;
+    }
+    #current-tag b {
+      margin-right: 6px;
+    }
+    #current-tag span {
+      text-transform: uppercase;
+    }
   </style>
   <template>
     <catalog-data elements="{{elements}}" packages="{{packages}}"></catalog-data>
@@ -277,7 +290,7 @@
               </theme-color>
             </template>
           </div>
-          <theme-color color="[[packageInfo.color]]" id="package-info" hidden$="[[!packageInfo]]">
+          <theme-color color="[[packageInfo.color]]" id="package-info" hidden$="[[!packageInfo.name]]">
             <div id="package-header" themed>
               <div class="layout horizontal center">
                 <h3 id="package-symbol" class="flex">[[packageInfo.symbol]]</h3>
@@ -292,6 +305,9 @@
             </div>
             <p id="package-desc">[[packageInfo.description]]</p>
           </theme-color>
+          <div hidden$="[[!tag]]" id="current-tag" class="horizontal layout center">
+            <b>Tag:</b> <span class="flex">[[tag]]</span> <core-icon icon="clear" on-click="clearTag"></core-icon>
+          </div>
         </div>
       </app-sidebar>
 
@@ -332,9 +348,9 @@
         router: Object,
 
         // Query Parameters
-        q: {type: String, notify: true},
-        tag: {type: String, notify: true},
-        package: {type: String, notify: true},
+        q: {type: String, notify: true, value: ''},
+        tag: {type: String, notify: true, value: ''},
+        package: {type: String, notify: true, value: ''},
 
         packages: Array,
         packageInfo: Object,
@@ -347,12 +363,12 @@
 
       filter(element) {
         if (this.q && this.q.length && element.name.indexOf(this.q) < 0) { return false; }
-        if (this.tag && this.tag.length && element.tags.join(" ").indexOf(this.tag) < 0) { return false; }
+        if (this.tag && this.tag.length && element.tags.join(' ').indexOf(this.tag) < 0) { return false; }
         if (this.package && this.package.length && element.package !== this.package) { return false; }
         return true;
       },
 
-      updateTag: function(e) { e.stopPropagation(); e.preventDefault(); this.tag = e.currentTarget.name; },
+      updateTag: function(e) {e.stopPropagation(); e.preventDefault(); this.tag = e.currentTarget.name; },
       clearTag: function() { this.tag = null; },
       updatePackage: function(e) { this.package = e.currentTarget.name; this.updateURL(); },
       clearPackage: function() { this.package = null; this.updateURL(); },
@@ -376,13 +392,17 @@
         setTimeout(function() { this.$['package-info'].classList.add('active'); }.bind(this), 25);
       },
       updateURL: function() {
+        console.log('updateURL');
         var qs = this._buildQueryString();
         if (qs !== _lastNavigated && this.router) {
           _lastNavigated = qs;
          this.router.go("/browse" + (qs.length ? "?" + qs : ""), {replace: true});
         }
         // HACK: Why does this require a manual render?
-        this.$['el-repeat'].render();
+        this.async(function() {
+          console.log("Calling render", this.q, this.tag, this.package);
+          this.$['el-repeat'].render();
+        });
       }
     });
   })();

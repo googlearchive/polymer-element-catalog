@@ -4,19 +4,19 @@
       display: inline-block;
     }
 
-    a {
+    span {
       background: #2196F3;
       text-transform: uppercase;
       font-size: 12px;
       margin: 2px;
-      padding: 0 10px;
+      padding: 6px 10px;
       color: white;
       text-decoration: none;
       border-radius: 2px;
     }
   </style>
   <template>
-    <a href="{{href}}">{{name}}</a>
+    <span>{{name}}</span>
   </template>
 </dom-module>
 
@@ -24,13 +24,12 @@
   Polymer({
     is: 'tag-link',
     properties: {
-      name: String,
+      name: {type: String, notify: true, reflectToAttribute: true, observer: 'convert'}
     },
-    listeners: {
-      click: 'nav'
-    },
-    nav: function() {
-      window.location.hash = "#/browse?tag=" + this.name;
+    convert: function() {
+      if (typeof this.name === 'object') {
+        this.name = this.name.valueOf();
+      }
     }
   });
 </script>

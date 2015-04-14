@@ -3,6 +3,7 @@
 <link rel="import" href="../../bower_components/iron-doc-viewer/iron-doc-viewer.html">
 <link rel="import" href="../../bower_components/paper-item/paper-item.html">
 
+<link rel="import" href="../theme-color/theme-color.html">
 <link rel="import" href="../responsive-element/responsive-element.html">
 <link rel="import" href="../catalog-element/catalog-element.html">
 <link rel="import" href="../catalog-package/catalog-package.html">
@@ -83,56 +84,57 @@
     <catalog-package name="[[metadata.package]]" data="{{package}}"></catalog-package>
 
     <doc-loader src="[[importPath]]" data="{{docs}}"></doc-loader>
-
-    <responsive-element class="horizontal layout fit">
-      <app-sidebar>
-        <core-toolbar class="horizontal layout center">
-          <div class="logo flex">
-            <a href="/#/" class="horizontal layout center">
-              <img src="/images/polymer.svg" width="36">
-              <h1 class="flex">Catalog</h1>
-            </a>
-          </div>
-          <app-bar class="horizontal layout center end-justified"></app-bar>
-        </core-toolbar>
-        <div class="content">
-          <div id="element-info">
-            <div id="element-header" class="horizontal layout center">
-              <core-icon on-click="navToPackage" icon="chevron-left"></core-icon>
-              <span id="package-symbol" on-click="navToPackage">[[package.symbol]]</span>
-              <span>[[element]]</span>
+    <theme-color color="[[package.color]]">
+      <responsive-element class="horizontal layout fit">
+        <app-sidebar>
+          <core-toolbar class="horizontal layout center">
+            <div class="logo flex">
+              <a href="/#/" class="horizontal layout center">
+                <img src="/images/polymer.svg" width="36">
+                <h1 class="flex">Catalog</h1>
+              </a>
             </div>
-
-            <div id="element-desc" class="section">
-              <p>[[metadata.description]]</p>
-            </div>
-
-            <core-selector attr-for-selected="view" selected="{{view}}" id="links">
-              <paper-item view="docs">Documentation</paper-item>
-              <paper-item view="demo">Demo</paper-item>
-            </core-selector>
-
-            <div id="element-tags" class="section">
-              <h4>Tags</h4>
-              <div>
-                <template is="x-repeat" items="[[metadata.tags]]">
-                  <tag-link name="[[item]]"></tag-link>
-                </template>
+            <app-bar class="horizontal layout center end-justified"></app-bar>
+          </core-toolbar>
+          <div class="content">
+            <div id="element-info">
+              <div id="element-header" class="horizontal layout center" themed>
+                <core-icon on-click="navToPackage" icon="chevron-left"></core-icon>
+                <span id="package-symbol" on-click="navToPackage">[[package.symbol]]</span>
+                <span>[[element]]</span>
+              </div>
+  
+              <div id="element-desc" class="section">
+                <p>[[metadata.description]]</p>
+              </div>
+  
+              <core-selector attr-for-selected="view" selected="{{view}}" id="links">
+                <paper-item view="docs">Documentation</paper-item>
+                <paper-item view="demo">Demo</paper-item>
+              </core-selector>
+  
+              <div id="element-tags" class="section">
+                <h4>Tags</h4>
+                <div>
+                  <template is="x-repeat" items="[[metadata.tags]]">
+                    <tag-link name="[[item]]"></tag-link>
+                  </template>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </app-sidebar>
-      <core-selector id="content" attr-for-selected="id" selected="{{view}}" class="flex horizontal layout center center-justified">
-        <div id="demo"><h1>Demo Content</h1></div>
-        <div id="docs" class="vertical layout self-start">
-          <h3 id="doc-heading">[[element]]</h3>
-          <div id="docs-content" class="flex">
-            <doc-viewer element="[[element]]" data="[[docs]]"></doc-viewer>
+        </app-sidebar>
+        <core-selector id="content" attr-for-selected="id" selected="{{view}}" class="flex horizontal layout center center-justified">
+          <div id="demo"><h1>Demo Content</h1></div>
+          <div id="docs" class="vertical layout self-start">
+            <h3 id="doc-heading" themed>[[element]]</h3>
+            <div id="docs-content" class="flex">
+              <doc-viewer element="[[element]]" data="[[docs]]"></doc-viewer>
+            </div>
           </div>
-        </div>
-      </core-selector>
-    </responsive-element>
+        </core-selector>
+      </responsive-element>
+    </theme-color>
   </template>
 </dom-module>
 
@@ -149,21 +151,10 @@
       router: Object
     },
     observers: {
-      package: 'updateColors',
       view: 'updateURL'
     },
     importPathFor: function(element) {
       return ["/bower_components", element, element + ".html"].join("/");
-    },
-    updateColors: function() {
-      if (this.package && this.package.color) {
-        var lightness = one.color(this.package.color).lightness();
-        var textColor = (lightness > 0.5) ? one.color(this.package.color).lightness(0.15).hex() : '#fff';
-        this.$['element-header'].style.backgroundColor = this.package.color;
-        this.$['element-header'].style.color = textColor;
-        this.$['doc-heading'].style.backgroundColor = this.package.color;
-        this.$['doc-heading'].style.color = textColor;
-      }
     },
     updateURL: function() {
       if (this.router) this.router.go("/elements/" + this.element + "/" + this.view, {replace: true});
