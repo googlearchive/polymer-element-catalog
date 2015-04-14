@@ -143,6 +143,7 @@
         var lightness = one.color(this.package.color).lightness();
         var textColor = (lightness > 0.5) ? one.color(this.package.color).lightness(0.15).hex() : '#fff';
         this.$.content.style.backgroundColor = this.package.color;
+        this.$.content.style.borderColor = this.package.color;
         this.$.content.style.color = textColor;
         this.$.content.querySelector('hr').style.background = textColor;
       } else {
