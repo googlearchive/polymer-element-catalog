@@ -369,7 +369,7 @@
         package: 'showPackage'
       },
 
-      filter(element) {
+      filter: function(element) {
         if (this.q && this.q.length && element.name.indexOf(this.q) < 0) { return false; }
         if (this.tag && this.tag.length && element.tags.join(' ').indexOf(this.tag) < 0) { return false; }
         if (this.package && this.package.length && element.package !== this.package) { return false; }
