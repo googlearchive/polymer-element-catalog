@@ -125,7 +125,7 @@
     }
 
     #package-title {
-      margin: 0;
+      margin: 0 0 20px;
       font-size: 18px;
       font-weight: 600;
     }
@@ -155,10 +155,18 @@
       padding: 10px 0;
     }
 
+    #package-list h5 {
+      margin: 10px 0;
+      padding: 0 16px;
+      color: rgba(0,0,0,.54);
+      font-weight: 500;
+    }
+
     #package-list .package {
       display: block;
       padding: 10px 16px;
-      font-weight: normal;
+      font-weight: 500;
+      color: rgba(0,0,0,.87);
       text-transform: none;
       cursor: pointer;
     }
@@ -172,9 +180,7 @@
       text-align: center;
       margin-right: 15px;
       font-weight: 900;
-      outline: 1px solid rgba(0,0,0,.2);
-      outline-offset: -1px;
-      border-radius: 2px;
+      border-radius: 50%;
     }
 
     @media (max-width: 1200px) {
@@ -207,6 +213,7 @@
             <span>[[tag]]</span> <core-icon icon="clear" on-click="clearTag"></core-icon>
           </div>
           <div id="package-list" hidden$="[[packageInfo]]">
+            <h5>Packages</h5>
             <template is="x-repeat" items="[[packages]]">
               <a class="package" on-click="updatePackage" name="[[item.name]]" data-color$="[[item.color]]">
                 <div class="layout horizontal center">
@@ -220,7 +227,7 @@
             <div id="package-header">
               <div class="layout horizontal center">
                 <h3 id="package-symbol" class="flex">[[packageInfo.symbol]]</h3>
-                <core-icon icon="expand-more" on-click="clearPackage"></core-icon>
+                <core-icon icon="view-module"></core-icon>
               </div>
               <h2 id="package-title">[[packageInfo.title]]</h2>
               <hr>
