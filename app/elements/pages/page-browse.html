@@ -32,7 +32,7 @@
     }
 
     .elements td, .elements th {
-      padding: 20px 30px;
+      padding: 20px 16px;
     }
 
     .elements th {
@@ -69,6 +69,21 @@
     .elements .description {
       color: #666;
       line-height: 24px;
+    }
+
+    responsive-element[size=xs].layout {
+      -ms-flex-direction: column;
+      -webkit-flex-direction: column;
+      flex-direction: column;
+    }
+
+    [size=xs] app-sidebar {
+      min-width: 100%;
+      height: auto;
+    }
+
+    [size=xs] app-sidebar core-toolbar /deep/ #topBar {
+      padding: 0 16px;
     }
 
     #sidebar p {
@@ -149,6 +164,10 @@
       transition: all 200ms 320ms cubic-bezier(0.55, 0, 0.1, 1);
     }
 
+    [size=xs] #package-desc {
+      display: none;
+    }
+
     .active #package-symbol,
     .active #package-title,
     .active #package-tagline h4,
@@ -194,12 +213,12 @@
       border-radius: 50%;
     }
 
-    @media (max-width: 1200px) {
-      .elements {
-        margin: 0;
-        width: 100%;
-        border-radius: 0;
-      }
+    [size=xs] .elements,
+    [size=s] .elements,
+    [size=m] .elements {
+      margin: 0;
+      width: 100%;
+      border-radius: 0;
     }
   </style>
   <template>
