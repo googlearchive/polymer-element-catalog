@@ -3,6 +3,9 @@ sudo: false
 node_js:
 - 0.12
 script: npm run build
+cache:
+  directories:
+  - node_modules
 deploy:
   provider: divshot
   api_key:
