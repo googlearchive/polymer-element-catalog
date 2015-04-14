@@ -1,4 +1,5 @@
 <link rel="import" href="../catalog-package/catalog-package.html">
+<link rel="import" href="../theme-color/theme-color.html">
 
 <dom-module id="package-tile">
   <style>
@@ -20,7 +21,6 @@
       position: relative;
       width: 100%;
       margin: 8px;
-      padding: 16px;
       color: #333;
       background: #fafafa;
       border: 8px solid #fff;
@@ -28,6 +28,7 @@
       box-sizing: border-box;
       overflow: hidden;
       cursor: pointer;
+      padding: 16px;
     }
 
     h2 {
@@ -109,17 +110,15 @@
   </style>
   <template>
     <catalog-package name="[[name]]" data="{{package}}"></catalog-package>
-    <div id="content" class="vertical layout">
+    <theme-color id="content" color="[[package.color]]" class="vertical layout" themed>
       <span class="version">[[package.version]]</span>
       <h2 class="symbol">[[package.symbol]]</h2>
       <h3 class="title">[[package.title]]</h3>
-      <hr>
+      <hr themed-reverse>
       <p class="tagline">[[package.tagline]]</p>
-    </div>
+    </theme-color>
   </template>
 </dom-module>
-
-<script src="/bower_components/color/one-color.js"></script>
 
 <script>
   Polymer({
@@ -128,28 +127,12 @@
       name: {type: String, notify: true},
       package: {type: Object}
     },
-    observers: {
-      package: 'updateColors'
-    },
     attached: function() {
       var tiles = this.parentNode.querySelectorAll('package-tile');
       var index = Array.prototype.indexOf.call(tiles, this);
       setTimeout(function() {
         this.classList.add('active');
       }.bind(this), (index + 1) * 50);
-    },
-    updateColors: function() {
-      if (this.package && this.package.color) {
-        var lightness = one.color(this.package.color).lightness();
-        var textColor = (lightness > 0.5) ? one.color(this.package.color).lightness(0.15).hex() : '#fff';
-        this.$.content.style.backgroundColor = this.package.color;
-        this.$.content.style.borderColor = this.package.color;
-        this.$.content.style.color = textColor;
-        this.$.content.querySelector('hr').style.background = textColor;
-      } else {
-        this.$.content.style.backgroundColor = "#fff";
-        this.$.content.style.color = "#333";
-      }
     }
   });
 </script>

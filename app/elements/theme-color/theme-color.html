@@ -1,0 +1,39 @@
+<script src="../../bower_components/color/one-color.js"></script>
+
+<script>
+  Polymer({
+    is: 'theme-color',
+    properties: {
+      color: {type: String, notify: true},
+      textColor: {type: String, notify: true, computed: 'computeTextColor(color)'}
+    },
+    observers: {
+      color: 'colorContent'
+    },
+    computeTextColor: function(color) {
+      if (this.color) {
+        var lightness = one.color(this.color).lightness();
+        return (lightness > 0.5) ? one.color(this.color).lightness(0.15).hex() : one.color(this.color).lightness(0.92).hex();
+      } else {
+        return null;
+      }
+    },
+    _color: function(node, bgColor, color) {
+      node.style.color = color;
+      node.style.backgroundColor = bgColor;
+    },
+    colorContent: function() {
+      if (this.hasAttribute('themed')) this._color(this, this.color, this.textColor);
+      if (this.hasAttribute('themed-reverse')) this._color(this, this.textColor, this.color);
+      
+      var nodes = Polymer.dom(this).querySelectorAll('[themed],[themed-reverse]');
+      for (var i = 0; i < nodes.length; i++) {
+        if (nodes[i].hasAttribute('themed')) {
+          this._color(nodes[i], this.color, this.textColor);
+        } else if (nodes[i].hasAttribute('themed-reverse')) {
+          this._color(nodes[i], this.color, this.textColor);
+        }
+      }
+    }
+  });
+</script>

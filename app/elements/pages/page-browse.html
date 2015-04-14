@@ -4,6 +4,7 @@
 <link rel="import" href="../catalog-data/catalog-data.html">
 <link rel="import" href="../catalog-package/catalog-package.html">
 <link rel="import" href="../tag-link/tag-link.html">
+<link rel="import" href="../theme-color/theme-color.html">
 
 <dom-module id="page-browse">
   <style>
@@ -208,29 +209,29 @@
           </div>
           <div id="package-list" hidden$="[[packageInfo]]">
             <template is="x-repeat" items="[[packages]]">
-              <a class="package" on-click="updatePackage" name="[[item.name]]" data-color$="[[item.color]]">
+              <theme-color color="[[item.color]]" class="package" on-click="updatePackage" name="[[item.name]]">
                 <div class="layout horizontal center">
-                  <span class="symbol">[[item.symbol]]</span>
+                  <span class="symbol" themed>[[item.symbol]]</span>
                   <span class="title flex">[[item.title]]</span>
                 </div>
-              </a>
+              </theme-color>
             </template>
           </div>
-          <div id="package-info" hidden$="[[!packageInfo]]">
-            <div id="package-header">
+          <theme-color color="[[packageInfo.color]]" id="package-info" hidden$="[[!packageInfo]]">
+            <div id="package-header" themed>
               <div class="layout horizontal center">
                 <h3 id="package-symbol" class="flex">[[packageInfo.symbol]]</h3>
                 <core-icon icon="expand-more" on-click="clearPackage"></core-icon>
               </div>
               <h2 id="package-title">[[packageInfo.title]]</h2>
-              <hr>
+              <hr themed-reverse>
               <div id="package-tagline" class="horizontal layout">
                 <h4 class="flex">[[packageInfo.tagline]]</h4>
                 <span id="package-version">[[packageInfo.version]]</span>
               </div>
             </div>
             <p id="package-desc">[[packageInfo.description]]</p>
-          </div>
+          </theme-color>
         </div>
       </aside>
 
@@ -282,9 +283,7 @@
         elements: Array
       },
       observers: {
-        'q': 'updateURL',
-        packages: 'updateColors',
-        packageInfo: 'updateColors'
+        'q package tag': 'updateURL'
       },
 
       filter(element) {
@@ -312,25 +311,6 @@
         if (this.package && this.package.length) out.push("package=" + this.package);
 
         return out.join("&");
-      },
-      updateColors: function() {
-        if (this.packageInfo) {
-          var lightness = one.color(this.packageInfo.color).lightness();
-          var textColor = (lightness > 0.5) ? one.color(this.packageInfo.color).lightness(0.15).hex() : '#fff';
-          this.$['package-header'].style.backgroundColor = this.packageInfo.color;
-          this.$['package-header'].style.color = textColor;
-          this.$['package-info'].querySelector('hr').style.background = textColor;
-        }
-        if (this.packages) {
-          var links = this.querySelectorAll('.package');
-          for (var i = 0; i < links.length; i++) {
-            var backgroundColor = links[i].getAttribute('data-color');
-            var lightness = one.color(backgroundColor).lightness();
-            var textColor = (lightness > 0.5) ? one.color(backgroundColor).lightness(0.15).hex() : '#fff';
-            links[i].querySelector('.symbol').style.background = backgroundColor;
-            links[i].querySelector('.symbol').style.color = textColor;
-          }
-        }
       },
       updateURL: function() {
         var qs = this._buildQueryString();
