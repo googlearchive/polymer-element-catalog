@@ -17,16 +17,12 @@
       text-decoration: none;
     }
 
-    core-toolbar {
-      background: #fff;
-      /*border-bottom: 1px solid #eee;*/
-    }
-
     #container {
       background: #ebebeb;
     }
 
     .elements {
+      width: 80%;
       max-width: 920px;
       border-collapse: collapse;
       margin: 25px auto;
@@ -75,22 +71,8 @@
       line-height: 24px;
     }
 
-    #sidebar {
-      width: 272px;
-      height: 100%;
-      background: #F9F9F9;
-      box-shadow: 0 0 8px rgba(0,0,0,0.4);
-      box-sizing: border-box;
-      z-index: 2;
-    }
-
     #sidebar p {
       color: #666;
-    }
-
-    #sidebar .content {
-      height: calc(100% - 64px);
-      box-shadow: inset 0px 5px 6px -3px rgba(0,0,0,0.4);
     }
 
     #package-tag {
@@ -113,6 +95,7 @@
       padding: 20px 16px;
       background: #ccc;
       box-shadow: inset 0px 5px 6px -3px rgba(0,0,0,0.4);
+      overflow: hidden;
     }
 
     #package-header core-icon {
@@ -123,12 +106,18 @@
       font-size: 4.2em;
       font-weight: 900;
       margin: 20px 0;
+      -webkit-transform: translate(-50px, 0);
+      opacity: 0;
+      transition: all 320ms cubic-bezier(0.55, 0, 0.1, 1);
     }
 
     #package-title {
-      margin: 0;
+      margin: 0 0 20px;
       font-size: 18px;
       font-weight: 600;
+      -webkit-transform: translate(-50px, 0);
+      opacity: 0;
+      transition: all 320ms cubic-bezier(0.55, 0, 0.1, 1);
     }
 
     #package-tagline {
@@ -139,27 +128,56 @@
       font-size: 14px;
       line-height: 22px;
       margin: 0;
+      -webkit-transform: translate(-50px, 0);
+      opacity: 0;
+      transition: all 320ms cubic-bezier(0.55, 0, 0.1, 1);
     }
 
     #package-version {
       padding-left: 10px;
       line-height: 22px;
-      opacity: 0.6;
+      -webkit-transform: translate(50px, 0);
+      opacity: 0;
+      transition: all 20ms 320ms cubic-bezier(0.55, 0, 0.1, 1);
     }
 
     #package-desc {
       margin: 0;
       padding: 20px 16px;
+      -webkit-transform: translate(-50px, 0);
+      opacity: 0;
+      transition: all 200ms 320ms cubic-bezier(0.55, 0, 0.1, 1);
+    }
+
+    .active #package-symbol,
+    .active #package-title,
+    .active #package-tagline h4,
+    .active #package-desc {
+      -webkit-transform: translate(0, 0);
+      opacity: 1;
+    }
+
+    .active #package-version {
+      -webkit-transform: translate(0, 0);
+      opacity: 0.6;     
     }
 
     #package-list {
       padding: 10px 0;
     }
 
+    #package-list h5 {
+      margin: 10px 0;
+      padding: 0 16px;
+      color: rgba(0,0,0,.54);
+      font-weight: 500;
+    }
+
     #package-list .package {
       display: block;
       padding: 10px 16px;
-      font-weight: normal;
+      font-weight: 500;
+      color: rgba(0,0,0,.87);
       text-transform: none;
       cursor: pointer;
     }
@@ -173,9 +191,7 @@
       text-align: center;
       margin-right: 15px;
       font-weight: 900;
-      outline: 1px solid rgba(0,0,0,.2);
-      outline-offset: -1px;
-      border-radius: 2px;
+      border-radius: 50%;
     }
 
     @media (max-width: 1200px) {
@@ -191,9 +207,9 @@
     <catalog-package name="[[package]]" data="{{packageInfo}}"></catalog-package>
 
     <responsive-element class="horizontal layout fit">
-      <aside id="sidebar" class="vertical layout">
-        <core-toolbar id="sidebar-menu" class="horizontal layout center">
-          <div class="logo">
+      <app-sidebar>
+        <core-toolbar class="horizontal layout center">
+          <div class="logo flex">
             <a href="/#/" class="horizontal layout center">
               <img src="/images/polymer.svg" width="36">
               <h1>Catalog</h1>
@@ -208,6 +224,7 @@
             <span>[[tag]]</span> <core-icon icon="clear" on-click="clearTag"></core-icon>
           </div>
           <div id="package-list" hidden$="[[packageInfo]]">
+            <h5>Packages</h5>
             <template is="x-repeat" items="[[packages]]">
               <theme-color color="[[item.color]]" class="package" on-click="updatePackage" name="[[item.name]]">
                 <div class="layout horizontal center">
@@ -221,7 +238,7 @@
             <div id="package-header" themed>
               <div class="layout horizontal center">
                 <h3 id="package-symbol" class="flex">[[packageInfo.symbol]]</h3>
-                <core-icon icon="expand-more" on-click="clearPackage"></core-icon>
+                <core-icon icon="view-module"></core-icon>
               </div>
               <h2 id="package-title">[[packageInfo.title]]</h2>
               <hr themed-reverse>
@@ -233,7 +250,7 @@
             <p id="package-desc">[[packageInfo.description]]</p>
           </theme-color>
         </div>
-      </aside>
+      </app-sidebar>
 
       <div id="container" class="flex">
         <table class="elements">
@@ -247,7 +264,7 @@
           <tbody>
             <template id="el-repeat" is="x-repeat" items="{{elements}}" filter="filter" observe="tag package q">
               <tr on-click="nav" target$="[[item.name]]">
-                <td class="name">[[item.name]]</td>
+                <td class="name" width="100">[[item.name]]</td>
                 <td class="description">[[item.description]]</td>
                 <td class="tags">
                   <template is="x-repeat" items="[[item.tags]]">
@@ -283,7 +300,8 @@
         elements: Array
       },
       observers: {
-        'q package tag': 'updateURL'
+        'q package tag': 'updateURL',
+        package: 'showPackage'
       },
 
       filter(element) {
@@ -295,8 +313,8 @@
 
       updateTag: function(e) { e.stopPropagation(); e.preventDefault(); this.tag = e.currentTarget.name; },
       clearTag: function() { this.tag = null; },
-      updatePackage: function(e) { this.package = e.currentTarget.name; },
-      clearPackage: function() { this.package = null; },
+      updatePackage: function(e) { this.package = e.currentTarget.name; this.updateURL(); },
+      clearPackage: function() { this.package = null; this.updateURL(); },
 
       nav: function(e) {
         e.preventDefault();
@@ -311,6 +329,10 @@
         if (this.package && this.package.length) out.push("package=" + this.package);
 
         return out.join("&");
+      },
+      showPackage: function() {
+        this.$['package-info'].classList.remove('active');
+        setTimeout(function() { this.$['package-info'].classList.add('active'); }.bind(this), 25);
       },
       updateURL: function() {
         var qs = this._buildQueryString();

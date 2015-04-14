@@ -6,7 +6,7 @@
   });
 
   document.addEventListener('click', function(e) {
-    if (appBar.showingSearch) {
+    if (appBar && appBar.showingSearch) {
       appBar.toggleSearch(e);
     }
   });

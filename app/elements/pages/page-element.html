@@ -28,15 +28,15 @@
       padding: 30px;
     }
 
-    #sidebar {
-      width: 240px;
-      padding: 0 16px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.2);
-      z-index: 2;
+    #element-header {
+      padding: 20px 16px;
+      background: #ccc;
+      box-shadow: inset 0px 5px 6px -3px rgba(0,0,0,0.4);
+      overflow: hidden;
     }
 
-    #name {
-      margin-top: 0;
+    .section {
+      padding: 0 16px;
     }
 
     #package {
@@ -54,16 +54,6 @@
     }
 
     paper-item { cursor: pointer; }
-
-    core-toolbar {
-      background: none;
-    }
-
-    core-toolbar::shadow #topBar {
-      width: 100%;
-      margin: 0;
-      padding: 0;
-    }
 
     #content {
       background: #eee;
@@ -95,41 +85,48 @@
     <doc-loader src="[[importPath]]" data="{{docs}}"></doc-loader>
 
     <responsive-element class="horizontal layout fit">
-      <aside id="sidebar" class="vertical layout">
+      <app-sidebar>
         <core-toolbar class="horizontal layout center">
           <div class="logo flex">
             <a href="/#/" class="horizontal layout center">
-              <img src="/images/polymer.svg" width="40">
+              <img src="/images/polymer.svg" width="36">
               <h1 class="flex">Catalog</h1>
             </a>
           </div>
-          <core-icon icon="search" on-click="toggleSearch"></core-icon>
+          <app-bar class="horizontal layout center end-justified"></app-bar>
         </core-toolbar>
+        <div class="content">
+          <div id="element-info">
+            <div id="element-header" class="horizontal layout center">
+              <core-icon on-click="navToPackage" icon="chevron-left"></core-icon>
+              <span id="package-symbol" on-click="navToPackage">[[package.symbol]]</span>
+              <span>[[element]]</span>
+            </div>
 
-        <h3 id="name" class="paper-font-title">
-          <core-icon on-click="navToPackage" icon="chevron-left"></core-icon>
-          <span id="package-symbol" on-click="navToPackage">[[package.symbol]]</span>
-          <span>[[element]]</span>
-        </h3>
+            <div id="element-desc" class="section">
+              <p>[[metadata.description]]</p>
+            </div>
 
-        <p class="paper-font-body2">[[metadata.description]]</p>
+            <core-selector attr-for-selected="view" selected="{{view}}" id="links">
+              <paper-item view="docs">Documentation</paper-item>
+              <paper-item view="demo">Demo</paper-item>
+            </core-selector>
 
-        <core-selector attr-for-selected="view" selected="{{view}}" id="links">
-          <paper-item view="docs">Documentation</paper-item>
-          <paper-item view="demo">Demo</paper-item>
-        </core-selector>
-
-        <h4>Tags</h4>
-        <div>
-          <template is="x-repeat" items="[[metadata.tags]]">
-            <tag-link name="[[item]]"></tag-link>
-          </template>
+            <div id="element-tags" class="section">
+              <h4>Tags</h4>
+              <div>
+                <template is="x-repeat" items="[[metadata.tags]]">
+                  <tag-link name="[[item]]"></tag-link>
+                </template>
+              </div>
+            </div>
+          </div>
         </div>
-      </aside>
+      </app-sidebar>
       <core-selector id="content" attr-for-selected="id" selected="{{view}}" class="flex horizontal layout center center-justified">
         <div id="demo"><h1>Demo Content</h1></div>
         <div id="docs" class="vertical layout self-start">
-          <h3 id="doc-heading" class="paper-font-title">[[element]]</h3>
+          <h3 id="doc-heading">[[element]]</h3>
           <div id="docs-content" class="flex">
             <doc-viewer element="[[element]]" data="[[docs]]"></doc-viewer>
           </div>
@@ -162,8 +159,8 @@
       if (this.package && this.package.color) {
         var lightness = one.color(this.package.color).lightness();
         var textColor = (lightness > 0.5) ? one.color(this.package.color).lightness(0.15).hex() : '#fff';
-        this.$['package-symbol'].style.backgroundColor = this.package.color;
-        this.$['package-symbol'].style.color = textColor;
+        this.$['element-header'].style.backgroundColor = this.package.color;
+        this.$['element-header'].style.color = textColor;
         this.$['doc-heading'].style.backgroundColor = this.package.color;
         this.$['doc-heading'].style.color = textColor;
       }

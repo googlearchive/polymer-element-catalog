@@ -1,6 +1,8 @@
 body {
   font-family: RobotoDraft, 'Noto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
+  font-size: 14px;
+  font-weight: 400;
 }
 
 body, a {
