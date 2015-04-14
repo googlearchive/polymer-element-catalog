@@ -21,6 +21,10 @@
       background: #ebebeb;
     }
 
+    app-bar .menu-icon {
+      margin-right: 15px;
+    }
+
     .elements {
       width: 80%;
       max-width: 920px;
@@ -272,7 +276,11 @@
             </a>
           </div>
           <app-bar class="horizontal layout center end-justified" query="{{q}}">
-            <core-icon icon="menu" on-click="clearPackage"></core-icon>
+            <div class="menu-icon" on-click="togglePackages" active$="[[!packageInfo]]">
+              <span class="menu-bar"></span>
+              <span class="menu-bar"></span>
+              <span class="menu-bar"></span>
+            </div>
           </app-bar>
         </core-toolbar>
         <div class="content">
@@ -371,7 +379,15 @@
       updateTag: function(e) {e.stopPropagation(); e.preventDefault(); this.tag = e.currentTarget.name; },
       clearTag: function() { this.tag = null; },
       updatePackage: function(e) { this.package = e.currentTarget.name; this.updateURL(); },
-      clearPackage: function() { this.package = null; this.updateURL(); },
+      clearPackage: function() { this.package = null; },
+      togglePackages: function() {
+        if (this.package) {
+          this.prevPackage = this.package;
+          this.clearPackage();
+        } else {
+          this.package = this.prevPackage;
+        }
+      },
 
       nav: function(e) {
         e.preventDefault();
