@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+- 0.12
+deploy:
+  provider: divshot
+  api_key:
+    secure: DhmsBV5fCdcX4d7bVh9iPaWdHCnBLdHWvS4BEi4LA5ynvffsPjLrUx7HVBEs2UPg1nK8Upy/UyzAFJ/eqZq/0T4i4lW1bC1hZIdYqDOw1gtQPYFBvSi5odLbKQH1eQhsI8hUVW9tJgXm8x82YQecz9b/NmLDab7GaI4KX3l3RcA=
+  environment: development
+  on:
+    repo: divshot/polymer-element-catalog
+    branch: master
+  skip_cleanup: true
+  edge: true
