@@ -86,6 +86,10 @@
       padding: 0 16px;
     }
 
+    #container {
+      overflow: auto;
+    }
+
     #sidebar p {
       color: #666;
     }
@@ -164,7 +168,27 @@
       transition: all 200ms 320ms cubic-bezier(0.55, 0, 0.1, 1);
     }
 
+    [size=xs] #package-title {
+      margin-bottom: 0;
+    }
+
+    [size=xs] #package-info hr,
+    [size=xs] #package-tagline h4,
     [size=xs] #package-desc {
+      display: none;
+    }
+
+    [size=xs] #package-tagline {
+      margin-top: 0;
+    }
+
+    [size=xs] #package-version {
+      position: absolute;
+      top: 10px;
+      right: 16px;
+    }
+
+    [size=xs] #package-view-mode {
       display: none;
     }
 
@@ -257,7 +281,7 @@
             <div id="package-header" themed>
               <div class="layout horizontal center">
                 <h3 id="package-symbol" class="flex">[[packageInfo.symbol]]</h3>
-                <core-icon icon="view-module"></core-icon>
+                <core-icon id="package-view-mode" icon="view-module"></core-icon>
               </div>
               <h2 id="package-title">[[packageInfo.title]]</h2>
               <hr themed-reverse>
