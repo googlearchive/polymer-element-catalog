@@ -30,7 +30,8 @@
     "color": "~2.5.0",
     "marked-element": "PolymerLabs/marked-element#0.8-preview",
     "paper-styles": "PolymerLabs/paper-styles#~0.8.1",
-    "prism-highlighter": "PolymerElements/prism-highlighter"
+    "prism-highlighter": "PolymerElements/prism-highlighter",
+    "iron-doc-viewer": "PolymerElements/iron-doc-viewer"
   },
   "resolutions": {
     "polymer": "0.8.0-rc.4",
