@@ -16,15 +16,6 @@
       text-decoration: none;
     }
 
-    core-toolbar {
-      background: #fff;
-      /*border-bottom: 1px solid #eee;*/
-    }
-
-    core-toolbar /deep/ #topBar {
-      width: 100%;
-    }
-
     #container {
       background: #ebebeb;
     }
@@ -79,22 +70,8 @@
       line-height: 24px;
     }
 
-    #sidebar {
-      width: 272px;
-      height: 100%;
-      background: #F9F9F9;
-      box-shadow: 0 0 8px rgba(0,0,0,0.4);
-      box-sizing: border-box;
-      z-index: 2;
-    }
-
     #sidebar p {
       color: #666;
-    }
-
-    #sidebar .content {
-      height: calc(100% - 64px);
-      box-shadow: inset 0px 5px 6px -3px rgba(0,0,0,0.4);
     }
 
     #package-tag {
@@ -229,8 +206,8 @@
     <catalog-package name="[[package]]" data="{{packageInfo}}"></catalog-package>
 
     <responsive-element class="horizontal layout fit">
-      <aside id="sidebar" class="vertical layout">
-        <core-toolbar id="sidebar-menu" class="horizontal layout center">
+      <app-sidebar>
+        <core-toolbar class="horizontal layout center">
           <div class="logo flex">
             <a href="/#/" class="horizontal layout center">
               <img src="/images/polymer.svg" width="36">
@@ -272,7 +249,7 @@
             <p id="package-desc">[[packageInfo.description]]</p>
           </div>
         </div>
-      </aside>
+      </app-sidebar>
 
       <div id="container" class="flex">
         <table class="elements">
