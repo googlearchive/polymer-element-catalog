@@ -17,7 +17,7 @@
         out[list[i].name] = list[i];
       }
       return out;
-    }
+    };
 
     var _setPackageData = function(data) {
       _data = data || {};
@@ -26,8 +26,8 @@
         _data.elementMap = _generateMap(data.elements);
         _data.guideMap = _generateMap(data.guides);
       }
-      _els.forEach(function(el){ el.load(_data) });
-    }
+      _els.forEach(function(el){ el.load(_data); });
+    };
 
     Polymer({
       is: 'catalog-data',
@@ -92,6 +92,6 @@
       handleResponse: function(_, data) {
         _setPackageData(data);
       }
-    })
+    });
   })();
 </script>
