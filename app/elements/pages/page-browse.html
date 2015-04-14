@@ -21,11 +21,16 @@
       /*border-bottom: 1px solid #eee;*/
     }
 
+    core-toolbar /deep/ #topBar {
+      width: 100%;
+    }
+
     #container {
       background: #ebebeb;
     }
 
     .elements {
+      width: 80%;
       max-width: 920px;
       border-collapse: collapse;
       margin: 25px auto;
@@ -112,6 +117,7 @@
       padding: 20px 16px;
       background: #ccc;
       box-shadow: inset 0px 5px 6px -3px rgba(0,0,0,0.4);
+      overflow: hidden;
     }
 
     #package-header core-icon {
@@ -122,12 +128,18 @@
       font-size: 4.2em;
       font-weight: 900;
       margin: 20px 0;
+      -webkit-transform: translate(-50px, 0);
+      opacity: 0;
+      transition: all 320ms cubic-bezier(0.55, 0, 0.1, 1);
     }
 
     #package-title {
       margin: 0 0 20px;
       font-size: 18px;
       font-weight: 600;
+      -webkit-transform: translate(-50px, 0);
+      opacity: 0;
+      transition: all 320ms cubic-bezier(0.55, 0, 0.1, 1);
     }
 
     #package-tagline {
@@ -138,17 +150,35 @@
       font-size: 14px;
       line-height: 22px;
       margin: 0;
+      -webkit-transform: translate(-50px, 0);
+      opacity: 0;
+      transition: all 320ms cubic-bezier(0.55, 0, 0.1, 1);
     }
 
     #package-version {
       padding-left: 10px;
       line-height: 22px;
       opacity: 0.6;
+      -webkit-transform: translate(50px, 0);
+      opacity: 0;
+      transition: all 20ms 320ms cubic-bezier(0.55, 0, 0.1, 1);
     }
 
     #package-desc {
       margin: 0;
       padding: 20px 16px;
+      -webkit-transform: translate(-50px, 0);
+      opacity: 0;
+      transition: all 200ms 320ms cubic-bezier(0.55, 0, 0.1, 1);
+    }
+
+    .active #package-symbol,
+    .active #package-title,
+    .active #package-tagline h4,
+    .active #package-version,
+    .active #package-desc {
+      -webkit-transform: translate(0, 0);
+      opacity: 1;
     }
 
     #package-list {
@@ -198,7 +228,7 @@
     <responsive-element class="horizontal layout fit">
       <aside id="sidebar" class="vertical layout">
         <core-toolbar id="sidebar-menu" class="horizontal layout center">
-          <div class="logo">
+          <div class="logo flex">
             <a href="/#/" class="horizontal layout center">
               <img src="/images/polymer.svg" width="36">
               <h1>Catalog</h1>
@@ -253,7 +283,7 @@
           <tbody>
             <template id="el-repeat" is="x-repeat" items="{{elements}}" filter="filter" observe="tag package q">
               <tr on-click="nav" target$="[[item.name]]">
-                <td class="name">[[item.name]]</td>
+                <td class="name" width="100">[[item.name]]</td>
                 <td class="description">[[item.description]]</td>
                 <td class="tags">
                   <template is="x-repeat" items="[[item.tags]]">
@@ -290,6 +320,7 @@
       },
       observers: {
         'q': 'updateURL',
+        package: 'showPackage',
         packages: 'updateColors',
         packageInfo: 'updateColors'
       },
@@ -319,6 +350,10 @@
         if (this.package && this.package.length) out.push("package=" + this.package);
 
         return out.join("&");
+      },
+      showPackage: function() {
+        this.$['package-info'].classList.remove('active');
+        setTimeout(function() { this.$['package-info'].classList.add('active'); }.bind(this), 25);
       },
       updateColors: function() {
         if (this.packageInfo) {
