@@ -51,6 +51,10 @@
       overflow: hidden;
     }
 
+    #element-header core-icon {
+      cursor: pointer;
+    }
+
     .section {
       padding: 0 16px;
     }
@@ -68,9 +72,14 @@
     #package-symbol {
       display: inline-block;
       padding: 6px;
-      margin-right: 8px;
-      font-size: 18px;
+      margin-right: 10px;
+      font-size: 22px;
+      font-weight: 900;
       line-height: 18px;
+    }
+
+    #package-title {
+      font-weight: 600;
     }
 
     [size=xs] #links {
@@ -151,7 +160,7 @@
               <div id="element-header" class="horizontal layout center" themed>
                 <core-icon on-click="navToPackage" icon="chevron-left"></core-icon>
                 <span id="package-symbol" on-click="navToPackage">[[package.symbol]]</span>
-                <span>[[element]]</span>
+                <span id="package-title">[[element]]</span>
               </div>
 
               <div id="element-desc" class="section">
