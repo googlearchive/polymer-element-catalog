@@ -5,7 +5,7 @@ node_js:
 install:
 - npm install
 - bower install
-script: npm run build
+script: FIXTURES=true npm run build
 cache:
   directories:
   - node_modules

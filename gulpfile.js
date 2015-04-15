@@ -89,6 +89,10 @@ gulp.task('copy', function () {
   var vulcanized = gulp.src(['app/elements/elements.html'])
     .pipe($.rename('elements.vulcanized.html'))
     .pipe(gulp.dest('dist/elements'));
+    
+  if (process.env.FIXTURES) {
+    gulp.src(['fixtures/**/*']).pipe(gulp.dest('dist'));
+  }
 
   return merge(app, bower, elements, vulcanized).pipe($.size({title: 'copy'}));
 });
@@ -232,7 +236,8 @@ gulp.task('pagespeed', function (cb) {
 
 // Build element catalog JSON file
 gulp.task('catalog:dist', function () {
-
+  if (process.env.FIXTURES) return;
+  
   var distFilePath = './dist/catalog.json';
 
   return catalogBuilder(CATALOG_FILEPATH)
