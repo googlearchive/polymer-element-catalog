@@ -66,6 +66,9 @@
       router: Object,
       guides: Array
     },
+    attached: function() {
+      this.fire('page-meta', {title: 'Element Guides'});
+    },
     nav: function(e) {
       this.router.go('/guides/' + e.currentTarget.getAttribute('guide'));
     }

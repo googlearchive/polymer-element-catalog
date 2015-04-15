@@ -366,7 +366,12 @@
       },
       observers: {
         'q package tag': 'updateURL',
+        packageInfo: 'updateMeta',
         package: 'showPackage'
+      },
+
+      attached: function() {
+        this.updateMeta();
       },
 
       filter: function(element) {
@@ -419,6 +424,22 @@
           console.log("Calling render", this.q, this.tag, this.package);
           this.$['el-repeat'].render();
         });
+        this.updateMeta();
+      },
+      updateMeta: function() {
+        console.log('updateMeta');
+        var title;
+        if (this.q && this.q.length) {
+          title = "'" + this.q + "' Elements";
+        } else if (this.packageInfo) {
+          title = this.packageInfo.title;
+        } else if (this.tag && this.tag.length) {
+          title = "Elements Tagged '" + this.tag + "'";
+        } else {
+          title = "All Elements";
+        }
+
+        this.fire('page-meta', {title: title});
       }
     });
   })();

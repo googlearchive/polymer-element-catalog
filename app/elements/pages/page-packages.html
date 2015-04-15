@@ -76,6 +76,10 @@
 <script>
   Polymer({
     is: 'page-packages',
+    attached: function() {
+      // reset page title since this is the default page
+      this.fire('page-meta', {title: null});
+    },
     select: function(e) {
       this.router.go('/browse?package=' + e.currentTarget.getAttribute('name'));
     }

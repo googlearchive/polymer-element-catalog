@@ -31,7 +31,8 @@
   Polymer({
     is: 'app-shell',
     listeners: {
-      'nav': 'handleNav'
+      'nav': 'handleNav',
+      'page-meta': 'updateTitle'
     },
     toggleSearch: function() {
       this.$.search.active = !this.$.search.active;
@@ -42,6 +43,13 @@
     },
     handleNav: function(_, nav) {
       this.$.router.go(nav.url);
+    },
+    updateTitle: function(_, detail) {
+      if (detail.title && detail.title.length) {
+        document.title = detail.title + " - Polymer Element Catalog";
+      } else {
+        document.title = "Polymer Element Catalog";
+      }
     }
   });
 </script>

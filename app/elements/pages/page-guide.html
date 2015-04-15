@@ -66,7 +66,8 @@
       content: String
     },
     observers: {
-      content: 'contentChanged'
+      content: 'contentChanged',
+      guide: 'updateMeta'
     },
     attached: function() {
       // TODO: Change this when we switch to pushState URLs
@@ -74,6 +75,9 @@
     },
     contentChanged: function() {
       this.$.content.innerHTML = this.content;
+    },
+    updateMeta: function() {
+      this.fire('page-meta', {title: this.guide.title});
     }
   });
 </script>

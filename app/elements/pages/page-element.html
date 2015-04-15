@@ -82,7 +82,7 @@
       flex-direction: row;
     }
 
-    paper-item { 
+    paper-item {
       cursor: pointer;
     }
 
@@ -153,16 +153,16 @@
                 <span id="package-symbol" on-click="navToPackage">[[package.symbol]]</span>
                 <span>[[element]]</span>
               </div>
-  
+
               <div id="element-desc" class="section">
                 <p>[[metadata.description]]</p>
               </div>
-  
+
               <core-selector attr-for-selected="view" selected="{{view}}" id="links" themed>
                 <paper-item view="docs" themed-border-reverse>Documentation</paper-item>
                 <paper-item view="demo">Demo</paper-item>
               </core-selector>
-  
+
               <div id="element-tags" class="section">
                 <h4>Tags</h4>
                 <div>
@@ -201,7 +201,8 @@
       router: Object
     },
     observers: {
-      view: 'updateURL'
+      view: 'updateURL',
+      element: 'updateMeta'
     },
     attached: function() {
       var links = this.$.links;
@@ -213,12 +214,16 @@
         }
         event.detail.item.style.borderColor = tabColor;
       });
+      this.updateMeta();
     },
     importPathFor: function(element) {
       return ["/bower_components", element, element + ".html"].join("/");
     },
     updateURL: function() {
       if (this.router) this.router.go("/elements/" + this.element + "/" + this.view, {replace: true});
+    },
+    updateMeta: function() {
+      this.fire('page-meta', {title: this.element});
     },
     navToPackage: function() {
       this.router.go("/browse?package=" + this.package.name);
