@@ -1,14 +1,61 @@
+<link rel="import" href="../../bower_components/core-header-panel/core-header-panel.html">
+<link rel="import" href="../../bower_components/core-toolbar/core-toolbar.html">
+
+<link rel="import" href="../app-bar/app-bar.html">
 <link rel="import" href="../catalog-data/catalog-data.html">
 
 <dom-module id="page-guides">
+  <style>
+    .content {
+      display: block;
+      padding: 16px;
+    }
+
+    core-toolbar {
+      background: white;
+      color: #333;
+      transition: height 450ms cubic-bezier(0.55, 0, 0.1, 1);
+    }
+
+    core-toolbar nav {
+      margin: 0 20px;
+    }
+    core-toolbar nav a {
+      line-height: 56px;
+      display: inline-block;
+      padding: 4px 12px;
+    }
+    core-toolbar nav .active {
+      border-bottom: 4px solid #303F9F;
+      padding-bottom: 0;
+    }
+  </style>
   <template>
     <catalog-data guides="{{guides}}"></catalog-data>
-    <h1>Guides</h1>
-    <ul>
-    <template is="x-repeat" items="[[guides]]">
-      <li><a on-click="nav" guide$="[[item.name]]">[[item.title]]</a></li>
-    </template>
-    </ul>
+    <core-header-panel class="fit">
+      <core-toolbar>
+        <div class="logo">
+          <a href="/#/" class="horizontal layout center">
+            <img src="/images/polymer.svg" width="36">
+            <h1>Catalog</h1>
+          </a>
+        </div>
+        <nav class="flex">
+          <a href="/#/"><core-icon icon="view-module"></core-icon> Elements</a>
+          <a class="active" href="/#/guides"><core-icon icon="maps:directions"></core-icon> Guides</a>
+        </nav>
+        <app-bar class="horizontal layout center end-justified"></app-bar>
+      </core-toolbar>
+
+      <div class="content fit">
+        <ul>
+        <template is="x-repeat" items="[[guides]]">
+          <li><a on-click="nav" guide$="[[item.name]]">[[item.title]]</a></li>
+        </template>
+        </ul>
+      </div>
+    </core-header-panel>
+
   </template>
 </dom-module>
 
