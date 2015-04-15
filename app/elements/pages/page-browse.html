@@ -413,7 +413,6 @@
         setTimeout(function() { this.$['package-info'].classList.add('active'); }.bind(this), 25);
       },
       updateURL: function() {
-        console.log('updateURL');
         var qs = this._buildQueryString();
         if (qs !== _lastNavigated && this.router) {
           _lastNavigated = qs;
@@ -421,13 +420,11 @@
         }
         // HACK: Why does this require a manual render?
         this.async(function() {
-          console.log("Calling render", this.q, this.tag, this.package);
           this.$['el-repeat'].render();
         });
         this.updateMeta();
       },
       updateMeta: function() {
-        console.log('updateMeta');
         var title;
         if (this.q && this.q.length) {
           title = "'" + this.q + "' Elements";
