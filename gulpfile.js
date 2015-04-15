@@ -89,7 +89,7 @@ gulp.task('copy', function () {
   var vulcanized = gulp.src(['app/elements/elements.html'])
     .pipe($.rename('elements.vulcanized.html'))
     .pipe(gulp.dest('dist/elements'));
-    
+
   if (process.env.FIXTURES) {
     gulp.src(['fixtures/**/*']).pipe(gulp.dest('dist'));
   }
@@ -175,20 +175,23 @@ gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 
 // Watch Files For Changes & Reload
 gulp.task('serve', ['styles', 'elements', 'catalog:dev'], function () {
+  var dirs = ['.tmp','app'];
   var mw = [
+    superstatic({config: {root: '.tmp'}}),
     superstatic({config: {root: 'app'}}),
-    superstatic({config: {root: '.tmp'}})
-  ];
+    function(req, res, next) {
+      if (req.url.indexOf('/bower_components') !== 0) return next();
+      req.url = req.url.replace(/^\/bower_components/,'');
+      return superstatic({config: {root: 'bower_components'}})(req,res,next);
+    }
+  ]
   if (process.env.FIXTURES) mw.unshift(superstatic({config: {root: 'fixtures'}}));
 
   browserSync({
     notify: true,
     server: {
-      baseDir: ['.tmp','app'],
+      baseDir: dirs,
       middleware: mw,
-      routes: {
-        '/bower_components':'bower_components'
-      }
     }
   });
 
@@ -237,7 +240,7 @@ gulp.task('pagespeed', function (cb) {
 // Build element catalog JSON file
 gulp.task('catalog:dist', function () {
   if (process.env.FIXTURES) return;
-  
+
   var distFilePath = './dist/catalog.json';
 
   return catalogBuilder(CATALOG_FILEPATH)

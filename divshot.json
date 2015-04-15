@@ -2,5 +2,8 @@
   "name": "polymer-element-catalog",
   "root": "./dist",
   "clean_urls": false,
-  "error_page": "error.html"
+  "error_page": "error.html",
+  "routes": {
+    "**":"index.html"
+  }
 }
