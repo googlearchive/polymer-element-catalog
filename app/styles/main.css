@@ -98,6 +98,7 @@ catalog-app {
   padding-top: 3px;
   cursor: pointer;
   box-sizing: border-box;
+  -webkit-user-select: none;
 }
 
 .menu-bar {

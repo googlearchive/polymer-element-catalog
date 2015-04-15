@@ -12,6 +12,21 @@
 
 <dom-module id="page-element">
   <style>
+    responsive-element[size=xs].layout {
+      -ms-flex-direction: column;
+      -webkit-flex-direction: column;
+      flex-direction: column;
+    }
+
+    [size=xs] app-sidebar {
+      min-width: 100%;
+      height: auto;
+    }
+
+    [size=xs] app-sidebar core-toolbar /deep/ #topBar {
+      padding: 0 16px;
+    }
+
     #docs {
       background: white;
       max-width: 44em;
@@ -40,6 +55,10 @@
       padding: 0 16px;
     }
 
+    [size=xs] .section {
+      display: none;
+    }
+
     #package {
       font-size: 1.1em;
       margin: 8px;
@@ -54,7 +73,41 @@
       line-height: 18px;
     }
 
-    paper-item { cursor: pointer; }
+    [size=xs] #links {
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -ms-flex-direction: row;
+      -webkit-flex-direction: row;
+      flex-direction: row;
+    }
+
+    paper-item { 
+      cursor: pointer;
+    }
+
+    [size=xs] paper-item {
+      -ms-flex: 1;
+      -webkit-flex: 1;
+      flex: 1;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      font-weight: 600;
+      text-transform: uppercase;
+      border-bottom: 2px solid transparent;
+      opacity: 0.6;
+    }
+
+    #links .core-selected {
+      background: #eee;
+    }
+
+    [size=xs] #links .core-selected {
+      background: transparent;
+      border-bottom: 2px solid #fff;
+      opacity: 1;
+    }
 
     #content {
       background: #eee;
@@ -68,11 +121,6 @@
 
     #content > .core-selected {
       display: block;
-    }
-
-    #links .core-selected {
-      background: #2196F3;
-      color: white;
     }
 
     [size=xs] #content, [size=s] #content {
@@ -94,7 +142,9 @@
                 <h1 class="flex">Catalog</h1>
               </a>
             </div>
-            <app-bar class="horizontal layout center end-justified"></app-bar>
+            <app-bar class="horizontal layout center end-justified">
+              <core-icon icon="more-vert"></core-icon>
+            </app-bar>
           </core-toolbar>
           <div class="content">
             <div id="element-info">
@@ -108,8 +158,8 @@
                 <p>[[metadata.description]]</p>
               </div>
   
-              <core-selector attr-for-selected="view" selected="{{view}}" id="links">
-                <paper-item view="docs">Documentation</paper-item>
+              <core-selector attr-for-selected="view" selected="{{view}}" id="links" themed>
+                <paper-item view="docs" themed-border-reverse>Documentation</paper-item>
                 <paper-item view="demo">Demo</paper-item>
               </core-selector>
   
@@ -127,7 +177,7 @@
         <core-selector id="content" attr-for-selected="id" selected="{{view}}" class="flex horizontal layout center center-justified">
           <div id="demo"><h1>Demo Content</h1></div>
           <div id="docs" class="vertical layout self-start">
-            <h3 id="doc-heading" themed>[[element]]</h3>
+            <h3 id="doc-heading">[[element]]</h3>
             <div id="docs-content" class="flex">
               <doc-viewer element="[[element]]" data="[[docs]]"></doc-viewer>
             </div>
@@ -152,6 +202,17 @@
     },
     observers: {
       view: 'updateURL'
+    },
+    attached: function() {
+      var links = this.$.links;
+      var tabs = links.querySelectorAll('paper-item');
+      links.addEventListener('core-select', function(event) {
+        var tabColor = links.style.color;
+        for (var i = 0; i < tabs.length; i++) {
+          tabs[i].style.borderColor = 'transparent';
+        }
+        event.detail.item.style.borderColor = tabColor;
+      });
     },
     importPathFor: function(element) {
       return ["/bower_components", element, element + ".html"].join("/");

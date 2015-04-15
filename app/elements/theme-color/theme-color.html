@@ -29,15 +29,18 @@
       if (this.hasAttribute('themed')) this._color(this, this.color, this.textColor);
       if (this.hasAttribute('themed-reverse')) this._color(this, this.textColor, this.color);
       if (this.hasAttribute('themed-border')) this._colorBorder(this, this.color);
+      if (this.hasAttribute('themed-border-reverse')) this._colorBorder(this, this.textColor);
       
-      var nodes = Polymer.dom(this).querySelectorAll('[themed],[themed-reverse]');
+      var nodes = Polymer.dom(this).querySelectorAll('[themed],[themed-reverse],[themed-border],[themed-border-reverse]');
       for (var i = 0; i < nodes.length; i++) {
         if (nodes[i].hasAttribute('themed')) {
           this._color(nodes[i], this.color, this.textColor);
         } else if (nodes[i].hasAttribute('themed-reverse')) {
           this._color(nodes[i], this.textColor, this.color);
         } else if (nodes[i].hasAttribute('themed-border')) {
-          this.colorBorder(nodes[i], this.color);
+          this._colorBorder(nodes[i], this.color);
+        } else if (nodes[i].hasAttribute('themed-border-reverse')) {
+          this._colorBorder(nodes[i], this.textColor);
         }
       }
     }
