@@ -177,13 +177,13 @@ gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 gulp.task('serve', ['styles', 'elements', 'catalog:dev'], function () {
   var dirs = ['.tmp','app'];
   var mw = [
-    superstatic({config: {root: '.tmp'}}),
-    superstatic({config: {root: 'app'}}),
     function(req, res, next) {
       if (req.url.indexOf('/bower_components') !== 0) return next();
       req.url = req.url.replace(/^\/bower_components/,'');
       return superstatic({config: {root: 'bower_components'}})(req,res,next);
-    }
+    },
+    superstatic({config: {root: '.tmp'}}),
+    superstatic({config: {root: 'app'}})
   ]
   if (process.env.FIXTURES) mw.unshift(superstatic({config: {root: 'fixtures'}}));
 
@@ -191,7 +191,7 @@ gulp.task('serve', ['styles', 'elements', 'catalog:dev'], function () {
     notify: true,
     server: {
       baseDir: dirs,
-      middleware: mw,
+      middleware: mw
     }
   });
 
