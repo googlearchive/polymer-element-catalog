@@ -1,5 +1,6 @@
 <link rel="import" href="../../bower_components/marked-element/marked-element.html">
 <link rel="import" href="../../bower_components/prism-highlighter/prism-highlighter.html">
+<link rel="import" href="../../bower_components/hydrolysis/hydrolysis-analyzer.html">
 
 <dom-module id="doc-viewer">
   <style>
@@ -11,12 +12,14 @@
     marked-element::shadow p:last-child { margin-bottom: 0; }
   </style>
   <template>
+    <hydrolysis-analyzer id="analyzer" analyzer="{{_analyzer}}" clean></hydrolysis-analyzer>
+
     <prism-highlighter></prism-highlighter>
     <marked-element markdown="[[_element.desc]]"></marked-element>
 
     <template is="x-repeat" items="[[_element.properties]]">
       <h4 class="paper-font-title">[[item.name]]</h4>
-      <marked-element markdown="[[item.jsdoc.body]]"></marked-element>
+      <marked-element markdown="[[item.desc]]"></marked-element>
     </template>
   </template>
 </dom-module>
@@ -26,20 +29,25 @@
   Polymer({
     is: 'doc-viewer',
     properties: {
+      _analyzer: Object,
       data: Object,
       element: String,
       _element: {type: Object, notify: true}
     },
     observers: {
-      data: 'loadData'
+      element: '_analyze',
+      _analyzer: 'loadData'
     },
     loadData: function() {
-      if (!this.data) return;
-      for (var i = 0; i < this.data.elements.length; i++) {
-        if (this.data.elements[i].is === this.element) {
-          this._element = this.data.elements[i];
-        }
+      if (this._analyzer) {
+        this._element = this._analyzer.elementsByTagName[this.element];
+      } else {
+        this._element = null;
       }
+    },
+    _analyze: function() {
+      this.$.analyzer.src = ["/bower_components", this.element, this.element + ".html"].join("/");
+      this.$.analyzer.analyze();
     }
   });
 })();

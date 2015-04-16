@@ -1,13 +1,12 @@
 <link rel="import" href="../../bower_components/core-selector/core-selector.html">
 <link rel="import" href="../../bower_components/core-icons/core-icons.html">
-<link rel="import" href="../../bower_components/iron-doc-viewer/iron-doc-viewer.html">
 <link rel="import" href="../../bower_components/paper-item/paper-item.html">
+
 
 <link rel="import" href="../theme-color/theme-color.html">
 <link rel="import" href="../responsive-element/responsive-element.html">
 <link rel="import" href="../catalog-element/catalog-element.html">
 <link rel="import" href="../catalog-package/catalog-package.html">
-<link rel="import" href="../doc-loader/doc-loader.html">
 <link rel="import" href="../doc-viewer/doc-viewer.html">
 
 <dom-module id="page-element">
@@ -140,7 +139,6 @@
     <catalog-element name="[[element]]" data="{{metadata}}"></catalog-element>
     <catalog-package name="[[metadata.package]]" data="{{package}}"></catalog-package>
 
-    <doc-loader src="[[importPath]]" data="{{docs}}"></doc-loader>
     <theme-color color="[[package.color]]">
       <responsive-element class="horizontal layout fit">
         <app-sidebar>
@@ -188,7 +186,7 @@
           <div id="docs" class="vertical layout self-start">
             <h3 id="doc-heading">[[element]]</h3>
             <div id="docs-content" class="flex">
-              <doc-viewer element="[[element]]" data="[[docs]]"></doc-viewer>
+              <doc-viewer element="[[element]]"></doc-viewer>
             </div>
           </div>
         </core-selector>
@@ -203,7 +201,6 @@
     properties: {
       element: {type: String, notify: true},
       view: {type: String, notify: true},
-      importPath: {type: String, computed: 'importPathFor(element)'},
       docs: Object,
       metadata: Object,
       package: Object,
@@ -211,7 +208,8 @@
     },
     observers: {
       view: 'updateURL',
-      element: 'updateMeta'
+      element: 'updateMeta',
+      importPath: 'analyze'
     },
     attached: function() {
       var links = this.$.links;
@@ -225,8 +223,8 @@
       });
       this.updateMeta();
     },
-    importPathFor: function(element) {
-      return ["/bower_components", element, element + ".html"].join("/");
+    analyze: function() {
+      this.$.analyzer.analyze();
     },
     updateURL: function() {
       if (this.router) this.router.go("/elements/" + this.element + "/" + this.view, {replace: true});
