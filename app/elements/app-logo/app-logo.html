@@ -1,0 +1,34 @@
+<dom-module id="app-logo">
+  <style>
+    :host {
+      font-size: 20px;
+    }
+
+    :host a {
+      max-width: 125px;
+      color: #333;
+      text-transform: none;
+      text-decoration: none;
+    }
+
+    :host h1 {
+      font-size: 20px;
+      font-weight: 400;
+      margin: 0;
+    }
+
+    :host img {
+      margin: 0 12px 0 0;
+    }
+  </style>
+  <template>
+    <a href="/" is="pushstate-anchor" class="horizontal layout center">
+      <img src="/images/polymer.svg" width="36">
+      <h1>Catalog</h1>
+    </a>
+  </template>
+</dom-module>
+
+<script>
+  Polymer({ is: 'app-logo' });
+</script>
