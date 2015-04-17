@@ -68,7 +68,7 @@
           <a class="active" href="/" is="pushstate-anchor">Elements</a>
           <a href="/guides" is="pushstate-anchor">Guides</a>
         </nav>
-        <app-bar class="horizontal layout center end-justified"></app-bar>
+        <app-bar class="horizontal layout center end-justified" query="{{q}}"></app-bar>
       </core-toolbar>
 
       <div class="content fit">
@@ -85,9 +85,20 @@
 <script>
   Polymer({
     is: 'page-packages',
+    properties: {
+      q: { type: String, notify: true }
+    },
     attached: function() {
       // reset page title since this is the default page
       this.fire('page-meta', {title: null});
+    },
+    observers: {
+      q: 'search'
+    },
+    search: function() {
+      if (this.q) {
+        this.router.go('/browse?q=' + this.q);
+      }
     },
     select: function(e) {
       this.router.go('/browse?package=' + e.currentTarget.getAttribute('name'));

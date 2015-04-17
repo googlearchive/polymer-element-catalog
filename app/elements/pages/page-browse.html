@@ -404,6 +404,7 @@
 
       attached: function() {
         this.updateMeta();
+        this.updateSearch();
       },
 
       filter: function(element) {
@@ -432,6 +433,16 @@
         var el = e.currentTarget.getAttribute('target');
         this.router.go("/elements/" + el + "/docs");
       },
+      _parseQueryString: function() {
+        var query = window.location.search.substring(1);
+        var params = query.split('&');
+        var results = [];
+        for (var i = 0; i < params.length; i++) {
+          var pair = params[i].split('=');
+          results[pair[0]] = pair[1];
+        }
+        return results;
+      },
       _buildQueryString: function() {
         var out = [];
         if (this.q && this.q.length) out.push("q=" + this.q);
@@ -443,6 +454,12 @@
       showPackage: function() {
         this.$['package-info'].classList.remove('active');
         setTimeout(function() { this.$['package-info'].classList.add('active'); }.bind(this), 25);
+      },
+      updateSearch: function() {
+        var params = this._parseQueryString();
+        if (params && params['q']) {
+          this.querySelector('app-bar').showingSearch = true;
+        }
       },
       updateURL: function() {
         var qs = this._buildQueryString();
