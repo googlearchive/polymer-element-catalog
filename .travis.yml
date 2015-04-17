@@ -4,7 +4,7 @@ node_js:
 - 0.12
 install:
 - npm install
-- bower install
+- ./node_modules/.bin/bower install
 script: FIXTURES=true npm run build
 cache:
   directories:
