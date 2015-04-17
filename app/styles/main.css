@@ -71,27 +71,6 @@ catalog-app {
   overflow: hidden;
 }
 
-.logo {
-  font-size: 20px;
-}
-
-.logo a {
-  max-width: 125px;
-  color: #333;
-  text-transform: none;
-  text-decoration: none;
-}
-
-.logo h1 {
-  font-size: 20px;
-  font-weight: 400;
-  margin: 0;
-}
-
-.logo img {
-  margin: 0 12px 0 0;
-}
-
 .menu-icon {
   display: block;
   width: 24px;
