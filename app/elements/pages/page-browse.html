@@ -347,8 +347,7 @@
 
       <div id="container" class="flex">
         <div class="elements-title horizontal layout center">
-          <h2 class="flex" hidden$="[[!packageInfo]]">[[packageInfo.title]]</h2>
-          <h2 class="flex" hidden$="[[packageInfo]]">Custom Catalog</h2>
+          <h2 class="flex">[[pageTitle]]</h2>
           <core-icon id="package-view-mode" icon="view-module"></core-icon>
         </div>
         <table class="elements">
@@ -386,6 +385,7 @@
       enableCustomStyleProperties: true,
       properties: {
         router: Object,
+        pageTitle: { type: String },
 
         // Query Parameters
         q: {type: String, notify: true, value: ''},
@@ -474,18 +474,17 @@
         this.updateMeta();
       },
       updateMeta: function() {
-        var title;
         if (this.q && this.q.length) {
-          title = "'" + this.q + "' Elements";
+          this.pageTitle = "'" + this.q + "' Elements";
         } else if (this.packageInfo) {
-          title = this.packageInfo.title;
+          this.pageTitle = this.packageInfo.title;
         } else if (this.tag && this.tag.length) {
-          title = "Elements Tagged '" + this.tag + "'";
+          this.pageTitle = "Elements Tagged '" + this.tag + "'";
         } else {
-          title = "All Elements";
+          this.pageTitle = "All Elements";
         }
-
-        this.fire('page-meta', {title: title});
+        
+        this.fire('page-meta', { title: this.pageTitle });
       }
     });
   })();
