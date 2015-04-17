@@ -5,7 +5,7 @@
       "title":"Iron Elements",
       "version":"1.0.0",
       "symbol":"Fe",
-      "color":"#F44336",
+      "color":"#81c784",
       "tagline":"Polymer core elements",
       "description":"Iron elements are a set of visual and non-visual utility elements. They include elements for working with layout, user input, selection, and scaffolding apps."
     },
@@ -13,7 +13,7 @@
       "name":"gold-elements",
       "title":"Gold Elements",
       "symbol":"Au",
-      "color":"#FFC107",
+      "color":"#ffb74d",
       "version":"1.0.0",
       "tagline":"Business elements",
       "description":"Business elements provide UI and common utility components for eCommerce. They include elements such as checkout forms, product listings, and shopping carts."
@@ -22,7 +22,7 @@
       "name":"paper-elements",
       "title":"Paper Elements",
       "symbol":"Md",
-      "color":"#FAFAFA",
+      "color":"#ffffff",
       "version":"1.0.0",
       "tagline":"Material design elements",
       "description":"--TBD--"
@@ -31,7 +31,7 @@
       "name":"oxygen-elements",
       "title":"Oxygen Elements",
       "symbol":"O",
-      "color":"#03A9F4",
+      "color":"#81c784",
       "version":"1.0.0",
       "tagline":"Data-pipes and specialized services",
       "description":"--TBD--"
@@ -40,7 +40,7 @@
       "name":"neon-elements",
       "title":"Neon Elements",
       "symbol":"Ne",
-      "color":"#E91E63",
+      "color":"#a7ffeb",
       "version":"1.0.0",
       "tagline":"Elements that implement special effects",
       "description":"--TBD--"
@@ -49,7 +49,7 @@
       "name":"carbon-elements",
       "title":"Carbon Elements",
       "symbol":"C",
-      "color":"#424242",
+      "color":"#b0bec5",
       "version":"1.0.0",
       "tagline":"Magical unknown element group",
       "description":"--TBD--"
@@ -58,7 +58,7 @@
       "name":"molecules",
       "title":"Molecules",
       "symbol":"Mo",
-      "color":"#673AB7",
+      "color":"#ffab91",
       "version":"1.0.0",
       "tagline":"Third-party library wrappers",
       "description":"--TBD--"
@@ -67,7 +67,7 @@
       "name":"service-worker-elements",
       "title":"Service Worker Elements",
       "symbol":"Sw",
-      "color":"#009688",
+      "color":"#ffeb3b",
       "version":"1.0.0",
       "tagline":"Offline and networking",
       "description":"--TBD--"
