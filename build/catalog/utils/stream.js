@@ -8,10 +8,14 @@ var isStream = require('is-stream');
 var split = require('split');
 var writeStreamP = require('writestreamp');
 var pumpify = require('pumpify');
+var from = require('from2');
+var concurrent = require('through2-concurrent');
 
 exports.create = through;
 exports.split = split;
 exports.writeFile = writeStreamP;
+exports.from = from;
+exports.concurrent = concurrent;
 
 exports.parse = jsonStream.parse.bind(jsonStream);
 exports.stringify = jsonStream.stringify.bind(jsonStream);
@@ -29,12 +33,11 @@ exports.validate = isStream;
 exports.concat = concat;
 exports.compose = pumpify;
 
+exports.reduce = reduce;
 reduce.obj = function (fn) {
   
   return reduce.call(null, {objectMode: true}, fn);
 }
-
-exports.reduce = reduce;
 exports.filter = filter;
 exports.asyncMap = asyncMap;
 
@@ -43,6 +46,8 @@ exports.obj = {
   create: exports.create.obj,
   split: exports.split.obj,
   writeFile: exports.writeFile,
+  from: from.obj,
+  concurrent: exports.concurrent.obj,
   
   parse: exports.parse,
   stringify: exports.stringify.obj,
