@@ -31,7 +31,9 @@
     "marked-element": "PolymerLabs/marked-element#0.8-preview",
     "paper-styles": "PolymerElements/paper-styles#~0.8.1",
     "prism-highlighter": "PolymerElements/prism-highlighter",
-    "pushstate-anchor": "~0.3.0"
+    "pushstate-anchor": "~0.3.0",
+
+    "iron-elements":"PolymerElements/iron-elements#wip"
   },
   "resolutions": {
     "polymer": "0.8.0-rc.4",
