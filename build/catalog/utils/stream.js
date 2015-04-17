@@ -2,6 +2,7 @@ var concat = require('concat-stream');
 var reduce = require('through2-reduce');
 var asyncMap = require('through2-asyncmap');
 var filter = require('through2-filter');
+var map = require('through2-map');
 var through = require('through2');
 var jsonStream = require('JSONStream');
 var isStream = require('is-stream');
@@ -39,6 +40,7 @@ reduce.obj = function (fn) {
   return reduce.call(null, {objectMode: true}, fn);
 }
 exports.filter = filter;
+exports.map = map;
 exports.asyncMap = asyncMap;
 
 // Object mode
@@ -58,5 +60,13 @@ exports.obj = {
   
   reduce: exports.reduce.obj,
   filter: exports.filter.obj,
-  asyncMap: exports.asyncMap.obj
+  map: exports.map.obj,
+  asyncMap: exports.asyncMap.obj,
+  get: function (key) {
+    
+    return exports.obj.create(function (obj, enc, done) {
+      
+      done(null, obj[key]);
+    });
+  }
 };
