@@ -347,7 +347,8 @@
 
       <div id="container" class="flex">
         <div class="elements-title horizontal layout center">
-          <h2 class="flex">[[packageInfo.title]]</h2>
+          <h2 class="flex" hidden$="[[!packageInfo]]">[[packageInfo.title]]</h2>
+          <h2 class="flex" hidden$="[[packageInfo]]">Custom Catalog</h2>
           <core-icon id="package-view-mode" icon="view-module"></core-icon>
         </div>
         <table class="elements">
