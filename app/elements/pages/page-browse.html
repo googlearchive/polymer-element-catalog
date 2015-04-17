@@ -40,7 +40,7 @@
       width: 80%;
       max-width: 920px;
       border-collapse: collapse;
-      margin: 25px auto;
+      margin: 20px auto;
       background: white;
       border-radius: 3px;
       /*box-shadow: 3px 3px 10px rgba(0,0,0,0.2);*/
@@ -51,8 +51,8 @@
     }
 
     .elements th {
+      mixin(--paper-font-body1);
       color: #666;
-      font-size: 15px;
       text-align: left;
       border-bottom: 1px solid #eee;
     }
@@ -107,12 +107,25 @@
 
     .section {
       margin-bottom: 20px;
+      opacity: 0;
+      -webkit-transform: translate(0, 100px);
+      transition: all 320ms cubic-bezier(0.55, 0, 0.1, 1);
+    }
+
+    .section:first-child { transition-delay: 100ms; }
+    .section:nth-child(2) { transition-delay: 200ms; }
+    .section:nth-child(3) { transition-delay: 300ms; }
+    .section:nth-child(4) { transition-delay: 400ms; }
+
+    .active .section {
+      -webkit-transform: translate(0, 0);
+      opacity: 1;
     }
 
     .section h5 {
       mixin(--paper-font-body2);
       border-top: 1px solid #e5e5e5;
-      margin: 20px 0;
+      margin: 30px 0 20px;
       padding: 20px 16px 0 16px;
     }
 
@@ -131,6 +144,7 @@
     }
 
     #package-header {
+      position: relative;
       padding: 20px 16px 0;
       overflow: hidden;
     }
@@ -148,6 +162,8 @@
       height: 72px;
       line-height: 72px;
       text-align: center;
+      outline: 1px solid rgba(0,0,0,.1);
+      outline-offset: -1px;
       -webkit-transform: translate(-50px, 0);
       opacity: 0;
       transition: all 320ms cubic-bezier(0.55, 0, 0.1, 1);
@@ -178,22 +194,18 @@
       right: 16px;
       -webkit-transform: translate(50px, 0);
       opacity: 0;
-      transition: all 20ms 320ms cubic-bezier(0.55, 0, 0.1, 1);
+      transition: all 320ms cubic-bezier(0.55, 0, 0.1, 1);
     }
 
     #package-desc {
       margin: 0;
-      -webkit-transform: translate(-50px, 0);
-      opacity: 0;
-      transition: all 200ms 320ms cubic-bezier(0.55, 0, 0.1, 1);
     }
 
     [size=xs] #package-title {
       margin-bottom: 0;
     }
 
-    [size=xs] #package-tagline,
-    [size=xs] #package-desc {
+    [size=xs] #package-tagline {
       display: none;
     }
 
@@ -213,8 +225,7 @@
 
     .active #package-symbol,
     .active #package-title,
-    .active #package-tagline,
-    .active #package-desc {
+    .active #package-tagline {
       -webkit-transform: translate(0, 0);
       opacity: 1;
     }
@@ -253,7 +264,8 @@
       text-align: center;
       margin-right: 15px;
       font-weight: 900;
-      border-radius: 50%;
+      outline: 1px solid rgba(0,0,0,.1);
+      outline-offset: -1px;
     }
 
     [size=xs] .elements,
@@ -299,7 +311,7 @@
             <span>[[tag]]</span> <core-icon icon="clear" on-click="clearTag"></core-icon>
           </div>
           <div id="package-list" hidden$="[[packageInfo]]">
-            <h5>Packages</h5>
+            <h5>Products</h5>
             <template is="x-repeat" items="[[packages]]">
               <theme-color color="[[item.color]]" class="package" on-click="updatePackage" name="[[item.name]]">
                 <div class="layout horizontal center">
@@ -316,13 +328,15 @@
               <span id="package-version">[[packageInfo.version]]</span>
               <h4 id="package-tagline">[[packageInfo.tagline]]</h4>
             </div>
-            <div class="section">
-              <h5>Product Description</h5>
-              <p id="package-desc">[[packageInfo.description]]</p>
-            </div>
-            <div class="section">
-              <h5>Tags</h5>
+            <div id="package-details">
+              <div class="section">
+                <h5>Product Description</h5>
+                <p id="package-desc">[[packageInfo.description]]</p>
+              </div>
+              <div class="section">
+                <h5>Tags</h5>
 
+              </div>
             </div>
           </theme-color>
           <div hidden$="[[!tag]]" id="current-tag" class="horizontal layout center">
