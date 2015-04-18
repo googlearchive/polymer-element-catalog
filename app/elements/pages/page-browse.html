@@ -452,6 +452,7 @@
         var params = this._parseQueryString();
         if (params && params['q']) {
           this.querySelector('app-bar').showingSearch = true;
+          this.packageInfo = null;
         }
       },
       updateURL: function() {
