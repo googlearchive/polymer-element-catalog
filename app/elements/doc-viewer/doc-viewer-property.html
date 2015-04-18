@@ -8,7 +8,8 @@
     }
 
     h4 {
-      width: 180px;
+      min-width: 180px;
+      padding-right: 8px;
       margin: 0;
     }
     h4, #prop-name, #prop-type {
@@ -17,7 +18,8 @@
       font-size: 14px;
       font-weight: bold;
     }
-    
+
+    marked-element::shadow p { line-height: 24px; }
     marked-element::shadow p:first-child { margin-top: 0; }
     marked-element::shadow p:last-child { margin-bottom: 0; }
   </style>
@@ -25,8 +27,8 @@
     <div class="layout horizontal">
       <h4 id="prop-name">[[_name]]</h4>
       <div class="flex layout vertical">
-        <div class="layout horizontal">
-          <span id="prop-type" class="flex">[[prop.type]]</span>
+        <div class="layout horizontal" hidden$="[[!_type]]">
+          <span id="prop-type" class="flex">[[_type]]</span>
         </div>
         <marked-element markdown="[[prop.desc]]"></marked-element>
       </div>
@@ -40,15 +42,33 @@
     properties: {
       dashed: {type: Boolean, value: false},
       prop: Object,
-      _name: {type: String, computed: 'computeName(prop, dashed)'}
+      _name: {type: String, computed: 'computeName(prop, dashed)'},
+      _type: {type: String, computed: 'computeType(prop)' }
     },
     computeName: function(prop, dashed) {
+      var out;
       if (dashed) {
         console.log('dashed', prop.name);
-        return Polymer.CaseMap.camelToDashCase(prop.name);
+        out = Polymer.CaseMap.camelToDashCase(prop.name);
       } else {
         console.log('non-dashed', prop.name);
-        return prop.name;
+        out = prop.name;
+        if (prop.type === 'Function') {
+          var paramNames = (prop.params || []).map(function(p) { return p.name });
+          out += "(" + paramNames.join(',') + ")";
+        }
+      }
+      return out;
+    },
+    computeType: function(prop) {
+      if (prop.type === 'Function') {
+        if (prop.return) {
+          return "<" + prop.return.type + ">";
+        } else {
+          return null;
+        }
+      } else {
+        return prop.type;
       }
     }
   });
