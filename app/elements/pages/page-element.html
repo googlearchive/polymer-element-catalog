@@ -27,20 +27,14 @@
     }
 
     #docs {
-      background: white;
-      max-width: 44em;
+      max-width: 52em;
       margin: 0 auto;
-      box-shadow: 0 0 15px rgba(0,0,0,0.2);
     }
 
     #docs h3 {
       padding: 20px 30px;
       margin: 0;
       border-bottom: 1px solid #eee;
-    }
-
-    #docs-content {
-      padding: 30px;
     }
 
     #element-header {
@@ -176,15 +170,15 @@
             </div>
           </div>
         </app-sidebar>
-        <core-selector id="content" attr-for-selected="id" selected="{{view}}" class="flex horizontal layout center center-justified">
-          <div id="demo"><h1>Demo Content</h1></div>
-          <div id="docs" class="vertical layout self-start">
-            <h3 id="doc-heading">[[element]]</h3>
-            <div id="docs-content" class="flex">
+        <div class="flex vertical layout">
+          <h3>[[element]]</h3>
+          <core-selector id="content" attr-for-selected="id" selected="{{view}}" class="flex horizontal layout center center-justified">
+            <div id="demo"><h1>Demo Content</h1></div>
+            <div id="docs" class="vertical layout self-start">
               <doc-viewer element="[[element]]"></doc-viewer>
             </div>
-          </div>
-        </core-selector>
+          </core-selector>
+        </div>
       </responsive-element>
     </theme-color>
   </template>
