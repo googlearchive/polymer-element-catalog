@@ -130,11 +130,15 @@ core-toolbar nav a {
   padding: 0 4px;
 }
 
+core-toolbar nav a:hover {
+  color: #536DFE;
+}
+
 core-toolbar nav a:first-child {
   margin-left: 0;
 }
 
 core-toolbar nav .active {
   color: black;
-  border-bottom: 2px solid #4A61E4;
+  border-bottom: 2px solid #7986CB;
 }

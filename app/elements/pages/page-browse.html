@@ -162,8 +162,7 @@
       height: 72px;
       line-height: 72px;
       text-align: center;
-      outline: 1px solid rgba(0,0,0,.1);
-      outline-offset: -1px;
+      border-radius: 2px;
       -webkit-transform: translate(-50px, 0);
       opacity: 0;
       transition: all 320ms cubic-bezier(0.55, 0, 0.1, 1);
@@ -264,8 +263,7 @@
       text-align: center;
       margin-right: 15px;
       font-weight: 900;
-      outline: 1px solid rgba(0,0,0,.1);
-      outline-offset: -1px;
+      border-radius: 2px;
     }
 
     [size=xs] .elements,
@@ -299,11 +297,6 @@
           <app-logo class="flex"></app-logo>
           <app-bar class="horizontal layout center end-justified" query="{{q}}">
             <core-icon icon="filter-list" on-click="togglePackages"></core-icon>
-            <!--<div class="menu-icon" on-click="togglePackages" active$="[[!packageInfo]]">
-              <span class="menu-bar"></span>
-              <span class="menu-bar"></span>
-              <span class="menu-bar"></span>
-            </div>-->
           </app-bar>
         </core-toolbar>
         <div class="content">
@@ -385,7 +378,7 @@
       enableCustomStyleProperties: true,
       properties: {
         router: Object,
-        pageTitle: { type: String },
+        pageTitle: {type: String},
 
         // Query Parameters
         q: {type: String, notify: true, value: ''},
@@ -483,7 +476,7 @@
         } else {
           this.pageTitle = "All Elements";
         }
-        
+
         this.fire('page-meta', { title: this.pageTitle });
       }
     });
