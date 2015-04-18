@@ -32,7 +32,8 @@
     "paper-styles": "PolymerElements/paper-styles#master",
     "prism-highlighter": "PolymerElements/prism-highlighter",
     "pushstate-anchor": "~0.3.0",
-    "iron-elements": "PolymerElements/iron-elements#master"
+    "iron-elements": "PolymerElements/iron-elements#master",
+    "paper-card": "PolymerElements/paper-card#master"
   },
   "resolutions": {
     "polymer": "0.8.0-rc.4",
