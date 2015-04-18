@@ -2,6 +2,7 @@
 <link rel="import" href="../../bower_components/prism-highlighter/prism-highlighter.html">
 <link rel="import" href="../../bower_components/hydrolysis/hydrolysis-analyzer.html">
 <link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
 
 <link rel="import" href="doc-viewer-property.html">
 
@@ -24,6 +25,12 @@
       margin-bottom: 0;
     }
 
+    doc-viewer-property[private] {
+      display: none;
+    }
+    [show-private] doc-viewer-property[private] {
+      display: block;
+    }
     doc-viewer-property {
       border-bottom: 1px solid #ddd;
     }
@@ -33,6 +40,11 @@
 
     paper-card {
       background: white;
+    }
+
+    .private-toggle {
+      float: right;
+      margin: 24px;
     }
   </style>
   <template>
@@ -45,14 +57,22 @@
       <div id="desc"><marked-element markdown="[[_element.desc]]"></marked-element></div>
     </paper-card>
 
-    <paper-card>
+    <paper-card show-private$="[[showPrivateProps]]">
+      <div class="private-toggle">
+        <paper-checkbox checked="{{showPrivateProps::iron-change}}"></paper-checkbox>
+        Show Private
+      </div>
       <h3>Properties</h3>
       <template is="x-repeat" items="[[elementProperties]]">
         <doc-viewer-property prop="[[item]]"></doc-viewer-property>
       </template>
     </paper-card>
 
-    <paper-card>
+    <paper-card show-private$="[[showPrivateMethods]]">
+      <div class="private-toggle">
+        <paper-checkbox checked="{{showPrivateMethods::iron-change}}"></paper-checkbox>
+        Show Private
+      </div>
       <h3>Methods</h3>
       <template is="x-repeat" items="[[elementMethods]]">
         <doc-viewer-property prop="[[item]]"></doc-viewer-property>
@@ -66,6 +86,8 @@
   Polymer({
     is: 'doc-viewer',
     properties: {
+      showPrivateProps: {type: Boolean, notify: true, value: false},
+      showPrivateMethods: {type: Boolean, notify: true, value: false},
       _analyzer: Object,
       data: Object,
       element: String,

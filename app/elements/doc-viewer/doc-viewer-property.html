@@ -42,8 +42,12 @@
     properties: {
       dashed: {type: Boolean, value: false},
       prop: Object,
+      private: {type: Boolean, value: false, reflectToAttribute: true, computed: 'computePrivate(prop)'},
       _name: {type: String, computed: 'computeName(prop, dashed)'},
       _type: {type: String, computed: 'computeType(prop)' }
+    },
+    observers: {
+      'showPrivate prop': 'showPrivateChanged'
     },
     computeName: function(prop, dashed) {
       var out;
@@ -54,7 +58,7 @@
         console.log('non-dashed', prop.name);
         out = prop.name;
         if (prop.type === 'Function') {
-          var paramNames = (prop.params || []).map(function(p) { return p.name });
+          var paramNames = (prop.params || []).map(function(p) { return p.name; });
           out += "(" + paramNames.join(',') + ")";
         }
       }
@@ -70,6 +74,9 @@
       } else {
         return prop.type;
       }
+    },
+    computePrivate: function(prop) {
+      return prop.private;
     }
   });
 </script>
