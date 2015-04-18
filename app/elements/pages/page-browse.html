@@ -30,6 +30,7 @@
       max-width: 920px;
       margin: 0 auto;
       padding: 2px 0;
+      box-sizing: border-box;
     }
 
     .elements-title h2 {
@@ -212,16 +213,6 @@
       margin-top: 0;
     }
 
-    [size=xs] #package-version {
-      position: absolute;
-      top: 10px;
-      right: 16px;
-    }
-
-    [size=xs] #package-view-mode {
-      display: none;
-    }
-
     .active #package-symbol,
     .active #package-title,
     .active #package-tagline {
@@ -264,6 +255,14 @@
       margin-right: 15px;
       font-weight: 900;
       border-radius: 2px;
+    }
+
+    [size=xs] .elements-title,
+    [size=s] .elements-title,
+    [size=m] .elements-title {
+      width: 100%;
+      margin: 0;
+      padding: 2px 16px;
     }
 
     [size=xs] .elements,
