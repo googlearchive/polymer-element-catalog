@@ -19,7 +19,7 @@
     "polymer": "Polymer/polymer#0.8-preview",
     "core-ajax": "Polymer/core-ajax#0.8-preview",
     "layout": "Polymer/layout",
-    "paper-item": "PolymerElements/paper-item#paper-styles-fix",
+    "paper-item": "PolymerElements/paper-item#master",
     "app-router": "~2.6.0",
     "core-toolbar": "Polymer/core-toolbar#0.8-preview",
     "core-icons": "polymer/core-icons#0.8-preview",
@@ -29,15 +29,15 @@
     "core-selector": "Polymer/core-selector#0.8-preview",
     "color": "~2.5.0",
     "marked-element": "PolymerElements/marked-element#^0.8.0",
-    "paper-styles": "PolymerElements/paper-styles#~0.8.1",
+    "paper-styles": "PolymerElements/paper-styles#master",
     "prism-highlighter": "PolymerElements/prism-highlighter",
     "pushstate-anchor": "~0.3.0",
-    "iron-elements": "PolymerElements/iron-elements#wip",
-    "paper-card": "PolymerElements/paper-card#~0.8.0"
+    "iron-elements": "PolymerElements/iron-elements#master"
   },
   "resolutions": {
     "polymer": "0.8.0-rc.4",
     "layout": "master",
-    "prism-highlighter": "master"
+    "prism-highlighter": "master",
+    "paper-styles": "master"
   }
 }
