@@ -450,7 +450,7 @@
       },
       updateSearch: function() {
         var params = this._parseQueryString();
-        if (params && params['q']) {
+        if (params && params.q) {
           this.querySelector('app-bar').showingSearch = true;
         }
       },
