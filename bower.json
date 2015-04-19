@@ -16,6 +16,8 @@
   ],
   "private": true,
   "dependencies": {
+    "iron-elements": "PolymerElements/iron-elements#master",
+
     "polymer": "Polymer/polymer#0.8-preview",
     "core-ajax": "Polymer/core-ajax#0.8-preview",
     "layout": "Polymer/layout",
@@ -32,7 +34,6 @@
     "paper-styles": "PolymerElements/paper-styles#master",
     "prism-highlighter": "PolymerElements/prism-highlighter",
     "pushstate-anchor": "~0.3.0",
-    "iron-elements": "PolymerElements/iron-elements#master",
     "paper-card": "PolymerElements/paper-card#master",
     "paper-checkbox": "PolymerElements/paper-checkbox#~0.8.0"
   },

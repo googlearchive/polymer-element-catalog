@@ -7,60 +7,52 @@ var packageDetails = require('./utils/package-details');
 var packageElements = require('./utils/package-elements');
 
 module.exports = function () {
-  
+
   var bowerFile = require(path.resolve(__dirname, '../../bower.json'));
-  
-  // TODO: uncomment this to work with real data
-  // var bowerDeps = bowerFile.dependencies;
-  // 
-  // TEMP: mock data
-  var bowerDeps = _.extend(bowerFile.dependencies, {
-    'iron-elements': '1.0.0',
-    'paper-elements': '1.1.4'
-  });
-  
+  var bowerDeps = bowerFile.dependencies;
+
   var data = [];
   var out = {};
-  
+
   return stream.compose(
     stream.parse('packages.*'),
     stream.filter(function (package) {
-      
       return bowerDeps[package.name];
     }),
     stream.asyncMap(function (package, done) {
-      
-      var details = packageDetails(package.name);
-      var elements = packageElements(package.name, details.dependencies);
-      
+      var packageBower = packageDetails(package.name);
+      var elements = packageElements(package.name, packageBower.dependencies);
+
       var output = _.map(elements, function (elementName) {
-        
+        var details = packageDetails(elementName);
         // Set up object schema
+        console.log("-",elementName,"(" + details._release + ")");
         return {
           name: elementName,
-          package: details.name,
-          description: 'TOOD: update this to read from ' + elementName + '\'s bower.json description',
-          tags: ['TODO', 'use', 'from', elementName, 'bower.json']
+          version: details._release,
+          package: package.name,
+          description: details.description,
+          tags: details.keywords
         };
       });
-      
+
       done(null, output);
     }),
-    
+
     // Conver to objects from arrays (and flatten)
     stream.create(
       function (chunk, enc, done) {
-        
+
         data.push(chunk);
         done();
       },
       function (done) {
-        
+
         var sortedData = _(data)
           .flatten()
           .sortBy('name')
           .value();
-        
+
         this.push(sortedData);
         done();
       }
