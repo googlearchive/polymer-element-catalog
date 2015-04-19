@@ -2,16 +2,21 @@ var concat = require('concat-stream');
 var reduce = require('through2-reduce');
 var asyncMap = require('through2-asyncmap');
 var filter = require('through2-filter');
+var map = require('through2-map');
 var through = require('through2');
 var jsonStream = require('JSONStream');
 var isStream = require('is-stream');
 var split = require('split');
 var writeStreamP = require('writestreamp');
 var pumpify = require('pumpify');
+var from = require('from2');
+var concurrent = require('through2-concurrent');
 
 exports.create = through;
 exports.split = split;
 exports.writeFile = writeStreamP;
+exports.from = from;
+exports.concurrent = concurrent;
 
 exports.parse = jsonStream.parse.bind(jsonStream);
 exports.stringify = jsonStream.stringify.bind(jsonStream);
@@ -29,13 +34,13 @@ exports.validate = isStream;
 exports.concat = concat;
 exports.compose = pumpify;
 
+exports.reduce = reduce;
 reduce.obj = function (fn) {
   
   return reduce.call(null, {objectMode: true}, fn);
 }
-
-exports.reduce = reduce;
 exports.filter = filter;
+exports.map = map;
 exports.asyncMap = asyncMap;
 
 // Object mode
@@ -43,6 +48,8 @@ exports.obj = {
   create: exports.create.obj,
   split: exports.split.obj,
   writeFile: exports.writeFile,
+  from: from.obj,
+  concurrent: exports.concurrent.obj,
   
   parse: exports.parse,
   stringify: exports.stringify.obj,
@@ -53,5 +60,13 @@ exports.obj = {
   
   reduce: exports.reduce.obj,
   filter: exports.filter.obj,
-  asyncMap: exports.asyncMap.obj
+  map: exports.map.obj,
+  asyncMap: exports.asyncMap.obj,
+  get: function (key) {
+    
+    return exports.obj.create(function (obj, enc, done) {
+      
+      done(null, obj[key]);
+    });
+  }
 };
