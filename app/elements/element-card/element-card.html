@@ -1,0 +1,63 @@
+<link rel="import" href="../../paper-card/paper-card.html">
+
+<link rel="import" href="../catalog-element/catalog-element.html">
+<link rel="import" href="../catalog-package/catalog-package.html">
+
+<dom-module id="element-card">
+  <style>
+    :host {
+      display: block;
+    }
+
+    paper-card {
+      background: white;
+    }
+
+    h3 {
+      font-size: 18px;
+      font-weight: bold;
+      padding: 12px;
+      margin: 0;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 24px;
+      padding: 12px;
+      margin: 0;
+    }
+
+    #el-package {
+      border: 1px solid #eee;
+      padding: 12px;
+      border-width: 1px 0;
+    }
+  </style>
+  <template>
+    <catalog-element name="[[element]]" data="{{_element}}"></catalog-element>
+    <catalog-package name="[[_element.package]]" data="{{package}}"></catalog-package>
+
+    <paper-card class="vertical layout">
+      <img src="http://placehold.it/160x90"/>
+      <h3>[[_element.name]]</h3>
+      <p>[[_element.description]]</p>
+      <div id="el-package" class="horizontal layout">
+        <img src="http://placehold.it/32x32"/>
+        <span>[[package.title]]</span>
+      </div>
+      <div id="el-tags">
+        (put tags here)
+      </div>
+    </paper-card>
+  </template>
+</dom-module>
+
+<script>
+Polymer({
+  is: 'element-card',
+  properties: {
+    element: {type: String, notify: true},
+    _element: Object
+  }
+});
+</script>

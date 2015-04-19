@@ -3,6 +3,7 @@
 
 <link rel="import" href="../catalog-data/catalog-data.html">
 <link rel="import" href="../catalog-package/catalog-package.html">
+<link rel="import" href="../element-card/element-card.html">
 <link rel="import" href="../tag-link/tag-link.html">
 <link rel="import" href="../theme-color/theme-color.html">
 
@@ -37,7 +38,7 @@
       mixin(--paper-font-title);
     }
 
-    .elements {
+    #element-table{
       width: 80%;
       max-width: 920px;
       border-collapse: collapse;
@@ -47,42 +48,42 @@
       /*box-shadow: 3px 3px 10px rgba(0,0,0,0.2);*/
     }
 
-    .elements td, .elements th {
+    #element-table td, #element-table th {
       padding: 20px 16px;
     }
 
-    .elements th {
+    #element-table th {
       mixin(--paper-font-body1);
       color: #666;
       text-align: left;
       border-bottom: 1px solid #eee;
     }
 
-    .elements tbody tr {
+    #element-table tbody tr {
       cursor: pointer;
     }
 
-    .elements tbody tr:hover {
+    #element-table tbody tr:hover {
       background: #fafafa;
     }
 
-    .elements a {
+    #element-table a {
       font-weight: bold;
     }
 
-    .elements a, .elements core-icon {
+    #element-table a, #element-tablecore-icon {
       cursor: pointer;
     }
 
-    [size=xs] .elements .description {
+    [size=xs] #element-table.description {
       display: none;
     }
 
-    .elements .name {
+    #element-table .name {
       font-weight: 600;
     }
 
-    .elements .description {
+    #element-table .description {
       color: #666;
       line-height: 24px;
     }
@@ -265,9 +266,9 @@
       padding: 2px 16px;
     }
 
-    [size=xs] .elements,
-    [size=s] .elements,
-    [size=m] .elements {
+    [size=xs] #element-table,
+    [size=s] #element-table,
+    [size=m] #element-table {
       margin: 0;
       width: 100%;
       border-radius: 0;
@@ -284,6 +285,19 @@
     }
     #current-tag span {
       text-transform: uppercase;
+    }
+
+    [view=cards] #element-table {
+      display: none;
+    }
+    [view=table] #element-cards {
+      display: none;
+    }
+
+    element-card {
+      width: 160px;
+      margin: 10px;
+      background: white;
     }
   </style>
   <template>
@@ -337,12 +351,19 @@
         </div>
       </app-sidebar>
 
-      <div id="container" class="flex">
+      <div id="container" class="flex" view$="[[view]]">
         <div class="elements-title horizontal layout center">
           <h2 class="flex">[[pageTitle]]</h2>
-          <core-icon id="package-view-mode" icon="view-module"></core-icon>
+          <core-icon id="package-view-mode" icon="[[viewIcon]]" on-click="toggleView"></core-icon>
         </div>
-        <table class="elements">
+
+        <div id="element-cards" class="horizontal layout wrap">
+          <template id="el-card-repeat" is="x-repeat" items="[[elements]]">
+            <element-card element="[[item.name]]"></element-card>
+          </template>
+        </div>
+
+        <table id="element-table">
           <thead>
             <tr>
               <th class="name">Name</th>
@@ -351,7 +372,7 @@
             </tr>
           </thead>
           <tbody>
-            <template id="el-repeat" is="x-repeat" items="{{elements}}" filter="filter" observe="tag package q">
+            <template id="el-repeat" is="x-repeat" items="[[elements]]" filter="filter">
               <tr on-click="nav" target$="[[item.name]]">
                 <td class="name" width="100">[[item.name]]</td>
                 <td class="description">[[item.description]]</td>
@@ -383,13 +404,15 @@
         q: {type: String, notify: true, value: ''},
         tag: {type: String, notify: true, value: ''},
         package: {type: String, notify: true, value: ''},
+        view: {type: String, notify: true, value: 'table'},
 
+        viewIcon: {type: String, computed: 'computeViewIcon(view)', value: 'view-module'},
         packages: Array,
         packageInfo: {type: Object, value: {}},
         elements: Array
       },
       observers: {
-        'q package tag': 'updateURL',
+        'q package tag view': 'updateURL',
         packageInfo: 'updateMeta',
         package: 'showPackage'
       },
@@ -440,6 +463,7 @@
         if (this.q && this.q.length) out.push("q=" + this.q);
         if (this.tag && this.tag.length) out.push("tag=" + this.tag);
         if (this.package && this.package.length) out.push("package=" + this.package);
+        if (this.view !== 'table') out.push("view=" + this.view);
 
         return out.join("&");
       },
@@ -478,6 +502,20 @@
         }
 
         this.fire('page-meta', { title: this.pageTitle });
+      },
+      toggleView: function() {
+        if (this.view === 'table') {
+          this.view = 'cards';
+        } else {
+          this.view = 'table';
+        }
+      },
+      computeViewIcon: function(view) {
+        if (view === 'table') {
+          return 'view-module';
+        } else {
+          return 'view-list';
+        }
       }
     });
   })();
