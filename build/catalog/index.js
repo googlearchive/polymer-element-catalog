@@ -20,15 +20,19 @@ module.exports = function (srcFilepath) {
     path.resolve(process.cwd(), 'bower_components', '**', 'guides', '**.md')
   ];
   
-  var elementsStream = srcCatalog.pipe(elements({root: root}))
+  var elementsStream = srcCatalog.pipe(elements({root: root}));
+  var guidesStream = guides(guideFilepaths);
   
   return objectFromStreams({
-    packages: srcCatalog.pipe(packages({root: root})),
+    packages: srcCatalog.pipe(packages({
+      root: root,
+      guides: guidesStream
+    })),
     elements: elementsStream,
     tags: {
       data: elementsStream.pipe(tags()),
       onArray: _.first
     },
-    guides: guides(guideFilepaths)
+    guides: guidesStream
   });
 };

@@ -10,6 +10,7 @@ module.exports = function (imports) {
   var root = imports.root;
   var bowerFile = require(root + '/bower.json');
   var deps = bowerFile.dependencies;
+  var guidesStream = imports.guides;
   
   return stream.compose(
     stream.parse('packages.*'),
@@ -29,16 +30,23 @@ module.exports = function (imports) {
         deps: details.dependencies
       });
 
-      package.version = details._release;
-      package.description = details.description;
-      package.elements = elements;
-      
-      // TODO: add this when parsing real packages gets solved
-      // package.guides = []; 
+      // Parse all guides and add to packages meta
+      guidesStream
+        .pipe(stream.filter(function (guide) {
+          
+          return guide.package === package.name
+        }))
+        .pipe(stream.concat(function (guides) {
+          
+          package.version = details._release;
+          package.description = details.description;
+          package.elements = elements;
+          package.guides = _.pluck(guides, 'name');
 
-      console.log("===",package.name,"(" + details._release + ")");
-
-      done(null, package);
+          console.log("===",package.name,"(" + details._release + ")");
+          
+          done(null, package);
+        }));
     })
   );
 };
