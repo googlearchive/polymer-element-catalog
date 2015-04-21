@@ -6,10 +6,11 @@ var stream = require('./utils/stream').obj;
 var packageDetails = require('./utils/package-details');
 var packageElements = require('./utils/package-elements');
 
-module.exports = function () {
+module.exports = function (imports) {
 
-  var bowerFile = require(path.resolve(__dirname, '../../bower.json'));
-  var bowerDeps = bowerFile.dependencies;
+  var root = imports.root;
+  var bowerFile = require(root + '/bower.json');
+  var deps = bowerFile.dependencies;
 
   var data = [];
   var out = {};
@@ -17,16 +18,31 @@ module.exports = function () {
   return stream.compose(
     stream.parse('packages.*'),
     stream.filter(function (package) {
-      return bowerDeps[package.name];
+      
+      return deps[package.name];
     }),
     stream.asyncMap(function (package, done) {
-      var packageBower = packageDetails(package.name);
-      var elements = packageElements(package.name, packageBower.dependencies);
+      
+      var packageBower = packageDetails({
+        root: root,
+        name: package.name
+      });
+      
+      var elements = packageElements({
+        name: package.name,
+        deps: packageBower.dependencies
+      });
 
       var output = _.map(elements, function (elementName) {
-        var details = packageDetails(elementName);
+        
+        var details = packageDetails({
+          root: root,
+          name: elementName
+        });
+        
         // Set up object schema
         console.log("-",elementName,"(" + details._release + ")");
+        
         return {
           name: elementName,
           version: details._release,
@@ -39,7 +55,7 @@ module.exports = function () {
       done(null, output);
     }),
 
-    // Conver to objects from arrays (and flatten)
+    // Convert to objects from arrays (and flatten)
     stream.create(
       function (chunk, enc, done) {
 

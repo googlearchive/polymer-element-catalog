@@ -22,7 +22,7 @@ module.exports = function (srcFilepath) {
   
   return objectFromStreams({
     packages: srcCatalog.pipe(packages({root: root})),
-    // elements: srcCatalog.pipe(elements()),
+    elements: srcCatalog.pipe(elements({root: root})),
     // tags: {
     //   data: srcCatalog.pipe(tags()),
     //   onArray: _.first
