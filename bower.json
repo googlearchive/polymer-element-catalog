@@ -17,7 +17,7 @@
   "private": true,
   "dependencies": {
     "iron-elements": "PolymerElements/iron-elements#master",
-
+    "paper-elements": "PolymerElements/paper-elements#master",
     "polymer": "Polymer/polymer#0.8.0-rc.6",
     "app-router": "~2.6.0",
     "pushstate-anchor": "~0.3.0",
@@ -41,6 +41,7 @@
     "polymer": "v0.8.0-rc.4",
     "layout": "master",
     "prism-highlighter": "master",
-    "paper-styles": "master"
+    "paper-styles": "master",
+    "paper-ripple": "^0.8.0"
   }
 }
