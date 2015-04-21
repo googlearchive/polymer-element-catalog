@@ -1,12 +1,12 @@
-<link rel="import" href="../../bower_components/core-icons/core-icons.html">
-<link rel="import" href="../../bower_components/core-icons/maps-icons.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-icons/maps-icons.html">
 
 <link rel="import" href="../catalog-data/catalog-data.html">
 <link rel="import" href="../package-tile/package-tile.html">
 
 <dom-module id="page-packages">
   <style>
-    core-header-panel::shadow #mainContainer {
+    paper-header-panel::shadow #mainContainer {
       background: #eee;
     }
 
@@ -53,7 +53,7 @@
     }
 
     @media (max-width: 639px) {
-      core-toolbar /deep/ #topBar {
+      paper-toolbar /deep/ #topBar {
         margin-top: 4px;
         padding: 0 16px;
       }
@@ -61,15 +61,15 @@
   </style>
   <template>
     <catalog-data packages="{{packages}}"></catalog-data>
-    <core-header-panel class="fit">
-      <core-toolbar class="medium-tall">
+    <paper-header-panel class="fit">
+      <paper-toolbar class="paper-header medium-tall">
         <app-logo full class="flex"></app-logo>
         <nav class="flex bottom">
           <a class="active" href="/" is="pushstate-anchor">Elements</a>
           <a href="/guides" is="pushstate-anchor">Guides</a>
         </nav>
         <app-bar class="horizontal layout center end-justified" query="{{q}}"></app-bar>
-      </core-toolbar>
+      </paper-toolbar>
 
       <div class="content fit">
         <div class="packages layout horizontal wrap">
@@ -78,7 +78,7 @@
           </template>
         </div>
       </div>
-    </core-header-panel>
+    </paper-header-panel>
   </template>
 </dom-module>
 

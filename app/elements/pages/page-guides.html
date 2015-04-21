@@ -1,5 +1,5 @@
-<link rel="import" href="../../bower_components/core-header-panel/core-header-panel.html">
-<link rel="import" href="../../bower_components/core-toolbar/core-toolbar.html">
+<link rel="import" href="../../bower_components/paper-header-panel/paper-header-panel.html">
+<link rel="import" href="../../bower_components/paper-toolbar/paper-toolbar.html">
 
 <link rel="import" href="../app-bar/app-bar.html">
 <link rel="import" href="../catalog-data/catalog-data.html">
@@ -13,15 +13,15 @@
   </style>
   <template>
     <catalog-data guides="{{guides}}"></catalog-data>
-    <core-header-panel class="fit">
-      <core-toolbar class="medium-tall">
+    <paper-header-panel class="fit">
+      <paper-toolbar class="paper-header medium-tall">
         <app-logo full class="flex"></app-logo>
         <nav class="flex bottom">
           <a href="/" is="pushstate-anchor">Elements</a>
           <a class="active" href="/guides" is="pushstate-anchor">Guides</a>
         </nav>
         <app-bar class="horizontal layout center end-justified"></app-bar>
-      </core-toolbar>
+      </paper-toolbar>
 
       <div class="content fit">
         <ul>
@@ -30,7 +30,7 @@
         </template>
         </ul>
       </div>
-    </core-header-panel>
+    </paper-header-panel>
 
   </template>
 </dom-module>

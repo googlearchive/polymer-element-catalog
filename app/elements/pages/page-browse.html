@@ -1,5 +1,5 @@
-<link rel="import" href="../../bower_components/core-icons/core-icons.html">
-<link rel="import" href="../../bower_components/core-icons/av-icons.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-icons/av-icons.html">
 
 <link rel="import" href="../catalog-data/catalog-data.html">
 <link rel="import" href="../catalog-package/catalog-package.html">
@@ -71,7 +71,7 @@
       font-weight: bold;
     }
 
-    #element-table a, #element-tablecore-icon {
+    #element-table a, #element-tableiron-icon {
       cursor: pointer;
     }
 
@@ -99,7 +99,7 @@
       height: auto;
     }
 
-    [size=xs] app-sidebar core-toolbar /deep/ #topBar {
+    [size=xs] app-sidebar paper-toolbar /deep/ #topBar {
       padding: 0 16px;
     }
 
@@ -151,7 +151,7 @@
       overflow: hidden;
     }
 
-    #package-header core-icon {
+    #package-header iron-icon {
       cursor: pointer;
     }
 
@@ -299,6 +299,10 @@
       margin: 10px;
       background: white;
     }
+    
+    paper-toolbar {
+      --paper-toolbar-background: white;
+    }
   </style>
   <template>
     <catalog-data elements="{{elements}}" packages="{{packages}}"></catalog-data>
@@ -306,15 +310,15 @@
 
     <responsive-element class="horizontal layout fit">
       <app-sidebar>
-        <core-toolbar class="horizontal layout center">
+        <paper-toolbar class="horizontal layout center">
           <app-logo class="flex"></app-logo>
           <app-bar class="horizontal layout center end-justified" query="{{q}}">
-            <core-icon icon="filter-list" on-click="togglePackages"></core-icon>
+            <iron-icon icon="filter-list" on-click="togglePackages"></iron-icon>
           </app-bar>
-        </core-toolbar>
+        </paper-toolbar>
         <div class="content">
           <div id="package-tag" hidden$="[[!tag]]">
-            <span>[[tag]]</span> <core-icon icon="clear" on-click="clearTag"></core-icon>
+            <span>[[tag]]</span> <iron-icon icon="clear" on-click="clearTag"></iron-icon>
           </div>
           <div id="package-list" hidden$="[[packageInfo]]">
             <h5>Products</h5>
@@ -346,7 +350,7 @@
             </div>
           </theme-color>
           <div hidden$="[[!tag]]" id="current-tag" class="horizontal layout center">
-            <b>Tag:</b> <span class="flex">[[tag]]</span> <core-icon icon="clear" on-click="clearTag"></core-icon>
+            <b>Tag:</b> <span class="flex">[[tag]]</span> <iron-icon icon="clear" on-click="clearTag"></iron-icon>
           </div>
         </div>
       </app-sidebar>
@@ -354,7 +358,7 @@
       <div id="container" class="flex" view$="[[view]]">
         <div class="elements-title horizontal layout center">
           <h2 class="flex">[[pageTitle]]</h2>
-          <core-icon id="package-view-mode" icon="[[viewIcon]]" on-click="toggleView"></core-icon>
+          <iron-icon id="package-view-mode" icon="[[viewIcon]]" on-click="toggleView"></iron-icon>
         </div>
 
         <div id="element-cards" class="horizontal layout wrap">

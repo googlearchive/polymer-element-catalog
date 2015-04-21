@@ -1,5 +1,5 @@
-<link rel="import" href="../../bower_components/core-selector/core-selector.html">
-<link rel="import" href="../../bower_components/core-icons/core-icons.html">
+<link rel="import" href="../../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../bower_components/paper-item/paper-item.html">
 
 
@@ -22,7 +22,7 @@
       height: auto;
     }
 
-    [size=xs] app-sidebar core-toolbar /deep/ #topBar {
+    [size=xs] app-sidebar paper-toolbar /deep/ #topBar {
       padding: 0 16px;
     }
 
@@ -44,7 +44,7 @@
       overflow: hidden;
     }
 
-    #element-header core-icon {
+    #element-header iron-icon {
       cursor: pointer;
     }
 
@@ -101,11 +101,11 @@
       opacity: 0.6;
     }
 
-    #links .core-selected {
+    #links .iron-selected {
       background: #eee;
     }
 
-    [size=xs] #links .core-selected {
+    [size=xs] #links .iron-selected {
       background: transparent;
       border-bottom: 2px solid #fff;
       opacity: 1;
@@ -121,7 +121,7 @@
       display: none;
     }
 
-    #content > .core-selected {
+    #content > .iron-selected {
       display: block;
     }
 
@@ -136,16 +136,16 @@
     <theme-color color="[[package.color]]">
       <responsive-element class="horizontal layout fit">
         <app-sidebar>
-          <core-toolbar class="horizontal layout center">
+          <paper-toolbar class="horizontal layout center">
             <app-logo class="flex"></app-logo>
             <app-bar class="horizontal layout center end-justified">
-              <core-icon icon="more-vert"></core-icon>
+              <iron-icon icon="more-vert"></iron-icon>
             </app-bar>
-          </core-toolbar>
+          </paper-toolbar>
           <div class="content">
             <div id="element-info">
               <div id="element-header" class="horizontal layout center" themed>
-                <core-icon on-click="navToPackage" icon="chevron-left"></core-icon>
+                <iron-icon on-click="navToPackage" icon="chevron-left"></iron-icon>
                 <span id="package-symbol" on-click="navToPackage">[[package.symbol]]</span>
                 <span id="package-title">[[element]]</span>
               </div>
@@ -154,10 +154,10 @@
                 <p>[[metadata.description]]</p>
               </div>
 
-              <core-selector attr-for-selected="view" selected="{{view}}" id="links" themed>
+              <iron-selector attr-for-selected="view" selected="{{view}}" id="links" themed>
                 <paper-item view="docs" themed-border-reverse>Documentation</paper-item>
                 <paper-item view="demo">Demo</paper-item>
-              </core-selector>
+              </iron-selector>
 
               <div id="element-tags" class="section">
                 <h4>Tags</h4>
@@ -172,12 +172,12 @@
         </app-sidebar>
         <div class="flex vertical layout">
           <h3>[[element]]</h3>
-          <core-selector id="content" attr-for-selected="id" selected="{{view}}" class="flex horizontal layout center center-justified">
+          <iron-selector id="content" attr-for-selected="id" selected="{{view}}" class="flex horizontal layout center center-justified">
             <div id="demo"><h1>Demo Content</h1></div>
             <div id="docs" class="vertical layout self-start">
               <doc-viewer element="[[element]]"></doc-viewer>
             </div>
-          </core-selector>
+          </iron-selector>
         </div>
       </responsive-element>
     </theme-color>
@@ -203,7 +203,7 @@
     attached: function() {
       var links = this.$.links;
       var tabs = links.querySelectorAll('paper-item');
-      links.addEventListener('core-select', function(event) {
+      links.addEventListener('iron-select', function(event) {
         var tabColor = links.style.color;
         for (var i = 0; i < tabs.length; i++) {
           tabs[i].style.borderColor = 'transparent';
