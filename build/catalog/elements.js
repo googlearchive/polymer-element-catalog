@@ -48,14 +48,15 @@ module.exports = function (imports) {
           version: details._release,
           package: package.name,
           description: details.description,
-          tags: details.keywords
+          tags: details.keywords || []
         };
       });
-
+      
       done(null, output);
     }),
 
-    // Convert to objects from arrays (and flatten)
+    // Convert to objects from arrays (and flatten),
+    // and sort
     stream.create(
       function (chunk, enc, done) {
 
