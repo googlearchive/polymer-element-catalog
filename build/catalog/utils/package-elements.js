@@ -1,8 +1,12 @@
 var _ = require('lodash');
 
-module.exports = function (name, deps) {
+module.exports = function (imports) {
+  
+  var name = imports.name;
+  var deps = imports.deps;
   
   deps = deps || {};
+  
   var prefix = name.split('-');
   
   // No prefix, no tags
@@ -11,17 +15,11 @@ module.exports = function (name, deps) {
   }
   
   return _(deps)
-    .map(function (depVersion, depName) {
-      
-      return [depName, depVersion];
-    })
+    .keys()
     .filter(function (dep) {
     
-    var depPrefix = dep[0].split('-');
-    
-    return depPrefix.length === 2 && depPrefix[0] === prefix[0];
-  })
-  .zipObject()
-  .keys()
-  .value();
+      var depPrefix = dep.split('-');
+      return depPrefix.length === 2 && depPrefix[0] === prefix[0];
+    })
+    .value();
 }
