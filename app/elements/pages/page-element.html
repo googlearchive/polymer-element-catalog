@@ -1,7 +1,8 @@
 <link rel="import" href="../../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/paper-toolbar/paper-toolbar.html">
 <link rel="import" href="../../bower_components/paper-item/paper-item.html">
-
+<link rel="import" href="../../bower_components/paper-header-panel/paper-header-panel.html">
 
 <link rel="import" href="../theme-color/theme-color.html">
 <link rel="import" href="../responsive-element/responsive-element.html">
@@ -29,12 +30,6 @@
     #docs {
       max-width: 52em;
       margin: 0 auto;
-    }
-
-    #docs h3 {
-      padding: 20px 30px;
-      margin: 0;
-      border-bottom: 1px solid #eee;
     }
 
     #element-header {
@@ -75,40 +70,18 @@
       font-weight: 600;
     }
 
-    [size=xs] #links {
-      display: -ms-flexbox;
-      display: -webkit-flex;
-      display: flex;
-      -ms-flex-direction: row;
-      -webkit-flex-direction: row;
-      flex-direction: row;
-    }
-
     paper-item {
       cursor: pointer;
     }
 
-    [size=xs] paper-item {
-      -ms-flex: 1;
-      -webkit-flex: 1;
-      flex: 1;
-      -ms-flex-pack: center;
-      -webkit-justify-content: center;
-      justify-content: center;
-      font-weight: 600;
-      text-transform: uppercase;
-      border-bottom: 2px solid transparent;
-      opacity: 0.6;
+    #links a { margin: 0 8px; cursor: pointer; }
+    #links a, #links core-icon {
+      font-weight: normal;
+      color: #777;
     }
 
     #links .iron-selected {
-      background: #eee;
-    }
-
-    [size=xs] #links .iron-selected {
-      background: transparent;
-      border-bottom: 2px solid #fff;
-      opacity: 1;
+      color: #333;
     }
 
     #content {
@@ -154,11 +127,6 @@
                 <p>[[metadata.description]]</p>
               </div>
 
-              <iron-selector attr-for-selected="view" selected="{{view}}" id="links" themed>
-                <paper-item view="docs" themed-border-reverse>Documentation</paper-item>
-                <paper-item view="demo">Demo</paper-item>
-              </iron-selector>
-
               <div id="element-tags" class="section">
                 <h4>Tags</h4>
                 <div>
@@ -170,15 +138,22 @@
             </div>
           </div>
         </app-sidebar>
-        <div class="flex vertical layout">
-          <h3>[[element]]</h3>
-          <iron-selector id="content" attr-for-selected="id" selected="{{view}}" class="flex horizontal layout center center-justified">
+        <paper-header-panel class="flex vertical layout">
+          <paper-toolbar class="paper-header flex-none">
+            <span class="flex">[[element]]</span>
+            <iron-selector attr-for-selected="view" selected="{{view}}" id="links">
+              <a view="docs"><iron-icon icon="description"></iron-icon> Docs</a>
+              <a view="demo"><iron-icon icon="visibility"></iron-icon> Demo</a>
+            </iron-selector>
+            <iron-icon icon="fullscreen"></iron-icon>
+          </paper-toolbar>
+          <iron-selector id="content" attr-for-selected="id" selected="{{view}}" class="content fit">
             <div id="demo"><h1>Demo Content</h1></div>
-            <div id="docs" class="vertical layout self-start">
+            <div id="docs" class="vertical layout">
               <doc-viewer element="[[element]]"></doc-viewer>
             </div>
           </iron-selector>
-        </div>
+        </paper-header-panel>
       </responsive-element>
     </theme-color>
   </template>
