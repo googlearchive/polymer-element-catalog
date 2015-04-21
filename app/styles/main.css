@@ -71,27 +71,6 @@ catalog-app {
   overflow: hidden;
 }
 
-.logo {
-  font-size: 20px;
-}
-
-.logo a {
-  max-width: 125px;
-  color: #333;
-  text-transform: none;
-  text-decoration: none;
-}
-
-.logo h1 {
-  font-size: 20px;
-  font-weight: 400;
-  margin: 0;
-}
-
-.logo img {
-  margin: 0 12px 0 0;
-}
-
 .menu-icon {
   display: block;
   width: 24px;
@@ -127,23 +106,39 @@ catalog-app {
   opacity: 1;
 }
 
-core-toolbar {
+paper-toolbar {
   background: white;
   color: #333;
   transition: height 450ms cubic-bezier(0.55, 0, 0.1, 1);
 }
 
-core-toolbar nav {
-  margin: 0 20px;
+paper-toolbar.medium-tall {
+  height: 107px;
 }
 
-core-toolbar nav a {
-  line-height: 56px;
+paper-toolbar nav {
+  margin: 12px 0 0 0;
+}
+
+paper-toolbar nav a {
   display: inline-block;
-  padding: 4px 12px;
+  font-weight: 500;
+  line-height: 50px;
+  text-transform: none;
+  color: #666;
+  margin: 0 12px;
+  padding: 0 4px;
 }
 
-core-toolbar nav .active {
-  border-bottom: 4px solid #303F9F;
-  padding-bottom: 0;
+paper-toolbar nav a:hover {
+  color: #536DFE;
+}
+
+paper-toolbar nav a:first-child {
+  margin-left: 0;
+}
+
+paper-toolbar nav .active {
+  color: black;
+  border-bottom: 2px solid #7986CB;
 }

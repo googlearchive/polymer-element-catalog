@@ -4,7 +4,8 @@
       "name":"iron-elements",
       "title":"Iron Elements",
       "color":"#81c784",
-      "symbol": "Fe"
+      "symbol": "Fe",
+      "tagline":"Polymer core elements"
     },
     {
       "name":"paper-elements",

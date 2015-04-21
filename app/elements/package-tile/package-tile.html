@@ -90,14 +90,20 @@
     }
 
     .symbol {
-      padding-top: 60px;
+      padding: 10px 0;
     }
 
     .title {
-      margin-top: 0;
-      font-size: 18px;
-      font-weight: 600;
-      line-height: 26px;
+      display: table-caption;
+      margin: 0 0 15px;
+      height: 86px;
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 28px;
+    }
+
+    .title[extended] {
+      display: block;
     }
 
     .tagline {
@@ -117,7 +123,7 @@
     <theme-color id="content" color="[[package.color]]" class="vertical layout" themed themed-border>
       <span class="version">[[package.version]]</span>
       <h2 class="symbol">[[package.symbol]]</h2>
-      <h3 class="title">[[package.title]]</h3>
+      <h3 class="title" extended$="[[_extendedTitle(package)]]">[[package.title]]</h3>
       <hr themed-reverse>
       <p class="tagline">[[package.tagline]]</p>
     </theme-color>
@@ -137,6 +143,9 @@
       setTimeout(function() {
         this.classList.add('active');
       }.bind(this), (index + 1) * 50);
+    },
+    _extendedTitle: function(package) {
+      if (package.title.length > 20) return true;
     }
   });
 </script>

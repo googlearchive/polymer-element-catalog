@@ -1,8 +1,9 @@
-<link rel="import" href="../../bower_components/core-icons/core-icons.html">
-<link rel="import" href="../../bower_components/core-icons/av-icons.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-icons/av-icons.html">
 
 <link rel="import" href="../catalog-data/catalog-data.html">
 <link rel="import" href="../catalog-package/catalog-package.html">
+<link rel="import" href="../element-card/element-card.html">
 <link rel="import" href="../tag-link/tag-link.html">
 <link rel="import" href="../theme-color/theme-color.html">
 
@@ -25,52 +26,64 @@
       margin-right: 15px;
     }
 
-    .elements {
+    .elements-title {
+      width: 80%;
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 2px 0;
+      box-sizing: border-box;
+    }
+
+    .elements-title h2 {
+      mixin(--paper-font-title);
+    }
+
+    #element-table{
       width: 80%;
       max-width: 920px;
       border-collapse: collapse;
-      margin: 25px auto;
+      margin: 20px auto;
       background: white;
       border-radius: 3px;
       /*box-shadow: 3px 3px 10px rgba(0,0,0,0.2);*/
     }
 
-    .elements td, .elements th {
+    #element-table td, #element-table th {
       padding: 20px 16px;
     }
 
-    .elements th {
+    #element-table th {
+      mixin(--paper-font-body1);
       color: #666;
-      font-size: 15px;
       text-align: left;
       border-bottom: 1px solid #eee;
     }
 
-    .elements tbody tr {
+    #element-table tbody tr {
       cursor: pointer;
     }
 
-    .elements tbody tr:hover {
+    #element-table tbody tr:hover {
       background: #fafafa;
     }
 
-    .elements a {
+    #element-table a {
       font-weight: bold;
     }
 
-    .elements a, .elements core-icon {
+    #element-table a, #element-tableiron-icon {
       cursor: pointer;
     }
 
-    [size=xs] .elements .description {
+    [size=xs] #element-table.description {
       display: none;
     }
 
-    .elements .name {
+    #element-table .name {
       font-weight: 600;
     }
 
-    .elements .description {
+    #element-table .description {
       color: #666;
       line-height: 24px;
     }
@@ -86,7 +99,7 @@
       height: auto;
     }
 
-    [size=xs] app-sidebar core-toolbar /deep/ #topBar {
+    [size=xs] app-sidebar paper-toolbar /deep/ #topBar {
       padding: 0 16px;
     }
 
@@ -94,8 +107,34 @@
       overflow: auto;
     }
 
-    #sidebar p {
+    .section {
+      margin-bottom: 20px;
+      opacity: 0;
+      -webkit-transform: translate(0, 100px);
+      transition: all 320ms cubic-bezier(0.55, 0, 0.1, 1);
+    }
+
+    .section:first-child { transition-delay: 100ms; }
+    .section:nth-child(2) { transition-delay: 200ms; }
+    .section:nth-child(3) { transition-delay: 300ms; }
+    .section:nth-child(4) { transition-delay: 400ms; }
+
+    .active .section {
+      -webkit-transform: translate(0, 0);
+      opacity: 1;
+    }
+
+    .section h5 {
+      mixin(--paper-font-body2);
+      border-top: 1px solid #e5e5e5;
+      margin: 30px 0 20px;
+      padding: 20px 16px 0 16px;
+    }
+
+    .section p {
+      mixin(--paper-font-body1);
       color: #666;
+      padding: 0 16px;
     }
 
     #package-tag {
@@ -106,79 +145,68 @@
       position: relative;
     }
 
-    #package-info hr {
-      border: 0;
-      background: #fff;
-      height: 1px;
-      opacity: 0.2;
-      margin: 10px 0;
-    }
-
     #package-header {
-      padding: 20px 16px;
-      background: #ccc;
-      box-shadow: inset 0px 5px 6px -3px rgba(0,0,0,0.4);
+      position: relative;
+      padding: 20px 16px 0;
       overflow: hidden;
     }
 
-    #package-header core-icon {
+    #package-header iron-icon {
       cursor: pointer;
     }
 
     #package-symbol {
-      font-size: 4.2em;
+      display: inline-block;
+      font-size: 2.6em;
       font-weight: 900;
-      margin: 20px 0;
+      margin: 0 0 20px;
+      width: 72px;
+      height: 72px;
+      line-height: 72px;
+      text-align: center;
+      border-radius: 2px;
       -webkit-transform: translate(-50px, 0);
       opacity: 0;
       transition: all 320ms cubic-bezier(0.55, 0, 0.1, 1);
     }
 
     #package-title {
+      mixin(--paper-font-title);
       margin: 0 0 20px;
-      font-size: 18px;
-      font-weight: 600;
       -webkit-transform: translate(-50px, 0);
       opacity: 0;
       transition: all 320ms cubic-bezier(0.55, 0, 0.1, 1);
     }
 
     #package-tagline {
-      margin-top: 20px;
-    }
-
-    #package-tagline h4 {
+      mixin(--paper-font-body1);
       font-size: 14px;
       line-height: 22px;
       margin: 0;
+      padding-right: 80px;
       -webkit-transform: translate(-50px, 0);
       opacity: 0;
       transition: all 320ms cubic-bezier(0.55, 0, 0.1, 1);
     }
 
     #package-version {
-      padding-left: 10px;
-      line-height: 22px;
+      position: absolute;
+      top: 24px;
+      right: 16px;
       -webkit-transform: translate(50px, 0);
       opacity: 0;
-      transition: all 20ms 320ms cubic-bezier(0.55, 0, 0.1, 1);
+      transition: all 320ms cubic-bezier(0.55, 0, 0.1, 1);
     }
 
     #package-desc {
       margin: 0;
-      padding: 20px 16px;
-      -webkit-transform: translate(-50px, 0);
-      opacity: 0;
-      transition: all 200ms 320ms cubic-bezier(0.55, 0, 0.1, 1);
     }
 
     [size=xs] #package-title {
       margin-bottom: 0;
     }
 
-    [size=xs] #package-info hr,
-    [size=xs] #package-tagline h4,
-    [size=xs] #package-desc {
+    [size=xs] #package-tagline {
       display: none;
     }
 
@@ -186,20 +214,9 @@
       margin-top: 0;
     }
 
-    [size=xs] #package-version {
-      position: absolute;
-      top: 10px;
-      right: 16px;
-    }
-
-    [size=xs] #package-view-mode {
-      display: none;
-    }
-
     .active #package-symbol,
     .active #package-title,
-    .active #package-tagline h4,
-    .active #package-desc {
+    .active #package-tagline {
       -webkit-transform: translate(0, 0);
       opacity: 1;
     }
@@ -238,12 +255,20 @@
       text-align: center;
       margin-right: 15px;
       font-weight: 900;
-      border-radius: 50%;
+      border-radius: 2px;
     }
 
-    [size=xs] .elements,
-    [size=s] .elements,
-    [size=m] .elements {
+    [size=xs] .elements-title,
+    [size=s] .elements-title,
+    [size=m] .elements-title {
+      width: 100%;
+      margin: 0;
+      padding: 2px 16px;
+    }
+
+    [size=xs] #element-table,
+    [size=s] #element-table,
+    [size=m] #element-table {
       margin: 0;
       width: 100%;
       border-radius: 0;
@@ -261,6 +286,19 @@
     #current-tag span {
       text-transform: uppercase;
     }
+
+    [view=cards] #element-table {
+      display: none;
+    }
+    [view=table] #element-cards {
+      display: none;
+    }
+
+    element-card {
+      width: 160px;
+      margin: 10px;
+      background: white;
+    }
   </style>
   <template>
     <catalog-data elements="{{elements}}" packages="{{packages}}"></catalog-data>
@@ -268,22 +306,18 @@
 
     <responsive-element class="horizontal layout fit">
       <app-sidebar>
-        <core-toolbar class="horizontal layout center">
+        <paper-toolbar class="horizontal layout center">
           <app-logo class="flex"></app-logo>
           <app-bar class="horizontal layout center end-justified" query="{{q}}">
-            <div class="menu-icon" on-click="togglePackages" active$="[[!packageInfo]]">
-              <span class="menu-bar"></span>
-              <span class="menu-bar"></span>
-              <span class="menu-bar"></span>
-            </div>
+            <iron-icon icon="filter-list" on-click="togglePackages"></iron-icon>
           </app-bar>
-        </core-toolbar>
+        </paper-toolbar>
         <div class="content">
           <div id="package-tag" hidden$="[[!tag]]">
-            <span>[[tag]]</span> <core-icon icon="clear" on-click="clearTag"></core-icon>
+            <span>[[tag]]</span> <iron-icon icon="clear" on-click="clearTag"></iron-icon>
           </div>
           <div id="package-list" hidden$="[[packageInfo]]">
-            <h5>Packages</h5>
+            <h5>Products</h5>
             <template is="x-repeat" items="[[packages]]">
               <theme-color color="[[item.color]]" class="package" on-click="updatePackage" name="[[item.name]]">
                 <div class="layout horizontal center">
@@ -294,28 +328,42 @@
             </template>
           </div>
           <theme-color color="[[packageInfo.color]]" id="package-info" hidden$="[[!packageInfo.name]]">
-            <div id="package-header" themed>
-              <div class="layout horizontal center">
-                <h3 id="package-symbol" class="flex">[[packageInfo.symbol]]</h3>
-                <core-icon id="package-view-mode" icon="view-module"></core-icon>
-              </div>
+            <div id="package-header">
+              <h3 id="package-symbol" themed>[[packageInfo.symbol]]</h3>
               <h2 id="package-title">[[packageInfo.title]]</h2>
-              <hr themed-reverse>
-              <div id="package-tagline" class="horizontal layout">
-                <h4 class="flex">[[packageInfo.tagline]]</h4>
-                <span id="package-version">[[packageInfo.version]]</span>
+              <span id="package-version">[[packageInfo.version]]</span>
+              <h4 id="package-tagline">[[packageInfo.tagline]]</h4>
+            </div>
+            <div id="package-details">
+              <div class="section">
+                <h5>Product Description</h5>
+                <p id="package-desc">[[packageInfo.description]]</p>
+              </div>
+              <div class="section">
+                <h5>Tags</h5>
+
               </div>
             </div>
-            <p id="package-desc">[[packageInfo.description]]</p>
           </theme-color>
           <div hidden$="[[!tag]]" id="current-tag" class="horizontal layout center">
-            <b>Tag:</b> <span class="flex">[[tag]]</span> <core-icon icon="clear" on-click="clearTag"></core-icon>
+            <b>Tag:</b> <span class="flex">[[tag]]</span> <iron-icon icon="clear" on-click="clearTag"></iron-icon>
           </div>
         </div>
       </app-sidebar>
 
-      <div id="container" class="flex">
-        <table class="elements">
+      <div id="container" class="flex" view$="[[view]]">
+        <div class="elements-title horizontal layout center">
+          <h2 class="flex">[[pageTitle]]</h2>
+          <iron-icon id="package-view-mode" icon="[[viewIcon]]" on-click="toggleView"></iron-icon>
+        </div>
+
+        <div id="element-cards" class="horizontal layout wrap">
+          <template id="el-card-repeat" is="x-repeat" items="[[elements]]">
+            <element-card element="[[item.name]]"></element-card>
+          </template>
+        </div>
+
+        <table id="element-table">
           <thead>
             <tr>
               <th class="name">Name</th>
@@ -324,7 +372,7 @@
             </tr>
           </thead>
           <tbody>
-            <template id="el-repeat" is="x-repeat" items="{{elements}}" filter="filter" observe="tag package q">
+            <template id="el-repeat" is="x-repeat" items="[[elements]]" filter="filter">
               <tr on-click="nav" target$="[[item.name]]">
                 <td class="name" width="100">[[item.name]]</td>
                 <td class="description">[[item.description]]</td>
@@ -347,26 +395,31 @@
     var _lastNavigated = null;
     Polymer({
       is: 'page-browse',
+      enableCustomStyleProperties: true,
       properties: {
         router: Object,
+        pageTitle: {type: String},
 
         // Query Parameters
         q: {type: String, notify: true, value: ''},
         tag: {type: String, notify: true, value: ''},
         package: {type: String, notify: true, value: ''},
+        view: {type: String, notify: true, value: 'table'},
 
+        viewIcon: {type: String, computed: 'computeViewIcon(view)', value: 'view-module'},
         packages: Array,
-        packageInfo: Object,
+        packageInfo: {type: Object, value: {}},
         elements: Array
       },
       observers: {
-        'q package tag': 'updateURL',
+        'q package tag view': 'updateURL',
         packageInfo: 'updateMeta',
         package: 'showPackage'
       },
 
       attached: function() {
         this.updateMeta();
+        this.updateSearch();
       },
 
       filter: function(element) {
@@ -395,17 +448,35 @@
         var el = e.currentTarget.getAttribute('target');
         this.router.go("/elements/" + el + "/docs");
       },
+      _parseQueryString: function() {
+        var query = window.location.search.substring(1);
+        var params = query.split('&');
+        var results = [];
+        for (var i = 0; i < params.length; i++) {
+          var pair = params[i].split('=');
+          results[pair[0]] = pair[1];
+        }
+        return results;
+      },
       _buildQueryString: function() {
         var out = [];
         if (this.q && this.q.length) out.push("q=" + this.q);
         if (this.tag && this.tag.length) out.push("tag=" + this.tag);
         if (this.package && this.package.length) out.push("package=" + this.package);
+        if (this.view !== 'table') out.push("view=" + this.view);
 
         return out.join("&");
       },
       showPackage: function() {
         this.$['package-info'].classList.remove('active');
         setTimeout(function() { this.$['package-info'].classList.add('active'); }.bind(this), 25);
+      },
+      updateSearch: function() {
+        var params = this._parseQueryString();
+        if (params && params.q) {
+          this.querySelector('app-bar').showingSearch = true;
+          this.packageInfo = null;
+        }
       },
       updateURL: function() {
         var qs = this._buildQueryString();
@@ -420,18 +491,31 @@
         this.updateMeta();
       },
       updateMeta: function() {
-        var title;
         if (this.q && this.q.length) {
-          title = "'" + this.q + "' Elements";
+          this.pageTitle = "'" + this.q + "' Elements";
         } else if (this.packageInfo) {
-          title = this.packageInfo.title;
+          this.pageTitle = this.packageInfo.title;
         } else if (this.tag && this.tag.length) {
-          title = "Elements Tagged '" + this.tag + "'";
+          this.pageTitle = "Elements Tagged '" + this.tag + "'";
         } else {
-          title = "All Elements";
+          this.pageTitle = "All Elements";
         }
 
-        this.fire('page-meta', {title: title});
+        this.fire('page-meta', { title: this.pageTitle });
+      },
+      toggleView: function() {
+        if (this.view === 'table') {
+          this.view = 'cards';
+        } else {
+          this.view = 'table';
+        }
+      },
+      computeViewIcon: function(view) {
+        if (view === 'table') {
+          return 'view-module';
+        } else {
+          return 'view-list';
+        }
       }
     });
   })();

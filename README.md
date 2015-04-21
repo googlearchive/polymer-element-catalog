@@ -96,7 +96,7 @@ as the version declared in `bower.json` is used as display text in the catalog.
 ```js
 {
   // correct example
-  "core-elements":  "PolymerElements/core-elements#1.0.0"
+  "iron-elements":  "PolymerElements/iron-elements#1.0.0"
   // incorrect example
   "paper-elements": "PolymerElements/paper-elements#^1.0"
 }
@@ -115,7 +115,7 @@ such as Bower as a repository for metadata.
 The `bower.json` for a package should contain a `dependencies` entry for each of
 its child elements. A declared dependency will be considered a child element of
 the package if and only if its name is identical to the package name before the
-first dash. As an example, if the package is `core-elements`, `core-ajax` would
+first dash. As an example, if the package is `iron-elements`, `iron-ajax` would
 be considered a child but `polymer` would not.
 
 The element catalog uses the following information from `bower.json`:

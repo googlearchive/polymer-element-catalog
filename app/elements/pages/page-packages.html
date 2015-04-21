@@ -1,12 +1,12 @@
-<link rel="import" href="../../bower_components/core-icons/core-icons.html">
-<link rel="import" href="../../bower_components/core-icons/maps-icons.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-icons/maps-icons.html">
 
 <link rel="import" href="../catalog-data/catalog-data.html">
 <link rel="import" href="../package-tile/package-tile.html">
 
 <dom-module id="page-packages">
   <style>
-    core-header-panel::shadow #mainContainer {
+    paper-header-panel::shadow #mainContainer {
       background: #eee;
     }
 
@@ -19,16 +19,19 @@
       max-width: 1100px;
       margin: 0 auto;
     }
+
     @media (max-width: 1132px) {
       .packages {
-        max-width: 880px
+        max-width: 880px;
       }
     }
+
     @media (max-width: 912px) {
       .packages {
-        max-width: 660px
+        max-width: 660px;
       }
     }
+
     @media (max-width: 692px) {
       .packages {
         max-width: 440px;
@@ -38,6 +41,7 @@
     package-tile {
       width: 220px;
     }
+
     @media (max-width: 489px) {
       package-tile {
         width: 100%;
@@ -49,7 +53,7 @@
     }
 
     @media (max-width: 639px) {
-      core-toolbar /deep/ #topBar {
+      paper-toolbar /deep/ #topBar {
         margin-top: 4px;
         padding: 0 16px;
       }
@@ -57,15 +61,15 @@
   </style>
   <template>
     <catalog-data packages="{{packages}}"></catalog-data>
-    <core-header-panel class="fit">
-      <core-toolbar>
-        <app-logo></app-logo>
-        <nav class="flex">
+    <paper-header-panel class="fit">
+      <paper-toolbar class="paper-header medium-tall">
+        <app-logo full class="flex"></app-logo>
+        <nav class="flex bottom">
           <a class="active" href="/" is="pushstate-anchor">Elements</a>
           <a href="/guides" is="pushstate-anchor">Guides</a>
         </nav>
-        <app-bar class="horizontal layout center end-justified"></app-bar>
-      </core-toolbar>
+        <app-bar class="horizontal layout center end-justified" query="{{q}}"></app-bar>
+      </paper-toolbar>
 
       <div class="content fit">
         <div class="packages layout horizontal wrap">
@@ -74,16 +78,27 @@
           </template>
         </div>
       </div>
-    </core-header-panel>
+    </paper-header-panel>
   </template>
 </dom-module>
 
 <script>
   Polymer({
     is: 'page-packages',
+    properties: {
+      q: { type: String, notify: true }
+    },
     attached: function() {
       // reset page title since this is the default page
       this.fire('page-meta', {title: null});
+    },
+    observers: {
+      q: 'search'
+    },
+    search: function() {
+      if (this.q) {
+        this.router.go('/browse?q=' + this.q);
+      }
     },
     select: function(e) {
       this.router.go('/browse?package=' + e.currentTarget.getAttribute('name'));

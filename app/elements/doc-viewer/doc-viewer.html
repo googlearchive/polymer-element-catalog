@@ -1,26 +1,84 @@
 <link rel="import" href="../../bower_components/marked-element/marked-element.html">
 <link rel="import" href="../../bower_components/prism-highlighter/prism-highlighter.html">
 <link rel="import" href="../../bower_components/hydrolysis/hydrolysis-analyzer.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
+
+<link rel="import" href="doc-viewer-property.html">
 
 <dom-module id="doc-viewer">
   <style>
+    #desc {
+      padding: 24px;
+    }
+
     marked-element::shadow p {
       line-height: 20px;
     }
 
     marked-element::shadow p:first-child { margin-top: 0; }
     marked-element::shadow p:last-child { margin-bottom: 0; }
+
+    h3 {
+      padding: 16px 24px;
+      border-bottom: 1px solid #ddd;
+      margin: 0;
+    }
+
+    doc-viewer-property[private] {
+      display: none;
+    }
+    [show-private] doc-viewer-property[private] {
+      display: block;
+    }
+    doc-viewer-property {
+      border-bottom: 1px solid #ddd;
+    }
+    doc-viewer-property:last-child {
+      border-bottom: 0;
+    }
+
+    paper-card {
+      background: white;
+      margin-bottom: 24px;
+    }
+
+    .private-toggle {
+      float: right;
+      margin: 24px;
+    }
   </style>
   <template>
-    <hydrolysis-analyzer id="analyzer" analyzer="{{_analyzer}}" clean></hydrolysis-analyzer>
+    <hydrolysis-analyzer id="analyzer" analyzer="{{_analyzer}}"></hydrolysis-analyzer>
 
     <prism-highlighter></prism-highlighter>
-    <marked-element markdown="[[_element.desc]]"></marked-element>
 
-    <template is="x-repeat" items="[[_element.properties]]">
-      <h4 class="paper-font-title">[[item.name]]</h4>
-      <marked-element markdown="[[item.desc]]"></marked-element>
-    </template>
+    <paper-card>
+      <h3>Documentation</h3>
+      <div id="desc"><marked-element markdown="[[_element.desc]]"></marked-element></div>
+    </paper-card>
+
+    <paper-card show-private$="[[showPrivateProps]]">
+      <div class="private-toggle">
+        <paper-checkbox checked="{{showPrivateProps::iron-change}}"></paper-checkbox>
+        Show Private
+      </div>
+      <h3>Properties</h3>
+      <template is="x-repeat" items="[[elementProperties]]">
+        <doc-viewer-property prop="[[item]]"></doc-viewer-property>
+      </template>
+    </paper-card>
+
+    <paper-card show-private$="[[showPrivateMethods]]">
+      <div class="private-toggle">
+        <paper-checkbox checked="{{showPrivateMethods::iron-change}}"></paper-checkbox>
+        Show Private
+      </div>
+      <h3>Methods</h3>
+      <template is="x-repeat" items="[[elementMethods]]">
+        <doc-viewer-property prop="[[item]]"></doc-viewer-property>
+      </template>
+    </paper-card>
   </template>
 </dom-module>
 
@@ -29,10 +87,14 @@
   Polymer({
     is: 'doc-viewer',
     properties: {
+      showPrivateProps: {type: Boolean, notify: true, value: false},
+      showPrivateMethods: {type: Boolean, notify: true, value: false},
       _analyzer: Object,
       data: Object,
       element: String,
-      _element: {type: Object, notify: true}
+      _element: {type: Object, notify: true},
+      elementProperties: {type: Array},
+      elementMethods: {type: Array}
     },
     observers: {
       element: '_analyze',
@@ -41,6 +103,16 @@
     loadData: function() {
       if (this._analyzer) {
         this._element = this._analyzer.elementsByTagName[this.element];
+        this.elementProperties = [];
+        this.elementMethods = [];
+        for (var i = 0; i < this._element.properties.length; i++) {
+          var prop = this._element.properties[i];
+          if (prop.type === 'Function') {
+            this.elementMethods.push(prop);
+          } else {
+            this.elementProperties.push(prop);
+          }
+        }
       } else {
         this._element = null;
       }
