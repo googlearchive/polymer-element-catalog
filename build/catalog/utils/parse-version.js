@@ -1,7 +1,4 @@
-module.exports = function(v) {
-  if (v.indexOf('#') > 0) {
-    return v.split('#')[1];
-  } else {
-    return v;
-  }
+module.exports = function (version) {
+  
+  return (version.indexOf('#') > 0) ? version.split('#')[1] : version;
 }

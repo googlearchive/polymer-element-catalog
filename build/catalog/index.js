@@ -11,19 +11,22 @@ var tags = require('./tags');
 var guides = require('./guides');
 var objectFromStreams = require('./utils/object-from-streams');
 
-var exports = module.exports = function (srcFilepath) {
+module.exports = function (srcFilepath) {
   
+  var root = path.resolve(__dirname, '../../');
   var srcCatalog = fs.createReadStream(srcFilepath);
   var guideFilepaths = [
     path.resolve(process.cwd(), 'guides', '**.md'),
     path.resolve(process.cwd(), 'bower_components', '**', 'guides', '**.md')
   ];
   
+  var elementsStream = srcCatalog.pipe(elements({root: root}))
+  
   return objectFromStreams({
-    packages: srcCatalog.pipe(packages()),
-    elements: srcCatalog.pipe(elements()),
+    packages: srcCatalog.pipe(packages({root: root})),
+    elements: elementsStream,
     tags: {
-      data: srcCatalog.pipe(tags()),
+      data: elementsStream.pipe(tags()),
       onArray: _.first
     },
     guides: guides(guideFilepaths)
