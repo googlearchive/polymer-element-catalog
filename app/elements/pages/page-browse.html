@@ -411,11 +411,11 @@
         packageInfo: {type: Object, value: {}},
         elements: Array
       },
-      observers: {
-        'q package tag view': 'updateURL',
-        packageInfo: 'updateMeta',
-        package: 'showPackage'
-      },
+      observers: [
+        'updateURL(q,package,tag,view)',
+        'updateMeta(packageInfo)',
+        'showPackage(package)'
+      ],
 
       attached: function() {
         this.updateMeta();
@@ -478,7 +478,7 @@
           this.packageInfo = null;
         }
       },
-      updateURL: function() {
+      updateURL: function(q,package,tag,view) {
         var qs = this._buildQueryString();
         if (qs !== _lastNavigated && this.router) {
           _lastNavigated = qs;
@@ -490,10 +490,10 @@
         });
         this.updateMeta();
       },
-      updateMeta: function() {
+      updateMeta: function(packageInfo) {
         if (this.q && this.q.length) {
           this.pageTitle = "'" + this.q + "' Elements";
-        } else if (this.packageInfo) {
+        } else if (packageInfo) {
           this.pageTitle = this.packageInfo.title;
         } else if (this.tag && this.tag.length) {
           this.pageTitle = "Elements Tagged '" + this.tag + "'";

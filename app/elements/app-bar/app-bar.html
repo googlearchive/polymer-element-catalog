@@ -79,9 +79,9 @@
         value: false
       }
     },
-    observers: {
-      showingSearch: 'updateSearchDisplay'
-    },
+    observers: [
+      'updateSearchDisplay(showingSearch)'
+    ],
     listeners: {
       keyup: 'hotkeys'
     },
@@ -98,8 +98,8 @@
     clearSearch: function() {
       this.showingSearch = false;
     },
-    updateSearchDisplay: function() {
-      if (this.showingSearch) {
+    updateSearchDisplay: function(showingSearch) {
+      if (showingSearch) {
         this.classList.add('search-on');
         this.async(function() {
           this.$.query.focus();

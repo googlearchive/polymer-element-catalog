@@ -41,10 +41,10 @@
       },
       content: String
     },
-    observers: {
-      content: 'contentChanged',
-      guide: 'updateMeta'
-    },
+    observers: [
+      'contentChanged(content)',
+      'updateMeta(guide)'
+    ],
     attached: function() {
       // TODO: Change this when we switch to pushState URLs
       this.name = window.location.pathname.substring(8);

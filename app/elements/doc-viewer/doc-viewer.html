@@ -96,13 +96,13 @@
       elementProperties: {type: Array},
       elementMethods: {type: Array}
     },
-    observers: {
-      element: '_analyze',
-      _analyzer: 'loadData'
-    },
-    loadData: function() {
-      if (this._analyzer) {
-        this._element = this._analyzer.elementsByTagName[this.element];
+    observers: [
+      '_analyze(element)',
+      'loadData(_analyzer)'
+    ],
+    loadData: function(analyzer) {
+      if (analyzer) {
+        this._element = analyzer.elementsByTagName[this.element];
         this.elementProperties = [];
         this.elementMethods = [];
         for (var i = 0; i < this._element.properties.length; i++) {
@@ -117,8 +117,8 @@
         this._element = null;
       }
     },
-    _analyze: function() {
-      this.$.analyzer.src = ["/bower_components", this.element, this.element + ".html"].join("/");
+    _analyze: function(element) {
+      this.$.analyzer.src = ["/bower_components", element, element + ".html"].join("/");
       this.$.analyzer.analyze();
     }
   });

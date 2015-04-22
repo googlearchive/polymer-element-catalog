@@ -92,12 +92,12 @@
       // reset page title since this is the default page
       this.fire('page-meta', {title: null});
     },
-    observers: {
-      q: 'search'
-    },
-    search: function() {
-      if (this.q) {
-        this.router.go('/browse?q=' + this.q);
+    observers: [
+      'search(q)'
+    ],
+    search: function(q) {
+      if (q || this.q) {
+        this.router.go('/browse?q=' + (q || this.q));
       }
     },
     select: function(e) {

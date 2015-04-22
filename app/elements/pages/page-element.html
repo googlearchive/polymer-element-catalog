@@ -170,11 +170,11 @@
       package: Object,
       router: Object
     },
-    observers: {
-      view: 'updateURL',
-      element: 'updateMeta',
-      importPath: 'analyze'
-    },
+    observers: [
+      'updateURL(view)',
+      'updateMeta(element)',
+      'analyze(importPath)'
+    ],
     attached: function() {
       var links = this.$.links;
       var tabs = links.querySelectorAll('paper-item');

@@ -7,9 +7,9 @@
       color: {type: String, notify: true},
       textColor: {type: String, notify: true, computed: 'computeTextColor(color)'}
     },
-    observers: {
-      color: 'colorContent'
-    },
+    observers: [
+      'colorContent(color)'
+    ],
     computeTextColor: function(color) {
       if (this.color) {
         var lightness = one.color(this.color).lightness();

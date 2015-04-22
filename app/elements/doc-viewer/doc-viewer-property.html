@@ -46,9 +46,6 @@
       _name: {type: String, computed: 'computeName(prop, dashed)'},
       _type: {type: String, computed: 'computeType(prop)' }
     },
-    observers: {
-      'showPrivate prop': 'showPrivateChanged'
-    },
     computeName: function(prop, dashed) {
       var out;
       if (dashed) {
