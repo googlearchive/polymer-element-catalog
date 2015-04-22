@@ -11,7 +11,8 @@
       "name":"paper-elements",
       "title":"Paper Elements",
       "color":"#ffffff",
-      "symbol": "Md"
+      "symbol": "Md",
+      "tagline":"Material design elements"
     },
     {
       "name":"gold-elements",
