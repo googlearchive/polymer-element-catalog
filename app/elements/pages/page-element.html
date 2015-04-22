@@ -98,6 +98,16 @@
       display: block;
     }
 
+    #demo {
+      overflow: hidden;
+    }
+    #demo-frame {
+      border: 0;
+      background: transparent;
+      width: 100%;
+      height: 100%;
+    }
+
     [size=xs] #content, [size=s] #content {
       padding: 0;
     }
@@ -148,7 +158,9 @@
             <iron-icon icon="fullscreen"></iron-icon>
           </paper-toolbar>
           <iron-selector id="content" attr-for-selected="id" selected="{{view}}" class="content fit">
-            <div id="demo"><h1>Demo Content</h1></div>
+            <div id="demo" class="fit">
+              <iframe src="[[demoSrc(element)]]" id="demo-frame"></iframe>
+            </div>
             <div id="docs" class="vertical layout">
               <doc-viewer element="[[element]]"></doc-viewer>
             </div>
@@ -198,6 +210,9 @@
     },
     navToPackage: function() {
       this.router.go("/browse?package=" + this.package.name);
+    },
+    demoSrc: function(element) {
+      return "/bower_components/" + element + "/demo/index.html";
     }
   });
 </script>
