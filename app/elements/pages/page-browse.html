@@ -406,8 +406,8 @@
         package: {type: String, notify: true, value: ''},
         view: {type: String, notify: true, value: 'table'},
 
-        tagList: {type: Array, computed: 'arrayParam(tag)', value: function() { return [] }},
-        packageList: {type: Array, computed: 'arrayParam(package)', value: function() { return [] }},
+        tagList: {type: Array, computed: 'arrayParam(tag)', value: function() { return []; }},
+        packageList: {type: Array, computed: 'arrayParam(package)', value: function() { return []; }},
 
         viewIcon: {type: String, computed: 'computeViewIcon(view)', value: 'view-module'},
         packages: Array,
