@@ -24,7 +24,7 @@
     "color": "~2.5.0",
     "layout": "Polymer/layout",
     "hydrolysis": "PolymerLabs/hydrolysis#^1.1.2",
-    "iron-ajax": "PolymerElements/iron-ajax#^0.8.0",
+    "iron-ajax": "PolymerElements/iron-ajax#^0.8.1",
     "iron-icons": "PolymerElements/iron-icons#^0.8.0",
     "iron-selector": "PolymerElements/iron-selector#^0.8.0",
     "paper-item": "PolymerElements/paper-item#^0.8.0",
