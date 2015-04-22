@@ -38,7 +38,7 @@
     "prism-highlighter": "PolymerElements/prism-highlighter"
   },
   "resolutions": {
-    "polymer": "v0.8.0-rc.4",
+    "polymer": "0.8.0-rc.6",
     "layout": "master",
     "prism-highlighter": "master",
     "paper-styles": "master",
