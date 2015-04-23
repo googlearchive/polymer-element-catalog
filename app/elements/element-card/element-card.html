@@ -29,15 +29,12 @@
       margin: 0;
     }
 
-    h3 + p {
-      mixin(--paper-font-body1);
-      color: #666;
-      margin: 0;
-      padding: 10px 16px;
-      height: 75px;
+    #el {
+      cursor: pointer;
     }
 
     #el-graphic {
+      position: relative;
       width: 100%;
       height: 120px;
       background: #ccc;
@@ -62,6 +59,41 @@
       border-bottom: 0;
     }
 
+    #el-menu {
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+      padding: 10px 16px;
+      background: rgba(0,0,0,.1);
+      box-sizing: border-box;
+      visibility: hidden;
+    }
+
+    #el-menu a {
+      display: block;
+      text-align: center;
+    }
+
+    #el-menu iron-icon {
+      margin: -2px 8px 0 0;
+    }
+
+    #el-graphic:hover #el-menu {
+      visibility: visible;
+    }
+
+    #el-desc {
+      mixin(--paper-font-body1);
+      color: #666;
+      margin: 0;
+      padding: 10px 16px;
+      height: 75px;
+    }
+
+    #el-package {
+      font-weight: 500;
+    }
+
     #el-tags iron-icon {
       margin: 0 15px 0 0;
       padding: 5px;
@@ -78,9 +110,16 @@
 
     <paper-card class="vertical layout">
       <theme-color color="[[package.color]]">
-        <div id="el-graphic" themed></div>
-        <h3>[[_element.name]]</h3>
-        <p>[[_element.description]]</p>
+        <div id="el" on-click="nav" target$="[[_element.name]]" view="docs">
+          <div id="el-graphic" themed>
+            <div id="el-menu" class="horizontal layout center">
+              <a on-click="nav" target$="[[_element.name]]" view="docs" class="horizontal layout center flex"><iron-icon icon="description"></iron-icon><span>Docs</span></a>
+              <a on-click="nav" target$="[[_element.name]]" view="demo" class="horizontal layout center flex"><iron-icon icon="visibility"></iron-icon><span>Demo</span></a>
+            </div>
+          </div>
+          <h3>[[_element.name]]</h3>
+        </div>
+        <p id="el-desc">[[_element.description]]</p>
         <div id="el-package" class="horizontal layout center meta">
           <package-symbol package="[[package]]"></package-symbol>
           <span>[[package.title]]</span>
@@ -112,6 +151,13 @@ Polymer({
   ],
   _updatePackage: function() {
     this.package = this.querySelector('catalog-package').data;
+  },
+  nav: function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    var el = e.currentTarget.getAttribute('target');
+    var view = e.currentTarget.getAttribute('view') || 'docs';
+    this.fire('nav', { url: '/elements/' + el + '/' + view });
   }
 });
 </script>
