@@ -280,24 +280,25 @@
       padding: 12px;
       font-size: 16px;
     }
+
     #current-tag b {
       margin-right: 6px;
     }
+    
     #current-tag span {
       text-transform: uppercase;
+    }
+
+    .tags tag-link:last-of-type + span {
+      display: none;
     }
 
     [view=cards] #element-table {
       display: none;
     }
+
     [view=table] #element-cards {
       display: none;
-    }
-
-    element-card {
-      width: 160px;
-      margin: 10px;
-      background: white;
     }
   </style>
   <template>
@@ -378,7 +379,7 @@
                 <td class="description">[[item.description]]</td>
                 <td class="tags">
                   <template is="x-repeat" items="[[item.tags]]">
-                    <tag-link name="[[item]]" on-click="updateTag"></tag-link>
+                    <tag-link name="[[item]]" on-click="updateTag"></tag-link><span>,</span>
                   </template>
                 </td>
               </tr>
