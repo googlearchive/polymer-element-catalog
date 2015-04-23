@@ -2,35 +2,60 @@
 
 <link rel="import" href="../catalog-element/catalog-element.html">
 <link rel="import" href="../catalog-package/catalog-package.html">
+<link rel="import" href="../package-symbol/package-symbol.html">
 
 <dom-module id="element-card">
   <style>
     :host {
       display: block;
+      width: 220px;
+      margin: 0 20px 20px 0;
     }
 
     paper-card {
       background: white;
+      box-shadow: none !important;
     }
 
     h3 {
-      font-size: 18px;
-      font-weight: bold;
-      padding: 12px;
+      font-size: 16px;
+      font-weight: 500;
       margin: 0;
+      padding: 10px 16px 0;
     }
 
     p {
-      font-size: 16px;
-      line-height: 24px;
-      padding: 12px;
+      mixin(--paper-font-body1);
+      color: #666;
       margin: 0;
+      padding: 10px 16px;
+      height: 75px;
     }
 
-    #el-package {
-      border: 1px solid #eee;
-      padding: 12px;
-      border-width: 1px 0;
+    .section {
+      border-top: 1px solid #e5e5e5;
+      border-bottom: 1px solid #e5e5e5;
+      padding: 10px 16px;
+    }
+
+    .section + .section {
+      border-top: 0;
+    }
+
+    .section:last-child {
+      border-bottom: 0;
+    }
+
+    #el-graphic {
+      width: 100%;
+      height: 120px;
+      background: #ccc;
+    }
+
+    #el-package-symbol {
+      width: 34px;
+      height: 34px;
+      background: #ccc;
     }
   </style>
   <template>
@@ -38,16 +63,18 @@
     <catalog-package name="[[_element.package]]" data="{{package}}"></catalog-package>
 
     <paper-card class="vertical layout">
-      <img src="http://placehold.it/160x90"/>
-      <h3>[[_element.name]]</h3>
-      <p>[[_element.description]]</p>
-      <div id="el-package" class="horizontal layout">
-        <img src="http://placehold.it/32x32"/>
-        <span>[[package.title]]</span>
-      </div>
-      <div id="el-tags">
-        (put tags here)
-      </div>
+      <theme-color color="[[package.color]]">
+        <div id="el-graphic" themed></div>
+        <h3>[[_element.name]]</h3>
+        <p>[[_element.description]]</p>
+        <div id="el-package" class="horizontal layout section">
+          <package-symbol package="[[package]]"></package-symbol>
+          <span>[[package.title]]</span>
+        </div>
+        <div id="el-tags" class="section">
+          <iron-icon icon="tag"></iron-icon>
+        </div>
+      </theme-color>
     </paper-card>
   </template>
 </dom-module>
@@ -55,6 +82,7 @@
 <script>
 Polymer({
   is: 'element-card',
+  enableCustomStyleProperties: true,
   properties: {
     element: {type: String, notify: true},
     _element: Object

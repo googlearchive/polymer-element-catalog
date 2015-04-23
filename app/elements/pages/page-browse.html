@@ -37,13 +37,23 @@
 
     .elements-title h2 {
       mixin(--paper-font-title);
+      color: #333;
     }
 
-    #element-table{
+    .elements-title iron-icon {
+      cursor: pointer;
+      color: #333;
+    }
+
+    #element-cards, #element-table {
       width: 80%;
       max-width: 920px;
-      border-collapse: collapse;
       margin: 20px auto;
+      box-sizing: border-box;
+    }
+
+    #element-table {
+      border-collapse: collapse;
       background: white;
       border-radius: 3px;
       /*box-shadow: 3px 3px 10px rgba(0,0,0,0.2);*/
