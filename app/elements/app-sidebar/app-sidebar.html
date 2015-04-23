@@ -3,7 +3,7 @@
     :host {
       width: 272px;
       height: 100%;
-      background: #F9F9F9;
+      background: #fff;
       box-shadow: 0 0 8px rgba(0,0,0,0.4);
       box-sizing: border-box;
       z-index: 2;
@@ -15,12 +15,13 @@
 
     :host ::content paper-toolbar /deep/ #topBar {
       width: 100%;
+      background: #fafafa;
+      border-bottom: 1px solid #e5e5e5;
       box-sizing: border-box;
     }
 
     :host ::content .content {
       height: calc(100% - 64px);
-      box-shadow: inset 0px 5px 6px -3px rgba(0,0,0,0.4);
     }
   </style>
   <template>
