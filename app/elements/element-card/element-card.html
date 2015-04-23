@@ -8,7 +8,8 @@
   <style>
     :host {
       display: block;
-      width: 220px;
+      width: calc(33% - 20px);
+      min-width: 220px;
       margin: 0 20px 20px 0;
     }
 
@@ -25,25 +26,15 @@
     }
 
     p {
+      margin: 0;
+    }
+
+    h3 + p {
       mixin(--paper-font-body1);
       color: #666;
       margin: 0;
       padding: 10px 16px;
       height: 75px;
-    }
-
-    .section {
-      border-top: 1px solid #e5e5e5;
-      border-bottom: 1px solid #e5e5e5;
-      padding: 10px 16px;
-    }
-
-    .section + .section {
-      border-top: 0;
-    }
-
-    .section:last-child {
-      border-bottom: 0;
     }
 
     #el-graphic {
@@ -52,10 +43,33 @@
       background: #ccc;
     }
 
-    #el-package-symbol {
-      width: 34px;
-      height: 34px;
-      background: #ccc;
+    #el-package package-symbol {
+      margin: 0 15px 0 0;
+    }
+
+    .meta {
+      mixin(--paper-font-caption);
+      border-top: 1px solid #e5e5e5;
+      border-bottom: 1px solid #e5e5e5;
+      padding: 10px 16px;
+    }
+
+    .meta + .meta {
+      border-top: 0;
+    }
+
+    .meta:last-child {
+      border-bottom: 0;
+    }
+
+    #el-tags iron-icon {
+      margin: 0 15px 0 0;
+      padding: 5px;
+      color: #666;
+    }
+
+    #el-tags tag-link:last-of-type + span {
+      display: none;
     }
   </style>
   <template>
@@ -67,12 +81,17 @@
         <div id="el-graphic" themed></div>
         <h3>[[_element.name]]</h3>
         <p>[[_element.description]]</p>
-        <div id="el-package" class="horizontal layout section">
+        <div id="el-package" class="horizontal layout center meta">
           <package-symbol package="[[package]]"></package-symbol>
           <span>[[package.title]]</span>
         </div>
-        <div id="el-tags" class="section">
-          <iron-icon icon="tag"></iron-icon>
+        <div id="el-tags" class="horizontal layout center meta">
+          <iron-icon icon="loyalty"></iron-icon>
+          <span>
+            <template is="x-repeat" items="[[_element.tags]]">
+              <tag-link name="[[item]]" on-click="updateTag"></tag-link><span>,</span>
+            </template>
+          </span>
         </div>
       </theme-color>
     </paper-card>
