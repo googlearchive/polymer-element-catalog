@@ -4,6 +4,7 @@
 <link rel="import" href="../catalog-data/catalog-data.html">
 <link rel="import" href="../catalog-package/catalog-package.html">
 <link rel="import" href="../element-card/element-card.html">
+<link rel="import" href="../package-symbol/package-symbol.html">
 <link rel="import" href="../tag-link/tag-link.html">
 <link rel="import" href="../theme-color/theme-color.html">
 
@@ -155,16 +156,9 @@
       cursor: pointer;
     }
 
-    #package-symbol {
+    #package-header package-symbol {
       display: inline-block;
-      font-size: 2.6em;
-      font-weight: 900;
       margin: 0 0 20px;
-      width: 72px;
-      height: 72px;
-      line-height: 72px;
-      text-align: center;
-      border-radius: 2px;
       -webkit-transform: translate(-50px, 0);
       opacity: 0;
       transition: all 320ms cubic-bezier(0.55, 0, 0.1, 1);
@@ -214,7 +208,7 @@
       margin-top: 0;
     }
 
-    .active #package-symbol,
+    .active #package-header package-symbol,
     .active #package-title,
     .active #package-tagline {
       -webkit-transform: translate(0, 0);
@@ -246,16 +240,8 @@
       cursor: pointer;
     }
 
-    #package-list .package .symbol {
-      display: block;
-      font-size: 14px;
-      line-height: 34px;
-      width: 34px;
-      height: 34px;
-      text-align: center;
+    #package-list .package package-symbol {
       margin-right: 15px;
-      font-weight: 900;
-      border-radius: 2px;
     }
 
     [size=xs] .elements-title,
@@ -320,17 +306,17 @@
           <div id="package-list" hidden$="[[packageInfo]]">
             <h5>Products</h5>
             <template is="x-repeat" items="[[packages]]">
-              <theme-color color="[[item.color]]" class="package" on-click="updatePackage" name="[[item.name]]">
+              <div class="package" on-click="updatePackage" name="[[item.name]]">
                 <div class="layout horizontal center">
-                  <span class="symbol" themed>[[item.symbol]]</span>
+                  <package-symbol package="[[item]]"></package-symbol>
                   <span class="title flex">[[item.title]]</span>
                 </div>
-              </theme-color>
+              </div>
             </template>
           </div>
-          <theme-color color="[[packageInfo.color]]" id="package-info" hidden$="[[!packageInfo.name]]">
+          <div id="package-info" hidden$="[[!packageInfo.name]]">
             <div id="package-header">
-              <h3 id="package-symbol" themed>[[packageInfo.symbol]]</h3>
+              <package-symbol package="[[packageInfo]]" class="large"></package-symbol>
               <h2 id="package-title">[[packageInfo.title]]</h2>
               <span id="package-version">[[packageInfo.version]]</span>
               <h4 id="package-tagline">[[packageInfo.tagline]]</h4>
@@ -345,7 +331,7 @@
 
               </div>
             </div>
-          </theme-color>
+          </div>
           <div hidden$="[[!tag]]" id="current-tag" class="horizontal layout center">
             <b>Tag:</b> <span class="flex">[[tag]]</span> <iron-icon icon="clear" on-click="clearTag"></iron-icon>
           </div>

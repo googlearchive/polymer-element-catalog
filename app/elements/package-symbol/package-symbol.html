@@ -1,0 +1,38 @@
+<dom-module id="package-symbol">
+  <style>
+    :host {
+      display: block;
+      font-size: 14px;
+      font-weight: 900;
+      line-height: 34px;
+      width: 34px;
+      height: 34px;
+      background: #ccc;
+      text-align: center;
+      border-radius: 2px;
+    }
+
+    :host(.large) {
+      font-size: 36px;
+      line-height: 72px;
+      width: 72px;
+      height: 72px;
+    }
+  </style>
+  <template>
+    <theme-color color="[[package.color]]">
+      <div themed>
+        <span>[[package.symbol]]</span>
+      </div>
+    </theme-color>
+  </template>
+</dom-module>
+
+<script>
+  Polymer({ 
+    is: 'package-symbol',
+    properties: {
+      package: Object
+    }
+  });
+</script>
