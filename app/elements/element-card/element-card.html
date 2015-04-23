@@ -104,7 +104,14 @@ Polymer({
   enableCustomStyleProperties: true,
   properties: {
     element: {type: String, notify: true},
-    _element: Object
+    _element: Object,
+    package: Object
+  },
+  observers: [
+    '_updatePackage(_element)'
+  ],
+  _updatePackage: function() {
+    this.package = this.querySelector('catalog-package').data;
   }
 });
 </script>
