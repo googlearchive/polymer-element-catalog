@@ -1,0 +1,97 @@
+:host {
+  display: block;
+  width: calc(33% - 20px);
+  min-width: 220px;
+  margin: 0 20px 20px 0;
+}
+
+paper-card {
+  background: white;
+  box-shadow: none !important;
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+  padding: 10px 16px 0;
+}
+
+p {
+  margin: 0;
+}
+
+#el {
+  cursor: pointer;
+}
+
+#el-graphic {
+  position: relative;
+  width: 100%;
+  height: 120px;
+  background: #ccc;
+}
+
+#el-package package-symbol {
+  margin: 0 15px 0 0;
+}
+
+.meta {
+  mixin(--paper-font-caption);
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 10px 16px;
+}
+
+.meta + .meta {
+  border-top: 0;
+}
+
+.meta:last-child {
+  border-bottom: 0;
+}
+
+#el-menu {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  padding: 10px 16px;
+  background: rgba(0,0,0,.1);
+  box-sizing: border-box;
+  visibility: hidden;
+}
+
+#el-menu a {
+  display: block;
+  text-align: center;
+}
+
+#el-menu iron-icon {
+  margin: -2px 8px 0 0;
+}
+
+#el-graphic:hover #el-menu {
+  visibility: visible;
+}
+
+#el-desc {
+  mixin(--paper-font-body1);
+  color: #666;
+  margin: 0;
+  padding: 10px 16px;
+  height: 75px;
+}
+
+#el-package {
+  font-weight: 500;
+}
+
+#el-tags iron-icon {
+  margin: 0 15px 0 0;
+  padding: 5px;
+  color: #666;
+}
+
+#el-tags tag-link:last-of-type + span {
+  display: none;
+}

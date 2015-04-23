@@ -5,60 +5,7 @@
 <link rel="import" href="../package-tile/package-tile.html">
 
 <dom-module id="page-packages">
-  <style>
-    paper-header-panel::shadow #mainContainer {
-      background: #eee;
-    }
-
-    .content {
-      display: block;
-      padding: 16px;
-    }
-
-    .packages {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    @media (max-width: 1132px) {
-      .packages {
-        max-width: 880px;
-      }
-    }
-
-    @media (max-width: 912px) {
-      .packages {
-        max-width: 660px;
-      }
-    }
-
-    @media (max-width: 692px) {
-      .packages {
-        max-width: 440px;
-      }
-    }
-
-    package-tile {
-      width: 220px;
-    }
-
-    @media (max-width: 489px) {
-      package-tile {
-        width: 100%;
-      }
-    }
-
-    .search.active {
-      left: 15px;
-    }
-
-    @media (max-width: 639px) {
-      paper-toolbar /deep/ #topBar {
-        margin-top: 4px;
-        padding: 0 16px;
-      }
-    }
-  </style>
+  <link rel="import" type="css" href="page-packages.css">
   <template>
     <catalog-data packages="{{packages}}"></catalog-data>
     <paper-header-panel class="fit">
