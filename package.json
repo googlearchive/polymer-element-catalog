@@ -58,6 +58,7 @@
     "is-stream": "^1.0.1",
     "jshint-stylish": "^0.4.0",
     "lodash": "^3.6.0",
+    "marked": "^0.3.3",
     "merge-stream": "^0.1.6",
     "opn": "^1.0.0",
     "psi": "^1.0.4",
