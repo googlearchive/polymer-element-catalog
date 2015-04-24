@@ -68,7 +68,7 @@
         </div>
 
         <div id="element-cards" class="horizontal layout wrap">
-          <template id="el-card-repeat" is="x-repeat" items="[[elements]]">
+          <template id="el-card-repeat" is="x-repeat" items="[[elements]]" filter="filter">
             <element-card element="[[item.name]]"></element-card>
           </template>
         </div>
