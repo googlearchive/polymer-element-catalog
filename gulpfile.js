@@ -11,6 +11,7 @@ var pagespeed = require('psi');
 var reload = browserSync.reload;
 var merge = require('merge-stream');
 var superstatic = require('superstatic');
+var plumber = require('gulp-plumber');
 
 var stream = require('./build/catalog/utils/stream').obj;
 var catalogBuilder = require('./build/catalog');
@@ -122,8 +123,9 @@ gulp.task('elements', function () {
   return gulp.src([
     'app/elements/**/*.css'
     ])
+    .pipe(plumber())
     .pipe($.changed('styles', {extension: '.css'}))
-    //.pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
+    .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
     .pipe(gulp.dest('.tmp/elements'))
     // Concatenate And Minify Styles
     .pipe($.if('*.css', $.cssmin()))
