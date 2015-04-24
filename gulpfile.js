@@ -1,5 +1,7 @@
 'use strict';
 
+var path = require('path');
+
 // Include Gulp & Tools We'll Use
 var gulp = require('gulp');
 var gutil = require('gulp-util');
@@ -241,21 +243,32 @@ gulp.task('pagespeed', function (cb) {
 gulp.task('catalog:dist', function () {
   if (process.env.FIXTURES) return;
 
-  var distFilePath = './dist/catalog.json';
-
-  return catalogBuilder(CATALOG_FILEPATH)
-    .pipe(stream.stringify())
-    .pipe(stream.writeFile(distFilePath));
+  return execCatalogTask({
+     destDir: 'dist'
+   });
 });
 
 gulp.task('catalog:dev', function () {
 
-  var distFilePath = './.tmp/catalog.json';
-
-  return catalogBuilder(CATALOG_FILEPATH)
-    .pipe(stream.stringify({space: 2}))
-    .pipe(stream.writeFile(distFilePath));
+  return execCatalogTask({
+    destDir: '.tmp',
+    space: 2
+  });
 });
+
+function execCatalogTask (options) {
+  
+  var destDir = options.destDir;
+  var space = options.space;
+  var destFilepath = path.join('.', destDir, 'catalog.json');
+
+  return catalogBuilder({
+      src: CATALOG_FILEPATH,
+      destDir: destDir
+    })
+    .pipe(stream.stringify({space: space}))
+    .pipe(stream.writeFile(destFilepath));
+}
 
 
 // Load tasks for web-component-tester

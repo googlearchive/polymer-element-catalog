@@ -9,14 +9,16 @@ var mkdirp = require('mkdirp');
 
 var stream = require('./utils/stream').obj;
 
-module.exports = function (guideFilePaths) {
+module.exports = function (options) {
   
+  var guideFilePaths = options.src;
+  var destDir = options.destDir;
   var output = stream.create();
   
   gs.create(guideFilePaths)
     .pipe(stream.get('path'))
     .pipe(getFileContents())
-    .pipe(constructGuide())
+    .pipe(constructGuide(destDir))
     .pipe(output);
   
   return output;
@@ -36,7 +38,7 @@ function getFileContents () {
   });
 }
 
-function constructGuide () {
+function constructGuide (destDir) {
   
   return stream.concurrent(function (file, enc, done) {
         
@@ -51,24 +53,33 @@ function constructGuide () {
       .value();
     
     // Convert markdown guides to HTML
-    var guideDestPath = formatParsedGuideFilepath(file.path);
-    var dir = path.dirname(guideDestPath);
-    
-    mkdirp(dir, function (err) {
+    writeGuidesFile({
+      src: file.path,
+      dest: destDir,
+      body: rawGuide.body
+    }, function (err) {
       
-      if (err) {
-        return done(err);
-      }
-      
-      fs.writeFile(guideDestPath, marked(rawGuide.body), function (err) {
-        
-        if (err) {
-          return done(err);
-        }
-        
-        done(null, guide);
-      });
+      done(err, guide)
     });
+  });
+}
+
+function writeGuidesFile (options, done) {
+  
+  var src = options.src;
+  var body = options.body;
+  var destDir = options.dest;
+  
+  var guideDestPath = formatParsedGuideFilepath(src, destDir);
+  var dir = path.dirname(guideDestPath);
+  
+  mkdirp(dir, function (err) {
+    
+    if (err) {
+      return done(err);
+    }
+    
+    fs.writeFile(guideDestPath, marked(body), done);
   });
 }
 
@@ -84,7 +95,7 @@ function getGuideName (filepath) {
   return _.last(segments).split('.')[0];
 }
 
-function formatParsedGuideFilepath (srcPath, options) {
+function formatParsedGuideFilepath (srcPath, destDir) {
   
   var relativeSrcPath = srcPath
     .replace(process.cwd() + path.sep, '')
@@ -107,7 +118,7 @@ function formatParsedGuideFilepath (srcPath, options) {
   
   return path.join(
     process.cwd(),
-    'dist',
+    destDir,
     'data',
     relativeSrcPath,
     filename
