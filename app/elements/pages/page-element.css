@@ -51,8 +51,12 @@ paper-item {
 }
 
 #links a {
-  margin: 0 8px;
+  margin: 0 10px;
   cursor: pointer;
+}
+
+#links a:last-child {
+  margin-right: 0;
 }
 
 #links a, #links iron-icon {
@@ -60,9 +64,31 @@ paper-item {
   color: #777;
 }
 
+#links iron-icon {
+  margin: -2px 5px 0 0;
+}
+
 #links .iron-selected {
   color: #333;
 }
+
+iron-icon[icon="fullscreen"] {
+  position: absolute;
+  top: 20px;
+  right: 16px;
+  cursor: pointer;
+}
+
+paper-header-panel paper-toolbar {
+  background: #fafafa !important;
+}
+
+paper-header-panel paper-toolbar /deep/ #topBar {
+  position: static;
+  max-width: 920px;
+  margin: 0 auto;
+  border-bottom: 0;
+} 
 
 #content {
   background: #eee;
@@ -83,7 +109,7 @@ paper-item {
 }
 
 #docs {
-  max-width: 52em;
+  max-width: 920px;
   margin: 0 auto;
 }
 
