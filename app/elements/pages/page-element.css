@@ -13,15 +13,9 @@ responsive-element[size=xs].layout {
   padding: 0 16px;
 }
 
-#docs {
-  max-width: 52em;
-  margin: 0 auto;
-}
-
 #element-header {
-  padding: 20px 16px;
-  background: #ccc;
-  box-shadow: inset 0px 5px 6px -3px rgba(0,0,0,0.4);
+  position: relative;
+  padding: 20px 16px 0;
   overflow: hidden;
 }
 
@@ -29,38 +23,38 @@ responsive-element[size=xs].layout {
   cursor: pointer;
 }
 
-.section {
-  padding: 0 16px;
+package-symbol {
+  display: inline-block;
+  margin: 0 0 20px;
+  cursor: pointer;
+}
+
+#element-title {
+  mixin(--paper-font-title);
+  margin: 0 0 20px;
+}
+
+#element-desc p {
+  margin-bottom: 0;
+}
+
+#element-tags tag-link:last-of-type + span {
+  display: none;
 }
 
 [size=xs] .section {
   display: none;
 }
 
-#package {
-  font-size: 1.1em;
-  margin: 8px;
-  margin: 12px 0;
-}
-
-#package-symbol {
-  display: inline-block;
-  padding: 6px;
-  margin-right: 10px;
-  font-size: 22px;
-  font-weight: 900;
-  line-height: 18px;
-}
-
-#package-title {
-  font-weight: 600;
-}
-
 paper-item {
   cursor: pointer;
 }
 
-#links a { margin: 0 8px; cursor: pointer; }
+#links a {
+  margin: 0 8px;
+  cursor: pointer;
+}
+
 #links a, #links iron-icon {
   font-weight: normal;
   color: #777;
@@ -84,16 +78,22 @@ paper-item {
   display: block;
 }
 
+[size=xs] #content, [size=s] #content {
+  padding: 0;
+}
+
+#docs {
+  max-width: 52em;
+  margin: 0 auto;
+}
+
 #demo {
   overflow: hidden;
 }
+
 #demo-frame {
   border: 0;
   background: transparent;
   width: 100%;
   height: 100%;
-}
-
-[size=xs] #content, [size=s] #content {
-  padding: 0;
 }

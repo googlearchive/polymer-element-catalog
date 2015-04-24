@@ -127,36 +127,6 @@ responsive-element[size=xs].layout {
   overflow: auto;
 }
 
-.section {
-  margin-bottom: 20px;
-  opacity: 0;
-  -webkit-transform: translate(0, 100px);
-  transition: all 320ms cubic-bezier(0.55, 0, 0.1, 1);
-}
-
-.section:first-child { transition-delay: 100ms; }
-.section:nth-child(2) { transition-delay: 200ms; }
-.section:nth-child(3) { transition-delay: 300ms; }
-.section:nth-child(4) { transition-delay: 400ms; }
-
-.active .section {
-  -webkit-transform: translate(0, 0);
-  opacity: 1;
-}
-
-.section h5 {
-  mixin(--paper-font-body2);
-  border-top: 1px solid #e5e5e5;
-  margin: 30px 0 20px;
-  padding: 20px 16px 0 16px;
-}
-
-.section p {
-  mixin(--paper-font-body1);
-  color: #666;
-  padding: 0 16px;
-}
-
 #package-tag {
   display: none;
 }

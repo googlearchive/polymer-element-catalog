@@ -1,29 +1,5 @@
 <dom-module id="app-sidebar">
-  <style>
-    :host {
-      width: 272px;
-      height: 100%;
-      background: #fff;
-      box-shadow: 0 0 8px rgba(0,0,0,0.4);
-      box-sizing: border-box;
-      z-index: 2;
-    }
-
-    :host ::content paper-toolbar {
-      background: #fff;
-    }
-
-    :host ::content paper-toolbar /deep/ #topBar {
-      width: 100%;
-      background: #fafafa;
-      border-bottom: 1px solid #e5e5e5;
-      box-sizing: border-box;
-    }
-
-    :host ::content .content {
-      height: calc(100% - 64px);
-    }
-  </style>
+  <link rel="import" type="css" href="app-sidebar.css">
   <template>
     <aside id="sidebar" class="vertical layout">
       <content></content>
@@ -32,5 +8,8 @@
 </dom-module>
 
 <script>
-  Polymer({ is: 'app-sidebar' });
+  Polymer({
+    is: 'app-sidebar',
+    enableCustomStyleProperties: true
+  });
 </script>

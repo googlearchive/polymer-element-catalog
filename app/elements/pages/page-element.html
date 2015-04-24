@@ -4,11 +4,12 @@
 <link rel="import" href="../../bower_components/paper-item/paper-item.html">
 <link rel="import" href="../../bower_components/paper-header-panel/paper-header-panel.html">
 
-<link rel="import" href="../theme-color/theme-color.html">
-<link rel="import" href="../responsive-element/responsive-element.html">
 <link rel="import" href="../catalog-element/catalog-element.html">
 <link rel="import" href="../catalog-package/catalog-package.html">
 <link rel="import" href="../doc-viewer/doc-viewer.html">
+<link rel="import" href="../package-symbol/package-symbol.html">
+<link rel="import" href="../responsive-element/responsive-element.html">
+<link rel="import" href="../theme-color/theme-color.html">
 
 <dom-module id="page-element">
   <link rel="import" type="css" href="page-element.css">
@@ -22,28 +23,26 @@
           <paper-toolbar class="horizontal layout center">
             <app-logo class="flex"></app-logo>
             <app-bar class="horizontal layout center end-justified">
-              <iron-icon icon="more-vert"></iron-icon>
+              <iron-icon icon="filter-list"></iron-icon>
             </app-bar>
           </paper-toolbar>
           <div class="content">
             <div id="element-info">
-              <div id="element-header" class="horizontal layout center" themed>
-                <iron-icon on-click="navToPackage" icon="chevron-left"></iron-icon>
-                <span id="package-symbol" on-click="navToPackage">[[package.symbol]]</span>
-                <span id="package-title">[[element]]</span>
-              </div>
-
-              <div id="element-desc" class="section">
-                <p>[[metadata.description]]</p>
+              <div id="element-header">
+                <package-symbol package="[[package]]" class="large" on-click="navToPackage"></package-symbol>
+                <h2 id="element-title">[[element]]</h2>
+                <div id="element-desc">
+                  <p>[[metadata.description]]</p>
+                </div>
               </div>
 
               <div id="element-tags" class="section">
-                <h4>Tags</h4>
-                <div>
+                <h5>Tags</h5>
+                <p>
                   <template is="x-repeat" items="[[metadata.tags]]">
-                    <tag-link name="[[item]]"></tag-link>
+                    <tag-link name="[[item]]"></tag-link><span>,</span>
                   </template>
-                </div>
+                </p>
               </div>
             </div>
           </div>
@@ -74,6 +73,7 @@
 <script>
   Polymer({
     is: 'page-element',
+    enableCustomStyleProperties: true,
     properties: {
       element: {type: String, notify: true},
       view: {type: String, notify: true},
@@ -85,6 +85,7 @@
     observers: [
       'updateURL(view)',
       'updateMeta(element)',
+      'showElement(element)',
       'analyze(importPath)'
     ],
     attached: function() {
@@ -107,6 +108,10 @@
     },
     updateMeta: function() {
       this.fire('page-meta', {title: this.element});
+    },
+    showElement: function() {
+      this.$['element-info'].classList.remove('active');
+      setTimeout(function() { this.$['element-info'].classList.add('active'); }.bind(this), 25);
     },
     navToPackage: function() {
       this.router.go("/browse?package=" + this.package.name);
