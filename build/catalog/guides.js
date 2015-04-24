@@ -5,6 +5,7 @@ var _ = require('lodash');
 var gs = require('glob-stream');
 var fm = require('front-matter');
 var marked = require('marked');
+var mkdirp = require('mkdirp');
 
 var stream = require('./utils/stream').obj;
 
@@ -49,20 +50,25 @@ function constructGuide () {
       })
       .value();
     
-    // TODO: parse markdown here and write guide files
-    // var guideAsHtml = marked(rawGuide.body);
-    // var guideFilepath = path.join(
-    //   process.cwd(),
-    //   'dist',
-    //   'data',
-    //   file.path.replace(process.cwd(), '')
-    // );
-    // var parsedGuideFilepath = path.parse(guideFilepath);
-    // var htmlGuideFilepath = path.join(parsedGuideFilepath.dir, parsedGuideFilepath.name + '.html');
+    // Convert markdown guides to HTML
+    var guideDestPath = formatParsedGuideFilepath(file.path);
+    var dir = path.dirname(guideDestPath);
     
-    formatParsedGuideFilepath(file.path);
-    
-    done(null, guide);
+    mkdirp(dir, function (err) {
+      
+      if (err) {
+        return done(err);
+      }
+      
+      fs.writeFile(guideDestPath, marked(rawGuide.body), function (err) {
+        
+        if (err) {
+          return done(err);
+        }
+        
+        done(null, guide);
+      });
+    });
   });
 }
 
@@ -78,12 +84,7 @@ function getGuideName (filepath) {
   return _.last(segments).split('.')[0];
 }
 
-function formatParsedGuideFilepath (srcPath) {
-  
-  // TODO: convert
-  //    maybe use these? -- packageName, getGuideName(file.path)
-  // /bower_components/paper-elements/guides/test.md
-  //    --> /dist/data/guides/paper-elements/test.html
+function formatParsedGuideFilepath (srcPath, options) {
   
   var relativeSrcPath = srcPath
     .replace(process.cwd() + path.sep, '')
@@ -91,18 +92,24 @@ function formatParsedGuideFilepath (srcPath) {
     .filter(function (segment) {
       
       return segment !== 'bower_components';
-    })
-    .join('/');
+    });
   
-  console.log(relativeSrcPath)
+  // Elements in the bower_components directory
+  // need to have the guides segment put before the
+  // element name in the path
+  if (relativeSrcPath[0] !== 'guides') {
+    relativeSrcPath[1] = relativeSrcPath[0];
+    relativeSrcPath[0] = 'guides';
+  }
   
-  var guideFilepath = path.join(
+  var filename = _.last(relativeSrcPath).split('.')[0] + '.html';
+  relativeSrcPath = path.dirname(relativeSrcPath.join('/'));
+  
+  return path.join(
     process.cwd(),
     'dist',
     'data',
-    srcPath.replace(process.cwd(), '')
+    relativeSrcPath,
+    filename
   );
-  var parsedGuideFilepath = path.parse(guideFilepath);
-  
-  return path.join(parsedGuideFilepath.dir, parsedGuideFilepath.name + '.html');
 }

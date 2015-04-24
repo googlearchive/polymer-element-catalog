@@ -11,12 +11,14 @@ var writeStreamP = require('writestreamp');
 var pumpify = require('pumpify');
 var from = require('from2');
 var concurrent = require('through2-concurrent');
+var eos = require('end-of-stream');
 
 exports.create = through;
 exports.split = split;
 exports.writeFile = writeStreamP;
 exports.from = from;
 exports.concurrent = concurrent;
+exports.onEnd = eos;
 
 exports.parse = jsonStream.parse.bind(jsonStream);
 exports.stringify = jsonStream.stringify.bind(jsonStream);
@@ -50,6 +52,7 @@ exports.obj = {
   writeFile: exports.writeFile,
   from: from.obj,
   concurrent: exports.concurrent.obj,
+  onEnd: exports.onEnd,
   
   parse: exports.parse,
   stringify: exports.stringify.obj,
