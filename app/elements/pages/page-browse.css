@@ -36,7 +36,7 @@ app-bar .menu-icon {
 #element-cards, #element-table {
   width: 80%;
   max-width: 920px;
-  margin: 20px auto;
+  margin: 10px auto;
   box-sizing: border-box;
 }
 
@@ -96,17 +96,17 @@ app-bar .menu-icon {
 [size=m] #element-cards {
   width: 100%;
   margin: 0;
-  padding: 0 16px;
+  padding: 10px 0 10px 16px;
 }
 
 [size=xs] #element-cards element-card {
   width: 100%;
   margin: 0 0 20px;
 }
-/*
+
 [size=s] #element-cards element-card {
-  width: 220px;
-}*/
+  width: calc(50% - 20px);
+}
 
 responsive-element[size=xs].layout {
   -ms-flex-direction: column;
@@ -244,9 +244,8 @@ responsive-element[size=xs].layout {
 [size=xs] #element-table,
 [size=s] #element-table,
 [size=m] #element-table {
-  margin: 0;
-  width: 100%;
-  border-radius: 0;
+  margin: 10px 16px;
+  width: calc(100% - 32px);
 }
 
 #current-tag {
