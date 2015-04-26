@@ -61,7 +61,7 @@ paper-item {
 
 #links a, #links iron-icon {
   font-weight: normal;
-  color: #777;
+  color: #666;
 }
 
 #links iron-icon {
@@ -74,13 +74,21 @@ paper-item {
 
 iron-icon[icon="fullscreen"] {
   position: absolute;
-  top: 20px;
+  top: 22px;
   right: 16px;
+  color: #666;
   cursor: pointer;
 }
 
+[size=xs] iron-icon[icon="fullscreen"],
+[size=s] iron-icon[icon="fullscreen"],
+[size=m] iron-icon[icon="fullscreen"] {
+  position: static;
+  margin: 3px 0 0 20px;
+}
+
 paper-header-panel paper-toolbar {
-  background: #fafafa !important;
+  background: #eee !important;
 }
 
 paper-header-panel paper-toolbar /deep/ #topBar {
@@ -88,12 +96,14 @@ paper-header-panel paper-toolbar /deep/ #topBar {
   max-width: 920px;
   margin: 0 auto;
   border-bottom: 0;
-} 
+}
+
+paper-header-panel /deep/ #mainContainer {
+  background: #eee;
+}
 
 #content {
-  background: #eee;
-  padding: 30px;
-  overflow: auto;
+  padding: 20px 0;
 }
 
 #content > div {
