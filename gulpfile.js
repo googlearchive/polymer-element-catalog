@@ -111,7 +111,7 @@ gulp.task('styles', function () {
       'app/styles/**/*.css'
     ])
     .pipe($.changed('styles', {extension: '.css'}))
-    .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
+    // .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
     .pipe(gulp.dest('.tmp/styles'))
     // Concatenate And Minify Styles
     .pipe($.if('*.css', $.cssmin()))
@@ -125,7 +125,7 @@ gulp.task('elements', function () {
     ])
     .pipe(plumber())
     .pipe($.changed('styles', {extension: '.css'}))
-    .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
+    // .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
     .pipe(gulp.dest('.tmp/elements'))
     // Concatenate And Minify Styles
     .pipe($.if('*.css', $.cssmin()))
