@@ -4,17 +4,21 @@ var fs = require('graceful-fs');
 var _ = require('lodash');
 var gs = require('glob-stream');
 var fm = require('front-matter');
+var marked = require('marked');
+var mkdirp = require('mkdirp');
 
 var stream = require('./utils/stream').obj;
 
-module.exports = function (guideFilePaths) {
+module.exports = function (options) {
   
+  var guideFilePaths = options.src;
+  var destDir = options.destDir;
   var output = stream.create();
   
   gs.create(guideFilePaths)
     .pipe(stream.get('path'))
     .pipe(getFileContents())
-    .pipe(constructGuide())
+    .pipe(constructGuide(destDir))
     .pipe(output);
   
   return output;
@@ -34,7 +38,7 @@ function getFileContents () {
   });
 }
 
-function constructGuide () {
+function constructGuide (destDir) {
   
   return stream.concurrent(function (file, enc, done) {
         
@@ -47,8 +51,35 @@ function constructGuide () {
         package: packageName
       })
       .value();
+    
+    // Convert markdown guides to HTML
+    writeGuidesFile({
+      src: file.path,
+      dest: destDir,
+      body: rawGuide.body
+    }, function (err) {
       
-    done(null, guide);
+      done(err, guide)
+    });
+  });
+}
+
+function writeGuidesFile (options, done) {
+  
+  var src = options.src;
+  var body = options.body;
+  var destDir = options.dest;
+  
+  var guideDestPath = formatParsedGuideFilepath(src, destDir);
+  var dir = path.dirname(guideDestPath);
+  
+  mkdirp(dir, function (err) {
+    
+    if (err) {
+      return done(err);
+    }
+    
+    fs.writeFile(guideDestPath, marked(body), done);
   });
 }
 
@@ -62,4 +93,34 @@ function getGuideName (filepath) {
   
   var segments = filepath.split('/');
   return _.last(segments).split('.')[0];
+}
+
+function formatParsedGuideFilepath (srcPath, destDir) {
+  
+  var relativeSrcPath = srcPath
+    .replace(process.cwd() + path.sep, '')
+    .split('/')
+    .filter(function (segment) {
+      
+      return segment !== 'bower_components';
+    });
+  
+  // Elements in the bower_components directory
+  // need to have the guides segment put before the
+  // element name in the path
+  if (relativeSrcPath[0] !== 'guides') {
+    relativeSrcPath[1] = relativeSrcPath[0];
+    relativeSrcPath[0] = 'guides';
+  }
+  
+  var filename = _.last(relativeSrcPath).split('.')[0] + '.html';
+  relativeSrcPath = path.dirname(relativeSrcPath.join('/'));
+  
+  return path.join(
+    process.cwd(),
+    destDir,
+    'data',
+    relativeSrcPath,
+    filename
+  );
 }
