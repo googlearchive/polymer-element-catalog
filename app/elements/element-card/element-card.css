@@ -34,6 +34,7 @@ p {
   height: 120px;
   background: #ccc;
   border-radius: 3px 3px 0 0;
+  overflow: hidden;
 }
 
 #el-package package-symbol {
@@ -63,6 +64,9 @@ p {
   padding: 10px 16px;
   background: rgba(0,0,0,.1);
   box-sizing: border-box;
+  transform: translate(0, 20px);
+  transition: var(--material-curve-320);
+  opacity: 0;
   visibility: hidden;
 }
 
@@ -71,12 +75,18 @@ p {
   text-align: center;
 }
 
+#el-menu a:hover {
+  color: #fff;
+}
+
 #el-menu iron-icon {
   margin: -2px 8px 0 0;
 }
 
 #el-graphic:hover #el-menu {
   visibility: visible;
+  transform: translate(0, 0);
+  opacity: 1;
 }
 
 #el-desc {
