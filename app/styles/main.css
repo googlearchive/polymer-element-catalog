@@ -107,8 +107,6 @@ catalog-app {
 }
 
 paper-toolbar {
-  background: white;
-  color: #333;
   transition: height 450ms cubic-bezier(0.55, 0, 0.1, 1);
 }
 

@@ -7,8 +7,10 @@
 
 paper-card {
   background: white;
-  box-shadow: none !important;
   border-radius: 3px;
+  --shadow-elevation-1: {
+    box-shadow: none;
+  }
 }
 
 h3 {
@@ -40,8 +42,9 @@ p {
 
 .meta {
   mixin(--paper-font-caption);
-  border-top: 1px solid #e5e5e5;
-  border-bottom: 1px solid #e5e5e5;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  border-color: var(--divider-color);
   padding: 10px 16px;
 }
 
@@ -78,7 +81,7 @@ p {
 
 #el-desc {
   mixin(--paper-font-body1);
-  color: #666;
+  color: var(--secondary-text-color);
   margin: 0;
   padding: 10px 16px;
   height: 75px;
@@ -91,7 +94,7 @@ p {
 #el-tags iron-icon {
   margin: 0 15px 0 0;
   padding: 5px;
-  color: #666;
+  color: var(--secondary-text-color);
 }
 
 #el-tags tag-link:last-of-type + span {

@@ -1,12 +1,19 @@
+<style is="x-style">
+  * {
+    --app-logo-color: var(--primary-text-color);
+    --app-logo-font-size: 20px;
+  }
+</style>
+
 <dom-module id="app-logo">
   <style>
     :host {
-      font-size: 20px;
+      font-size: var(--app-logo-font-size);
     }
 
     :host a {
       max-width: 125px;
-      color: #333;
+      color: var(--app-logo-color);
       text-transform: none;
       text-decoration: none;
     }
@@ -16,7 +23,7 @@
     }
 
     :host h1 {
-      font-size: 20px;
+      font-size: var(--app-logo-font-size);
       font-weight: 400;
       margin: 0;
     }
@@ -38,6 +45,7 @@
 <script>
   Polymer({ 
     is: 'app-logo',
+    enableCustomStyleProperties: true,
     properties: {
       full: {
         type: Boolean,

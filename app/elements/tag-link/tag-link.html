@@ -12,7 +12,7 @@
     span {
       font-size: 12px;
       font-weight: 500;
-      color: #333;
+      color: var(--primary-text-color);
       text-decoration: none;
     }
   </style>
@@ -24,6 +24,7 @@
 <script>
   Polymer({
     is: 'tag-link',
+    enableCustomStyleProperties: true,
     properties: {
       name: {type: String, notify: true, reflectToAttribute: true, observer: 'convert'}
     },

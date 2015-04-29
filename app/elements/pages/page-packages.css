@@ -1,5 +1,5 @@
 paper-header-panel::shadow #mainContainer {
-  background: #eee;
+  background: var(--secondary-background-color);
 }
 
 .content {

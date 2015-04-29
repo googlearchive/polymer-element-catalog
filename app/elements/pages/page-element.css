@@ -1,12 +1,19 @@
 responsive-element[size=xs].layout {
-  -ms-flex-direction: column;
-  -webkit-flex-direction: column;
   flex-direction: column;
 }
 
 [size=xs] app-sidebar {
   min-width: 100%;
   height: auto;
+}
+
+app-sidebar paper-toolbar {
+  --paper-toolbar-background: #fafafa;
+  --paper-toolbar: {
+    border-bottom: 1px solid;
+    border-bottom-color: var(--divider-color);
+    box-sizing: border-box;
+  }
 }
 
 [size=xs] app-sidebar paper-toolbar /deep/ #topBar {
@@ -61,7 +68,7 @@ paper-item {
 
 #links a, #links iron-icon {
   font-weight: normal;
-  color: #666;
+  color: var(--secondary-text-color);
 }
 
 #links iron-icon {
@@ -76,7 +83,7 @@ iron-icon[icon="fullscreen"] {
   position: absolute;
   top: 22px;
   right: 16px;
-  color: #666;
+  color: var(--secondary-text-color);
   cursor: pointer;
 }
 
@@ -88,7 +95,7 @@ iron-icon[icon="fullscreen"] {
 }
 
 paper-header-panel paper-toolbar {
-  background: #eee !important;
+  --paper-toolbar-background: var(--secondary-background-color);
 }
 
 paper-header-panel paper-toolbar /deep/ #topBar {
@@ -99,7 +106,7 @@ paper-header-panel paper-toolbar /deep/ #topBar {
 }
 
 paper-header-panel /deep/ #mainContainer {
-  background: #eee;
+  background: var(--secondary-background-color);
 }
 
 #content {
