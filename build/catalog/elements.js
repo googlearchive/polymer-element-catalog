@@ -1,10 +1,15 @@
 var path = require('path');
+var fs = require('fs-extra');
 
 var _ = require('lodash');
+var async = require('async');
 
 var stream = require('./utils/stream').obj;
 var packageDetails = require('./utils/package-details');
 var packageElements = require('./utils/package-elements');
+var analyze = require('./utils/analyze');
+
+
 
 module.exports = function (imports) {
 
@@ -18,41 +23,44 @@ module.exports = function (imports) {
   return stream.compose(
     stream.parse('packages.*'),
     stream.filter(function (package) {
-      
+
       return deps[package.name];
     }),
     stream.asyncMap(function (package, done) {
-      
+
       var packageBower = packageDetails({
         root: root,
         name: package.name
       });
-      
+
       var elements = packageElements({
         name: package.name,
         deps: packageBower.dependencies
       });
 
-      var output = _.map(elements, function (elementName) {
-        
+      var output = async.map(elements, function (elementName, cb) {
+
         var details = packageDetails({
           root: root,
           name: elementName
         });
-        
-        // Set up object schema
-        console.log("-",elementName,"(" + details._release + ")");
-        
-        return {
-          name: elementName,
-          version: details._release,
-          package: package.name,
-          description: details.description,
-          tags: details.keywords || []
-        };
+
+        fs.mkdirsSync(path.join(root, '.tmp', 'data', 'elements'));
+        analyze(root, elementName, function(err, data) {
+          // Set up object schema
+          console.log("-",elementName,"(" + details._release + ")");
+
+          cb(err, {
+            name: elementName,
+            version: details._release,
+            package: package.name,
+            description: details.description,
+            tags: details.keywords || []
+          });
+        });
+      }, function(err, output) {
+        done(err, output);
       });
-      
-      done(null, output);
     }),
 
     // Convert to objects from arrays (and flatten),
