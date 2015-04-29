@@ -18,7 +18,7 @@
         <app-bar class="horizontal layout center end-justified" query="{{q}}"></app-bar>
       </paper-toolbar>
 
-      <div class="content fit">
+      <div class="content">
         <div class="packages layout horizontal wrap">
           <template is="x-repeat" items="[[packages]]">
             <package-tile class="flex-none" name$="[[item.name]]" on-click="select"></package-tile>
