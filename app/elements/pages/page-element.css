@@ -105,10 +105,12 @@ paper-header-panel paper-toolbar /deep/ #topBar {
   border-bottom: 0;
 }
 
-#content {
-  display: block;
-  padding: 20px 0;
+paper-header-panel /deep/ #mainContainer {
   background: var(--secondary-background-color);
+}
+
+#content {
+  padding: 20px 0;
 }
 
 #content > div {

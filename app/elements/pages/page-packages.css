@@ -1,7 +1,10 @@
+paper-header-panel::shadow #mainContainer {
+  background: var(--secondary-background-color);
+}
+
 .content {
   display: block;
   padding: 16px;
-  background: var(--secondary-background-color);
 }
 
 .packages {
