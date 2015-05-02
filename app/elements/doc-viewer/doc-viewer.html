@@ -1,7 +1,7 @@
 <link rel="import" href="../../bower_components/marked-element/marked-element.html">
 <link rel="import" href="../../bower_components/prism-highlighter/prism-highlighter.html">
 <link rel="import" href="../../bower_components/hydrolysis/hydrolysis-analyzer.html">
-<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-material/paper-material.html">
 <link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
 
 <link rel="import" href="doc-viewer-property.html">
@@ -38,7 +38,7 @@
       border-bottom: 0;
     }
 
-    paper-card {
+    paper-material {
       background: white;
       margin-bottom: 24px;
     }
@@ -53,12 +53,12 @@
 
     <prism-highlighter></prism-highlighter>
 
-    <paper-card>
+    <paper-material>
       <h3>Documentation</h3>
       <div id="desc"><marked-element markdown="[[_element.desc]]"></marked-element></div>
-    </paper-card>
+    </paper-material>
 
-    <paper-card show-private$="[[showPrivateProps]]">
+    <paper-material show-private$="[[showPrivateProps]]">
       <div class="private-toggle">
         <paper-checkbox checked="{{showPrivateProps::iron-change}}"></paper-checkbox>
         Show Private
@@ -67,9 +67,9 @@
       <template is="x-repeat" items="[[elementProperties]]">
         <doc-viewer-property prop="[[item]]"></doc-viewer-property>
       </template>
-    </paper-card>
+    </paper-material>
 
-    <paper-card show-private$="[[showPrivateMethods]]">
+    <paper-material show-private$="[[showPrivateMethods]]">
       <div class="private-toggle">
         <paper-checkbox checked="{{showPrivateMethods::iron-change}}"></paper-checkbox>
         Show Private
@@ -78,7 +78,7 @@
       <template is="x-repeat" items="[[elementMethods]]">
         <doc-viewer-property prop="[[item]]"></doc-viewer-property>
       </template>
-    </paper-card>
+    </paper-material>
   </template>
 </dom-module>
 

@@ -31,7 +31,7 @@
     "iron-flex-layout": "PolymerElements/iron-flex-layout#^0.8.0",
     "paper-item": "PolymerElements/paper-item#^0.8.0",
     "paper-checkbox": "PolymerElements/paper-checkbox#^0.8.0",
-    "paper-card": "PolymerElements/paper-card#^0.8.0",
+    "paper-material": "PolymerElements/paper-material#^0.8.0",
     "paper-toolbar": "PolymerElements/paper-toolbar#^0.8.0",
     "paper-drawer-panel": "PolymerElements/paper-drawer-panel#^0.8.0",
     "paper-header-panel": "PolymerElements/paper-header-panel#^0.8.0",
@@ -40,8 +40,6 @@
     "prism-highlighter": "PolymerElements/prism-highlighter"
   },
   "resolutions": {
-    "polymer": "0.8-preview",
-    "prism-highlighter": "master",
-    "paper-styles": "master"
+    "polymer": "0.8-preview"
   }
 }

@@ -1,4 +1,4 @@
-<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-material/paper-material.html">
 
 <link rel="import" href="../catalog-element/catalog-element.html">
 <link rel="import" href="../catalog-package/catalog-package.html">
@@ -10,7 +10,7 @@
     <catalog-element name="[[element]]" data="{{_element}}"></catalog-element>
     <catalog-package name="[[_element.package]]" data="{{package}}"></catalog-package>
 
-    <paper-card class="vertical layout">
+    <paper-material class="vertical layout">
       <theme-color color="[[package.color]]">
         <div id="el" on-click="nav" target$="[[_element.name]]" view="docs">
           <div id="el-graphic" themed>
@@ -35,7 +35,7 @@
           </span>
         </div>
       </theme-color>
-    </paper-card>
+    </paper-material>
   </template>
 </dom-module>
 
