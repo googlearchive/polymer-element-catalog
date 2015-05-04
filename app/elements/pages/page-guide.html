@@ -30,7 +30,7 @@
       margin: 20px;
       color: #999;
     }
-    
+
     .guide-section .reference-link:hover {
       color: #333;
     }
@@ -42,8 +42,27 @@
       padding: 18px;
     }
 
+    .guide-section h3 {
+      font-size: 18px;
+      margin: 20px 20px 12px 20px;
+      font-weight: bold;
+    }
+
+    .guide-section h4 {
+      font-weight: bold;
+      font-size: 16px;
+      margin: 18px 20px 12px 20px;
+    }
+
     .guide-section p {
       margin: 16px 20px;
+    }
+
+    .guide-section pre {
+      padding: 20px;
+      background: #f8f8f8;
+      border: solid #ddd;
+      border-width: 1px 0;
     }
   </style>
   <template>
@@ -75,7 +94,6 @@
         </paper-toolbar>
 
         <div class="content fit">
-          <prism-highlighter></prism-highlighter>
           <div id="content"></div>
         </div>
       </paper-header-panel>
@@ -109,6 +127,7 @@
       console.log('contentChanged');
       this.$.content.innerHTML = this.content;
       this._decorateHeadings();
+      this._highlight();
       this.scopeSubtree(this.$.content);
       if (window.location.hash !== "") {
         var el = Polymer.dom(this.$.content).querySelector(window.location.hash);
@@ -125,6 +144,14 @@
         icon.icon = 'link';
         link.appendChild(icon);
         h2s[i].parentNode.insertBefore(link, h2s[i]);
+      }
+    },
+    _highlight: function() {
+      var els = this.$.content.querySelectorAll('pre code');
+      for (var i = 0; i < els.length; i++) {
+        var code = els[i].innerText;
+        var event = this.fire('syntax-highlight', {code: code});
+        els[i].innerHTML = event.detail.code || code;
       }
     },
     updateMeta: function() {
