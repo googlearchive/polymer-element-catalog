@@ -1,4 +1,9 @@
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-styles/paper-styles.html">
+<link rel="import" href="../../bower_components/prism-highlighter/prism-highlighter.html">
+
 <link rel="import" href="../catalog-guide/catalog-guide.html">
+<link rel="import" href="../catalog-data/catalog-data.html">
 
 <dom-module id="page-guide">
   <style>
@@ -6,26 +11,64 @@
       display: block;
       padding: 16px;
     }
+
+    #main {
+      background: #ebebeb;
+    }
+
+    .guide-section {
+      mixin(--shadow-elevation-2dp);
+      background: white;
+      margin: 24px auto;
+      max-width: 800px;
+      padding-bottom: 1px;
+    }
+
+    .guide-section > h2 {
+      border-bottom: 1px solid #ebebeb;
+      font-size: 20px;
+      line-height: 28px;
+      padding: 18px;
+    }
+
+    .guide-section p {
+      margin: 16px 20px;
+    }
   </style>
   <template>
+    <catalog-data guides="{{guides}}"></catalog-data>
     <catalog-guide name="[[name]]" data="{{guide}}" content="{{content}}"></catalog-guide>
 
-    <paper-header-panel class="fit">
-      <paper-toolbar class="medium-tall">
-        <app-logo full class="flex"></app-logo>
-        <nav class="flex bottom">
-          <a href="/" is="pushstate-anchor">Elements</a>
-          <a class="active" href="/guides" is="pushstate-anchor">Guides</a>
+    <responsive-element class="horizontal layout fit">
+      <app-sidebar>
+        <paper-toolbar>
+          <app-logo class="flex"></app-logo>
+          <app-bar class="horizontal layout center end-justified">
+            <iron-icon icon="filter-list"></iron-icon>
+          </app-bar>
+        </paper-toolbar>
+        <nav>
+          <template is="x-repeat" items="[[guides]]">
+            <paper-item name$="[[item.name]]">[[item.title]]</paper-item>
+          </template>
         </nav>
-        <app-bar class="horizontal layout center end-justified"></app-bar>
-      </paper-toolbar>
+      </app-sidebar>
+      <paper-header-panel mode="waterfall" class="flex vertical layout" id="main">
+        <paper-toolbar class="paper-header flex-none">
+          <span class="flex">[[guide.title]]</span>
+          <iron-selector attr-for-selected="view" selected="{{view}}" id="links">
+            <a view="docs"><iron-icon icon="description"></iron-icon> Docs</a>
+            <a view="demo"><iron-icon icon="visibility"></iron-icon> Demo</a>
+          </iron-selector>
+          <iron-icon icon="fullscreen"></iron-icon>
+        </paper-toolbar>
 
-      <div class="content fit">
-        <h1>{{guide.title}}</h1>
-        <p>{{guide.summary}}</p>
-        <div id="content"></div>
-      </div>
-    </paper-header-panel>
+        <div class="content fit">
+          <prism-highlighter></prism-highlighter>
+          <div id="content"></div>
+        </div>
+      </paper-header-panel>
+    </responsive-element>
   </template>
 </dom-module>
 
@@ -34,6 +77,7 @@
     is: 'page-guide',
     properties: {
       router: Object,
+      guides: Array,
       guide: Object,
       name: {
         type: String,
@@ -41,6 +85,7 @@
       },
       content: String
     },
+    enableCustomStyleProperties: true,
     observers: [
       'contentChanged(content)',
       'updateMeta(guide)'
@@ -51,6 +96,7 @@
     },
     contentChanged: function() {
       this.$.content.innerHTML = this.content;
+      this.scopeSubtree(this.$.content);
     },
     updateMeta: function() {
       this.fire('page-meta', {title: this.guide.title});

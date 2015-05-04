@@ -8,15 +8,20 @@ module.exports = function(root, elementName, callback) {
   var elPath = path.join(root, 'bower_components', elementName, elementName + '.html');
   var loader = new FileLoader();
 
-  hydrolysis.Analyzer.analyze(elPath, {clean: true}).then(function(data) {
-    var output = data.elements.map(function(el) {
-      console.log('+ writing docs for', el.is, 'to data directory');
-      fs.writeFileSync(path.join(root, '.tmp', 'data', 'elements', el.is + '.json'), JSON.stringify(el));
-      return el;
+  if (fs.existsSync(elPath)) {
+    hydrolysis.Analyzer.analyze(elPath, {clean: true}).then(function(data) {
+      var output = data.elements.map(function(el) {
+        console.log('+ writing docs for', el.is, 'to data directory');
+        fs.writeFileSync(path.join(root, '.tmp', 'data', 'elements', el.is + '.json'), JSON.stringify(el));
+        return el;
+      });
+  
+      callback(null, output);
+    }, function(err) {
+      callback(err);
     });
-    
-    callback(null, output);
-  }, function(err) {
-    callback(err);
-  });
+  } else {
+    console.log('! no package-named .html file found for ' + elementName);
+    callback(null, null);
+  }
 }

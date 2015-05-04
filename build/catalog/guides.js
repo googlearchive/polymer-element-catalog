@@ -4,10 +4,10 @@ var fs = require('graceful-fs');
 var _ = require('lodash');
 var gs = require('glob-stream');
 var fm = require('front-matter');
-var marked = require('marked');
 var mkdirp = require('mkdirp');
 
 var stream = require('./utils/stream').obj;
+var render = require('./utils/render-guide');
 
 module.exports = function (options) {
 
@@ -46,7 +46,7 @@ function constructGuide (destDir) {
     var packageName = getPackageName(file.path);
     var guideName = getGuideName(file.path);
     if (packageName) guideName = path.join(packageName, guideName);
-    
+
     var guide = _(rawGuide.attributes)
       .omit('updated', 'summary')
       .extend({
@@ -82,7 +82,7 @@ function writeGuidesFile (options, done) {
       return done(err);
     }
 
-    fs.writeFile(guideDestPath, marked(body), done);
+    fs.writeFile(guideDestPath, render(body), done);
   });
 }
 
