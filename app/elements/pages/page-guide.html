@@ -1,3 +1,4 @@
+<link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../../bower_components/paper-item/paper-item.html">
 <link rel="import" href="../../bower_components/paper-styles/paper-styles.html">
 <link rel="import" href="../../bower_components/prism-highlighter/prism-highlighter.html">
@@ -22,6 +23,16 @@
       margin: 24px auto;
       max-width: 800px;
       padding-bottom: 1px;
+    }
+
+    .guide-section .reference-link {
+      float: right;
+      margin: 20px;
+      color: #999;
+    }
+    
+    .guide-section .reference-link:hover {
+      color: #333;
     }
 
     .guide-section > h2 {
@@ -95,8 +106,26 @@
       this.name = window.location.pathname.substring(8);
     },
     contentChanged: function() {
+      console.log('contentChanged');
       this.$.content.innerHTML = this.content;
+      this._decorateHeadings();
       this.scopeSubtree(this.$.content);
+      if (window.location.hash !== "") {
+        var el = Polymer.dom(this.$.content).querySelector(window.location.hash);
+        if (el) el.scrollIntoView();
+      }
+    },
+    _decorateHeadings: function() {
+      var h2s = this.$.content.querySelectorAll('h2');
+      for (var i = 0; i < h2s.length; i++) {
+        var link = document.createElement('a');
+        link.className = "reference-link";
+        link.href = "#" + h2s[i].id;
+        var icon = document.createElement('iron-icon');
+        icon.icon = 'link';
+        link.appendChild(icon);
+        h2s[i].parentNode.insertBefore(link, h2s[i]);
+      }
     },
     updateMeta: function() {
       this.fire('page-meta', {title: this.guide.title});
