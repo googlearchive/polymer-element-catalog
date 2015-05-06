@@ -35,10 +35,12 @@
     "paper-header-panel": "PolymerElements/paper-header-panel#master",
     "paper-styles": "PolymerElements/paper-styles#^0.8.0",
     "marked-element": "PolymerElements/marked-element#^0.8.0",
-    "prism-element": "PolymerElements/prism-element#^0.8.0"
+    "prism-element": "PolymerElements/prism-element#^0.8.0",
+    "paper-behaviors": "PolymerElements/paper-behaviors#master"
   },
   "resolutions": {
     "polymer": "0.8-preview",
-    "paper-header-panel": "master"
+    "paper-header-panel": "master",
+    "paper-behaviors": "master"
   }
 }
