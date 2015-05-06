@@ -19,12 +19,10 @@
     "iron-elements": "PolymerElements/iron-elements#master",
     "paper-elements": "PolymerElements/paper-elements#master",
     "polymer": "Polymer/polymer#0.8-preview",
-
     "app-router": "~2.6.0",
     "pushstate-anchor": "~0.3.0",
     "color": "~2.5.0",
     "hydrolysis": "PolymerLabs/hydrolysis#^1.1.2",
-
     "iron-ajax": "PolymerElements/iron-ajax#^0.8.1",
     "iron-icons": "PolymerElements/iron-icons#^0.8.0",
     "iron-selector": "PolymerElements/iron-selector#^0.8.0",
@@ -34,12 +32,13 @@
     "paper-material": "PolymerElements/paper-material#^0.8.0",
     "paper-toolbar": "PolymerElements/paper-toolbar#^0.8.0",
     "paper-drawer-panel": "PolymerElements/paper-drawer-panel#^0.8.0",
-    "paper-header-panel": "PolymerElements/paper-header-panel#^0.8.0",
+    "paper-header-panel": "PolymerElements/paper-header-panel#master",
     "paper-styles": "PolymerElements/paper-styles#^0.8.0",
     "marked-element": "PolymerElements/marked-element#^0.8.0",
-    "prism-highlighter": "PolymerElements/prism-highlighter"
+    "prism-element": "PolymerElements/prism-element#^0.8.0"
   },
   "resolutions": {
-    "polymer": "0.8-preview"
+    "polymer": "0.8-preview",
+    "paper-header-panel": "master"
   }
 }
