@@ -227,7 +227,7 @@ gulp.task('default', ['clean'], function (cb) {
     'elements',
     ['jshint', 'images', 'fonts', 'html'],
     'catalog:dist',
-    'vulcanize',
+    //'vulcanize',
     cb);
 });
 
@@ -261,7 +261,7 @@ gulp.task('catalog:dev', function () {
 });
 
 function execCatalogTask (options) {
-  
+
   var destDir = options.destDir;
   var space = options.space;
   var destFilepath = path.join('.', destDir, 'catalog.json');

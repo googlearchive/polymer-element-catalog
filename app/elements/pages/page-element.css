@@ -37,7 +37,7 @@ package-symbol {
 }
 
 #element-title {
-  mixin(--paper-font-title);
+  @apply(--paper-font-title);
   margin: 0 0 20px;
 }
 

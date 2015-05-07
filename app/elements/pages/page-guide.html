@@ -18,7 +18,7 @@
     }
 
     .guide-section {
-      mixin(--shadow-elevation-2dp);
+      @apply(--shadow-elevation-2dp);
       background: white;
       margin: 24px auto;
       max-width: 800px;
@@ -78,7 +78,7 @@
           </app-bar>
         </paper-toolbar>
         <nav>
-          <template is="x-repeat" items="[[guides]]">
+          <template is="dom-repeat" items="[[guides]]">
             <paper-item name$="[[item.name]]">[[item.title]]</paper-item>
           </template>
         </nav>

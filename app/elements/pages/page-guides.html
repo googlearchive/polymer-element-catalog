@@ -25,7 +25,7 @@
 
       <div class="content fit">
         <ul>
-        <template is="x-repeat" items="[[guides]]">
+        <template is="dom-repeat" items="[[guides]]">
           <li><a on-click="nav" guide$="[[item.name]]">[[item.title]]</a></li>
         </template>
         </ul>

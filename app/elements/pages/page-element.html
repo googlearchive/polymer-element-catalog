@@ -1,5 +1,5 @@
 <link rel="import" href="../../bower_components/iron-selector/iron-selector.html">
-<!--<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">-->
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../bower_components/paper-toolbar/paper-toolbar.html">
 <link rel="import" href="../../bower_components/paper-item/paper-item.html">
 <link rel="import" href="../../bower_components/paper-header-panel/paper-header-panel.html">
@@ -39,7 +39,7 @@
               <div id="element-tags" class="section">
                 <h5>Tags</h5>
                 <p>
-                  <template is="x-repeat" items="[[metadata.tags]]">
+                  <template is="dom-repeat" items="[[metadata.tags]]">
                     <tag-link name="[[item]]"></tag-link><span>,</span>
                   </template>
                 </p>

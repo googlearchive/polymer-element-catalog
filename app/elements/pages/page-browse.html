@@ -1,4 +1,4 @@
-<!--<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../bower_components/iron-icons/av-icons.html">-->
 
 <link rel="import" href="../catalog-data/catalog-data.html">
@@ -28,7 +28,7 @@
           </div>
           <div id="package-list" hidden$="[[packageInfo]]">
             <h5>Products</h5>
-            <template is="x-repeat" items="[[packages]]">
+            <template is="dom-repeat" items="[[packages]]">
               <div class="package" on-click="updatePackage" name="[[item.name]]">
                 <div class="layout horizontal center">
                   <package-symbol package="[[item]]"></package-symbol>
@@ -68,7 +68,7 @@
         </div>
 
         <div id="element-cards" class="horizontal layout wrap">
-          <template id="el-card-repeat" is="x-repeat" items="[[elements]]" filter="filter">
+          <template id="el-card-repeat" is="dom-repeat" items="[[elements]]" filter="filter">
             <element-card element="[[item.name]]"></element-card>
           </template>
         </div>
@@ -82,12 +82,12 @@
             </tr>
           </thead>
           <tbody>
-            <template id="el-repeat" is="x-repeat" items="[[elements]]" filter="filter">
+            <template id="el-repeat" is="dom-repeat" items="[[elements]]" filter="filter">
               <tr on-click="nav" target$="[[item.name]]">
                 <td class="name" width="100">[[item.name]]</td>
                 <td class="description">[[item.description]]</td>
                 <td class="tags">
-                  <template is="x-repeat" items="[[item.tags]]">
+                  <template is="dom-repeat" items="[[item.tags]]">
                     <tag-link name="[[item]]" on-click="updateTag"></tag-link><span>,</span>
                   </template>
                 </td>

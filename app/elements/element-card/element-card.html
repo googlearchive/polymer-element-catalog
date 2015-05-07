@@ -29,7 +29,7 @@
         <div id="el-tags" class="horizontal layout center meta">
           <iron-icon icon="loyalty"></iron-icon>
           <span>
-            <template is="x-repeat" items="[[_element.tags]]">
+            <template is="dom-repeat" items="[[_element.tags]]">
               <tag-link name="[[item]]" on-click="updateTag"></tag-link><span>,</span>
             </template>
           </span>

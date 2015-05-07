@@ -24,7 +24,7 @@ app-bar .menu-icon {
 }
 
 .elements-title h2 {
-  mixin(--paper-font-title);
+  @apply(--paper-font-title);
   color: var(--primary-text-color);
 }
 
@@ -51,7 +51,7 @@ app-bar .menu-icon {
 }
 
 #element-table th {
-  mixin(--paper-font-body1);
+  @apply(--paper-font-body1);
   color: var(--secondary-text-color);
   text-align: left;
   border-bottom: 1px solid;
@@ -163,7 +163,7 @@ app-sidebar paper-toolbar {
 }
 
 #package-title {
-  mixin(--paper-font-title);
+  @apply(--paper-font-title);
   margin: 0 0 20px;
   transform: translate(-50px, 0);
   opacity: 0;
@@ -171,7 +171,7 @@ app-sidebar paper-toolbar {
 }
 
 #package-tagline {
-  mixin(--paper-font-body1);
+  @apply(--paper-font-body1);
   font-size: 14px;
   line-height: 22px;
   margin: 0;

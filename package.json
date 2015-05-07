@@ -79,6 +79,7 @@
     "through2-filter": "^1.4.1",
     "through2-map": "^1.4.0",
     "through2-reduce": "^0.3.0",
+    "vulcanize": "^0.7.10",
     "web-component-tester": "^2.2.3",
     "writestreamp": "^0.1.0"
   }

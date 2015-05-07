@@ -42,7 +42,7 @@ p {
 }
 
 .meta {
-  mixin(--paper-font-caption);
+  @apply(--paper-font-caption);
   border-top: 1px solid;
   border-bottom: 1px solid;
   border-color: var(--divider-color);
@@ -90,7 +90,7 @@ p {
 }
 
 #el-desc {
-  mixin(--paper-font-body1);
+  @apply(--paper-font-body1);
   color: var(--secondary-text-color);
   margin: 0;
   padding: 10px 16px;

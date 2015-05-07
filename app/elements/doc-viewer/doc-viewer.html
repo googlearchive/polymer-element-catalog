@@ -61,7 +61,7 @@
         Show Private
       </div>
       <h3>Properties</h3>
-      <template is="x-repeat" items="[[elementProperties]]">
+      <template is="dom-repeat" items="[[elementProperties]]">
         <doc-viewer-property prop="[[item]]"></doc-viewer-property>
       </template>
     </paper-material>
@@ -72,7 +72,7 @@
         Show Private
       </div>
       <h3>Methods</h3>
-      <template is="x-repeat" items="[[elementMethods]]">
+      <template is="dom-repeat" items="[[elementMethods]]">
         <doc-viewer-property prop="[[item]]"></doc-viewer-property>
       </template>
     </paper-material>

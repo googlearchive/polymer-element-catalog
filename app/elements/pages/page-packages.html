@@ -1,4 +1,4 @@
-<!--<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">-->
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../bower_components/iron-icons/maps-icons.html">
 
 <link rel="import" href="../catalog-data/catalog-data.html">
@@ -20,7 +20,7 @@
 
       <div class="content fit">
         <div class="packages layout horizontal wrap">
-          <template is="x-repeat" items="[[packages]]">
+          <template is="dom-repeat" items="[[packages]]">
             <package-tile class="flex-none" name$="[[item.name]]" on-click="select"></package-tile>
           </template>
         </div>
