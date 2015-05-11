@@ -44,6 +44,8 @@
     "polymer": "0.9.0-rc.1",
     "paper-header-panel": "master",
     "paper-behaviors": "master",
-    "iron-selector": "^0.9.0"
+    "iron-selector": "^0.9.0",
+    "iron-component-page": "catalog-style",
+    "iron-doc-viewer": "catalog-style"
   }
 }
