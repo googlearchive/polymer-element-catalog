@@ -4,11 +4,12 @@
   "description": "A catalog of Google's Web Components",
   "main": "index.js",
   "scripts": {
-    "serve": "gulp serve",
-    "serve:dist": "gulp serve",
-    "build": "gulp",
-    "clean": "gulp clean",
-    "deps": "npm install && bower install"
+    "serve": "./node_modules/.bin/gulp serve",
+    "serve:dist": "./node_modules/.bin/gulp serve:dist",
+    "build:unvulcanized": "./node_modules/.bin/gulp",
+    "build": "npm run build:unvulcanized && ./node_modules/.bin/vulcanize -s --inline-scripts --inline-css ./dist/elements/elements.html > ./dist/elements/elements.vulcanized.html",
+    "clean": "./node_modules/.bin/gulp clean",
+    "deps": "npm install && ./node_modules/.bin/bower install"
   },
   "repository": {
     "type": "git",
@@ -79,7 +80,7 @@
     "through2-filter": "^1.4.1",
     "through2-map": "^1.4.0",
     "through2-reduce": "^0.3.0",
-    "vulcanize": "^0.7.10",
+    "vulcanize": "^1.4",
     "web-component-tester": "^2.2.3",
     "writestreamp": "^0.1.0"
   }
