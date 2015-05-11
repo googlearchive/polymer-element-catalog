@@ -37,8 +37,8 @@
     "marked-element": "PolymerElements/marked-element#^0.9.0",
     "prism-element": "PolymerElements/prism-element#^0.9.0",
     "paper-behaviors": "PolymerElements/paper-behaviors#master",
-    "iron-component-page": "PolymerElements/paper-behaviors#catalog-style",
-    "iron-doc-viewer": "PolymerElements/paper-behaviors#catalog-style"
+    "iron-component-page": "PolymerElements/iron-component-page#catalog-style",
+    "iron-doc-viewer": "PolymerElements/iron-doc-viewer#catalog-style"
   },
   "resolutions": {
     "polymer": "0.9.0-rc.1",
