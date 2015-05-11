@@ -20,25 +20,10 @@ app-sidebar paper-toolbar {
   padding: 0 16px;
 }
 
-#element-header {
-  position: relative;
-  padding: 20px 16px 0;
-  overflow: hidden;
-}
-
-#element-header iron-icon {
-  cursor: pointer;
-}
-
 package-symbol {
   display: inline-block;
   margin: 0 0 20px;
   cursor: pointer;
-}
-
-#element-title {
-  @apply(--paper-font-title);
-  margin: 0 0 20px;
 }
 
 #element-desc p {
@@ -55,88 +40,4 @@ package-symbol {
 
 paper-item {
   cursor: pointer;
-}
-
-#links a {
-  margin: 0 10px;
-  cursor: pointer;
-}
-
-#links a:last-child {
-  margin-right: 0;
-}
-
-#links a, #links iron-icon {
-  font-weight: normal;
-  color: var(--secondary-text-color);
-}
-
-#links iron-icon {
-  margin: -2px 5px 0 0;
-}
-
-#links .iron-selected {
-  color: #333;
-}
-
-iron-icon[icon="fullscreen"] {
-  position: absolute;
-  top: 22px;
-  right: 16px;
-  color: var(--secondary-text-color);
-  cursor: pointer;
-}
-
-[size=xs] iron-icon[icon="fullscreen"],
-[size=s] iron-icon[icon="fullscreen"],
-[size=m] iron-icon[icon="fullscreen"] {
-  position: static;
-  margin: 3px 0 0 20px;
-}
-
-paper-header-panel paper-toolbar {
-  --paper-toolbar-background: var(--secondary-background-color);
-}
-
-paper-header-panel paper-toolbar /deep/ #topBar {
-  position: static;
-  max-width: 920px;
-  margin: 0 auto;
-  border-bottom: 0;
-}
-
-paper-header-panel /deep/ #mainContainer {
-  background: var(--secondary-background-color);
-}
-
-#content {
-  padding: 20px 0;
-}
-
-#content > div {
-  display: none;
-}
-
-#content > .iron-selected {
-  display: block;
-}
-
-[size=xs] #content, [size=s] #content {
-  padding: 0;
-}
-
-#docs {
-  max-width: 920px;
-  margin: 0 auto;
-}
-
-#demo {
-  overflow: hidden;
-}
-
-#demo-frame {
-  border: 0;
-  background: transparent;
-  width: 100%;
-  height: 100%;
 }
