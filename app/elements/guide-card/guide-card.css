@@ -1,7 +1,6 @@
 :host {
   display: block;
-  width: calc(33% - 20px);
-  min-width: 220px;
+  width: 220px;
   margin: 0 20px 20px 0;
 }
 
@@ -14,14 +13,23 @@ paper-material {
 }
 
 h3 {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 500;
   margin: 0;
   padding: 10px 16px 0;
 }
 
+img {
+  width: 220px;
+  height: 130px;
+  background: #673AB7;
+  border: 0;
+}
+
 p {
   margin: 0;
+  line-height: 130%;
+  margin: 0 16px 16px;
 }
 
 #el {

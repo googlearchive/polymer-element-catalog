@@ -2,12 +2,19 @@
 <link rel="import" href="../../bower_components/paper-toolbar/paper-toolbar.html">
 
 <link rel="import" href="../catalog-data/catalog-data.html">
+<link rel="import" href="../guide-card/guide-card.html">
 
 <dom-module id="page-guides">
   <style>
     .content {
       display: block;
       padding: 16px;
+      background: #ebebeb;
+    }
+    
+    #guide-list {
+      max-width: 900px;
+      margin: 0 auto;
     }
   </style>
   <template>
@@ -23,11 +30,11 @@
       </paper-toolbar>
 
       <div class="content fit">
-        <ul>
-        <template is="dom-repeat" items="[[guides]]">
-          <li><a on-click="nav" guide$="[[item.name]]">[[item.title]]</a></li>
-        </template>
-        </ul>
+        <div id="guide-list" class="horizontal layout wrap">
+          <template is="dom-repeat" items="[[guides]]">
+            <guide-card guide="[[item.name]]" on-click="nav"></guide-card>
+          </template>
+        </div>
       </div>
     </paper-header-panel>
 
@@ -45,7 +52,7 @@
       this.fire('page-meta', {title: 'Element Guides'});
     },
     nav: function(e) {
-      this.router.go('/guides/' + e.currentTarget.getAttribute('guide'));
+      this.router.go('/guides/' + e.currentTarget.guide);
     }
   });
 </script>

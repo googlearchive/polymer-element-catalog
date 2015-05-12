@@ -1,0 +1,27 @@
+<link rel="import" href="../../bower_components/paper-material/paper-material.html">
+
+<link rel="import" href="../catalog-guide/catalog-guide.html">
+
+<dom-module id="guide-card">
+  <link rel="import" type="css" href="guide-card.css">
+  <template>
+    <catalog-guide name="[[guide]]" data="{{_guide}}"></catalog-guide>
+
+    <paper-material class="vertical layout">
+      <img>
+      <h3>[[_guide.title]]</h3>
+      <p>[[_guide.summary]]</p>
+    </paper-material>
+  </template>
+</dom-module>
+
+<script>
+Polymer({
+  is: 'guide-card',
+  enableCustomStyleProperties: true,
+  properties: {
+    guide: {type: String, notify: true},
+    _guide: Object
+  }
+});
+</script>

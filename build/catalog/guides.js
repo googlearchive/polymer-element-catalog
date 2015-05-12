@@ -48,7 +48,7 @@ function constructGuide (destDir) {
     if (packageName) guideName = path.join(packageName, guideName);
 
     var guide = _(rawGuide.attributes)
-      .omit('updated', 'summary')
+      //.omit('updated', 'summary')
       .extend({
         name: guideName,
         package: packageName
