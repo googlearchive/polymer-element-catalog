@@ -15,6 +15,13 @@
       "tagline":"Material design elements"
     },
     {
+      "name":"google-web-components",
+      "title":"Google Web Components",
+      "color":"#64B5F6",
+      "symbol":"Go",
+      "tagline":"Components for Google's APIs and services"
+    },
+    {
       "name":"gold-elements",
       "color":"#ffb74d",
       "title":"Gold Elements",
