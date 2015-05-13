@@ -16,8 +16,16 @@
 <link rel="import" href="../pages/page-guides.html">
 
 <dom-module id="app-shell">
+  <style>
+    #cartpanel::shadow #scrim {
+      z-index: 3;
+    }
+    #cartpanel::shadow #drawer {
+      z-index: 4;
+    }
+  </style>
   <template>
-    <paper-drawer-panel class="flex" force-narrow right-drawer drawer-width="320px">
+    <paper-drawer-panel id="cartpanel" class="flex" force-narrow right-drawer drawer-width="320px">
       <app-router id="router" class="flex" mode="pushstate" main>
         <app-route path="/" element="page-packages" bindRouter></app-route>
         <app-route path="/browse" element="page-browse" bindRouter onUrlChange="updateModel"></app-route>
@@ -38,7 +46,11 @@
     is: 'app-shell',
     listeners: {
       'nav': 'handleNav',
-      'page-meta': 'updateTitle'
+      'page-meta': 'updateTitle',
+      'cart-close': 'cartClose',
+      'cart-open': 'cartOpen',
+      'cart-add': 'cartAdd',
+      'cart-remove': 'cartRemove'
     },
     toggleSearch: function() {
       this.$.search.active = !this.$.search.active;
@@ -56,6 +68,18 @@
       } else {
         document.title = "Polymer Element Catalog";
       }
+    },
+    cartClose: function() {
+      this.$.cartpanel.closeDrawer();
+    },
+    cartOpen: function() {
+      this.$.cartpanel.openDrawer();
+    },
+    cartAdd: function(e, el) {
+      this.$.cart.add(el);
+    },
+    cartRemove: function(e, el) {
+      this.$.cart.remove(el);
     }
   });
 </script>

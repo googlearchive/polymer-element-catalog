@@ -1,6 +1,7 @@
 <link rel="import" href="../../bower_components/paper-toolbar/paper-toolbar.html">
 <link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
 <link rel="import" href="../../bower_components/paper-tabs/paper-tab.html">
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 
@@ -13,28 +14,45 @@
       @apply(--layout-vertical);
     }
 
-    #tabs {
-      --accent-color: #E91E63;
-    }
-    
     #toolbar {
       color: #666;
     }
-    
+
     #toolbar-title {
       margin-left: 15px;
+    }
+
+    #help {
+      font-size: 16px;
+      line-height: 130%;
+      padding: 16px;
     }
   </style>
   <template>
     <paper-toolbar id="toolbar">
       <iron-icon icon="shopping-cart"></iron-icon>
       <span id="toolbar-title" class="flex">Cart</span>
-      <iron-icon icon="chevron-right"></iron-icon>
+      <iron-icon icon="chevron-right" on-tap="close"></iron-icon>
     </paper-toolbar>
-    <paper-tabs id="tabs">
-      <paper-tab>Elements</paper-tab>
-      <paper-tab>Download</paper-tab>
+    <paper-tabs id="tabs" selected="{{_tab}}">
+      <paper-tab name="elements">Elements (<span>[[items.length]]</span>)</paper-tab>
+      <paper-tab name="download">Download</paper-tab>
     </paper-tabs>
+    <iron-pages selected="[[_tab]]" class="flex">
+      <div id="elements">
+        <p id="help" hidden$="[[items.length]]">Use the Polymer Catalog cart to
+        build a collection of elements to use in your own projects. Add elements
+        by browsing the catalog, and use the <b>Download</b> tab when you're
+        ready to use them in your project.</p>
+
+        <template is="dom-repeat" items="[[items]]">
+          <cart-item>[[item]]</cart-item>
+        </template>
+      </div>
+      <div id="download">
+        Download
+      </div>
+    </iron-pages>
   </template>
 </dom-module>
 
@@ -45,8 +63,19 @@ Polymer({
   properties: {
     items: {
       type: Array,
-      notify: true
+      notify: true,
+      value: function() { return []; }
+    },
+    _tab: {
+      type: Number,
+      value: 0
     }
+  },
+  close: function() {
+    this.fire('cart-close');
+  },
+  add: function(item) {
+    this.push('items',item);
   }
 });
 </script>
