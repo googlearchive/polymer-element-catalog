@@ -1,6 +1,6 @@
 :host {
   display: block;
-  width: 220px;
+  width: 480px;
   margin: 0 20px 20px 0;
 }
 
@@ -20,8 +20,8 @@ h3 {
 }
 
 img {
-  width: 220px;
-  height: 130px;
+  width: 480px;
+  height: 220px;
   background: #673AB7;
   border: 0;
 }

@@ -5,6 +5,7 @@
 
 <link rel="import" href="../app-styles/app-styles.html">
 <link rel="import" href="../app-logo/app-logo.html">
+<link rel="import" href="../app-cart/app-cart.html">
 <link rel="import" href="../app-bar/app-bar.html">
 <link rel="import" href="../app-sidebar/app-sidebar.html">
 
@@ -16,16 +17,19 @@
 
 <dom-module id="app-shell">
   <template>
-    <app-router id="router" class="flex" mode="pushstate">
-      <app-route path="/" element="page-packages" bindRouter></app-route>
-      <app-route path="/browse" element="page-browse" bindRouter onUrlChange="updateModel"></app-route>
-      <app-route path="/elements/:element/:view" element="page-element" bindRouter onUrlChange="updateModel"></app-route>
-      <app-route path="/guides" element="page-guides" bindRouter></app-route>
-      <app-route path="/guides/*" element="page-guide" bindRouter onUrlChange="updateModel"></app-route>
-      <app-route path="*">
-        <template><h1>Not Found</h1></template>
-      </app-route>
-    </app-router>
+    <paper-drawer-panel class="flex" force-narrow right-drawer drawer-width="320px">
+      <app-router id="router" class="flex" mode="pushstate" main>
+        <app-route path="/" element="page-packages" bindRouter></app-route>
+        <app-route path="/browse" element="page-browse" bindRouter onUrlChange="updateModel"></app-route>
+        <app-route path="/elements/:element/:view" element="page-element" bindRouter onUrlChange="updateModel"></app-route>
+        <app-route path="/guides" element="page-guides" bindRouter></app-route>
+        <app-route path="/guides/*" element="page-guide" bindRouter onUrlChange="updateModel"></app-route>
+        <app-route path="*">
+          <template><h1>Not Found</h1></template>
+        </app-route>
+      </app-router>
+      <app-cart drawer></app-cart>
+    </paper-drawer-panel>
   </template>
 </dom-module>
 

@@ -136,6 +136,7 @@
       },
 
       filter: function(element) {
+        console.log("filtering",element);
         if (this.q && this.q.length && element.name.indexOf(this.q) < 0) {
           return false;
         }
@@ -225,9 +226,10 @@
           _lastNavigated = qs;
          this.router.go("/browse" + (qs.length ? "?" + qs : ""), {replace: true});
         }
-        // HACK: Why does this require a manual render?
+
         this.async(function() {
-          this.$['el-repeat'].render();
+          this.$['el-card-repeat']._render();
+          this.$['el-repeat']._render();
         });
         this.updateMeta();
       },

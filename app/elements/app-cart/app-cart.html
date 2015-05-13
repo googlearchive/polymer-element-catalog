@@ -1,0 +1,52 @@
+<link rel="import" href="../../bower_components/paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tab.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+
+<dom-module id="app-cart">
+  <style>
+    :host {
+      background: white;
+      @apply(--layout-fit);
+      @apply(--layout);
+      @apply(--layout-vertical);
+    }
+
+    #tabs {
+      --accent-color: #E91E63;
+    }
+    
+    #toolbar {
+      color: #666;
+    }
+    
+    #toolbar-title {
+      margin-left: 15px;
+    }
+  </style>
+  <template>
+    <paper-toolbar id="toolbar">
+      <iron-icon icon="shopping-cart"></iron-icon>
+      <span id="toolbar-title" class="flex">Cart</span>
+      <iron-icon icon="chevron-right"></iron-icon>
+    </paper-toolbar>
+    <paper-tabs id="tabs">
+      <paper-tab>Elements</paper-tab>
+      <paper-tab>Download</paper-tab>
+    </paper-tabs>
+  </template>
+</dom-module>
+
+<script>
+Polymer({
+  is: 'app-cart',
+  enableCustomStyleProperties: true,
+  properties: {
+    items: {
+      type: Array,
+      notify: true
+    }
+  }
+});
+</script>

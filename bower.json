@@ -43,8 +43,9 @@
     "iron-doc-viewer": "PolymerElements/iron-doc-viewer#catalog-style"
   },
   "resolutions": {
-    "polymer": "0.9.0-rc.1",
+    "polymer": "0.8-preview",
     "paper-header-panel": "master",
+    "paper-drawer-panel": "0.9.1",
     "paper-behaviors": "master",
     "iron-selector": "^0.9.0",
     "iron-component-page": "catalog-style",

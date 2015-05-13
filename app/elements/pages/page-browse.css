@@ -80,6 +80,7 @@ app-bar .menu-icon {
 
 #element-table .name {
   font-weight: 600;
+  white-space: nowrap;
 }
 
 #element-table .description {
