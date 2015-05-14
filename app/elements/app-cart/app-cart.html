@@ -5,6 +5,8 @@
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 
+<link rel="import" href="../cart-item/cart-item.html">
+
 <dom-module id="app-cart">
   <style>
     :host {
@@ -24,7 +26,7 @@
 
     #help {
       font-size: 16px;
-      line-height: 130%;
+      line-height: 150%;
       padding: 16px;
     }
   </style>
@@ -40,13 +42,13 @@
     </paper-tabs>
     <iron-pages selected="[[_tab]]" class="flex">
       <div id="elements">
-        <p id="help" hidden$="[[items.length]]">Use the Polymer Catalog cart to
+        <p id="help" hidden$="[[hasAny(items)]]">Use the Polymer Catalog cart to
         build a collection of elements to use in your own projects. Add elements
         by browsing the catalog, and use the <b>Download</b> tab when you're
         ready to use them in your project.</p>
 
         <template is="dom-repeat" items="[[items]]">
-          <cart-item>[[item]]</cart-item>
+          <cart-item element="[[item]]"></cart-item>
         </template>
       </div>
       <div id="download">
@@ -76,6 +78,9 @@ Polymer({
   },
   add: function(item) {
     this.push('items',item);
+  },
+  hasAny: function(arr) {
+    return arr && arr.length > 0;
   }
 });
 </script>

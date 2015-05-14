@@ -1,0 +1,25 @@
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+
+<link rel="import" href="../catalog-element/catalog-element.html">
+
+<dom-module id="cart-item">
+  <style>
+    :host {
+      display: block;
+      font-size: 16px;
+      padding: 12px 16px;
+    }
+  </style>
+  <template>
+    <span>[[element]]</span>
+  </template>
+</dom-module>
+
+<script>
+Polymer({
+  is: 'cart-item',
+  properties: {
+    element: String
+  }
+});
+</script>
