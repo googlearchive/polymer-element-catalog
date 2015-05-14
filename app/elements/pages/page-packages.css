@@ -12,6 +12,10 @@ paper-header-panel::shadow #mainContainer {
   margin: 0 auto;
 }
 
+cart-icon {
+  margin-left: 8px;
+}
+
 @media (max-width: 1132px) {
   .packages {
     max-width: 880px;

@@ -23,12 +23,6 @@
     #toolbar-title {
       margin-left: 15px;
     }
-
-    #help {
-      font-size: 16px;
-      line-height: 150%;
-      padding: 16px;
-    }
   </style>
   <template>
     <paper-toolbar id="toolbar">
@@ -42,11 +36,6 @@
     </paper-tabs>
     <iron-pages selected="[[_tab]]" class="flex">
       <div id="elements">
-        <p id="help" hidden$="[[hasAny(items)]]">Use the Polymer Catalog cart to
-        build a collection of elements to use in your own projects. Add elements
-        by browsing the catalog, and use the <b>Download</b> tab when you're
-        ready to use them in your project.</p>
-
         <template is="dom-repeat" items="[[items]]">
           <cart-item element="[[item]]"></cart-item>
         </template>
@@ -78,9 +67,10 @@ Polymer({
   },
   add: function(item) {
     this.push('items',item);
+    this.notifyPath('items.length', this.items.length);
   },
-  hasAny: function(arr) {
-    return arr && arr.length > 0;
+  _hasAny: function(arr) {
+    return arr && (arr > 0);
   }
 });
 </script>

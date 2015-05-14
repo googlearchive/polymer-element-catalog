@@ -1,0 +1,27 @@
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+
+<dom-module id="cart-icon">
+  <style>
+    :host {
+      display: inline-block;
+      line-height: 24px;
+      vertical-align: top;
+      cursor: pointer;
+    }
+  </style>
+  <template>
+    <iron-icon icon="shopping-cart"></iron-icon>
+  </template>
+</dom-module>
+
+<script>
+Polymer({
+  is: 'cart-icon',
+  listeners: {
+    tap: 'openCart'
+  },
+  openCart: function() {
+    this.fire('cart-open');
+  }
+});
+</script>

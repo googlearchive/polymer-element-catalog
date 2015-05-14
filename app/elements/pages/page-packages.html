@@ -3,6 +3,7 @@
 
 <link rel="import" href="../catalog-data/catalog-data.html">
 <link rel="import" href="../package-tile/package-tile.html">
+<link rel="import" href="../cart-icon/cart-icon.html">
 
 <dom-module id="page-packages">
   <link rel="import" type="css" href="page-packages.css">
@@ -16,6 +17,7 @@
           <a href="/guides" is="pushstate-anchor">Guides</a>
         </nav>
         <app-bar class="horizontal layout center end-justified" query="{{q}}"></app-bar>
+        <cart-icon></cart-icon>
       </paper-toolbar>
 
       <div class="content fit">

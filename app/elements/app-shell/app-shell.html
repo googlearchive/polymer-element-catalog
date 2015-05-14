@@ -25,7 +25,7 @@
     }
   </style>
   <template>
-    <paper-drawer-panel id="cartpanel" class="flex" force-narrow right-drawer drawer-width="320px">
+    <paper-drawer-panel id="cartpanel" class="flex" force-narrow right-drawer disable-edge-swipe drawer-width="320px">
       <app-router id="router" class="flex" mode="pushstate" main>
         <app-route path="/" element="page-packages" bindRouter></app-route>
         <app-route path="/browse" element="page-browse" bindRouter onUrlChange="updateModel"></app-route>

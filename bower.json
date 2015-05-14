@@ -63,6 +63,7 @@
     "google-apis": "0.8-preview",
     "google-youtube": "0.8-preview",
     "google-signin": "0.8-preview",
-    "paper-shadow": "0.8-preview"
+    "paper-shadow": "0.8-preview",
+    "webcomponentsjs": "^0.7.0"
   }
 }
