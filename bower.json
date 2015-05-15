@@ -39,16 +39,16 @@
     "marked-element": "PolymerElements/marked-element#^0.9.0",
     "prism-element": "PolymerElements/prism-element#^0.9.0",
     "paper-behaviors": "PolymerElements/paper-behaviors#master",
-    "argon-component-page": "PolymerElements/iron-component-page#catalog-style",
-    "argon-doc-viewer": "PolymerElements/iron-doc-viewer#catalog-style"
+    "iron-component-page": "PolymerElements/iron-component-page#catalog-style",
+    "iron-doc-viewer": "PolymerElements/iron-doc-viewer#catalog-style"
   },
   "resolutions": {
     "paper-header-panel": "master",
     "paper-drawer-panel": "0.9.1",
     "paper-behaviors": "master",
     "iron-selector": "^0.9.0",
-    "argon-component-page": "catalog-style",
-    "argon-doc-viewer": "catalog-style",
+    "iron-component-page": "catalog-style",
+    "iron-doc-viewer": "catalog-style",
     "promise-polyfill": "^0.9.0",
     "iron-flex-layout": "^0.9.1",
     "iron-icon": "^0.9.0",
