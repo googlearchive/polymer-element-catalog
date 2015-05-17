@@ -2,7 +2,7 @@
 
 <dom-module id="catalog-data">
   <template>
-    <iron-ajax id="req" url="/catalog.json" method="get" handle-as="json" on-response="handleResponse"></iron-ajax>
+    <iron-ajax id="req" url="/catalog.json" method="get" handle-as="json" on-response="_handleResponse"></iron-ajax>
   </template>
 </dom-module>
 
@@ -89,8 +89,8 @@
           this._setTags(data.tags);
         }
       },
-      handleResponse: function(_, data) {
-        _setPackageData(data);
+      _handleResponse: function(_, req) {
+        _setPackageData(req.response);
       }
     });
   })();

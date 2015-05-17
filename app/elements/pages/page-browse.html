@@ -1,6 +1,10 @@
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
-<link rel="import" href="../../bower_components/iron-icons/av-icons.html">-->
+<link rel="import" href="../../bower_components/iron-icons/av-icons.html">
+<link rel="import" href="../../bower_components/paper-drawer-panel/paper-drawer-panel.html">
 
+<link rel="import" href="../app-sidebar/app-sidebar.html">
+<link rel="import" href="../app-logo/app-logo.html">
+<link rel="import" href="../app-bar/app-bar.html">
 <link rel="import" href="../catalog-data/catalog-data.html">
 <link rel="import" href="../catalog-package/catalog-package.html">
 <link rel="import" href="../element-card/element-card.html">
@@ -14,8 +18,8 @@
     <catalog-data elements="{{elements}}" packages="{{packages}}"></catalog-data>
     <catalog-package name="[[package]]" data="{{packageInfo}}"></catalog-package>
 
-    <responsive-element class="horizontal layout fit">
-      <app-sidebar>
+    <paper-drawer-panel drawer-width="272px" disable-edge-swipe>
+      <app-sidebar drawer>
         <paper-toolbar>
           <app-logo class="flex"></app-logo>
           <app-bar class="horizontal layout center end-justified" query="{{q}}">
@@ -61,7 +65,7 @@
         </div>
       </app-sidebar>
 
-      <div id="container" class="flex" view$="[[view]]">
+      <div id="container" class="fit" view$="[[view]]" main>
         <div class="elements-title horizontal layout center">
           <h2 class="flex">[[pageTitle]]</h2>
           <iron-icon id="package-view-mode" icon="[[viewIcon]]" on-click="toggleView"></iron-icon>
@@ -96,7 +100,7 @@
           </tbody>
         </table>
       </div>
-    </responsive-element>
+    </paper-drawer-panel>
   </template>
 </dom-module>
 

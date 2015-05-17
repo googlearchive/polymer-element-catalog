@@ -1,6 +1,7 @@
 <link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../../bower_components/paper-item/paper-item.html">
 <link rel="import" href="../../bower_components/paper-styles/paper-styles.html">
+<link rel="import" href="../../bower_components/paper-drawer-panel/paper-drawer-panel.html">
 
 <link rel="import" href="../catalog-guide/catalog-guide.html">
 <link rel="import" href="../catalog-data/catalog-data.html">
@@ -63,42 +64,49 @@
       border: solid #ddd;
       border-width: 1px 0;
     }
+
+    #main > paper-toolbar {
+      --paper-toolbar-background: #ebebeb;
+    }
+
+    #guide-list paper-item{
+      cursor: pointer;
+    }
+
+    [paper-drawer-toggle] {
+      margin: 0 10px;
+      cursor: pointer;
+    }
   </style>
   <template>
     <prism-highlighter></prism-highlighter>
-    
+
     <catalog-data guides="{{guides}}"></catalog-data>
     <catalog-guide name="[[name]]" data="{{guide}}" content="{{content}}"></catalog-guide>
 
-    <responsive-element class="horizontal layout fit">
-      <app-sidebar>
+    <paper-drawer-panel drawer-width="272px" disable-edge-swipe>
+      <app-sidebar drawer>
         <paper-toolbar>
           <app-logo class="flex"></app-logo>
-          <app-bar class="horizontal layout center end-justified">
-            <iron-icon icon="filter-list"></iron-icon>
-          </app-bar>
+          <app-bar class="horizontal layout center end-justified"></app-bar>
         </paper-toolbar>
-        <nav>
+        <nav id="guide-list">
           <template is="dom-repeat" items="[[guides]]">
-            <paper-item name$="[[item.name]]">[[item.title]]</paper-item>
+            <paper-item name$="[[item.name]]" on-tap="nav">[[item.title]]</paper-item>
           </template>
         </nav>
       </app-sidebar>
-      <paper-header-panel mode="waterfall" class="flex vertical layout" id="main">
+      <paper-header-panel mode="waterfall" class="vertical layout fit" id="main" main>
         <paper-toolbar class="paper-header flex-none">
+          <iron-icon icon="menu" paper-drawer-toggle></iron-icon>
           <span class="flex">[[guide.title]]</span>
-          <iron-selector attr-for-selected="view" selected="{{view}}" id="links">
-            <a view="docs"><iron-icon icon="description"></iron-icon> Docs</a>
-            <a view="demo"><iron-icon icon="visibility"></iron-icon> Demo</a>
-          </iron-selector>
-          <iron-icon icon="fullscreen"></iron-icon>
         </paper-toolbar>
 
         <div class="content fit">
           <div id="content"></div>
         </div>
       </paper-header-panel>
-    </responsive-element>
+    </paper-drawer-panel>
   </template>
 </dom-module>
 
@@ -157,6 +165,11 @@
     },
     updateMeta: function() {
       this.fire('page-meta', {title: this.guide.title});
+    },
+    nav: function(e) {
+      if (this.name !== e.currentTarget.name) {
+        this.router.go('/guides/' + e.currentTarget.name);
+      }
     }
   });
 </script>
