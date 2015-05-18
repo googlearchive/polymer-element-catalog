@@ -1,0 +1,41 @@
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+
+<dom-module id="element-action-menu">
+  <style>
+    :host {
+      display: block;
+      position: relative;
+      text-align: center;
+    }
+
+    iron-icon {
+      margin-right: 5px;
+    }
+  </style>
+  <template>
+    <div class="horizontal layout center center-justified fit">
+      <a on-tap="cartAdd" class="horizontal layout center center-justified flex"><iron-icon icon="add-shopping-cart"></iron-icon><span>Add</span></a>
+      <a on-tap="nav" view="docs" class="horizontal layout center center-justified flex"><iron-icon icon="description"></iron-icon><span>Docs</span></a>
+      <a on-tap="nav" view="demo" class="horizontal layout center center-justified flex"><iron-icon icon="visibility"></iron-icon><span>Demo</span></a>
+    </div>
+  </template>
+</dom-module>
+
+<script>
+Polymer({
+  is: 'element-action-menu',
+  properties: {
+    element: String
+  },
+  cartAdd: function(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    this.fire('cart-add', this.element);
+  },
+  nav: function(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    this.fire('nav', {url: '/elements/' + this.element + '/' + e.currentTarget.getAttribute('view')});
+  }
+});
+</script>

@@ -3,6 +3,7 @@
 <link rel="import" href="../catalog-element/catalog-element.html">
 <link rel="import" href="../catalog-package/catalog-package.html">
 <link rel="import" href="../package-symbol/package-symbol.html">
+<link rel="import" href="../element-action-menu/element-action-menu.html">
 
 <dom-module id="element-card">
   <link rel="import" type="css" href="element-card.css">
@@ -14,10 +15,7 @@
       <theme-color color="[[package.color]]">
         <div id="el" on-click="nav" target$="[[_element.name]]" view="docs">
           <div id="el-graphic" themed>
-            <div id="el-menu" class="horizontal layout center">
-              <a on-click="nav" target$="[[_element.name]]" view="docs" class="horizontal layout center flex"><iron-icon icon="description"></iron-icon><span>Docs</span></a>
-              <a on-click="nav" target$="[[_element.name]]" view="demo" class="horizontal layout center flex"><iron-icon icon="visibility"></iron-icon><span>Demo</span></a>
-            </div>
+            <element-action-menu element="[[element]]"></element-action-menu>
           </div>
           <h3>[[_element.name]]</h3>
         </div>
@@ -53,13 +51,6 @@ Polymer({
   ],
   _updatePackage: function() {
     this.package = this.querySelector('catalog-package').data;
-  },
-  nav: function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    var el = e.currentTarget.getAttribute('target');
-    var view = e.currentTarget.getAttribute('view') || 'docs';
-    this.fire('nav', { url: '/elements/' + el + '/' + view });
   }
 });
 </script>

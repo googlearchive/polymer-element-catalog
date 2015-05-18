@@ -60,6 +60,30 @@ app-bar .menu-icon {
 
 #element-table tbody tr {
   cursor: pointer;
+  overflow: hidden;
+}
+
+#element-table element-action-menu {
+  transition: transform 0.2s;
+  transform: translateY(100%);
+  background: #E91E63;
+  color: white;
+}
+
+#element-table .description {
+  overflow: hidden;
+}
+
+#element-table element-action-menu::shadow a {
+  color: rgba(255,255,255,0.85);
+}
+
+#element-table element-action-menu::shadow a:hover {
+  color: white;
+}
+
+#element-table tbody tr:hover element-action-menu {
+  transform: translateY(0);
 }
 
 #element-table tbody tr:hover {

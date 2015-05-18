@@ -4,8 +4,12 @@
 <link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/paper-radio-group/paper-radio-group.html">
+<link rel="import" href="../../bower_components/paper-radio-button/paper-radio-button.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
 
 <link rel="import" href="../cart-item/cart-item.html">
+<link rel="import" href="../catalog-element/catalog-element.html">
 
 <dom-module id="app-cart">
   <style>
@@ -22,6 +26,27 @@
 
     #toolbar-title {
       margin-left: 15px;
+    }
+
+    #download {
+      padding: 16px;
+    }
+
+    #dl code {
+      font-weight: bold;
+      color: #3f51b5;
+    }
+
+    #download h4 {
+      font-size: 14px;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    #download paper-button {
+      background: #D81B60;
+      color: white;
+      margin-top: 10px;
     }
   </style>
   <template>
@@ -41,7 +66,20 @@
         </template>
       </div>
       <div id="download">
-        Download
+        <h4>Download Options</h4>
+
+        <paper-radio-group selected="{{downloadMethod}}" id="dl">
+          <paper-radio-button name="bower">
+            <code>bower.json</code> - just the bower.json file, from which
+            you can run bower install to fetch your elements
+          </paper-radio-button>
+          <paper-radio-button name="elements">
+            <code>elements folder</code> - the full source for the latest
+            version of all your selected elements
+          </paper-radio-button>
+        </paper-radio-group>
+
+        <paper-button>Download</paper-button>
       </div>
     </iron-pages>
   </template>
@@ -57,6 +95,10 @@ Polymer({
       notify: true,
       value: function() { return []; }
     },
+    downloadMethod: {
+      type: String,
+      value: 'bower'
+    },
     _tab: {
       type: Number,
       value: 0
@@ -66,11 +108,24 @@ Polymer({
     this.fire('cart-close');
   },
   add: function(item) {
-    this.push('items',item);
-    this.notifyPath('items.length', this.items.length);
+    if (this.includes(item)) {
+      this.fire('toast', {text: "Element " + item + " is already in cart"});
+    } else {
+      var el = document.createElement('catalog-element');
+      el.name = item;
+      this.push('items',el.data);
+      this.notifyPath('items.length', this.items.length);
+      this.fire('toast', {text: "Element " + item + " has been added to the cart"});
+    }
   },
   _hasAny: function(arr) {
     return arr && (arr > 0);
+  },
+  includes: function(el) {
+    for (var i = 0; i < this.items.length; i++) {
+      if (this.items[i].name === el) return true;
+    }
+    return false;
   }
 });
 </script>
