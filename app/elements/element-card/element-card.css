@@ -57,10 +57,11 @@ p {
   border-bottom: 0;
 }
 
-#el-menu {
+element-action-menu {
   position: absolute;
   width: 100%;
   bottom: 0;
+  height: 46px;
   padding: 10px 16px;
   background: rgba(0,0,0,.1);
   box-sizing: border-box;
@@ -70,20 +71,7 @@ p {
   visibility: hidden;
 }
 
-#el-menu a {
-  display: block;
-  text-align: center;
-}
-
-#el-menu a:hover {
-  color: #fff;
-}
-
-#el-menu iron-icon {
-  margin: -2px 8px 0 0;
-}
-
-#el-graphic:hover #el-menu {
+#el-graphic:hover element-action-menu {
   visibility: visible;
   transform: translate(0, 0);
   opacity: 1;

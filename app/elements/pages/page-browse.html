@@ -69,7 +69,8 @@
       <div id="container" class="fit" view$="[[view]]" main>
         <div class="elements-title horizontal layout center">
           <h2 class="flex">[[pageTitle]]</h2>
-          <iron-icon id="package-view-mode" icon="[[viewIcon]]" on-click="toggleView"></iron-icon>
+          <iron-icon id="package-view-mode" icon="[[viewIcon]]" on-tap="toggleView"></iron-icon>
+          <iron-icon id="cart-toggle" icon="shopping-cart" on-tap="cartOpen"></iron-icon>
         </div>
 
         <div id="element-cards" class="horizontal layout wrap">
@@ -270,6 +271,9 @@
       arrayParam: function(param) {
         if (!param || !param.length) { return []; }
         return param.toString().split(',');
+      },
+      cartOpen: function(e) {
+        this.fire('cart-open');
       }
     });
   })();

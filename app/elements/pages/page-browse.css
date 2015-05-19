@@ -31,6 +31,7 @@ app-bar .menu-icon {
 .elements-title iron-icon {
   cursor: pointer;
   color: var(--primary-text-color);
+  margin-left: 10px;
 }
 
 #element-cards, #element-table {

@@ -18,13 +18,13 @@
 
 <dom-module id="app-shell">
   <style>
-    #cartpanel::shadow #scrim {
-      z-index: 3;
-    }
-    #cartpanel::shadow #drawer {
+    #cartpanel::shadow > #scrim {
       z-index: 4;
     }
-    
+    #cartpanel::shadow > #drawer {
+      z-index: 5;
+    }
+
     paper-toast {
       z-index: 5;
     }
