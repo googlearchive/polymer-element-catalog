@@ -74,7 +74,7 @@
         </div>
 
         <div id="element-cards" class="horizontal layout wrap">
-          <template id="el-card-repeat" is="dom-repeat" items="[[elements]]" filter="filter">
+          <template id="element-cards-repeat" is="dom-repeat" items="[[elements]]" filter="filter">
             <element-card element="[[item.name]]"></element-card>
           </template>
         </div>
@@ -88,7 +88,7 @@
             </tr>
           </thead>
           <tbody>
-            <template id="el-repeat" is="dom-repeat" items="[[elements]]" filter="filter">
+            <template id="element-table-repeat" is="dom-repeat" items="[[elements]]" filter="filter">
               <tr on-tap="nav" target$="[[item.name]]">
                 <td class="name" width="100">[[item.name]]</td>
                 <td class="description relative">
@@ -235,11 +235,11 @@
          this.router.go("/browse" + (qs.length ? "?" + qs : ""), {replace: true});
         }
 
-        this.async(function() {
-          this.$['el-card-repeat']._render();
-          this.$['el-repeat']._render();
-        });
+        this.renderView();
         this.updateMeta();
+      },
+      renderView: function() {
+        this.$['element-' + this.view + '-repeat'].render();
       },
       updateMeta: function(packageInfo) {
         if (this.q && this.q.length) {
@@ -260,6 +260,7 @@
         } else {
           this.view = 'table';
         }
+        this.renderView();
       },
       computeViewIcon: function(view) {
         if (view === 'table') {
