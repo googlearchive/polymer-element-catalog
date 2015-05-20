@@ -16,7 +16,7 @@
     :host(:hover) iron-icon {
       opacity: 0.85;
     }
-    
+
     iron-icon:hover {
       opacity: 1.0;
     }
@@ -32,9 +32,9 @@
   </style>
   <template>
     <span class="flex">[[element.name]]</span>
-    <iron-icon icon="description"></iron-icon>
-    <iron-icon icon="visibility"></iron-icon>
-    <iron-icon icon="clear"></iron-icon>
+    <iron-icon icon="description" view="docs" on-tap="_nav"></iron-icon>
+    <iron-icon icon="visibility" view="demo" on-tap="_nav"></iron-icon>
+    <iron-icon icon="clear" on-tap="_remove"></iron-icon>
   </template>
 </dom-module>
 
@@ -43,6 +43,13 @@ Polymer({
   is: 'cart-item',
   properties: {
     element: String
+  },
+  _remove: function() {
+    this.fire('remove');
+  },
+  _nav: function(e) {
+    var view = e.currentTarget.getAttribute('view');
+    this.fire('nav', {url: '/elements/' + this.element.name + '/' + view});
   }
 });
 </script>

@@ -62,7 +62,7 @@
     <iron-pages selected="[[_tab]]" class="flex">
       <div id="elements">
         <template is="dom-repeat" items="[[items]]">
-          <cart-item element="[[item]]"></cart-item>
+          <cart-item element="[[item]]" on-remove="_handleRemove"></cart-item>
         </template>
       </div>
       <div id="download">
@@ -79,7 +79,7 @@
           </paper-radio-button>
         </paper-radio-group>
 
-        <paper-button>Download</paper-button>
+        <paper-button on-tap="download">Download</paper-button>
       </div>
     </iron-pages>
   </template>
@@ -107,25 +107,65 @@ Polymer({
   close: function() {
     this.fire('cart-close');
   },
-  add: function(item) {
-    if (this.includes(item)) {
-      this.fire('toast', {text: "Element " + item + " is already in cart"});
+  add: function(name) {
+    if (this.includes(name)) {
+      this.fire('toast', {text: "Element " + name + " is already in cart"});
     } else {
       var el = document.createElement('catalog-element');
-      el.name = item;
+      el.name = name;
       this.push('items',el.data);
       this.notifyPath('items.length', this.items.length);
-      this.fire('toast', {text: "Element " + item + " has been added to the cart"});
+      this.fire('toast', {text: "Element " + name + " has been added to the cart"});
+    }
+  },
+  remove: function(name) {
+    for (var i = 0; i < this.items.length; i++) {
+      if (this.items[i].name === name) {
+        this._removeItem(this.items[i]);
+      }
     }
   },
   _hasAny: function(arr) {
     return arr && (arr > 0);
+  },
+  _handleRemove: function(e) {
+    this._removeItem(e.currentTarget.element);
+  },
+  _removeItem: function(item) {
+    this.splice('items',this.items.indexOf(item), 1);
+    this.notifyPath('items.length', this.items.length);
   },
   includes: function(el) {
     for (var i = 0; i < this.items.length; i++) {
       if (this.items[i].name === el) return true;
     }
     return false;
+  },
+  _itemsAsDependencies: function() {
+    var out = {};
+    this.items.forEach(function(item) {
+      out[item.name] = "PolymerElements/" + item.name + "#^" + item.version;
+    });
+    return out;
+  },
+  bowerString: function() {
+    return JSON.stringify({
+      dependencies: this._itemsAsDependencies()
+    }, null, 2);
+  },
+  download: function() {
+    switch (this.downloadMethod) {
+      case 'bower':
+        var blob = new Blob([this.bowerString()], {type: 'application/json'});
+        var url = URL.createObjectURL(blob);
+        var link = document.createElement('a');
+        link.href = url;
+        link.download = 'bower.json';
+        link.click();
+        break;
+      case 'elements':
+        break;
+    }
   }
 });
 </script>
