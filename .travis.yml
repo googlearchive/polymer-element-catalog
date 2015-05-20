@@ -2,21 +2,16 @@ language: node_js
 sudo: false
 node_js:
 - 0.12
+before_install:
+- openssl aes-256-cbc -K $encrypted_430815991462_key -iv $encrypted_430815991462_iv
+  -in .firebaserc.enc -out $HOME/.firebaserc -d
 install:
 - npm install
-- ./node_modules/.bin/bower update
+- "./node_modules/.bin/bower update"
 script: npm run build
 cache:
   directories:
   - node_modules
   - bower_components
-deploy:
-  provider: divshot
-  api_key:
-    secure: DhmsBV5fCdcX4d7bVh9iPaWdHCnBLdHWvS4BEi4LA5ynvffsPjLrUx7HVBEs2UPg1nK8Upy/UyzAFJ/eqZq/0T4i4lW1bC1hZIdYqDOw1gtQPYFBvSi5odLbKQH1eQhsI8hUVW9tJgXm8x82YQecz9b/NmLDab7GaI4KX3l3RcA=
-  environment: development
-  on:
-    repo: divshot/polymer-element-catalog
-    branch: master
-  skip_cleanup: true
-  edge: true
+after_success:
+- "./node_modules/.bin/firebase deploy"
