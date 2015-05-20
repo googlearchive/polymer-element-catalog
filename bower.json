@@ -20,7 +20,7 @@
     "paper-elements": "PolymerElements/paper-elements#master",
     "gold-elements": "PolymerElements/gold-elements#master",
     "google-web-components": "GoogleWebComponents/google-web-components#master",
-    "polymer": "Polymer/polymer#^0.9.0",
+    "polymer": "Polymer/polymer#master",
     "app-router": "~2.6.0",
     "pushstate-anchor": "~0.3.0",
     "color": "~2.5.0",
@@ -43,20 +43,14 @@
   },
   "resolutions": {
     "iron-flex-layout": "^0.9.1",
-    "polymer": "0.9.0",
+    "polymer": "master",
     "iron-icons": "^0.9.0",
-    "promise-polyfill": "^0.9.0",
     "webcomponentsjs": "^0.7.0",
     "paper-ripple": "^0.9.0",
     "iron-icon": "^0.9.0",
     "iron-iconset-svg": "^0.9.0",
     "iron-meta": "^0.9.0",
     "iron-signals": "^0.9.0",
-    "paper-button": "^0.9.0",
-    "google-apis": "0.8-preview",
-    "google-youtube": "0.8-preview",
-    "google-signin": "0.8-preview",
-    "paper-shadow": "0.8-preview",
     "iron-ajax": "^0.9.4"
   }
 }
