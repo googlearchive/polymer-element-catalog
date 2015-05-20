@@ -148,22 +148,33 @@ Polymer({
     });
     return out;
   },
+  _itemsAsQueryString: function() {
+    return this.items.map(function(item) {
+      return item.name + "=" + encodeURIComponent("PolymerElements/" + item.name + "#" + item.version);
+    }).join("&");
+  },
   bowerString: function() {
     return JSON.stringify({
       dependencies: this._itemsAsDependencies()
     }, null, 2);
   },
+  zipUrl: function() {
+    return "http://bowerarchiver.appspot.com/archive?" + this._itemsAsQueryString();
+  },
   download: function() {
+    var link = document.createElement('a');
     switch (this.downloadMethod) {
       case 'bower':
         var blob = new Blob([this.bowerString()], {type: 'application/json'});
         var url = URL.createObjectURL(blob);
-        var link = document.createElement('a');
         link.href = url;
         link.download = 'bower.json';
         link.click();
         break;
       case 'elements':
+        link.href = this.zipUrl();
+        link.download = 'elements.zip';
+        link.click();
         break;
     }
   }
