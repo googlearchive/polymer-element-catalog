@@ -14,4 +14,4 @@ cache:
   - node_modules
   - bower_components
 after_success:
-- "./node_modules/.bin/firebase deploy"
+- "./scripts/travis_deploy"

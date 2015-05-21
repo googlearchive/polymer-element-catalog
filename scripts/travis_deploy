@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+if [[ "${TRAVIS_PULL_REQUEST}" == "false" ]] && [[ "${TRAVIS_TAG}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+  echo "Deploying release $TRAVIS_TAG to production Firebase..."
+  ./node_modules/.bin/firebase deploy
+  exit
+fi
+
+if [[ "${TRAVIS_PULL_REQUEST}" == "false" ]] && [[ "${TRAVIS_BRANCH}" == "master" ]]; then
+  echo "Deploying to staging Firebase..."
+  ./node_modules/.bin/firebase deploy -f p-catalog-staging
+  exit
+fi
