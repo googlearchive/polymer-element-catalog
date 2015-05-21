@@ -53,6 +53,8 @@ module.exports = function (imports) {
           cb(err, {
             name: elementName,
             version: details._release,
+            source: details._originalSource,
+            target: details._target,
             package: package.name,
             description: details.description,
             tags: details.keywords || []

@@ -144,13 +144,13 @@ Polymer({
   _itemsAsDependencies: function() {
     var out = {};
     this.items.forEach(function(item) {
-      out[item.name] = "PolymerElements/" + item.name + "#^" + item.version;
+      out[item.name] = item.source + "#" + item.target;
     });
     return out;
   },
   _itemsAsQueryString: function() {
     return this.items.map(function(item) {
-      return item.name + "=" + encodeURIComponent("PolymerElements/" + item.name + "#" + item.version);
+      return item.name + "=" + encodeURIComponent(item.source + "#" + item.target);
     }).join("&");
   },
   bowerString: function() {
