@@ -91,6 +91,7 @@ element-action-menu {
   margin: 0 15px 0 0;
   padding: 5px;
   color: var(--secondary-text-color);
+  --iron-icon-size: 18px;
 }
 
 #el-tags tag-link {
