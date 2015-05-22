@@ -3,6 +3,7 @@
   width: calc(33% - 20px);
   min-width: 220px;
   margin: 10px;
+  cursor: pointer;
 }
 
 #content {

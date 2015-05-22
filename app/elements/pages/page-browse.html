@@ -158,6 +158,9 @@
         'updateURL(q,package,tag,view,elements)',
         'updateMeta(packageInfo)'
       ],
+      listeners: {
+        'update-params': '_handleParamsUpdate'
+      },
 
       attached: function() {
         this.updateMeta();
@@ -236,6 +239,11 @@
         if (this.view !== 'table') out.push("view=" + this.view);
 
         return out.join("&");
+      },
+      _handleParamsUpdate: function(_, params) {
+        for (var key in params) {
+          this[key] = params[key];
+        }
       },
       updateSearch: function() {
         var params = this._parseQueryString();

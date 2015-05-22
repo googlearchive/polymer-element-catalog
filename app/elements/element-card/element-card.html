@@ -1,3 +1,5 @@
+<link rel="import" href="../../bower_components/iron-icons/maps-icons.html">
+
 <link rel="import" href="../../bower_components/paper-material/paper-material.html">
 
 <link rel="import" href="../catalog-element/catalog-element.html">
@@ -15,20 +17,20 @@
       <theme-color color="[[package.color]]">
         <div id="el" on-click="nav" target$="[[_element.name]]" view="docs">
           <div id="el-graphic" themed>
-            <element-action-menu element="[[element]]"></element-action-menu>
+            <element-action-menu element="[[element]]" id="actions"></element-action-menu>
           </div>
           <h3>[[_element.name]]</h3>
         </div>
         <p id="el-desc">[[_element.description]]</p>
-        <div id="el-package" class="horizontal layout center meta">
+        <div id="el-package" class="horizontal layout center meta" on-tap="_packageClicked">
           <package-symbol package="[[package]]"></package-symbol>
           <span>[[package.title]]</span>
         </div>
         <div id="el-tags" class="horizontal layout center meta">
-          <iron-icon icon="loyalty" class="flex-none"></iron-icon>
+          <iron-icon icon="maps:local-offer" class="flex-none"></iron-icon>
           <span class="horizontal layout wrap flex">
             <template is="dom-repeat" items="[[_element.tags]]">
-              <tag-link name="[[item]]" on-click="updateTag"></tag-link>
+              <tag-link name="[[item]]" on-tap="_tagClicked"></tag-link>
             </template>
           </span>
         </div>
@@ -46,11 +48,29 @@ Polymer({
     _element: Object,
     package: Object
   },
+  listeners: {
+    tap: 'nav'
+  },
   observers: [
     '_updatePackage(_element)'
   ],
+  _packageClicked: function(e) {
+    e.stopPropagation();
+    this.fire('update-params', {package: this.package.name});
+  },
+  _tagClicked: function(e) {
+    e.stopPropagation();
+    this.fire('update-params', {tag: e.currentTarget.name});
+  },
   _updatePackage: function() {
     this.package = this.querySelector('catalog-package').data;
+  },
+  nav: function(e) {
+    if (Polymer.dom(e).localTarget === this.$.actions) {
+      return true;
+    } else {
+      this.fire('nav', {url: '/elements/' + this.element + '/docs'});
+    }
   }
 });
 </script>
