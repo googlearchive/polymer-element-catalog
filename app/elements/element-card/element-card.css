@@ -4,6 +4,11 @@
   min-width: 220px;
   margin: 10px;
   cursor: pointer;
+  transition: box-shadow 0.1s;
+}
+
+:host(:hover) {
+  @apply(--shadow-elevation-2dp);
 }
 
 #content {
@@ -34,6 +39,7 @@ p {
   background: #ccc;
   border-radius: 3px 3px 0 0;
   overflow: hidden;
+  border-bottom: 1px solid #e5e5e5;
 }
 
 #el-package package-symbol {
