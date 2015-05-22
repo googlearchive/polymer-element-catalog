@@ -1,6 +1,5 @@
 :host {
   height: 100%;
-  background: var(--app-sidebar-background);
   box-shadow: 0 0 8px rgba(0,0,0,0.4);
   box-sizing: border-box;
   z-index: 2;
@@ -8,37 +7,42 @@
   @apply(--layout-fit);
 }
 
-:host ::content .content {
+::content paper-toolbar {
+  --paper-toolbar-background: white;
+}
+
+::content .content {
   height: calc(100% - 64px);
 }
 
-:host ::content .section {
+::content .section {
   margin-bottom: 20px;
   opacity: 0;
   transform: translate(0, 100px);
   transition: var(--material-curve-320);
 }
 
-:host ::content .section:first-child { transition-delay: 100ms; }
-:host ::content .section:nth-child(2) { transition-delay: 200ms; }
-:host ::content .section:nth-child(3) { transition-delay: 300ms; }
-:host ::content .section:nth-child(4) { transition-delay: 400ms; }
+::content .section:first-child { transition-delay: 100ms; }
+::content .section:nth-child(2) { transition-delay: 200ms; }
+::content .section:nth-child(3) { transition-delay: 300ms; }
+::content .section:nth-child(4) { transition-delay: 400ms; }
 
-:host ::content .active .section {
+::content .active .section {
   transform: translate(0, 0);
   opacity: 1;
 }
 
-:host ::content .section h5 {
+::content .section h5 {
   @apply(--paper-font-body2);
   border-top: 1px solid;
   border-top-color: var(--divider-color);
-  margin: 30px 0 20px;
-  padding: 20px 16px 0 16px;
+  margin: 24px 0 0 0;
+  padding: 16px 24px 12px 24px;
 }
 
-:host ::content .section p {
+::content .section p {
   @apply(--paper-font-body1);
   color: var(--secondary-text-color);
-  padding: 0 16px;
+  padding: 0 24px;
+  margin: 0;
 }

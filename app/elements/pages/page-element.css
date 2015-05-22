@@ -8,7 +8,7 @@ responsive-element[size=xs].layout {
 }
 
 app-sidebar paper-toolbar {
-  --paper-toolbar-background: #fafafa;
+  --paper-toolbar-background: white;
   --paper-toolbar: {
     border-bottom: 1px solid;
     border-bottom-color: var(--divider-color);
@@ -24,6 +24,10 @@ package-symbol {
   display: inline-block;
   margin: 0 0 20px;
   cursor: pointer;
+}
+
+#element-header {
+  padding: 16px 24px 0 24px;
 }
 
 #element-desc p {

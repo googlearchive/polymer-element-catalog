@@ -2,15 +2,13 @@
   display: block;
   width: calc(33% - 20px);
   min-width: 220px;
-  margin: 0 20px 20px 0;
+  margin: 10px;
 }
 
-paper-material {
+#content {
   background: white;
   border-radius: 3px;
-  --shadow-elevation-1: {
-    box-shadow: none;
-  }
+  border: 1px solid #e5e5e5;
 }
 
 h3 {
@@ -95,6 +93,15 @@ element-action-menu {
   color: var(--secondary-text-color);
 }
 
-#el-tags tag-link:last-of-type + span {
-  display: none;
+#el-tags tag-link {
+  margin-right: 4px;
+}
+
+#el-tags tag-link:after {
+  margin-left: -3px;
+  content: ",";
+}
+
+#el-tags tag-link:last-of-type:after {
+  content: "";
 }

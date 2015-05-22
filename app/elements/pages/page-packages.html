@@ -3,19 +3,16 @@
 
 <link rel="import" href="../catalog-data/catalog-data.html">
 <link rel="import" href="../package-tile/package-tile.html">
+<link rel="import" href="../guide-card/guide-card.html">
 <link rel="import" href="../cart-icon/cart-icon.html">
 
 <dom-module id="page-packages">
   <link rel="import" type="css" href="page-packages.css">
   <template>
-    <catalog-data packages="{{packages}}"></catalog-data>
-    <paper-header-panel class="fit">
-      <paper-toolbar class="paper-header medium-tall">
+    <catalog-data packages="{{packages}}" guides="{{guides}}"></catalog-data>
+    <paper-header-panel mode="seamed" class="fit">
+      <paper-toolbar class="paper-header">
         <app-logo full class="flex"></app-logo>
-        <nav class="flex bottom">
-          <a class="active" href="/" is="pushstate-anchor">Elements</a>
-          <a href="/guides" is="pushstate-anchor">Guides</a>
-        </nav>
         <app-bar class="horizontal layout center end-justified" query="{{q}}"></app-bar>
         <cart-icon></cart-icon>
       </paper-toolbar>
@@ -23,7 +20,13 @@
       <div class="content fit">
         <div class="packages layout horizontal wrap">
           <template is="dom-repeat" items="[[packages]]">
-            <package-tile class="flex-none" name$="[[item.name]]" on-click="select"></package-tile>
+            <package-tile class="flex-none" name$="[[item.name]]" on-tap="select"></package-tile>
+          </template>
+        </div>
+
+        <div id="guide-list" class="horizontal layout wrap">
+          <template is="dom-repeat" items="[[guides]]">
+            <guide-card guide="[[item.name]]" on-tap="guideSelect"></guide-card>
           </template>
         </div>
       </div>
@@ -52,6 +55,9 @@
     },
     select: function(e) {
       this.router.go('/browse?package=' + e.currentTarget.getAttribute('name'));
+    },
+    guideSelect: function(e) {
+      this.router.go('/guides/' + e.currentTarget.guide);
     }
   });
 </script>

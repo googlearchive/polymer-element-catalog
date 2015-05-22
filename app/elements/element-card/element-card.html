@@ -11,7 +11,7 @@
     <catalog-element name="[[element]]" data="{{_element}}"></catalog-element>
     <catalog-package name="[[_element.package]]" data="{{package}}"></catalog-package>
 
-    <paper-material class="vertical layout">
+    <div id="content" class="vertical layout">
       <theme-color color="[[package.color]]">
         <div id="el" on-click="nav" target$="[[_element.name]]" view="docs">
           <div id="el-graphic" themed>
@@ -25,15 +25,15 @@
           <span>[[package.title]]</span>
         </div>
         <div id="el-tags" class="horizontal layout center meta">
-          <iron-icon icon="loyalty"></iron-icon>
-          <span>
+          <iron-icon icon="loyalty" class="flex-none"></iron-icon>
+          <span class="horizontal layout wrap flex">
             <template is="dom-repeat" items="[[_element.tags]]">
-              <tag-link name="[[item]]" on-click="updateTag"></tag-link><span>,</span>
+              <tag-link name="[[item]]" on-click="updateTag"></tag-link>
             </template>
           </span>
         </div>
       </theme-color>
-    </paper-material>
+    </div>
   </template>
 </dom-module>
 

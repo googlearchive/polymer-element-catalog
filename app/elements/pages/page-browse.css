@@ -1,5 +1,5 @@
 :host {
-  background: var(--secondary-background-color);
+  background: #fafafa;
 }
 
 a {
@@ -8,47 +8,52 @@ a {
 }
 
 #container {
-  background: var(--secondary-background-color);
+  background: #fafafa;
 }
 
 app-bar .menu-icon {
   margin-right: 15px;
 }
 
-.elements-title {
-  width: 80%;
-  max-width: 920px;
-  margin: 0 auto;
-  padding: 2px 0;
-  box-sizing: border-box;
-}
-
 .elements-title h2 {
   @apply(--paper-font-title);
-  color: var(--primary-text-color);
+  color: #616161;
 }
 
 .elements-title iron-icon {
   cursor: pointer;
-  color: var(--primary-text-color);
-  margin-left: 10px;
+  margin-left: 16px;
 }
 
-#element-cards, #element-table {
-  width: 80%;
+#element-cards, #element-table, .elements-title {
+  width: 100%;
   max-width: 920px;
   margin: 10px auto;
-  box-sizing: border-box;
 }
 
 #element-table {
   border-collapse: collapse;
   background: white;
   border-radius: 3px;
+  border: 1px solid #e5e5e5;
+}
+
+#element-table thead th {
+  padding: 0 24px;
+  line-height: 56px;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.54);
 }
 
 #element-table td, #element-table th {
-  padding: 20px 16px;
+  padding: 12px 24px;
+}
+
+#element-table td.tags {
+  font-size: 11px;
+  line-height: 16px;
+  font-weight: 400;
 }
 
 #element-table th {
@@ -62,17 +67,27 @@ app-bar .menu-icon {
 #element-table tbody tr {
   cursor: pointer;
   overflow: hidden;
+  height: 48px;
+}
+
+#element-table tbody tr:first-child {
+  margin-top: 8px;
 }
 
 #element-table element-action-menu {
-  transition: transform 0.2s;
-  transform: translateY(100%);
-  background: #E91E63;
   color: white;
+  background: #999;
+  display: none;
 }
 
 #element-table .description {
   overflow: hidden;
+  color: #606060;
+  width: 125px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 400px;
 }
 
 #element-table element-action-menu::shadow a {
@@ -84,7 +99,7 @@ app-bar .menu-icon {
 }
 
 #element-table tbody tr:hover element-action-menu {
-  transform: translateY(0);
+  display: flex;
 }
 
 #element-table tbody tr:hover {
@@ -104,8 +119,9 @@ app-bar .menu-icon {
 }
 
 #element-table .name {
-  font-weight: 600;
   white-space: nowrap;
+  font-weight: 400;
+  font-size: 13px;
 }
 
 #element-table .description {
@@ -150,7 +166,7 @@ responsive-element[size=xs].layout {
 }
 
 app-sidebar paper-toolbar {
-  --paper-toolbar-background: #fafafa;
+  --paper-toolbar-background: white;
   --paper-toolbar: {
     border-bottom: 1px solid;
     border-bottom-color: var(--divider-color);
@@ -160,6 +176,7 @@ app-sidebar paper-toolbar {
 
 #container {
   overflow: auto;
+  padding: 0 24px;
 }
 
 #package-tag {
@@ -172,7 +189,7 @@ app-sidebar paper-toolbar {
 
 #package-header {
   position: relative;
-  padding: 20px 16px 0;
+  padding: 16px 24px 0 24px;
   overflow: hidden;
 }
 
@@ -182,7 +199,7 @@ app-sidebar paper-toolbar {
 
 #package-header package-symbol {
   display: inline-block;
-  margin: 0 0 20px;
+  margin: 0;
   transform: translate(-50px, 0);
   opacity: 0;
   transition: var(--material-curve-320);
@@ -197,14 +214,13 @@ app-sidebar paper-toolbar {
 }
 
 #package-tagline {
-  @apply(--paper-font-body1);
-  font-size: 14px;
-  line-height: 22px;
   margin: 0;
   padding-right: 80px;
   transform: translate(-50px, 0);
   opacity: 0;
   transition: var(--material-curve-320);
+  font-size: 13px;
+  line-height: 20px;
 }
 
 #package-version {

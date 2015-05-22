@@ -14,17 +14,16 @@
   display: block;
   position: relative;
   width: 100%;
-  margin: 8px;
-  color: #333;
   background: #fafafa;
-  border: 8px solid #fff;
   border-radius: 2px;
   box-sizing: border-box;
   overflow: hidden;
   cursor: pointer;
-  padding: 16px;
   transition: box-shadow 200ms;
   transition-timing-function: var(--material-curve);
+  color: #606060;
+  border: none;
+  padding: 16px;
 }
 
 :host(:hover) #content {
@@ -32,8 +31,8 @@
 }
 
 h2 {
-  font-size: 4.2em;
-  font-weight: 900;
+  font-weight: 400;
+  font-size: 48px;
   margin: 20px 0;
   transform: translate(-50px, 0);
   opacity: 0;
@@ -71,13 +70,15 @@ hr {
 
 :host(.active) hr {
   width: 100%;
+  background: #606060;
+  opacity: 1;
 }
 
 .version {
   position: absolute;
-  top: 8px;
-  right: 8px;
-  font-size: 12px;
+  top: 16px;
+  right: 16px;
+  font-size: 13px;
   transition: all 400ms 320ms;
   transition-timing-function: var(--material-curve-320);
   transform: translate(50px, 0);
@@ -89,14 +90,10 @@ hr {
   opacity: 0.8;
 }
 
-.symbol {
-  padding: 10px 0;
-}
-
 .title {
   display: table-caption;
   margin: 0 0 15px;
-  height: 86px;
+  height: 64px;
   font-size: 20px;
   font-weight: 500;
   line-height: 28px;
@@ -107,11 +104,13 @@ hr {
 }
 
 .tagline {
-  margin: 15px 0 0 0;
   transition: all 700ms 320ms;
   transition-timing-function: var(--material-curve-320);
   transform: translate(-50px, 0);
   opacity: 0;
+  font-size: 13px;
+  margin: 10px 0 0 0;
+  line-height: 20px;
 }
 
 :host(.active) .tagline {

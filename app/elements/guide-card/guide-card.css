@@ -1,15 +1,11 @@
 :host {
   display: block;
-  width: 480px;
+  width: 456px;
   margin: 0 20px 20px 0;
 }
 
-paper-material {
-  background: white;
-  border-radius: 3px;
-  --shadow-elevation-1: {
-    box-shadow: none;
-  }
+#content {
+  border: 1px solid #e5e5e5;
 }
 
 h3 {
@@ -20,7 +16,7 @@ h3 {
 }
 
 img {
-  width: 480px;
+  width: 456px;
   height: 220px;
   background: #673AB7;
   border: 0;

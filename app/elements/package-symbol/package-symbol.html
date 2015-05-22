@@ -2,21 +2,23 @@
   <style>
     :host {
       display: block;
-      font-size: 14px;
-      font-weight: 900;
       line-height: 34px;
       width: 34px;
       height: 34px;
       background: #ccc;
       text-align: center;
-      border-radius: 2px;
+      font-weight: 500;
+      font-size: 18px;
+      color: #606060;
+      outline: none;
+      border: 1px solid #e5e5e5;
     }
 
     :host(.large) {
-      font-size: 36px;
-      line-height: 72px;
-      width: 72px;
-      height: 72px;
+      line-height: 62px;
+      width: 64px;
+      height: 64px;
+      font-size: 30px;
     }
   </style>
   <template>
@@ -29,7 +31,7 @@
 </dom-module>
 
 <script>
-  Polymer({ 
+  Polymer({
     is: 'package-symbol',
     properties: {
       package: Object

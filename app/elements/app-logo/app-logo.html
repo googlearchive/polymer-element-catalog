@@ -11,7 +11,7 @@
       font-size: var(--app-logo-font-size);
     }
 
-    :host a {
+    a {
       max-width: 125px;
       color: var(--app-logo-color);
       text-transform: none;
@@ -22,15 +22,18 @@
       max-width: 200px;
     }
 
-    :host h1 {
-      font-size: var(--app-logo-font-size);
-      font-weight: 400;
-      margin: 0;
+    h1 {
+      font-size: 18px;
+      padding-left: 16px;
+      font-weight: 500;
+      color: #606060;
     }
 
-    :host img {
-      margin: 1px 12px 0 0;
+    img {
       min-width: 36px;
+      padding: 2px;
+      box-sizing: border-box;
+      margin: 6px;
     }
   </style>
   <template>
@@ -43,7 +46,7 @@
 </dom-module>
 
 <script>
-  Polymer({ 
+  Polymer({
     is: 'app-logo',
     enableCustomStyleProperties: true,
     properties: {

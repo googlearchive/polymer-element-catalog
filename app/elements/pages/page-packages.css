@@ -1,13 +1,13 @@
-paper-header-panel::shadow #mainContainer {
-  background: var(--secondary-background-color);
+paper-header-panel {
+  background: #fafafa;
 }
 
 .content {
   display: block;
-  padding: 16px;
+  padding: 50px 0;
 }
 
-.packages {
+.packages, #guide-list {
   max-width: 1100px;
   margin: 0 auto;
 }
@@ -36,6 +36,7 @@ cart-icon {
 
 package-tile {
   width: 220px;
+  margin: 8px;
 }
 
 @media (max-width: 489px) {
@@ -53,4 +54,9 @@ package-tile {
     margin-top: 4px;
     padding: 0 16px;
   }
+}
+
+guide-card {
+  cursor: pointer;
+  margin: 8px;
 }
