@@ -14,6 +14,7 @@ var reload = browserSync.reload;
 var merge = require('merge-stream');
 var superstatic = require('superstatic');
 var plumber = require('gulp-plumber');
+var polybuild = require('polybuild');
 
 var stream = require('./build/catalog/utils/stream').obj;
 var catalogBuilder = require('./build/catalog');
@@ -89,15 +90,11 @@ gulp.task('copy', function () {
   var elements = gulp.src(['app/elements/**/*.html'])
     .pipe(gulp.dest('dist/elements'));
 
-  var vulcanized = gulp.src(['app/elements/elements.html'])
-    .pipe($.rename('elements.vulcanized.html'))
-    .pipe(gulp.dest('dist/elements'));
-
   if (process.env.FIXTURES) {
     gulp.src(['fixtures/**/*']).pipe(gulp.dest('dist'));
   }
 
-  return merge(app, bower, elements, vulcanized).pipe($.size({title: 'copy'}));
+  return merge(app, bower, elements).pipe($.size({title: 'copy'}));
 });
 
 // Copy Web Fonts To Dist
@@ -115,8 +112,6 @@ gulp.task('styles', function () {
     .pipe($.changed('styles', {extension: '.css'}))
     .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
     .pipe(gulp.dest('.tmp/styles'))
-    // Concatenate And Minify Styles
-    .pipe($.if('*.css', $.cssmin()))
     .pipe(gulp.dest('dist/styles'))
     .pipe($.size({title: 'styles'}));
 });
@@ -140,8 +135,8 @@ gulp.task('html', function () {
   var assets = $.useref.assets({searchPath: ['.tmp', 'app', 'dist']});
 
   return gulp.src(['app/**/*.html', '!app/{elements,test}/**/*.html'])
-    // Replace path for vulcanized assets
-    .pipe($.if('*.html', $.replace('elements/elements.html', 'elements/elements.vulcanized.html')))
+    // Replace path for build assets
+    .pipe($.if('*.html', $.replace('elements/elements.html', 'elements/elements.build.html')))
     .pipe(assets)
     // Concatenate And Minify JavaScript
     .pipe($.if('*.js', $.uglify({preserveComments: 'some'})))
@@ -161,19 +156,14 @@ gulp.task('html', function () {
     .pipe($.size({title: 'html'}));
 });
 
-// Vulcanize imports
-gulp.task('vulcanize', function () {
+// Polybuild imports
+gulp.task('polybuild', function () {
   var DEST_DIR = 'dist/elements';
 
-  return gulp.src('dist/elements/elements.vulcanized.html')
-    .pipe($.vulcanize({
-      dest: DEST_DIR,
-      strip: true,
-      inlineCss: true,
-      inlineScripts: true,
-    }))
+  return gulp.src('dist/elements/elements.html')
+    .pipe(polybuild())
     .pipe(gulp.dest(DEST_DIR))
-    .pipe($.size({title: 'vulcanize'}));
+    .pipe($.size({title: 'polybuild'}));
 });
 
 // Clean Output Directory
@@ -227,7 +217,7 @@ gulp.task('default', ['clean'], function (cb) {
     'elements',
     ['jshint', 'images', 'fonts', 'html'],
     'catalog:dist',
-    //'vulcanize',
+    'polybuild',
     cb);
 });
 
