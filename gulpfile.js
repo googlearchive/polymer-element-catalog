@@ -122,10 +122,7 @@ gulp.task('elements', function () {
     ])
     .pipe(plumber())
     .pipe($.changed('styles', {extension: '.css'}))
-    .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
     .pipe(gulp.dest('.tmp/elements'))
-    // Concatenate And Minify Styles
-    .pipe($.if('*.css', $.cssmin()))
     .pipe(gulp.dest('dist/elements'))
     .pipe($.size({title: 'elements'}));
 });
