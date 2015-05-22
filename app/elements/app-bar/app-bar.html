@@ -4,26 +4,26 @@
     :host * {
       box-sizing: border-box;
     }
-    
+
     :host(.search-on) {
       left: 0;
       background: inherit;
       z-index: 1001;
     }
-    
+
     :host ::content iron-icon {
       margin-right: 15px;
       cursor: pointer;
     }
-    
+
     #search {
       position: relative;
     }
-    
+
     #search iron-icon {
       margin-right: 0;
     }
-    
+
     #search[show] {
       position: absolute;
       width: 100%;
@@ -33,7 +33,7 @@
       padding: 0 16px;
       background: #fff;
     }
-    
+
     #search input {
       display: none;
       font-family: var(--primary-font-family);
@@ -44,11 +44,11 @@
       border-radius: 2px;
       -webkit-appearance: none;
     }
-    
+
     #search[show] input {
       display: block;
     }
-    
+
     #search input:focus {
       outline: 0;
     }
@@ -56,7 +56,7 @@
   <template>
     <content></content>
     <div id="search" class="horizontal layout center" show$="{{showingSearch}}" on-click="toggleSearch">
-      <iron-icon icon="search"></iron-icon>
+      <iron-icon icon="search" hidden$="[[noSearch]]"></iron-icon>
       <form on-submit="performSearch" class="flex">
         <input type="search" id="query" value="{{query::keyup}}" autocomplete="off" placeholder="Search Elements" on-blur="clearSearch">
       </form>
@@ -73,6 +73,10 @@
         notify: true
       },
       showingSearch: {
+        type: Boolean,
+        value: false
+      },
+      noSearch: {
         type: Boolean,
         value: false
       }

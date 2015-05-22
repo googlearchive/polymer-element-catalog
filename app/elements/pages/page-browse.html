@@ -1,3 +1,4 @@
+<link rel="import" href="../../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../bower_components/iron-icons/av-icons.html">
 <link rel="import" href="../../bower_components/paper-drawer-panel/paper-drawer-panel.html">
@@ -23,26 +24,39 @@
       <app-sidebar drawer>
         <paper-toolbar>
           <app-logo class="flex"></app-logo>
-          <app-bar class="horizontal layout center end-justified" query="{{q}}">
-            <iron-icon icon="filter-list" on-click="togglePackages"></iron-icon>
-          </app-bar>
+          <app-bar class="horizontal layout center end-justified" no-search></app-bar>
         </paper-toolbar>
+        <div id="search" class="layout horizontal center">
+          <iron-icon icon="search"></iron-icon>
+          <input id="query" type="search" autocomplete="off" value="{{q::keyup}}" placeholder="Search Elements" class="flex">
+        </div>
         <div class="content">
           <div id="package-tag" hidden$="[[!tag]]">
             <span>[[tag]]</span> <iron-icon icon="clear" on-click="clearTag"></iron-icon>
           </div>
-          <div id="package-list" hidden$="[[packageInfo]]">
+          <div id="package-list">
             <h5>Products</h5>
-            <template is="dom-repeat" items="[[packages]]">
-              <div class="package" on-click="updatePackage" name="[[item.name]]">
+            <iron-selector attr-for-selected="name" selected="{{package}}">
+              <div class="package" name="">
                 <div class="layout horizontal center">
-                  <package-symbol package="[[item]]"></package-symbol>
-                  <span class="title flex">[[item.title]]</span>
+                  <div class="all-symbol"><iron-icon icon="apps"></iron-icon></div>
+                  <span class="title flex">All Elements</span>
                 </div>
               </div>
-            </template>
+              <template is="dom-repeat" items="[[packages]]">
+                <div class="package" name="[[item.name]]">
+                  <div class="layout horizontal center">
+                    <package-symbol package="[[item]]"></package-symbol>
+                    <span class="title flex">[[item.title]]</span>
+                  </div>
+                </div>
+              </template>
+            </iron-selector>
           </div>
-          <div id="package-info" hidden$="[[!packageInfo.name]]">
+          <div id="tags">
+            <!--<h5>Tags</h5>-->
+          </div>
+          <!--<div id="package-info" hidden$="[[!packageInfo.name]]">
             <div id="package-header">
               <package-symbol package="[[packageInfo]]" class="large"></package-symbol>
               <h2 id="package-title">[[packageInfo.title]]</h2>
@@ -59,7 +73,7 @@
 
               </div>
             </div>
-          </div>
+          </div>-->
           <div hidden$="[[!tag]]" id="current-tag" class="horizontal layout center">
             <b>Tag:</b> <span class="flex">[[tag]]</span> <iron-icon icon="clear" on-click="clearTag"></iron-icon>
           </div>
@@ -68,9 +82,13 @@
 
       <div id="container" class="fit" view$="[[view]]" main>
         <div class="elements-title horizontal layout center">
-          <h2 class="flex">[[pageTitle]]</h2>
+          <h2 class="flex"><span>[[pageTitle]]</span> <span class="count">[[_elementCount]]</span></h2>
           <iron-icon id="package-view-mode" icon="[[viewIcon]]" on-tap="toggleView"></iron-icon>
           <iron-icon id="cart-toggle" icon="shopping-cart" on-tap="cartOpen"></iron-icon>
+        </div>
+
+        <div id="package-heading" hidden$="[[!packageInfo]]">
+          <div class="description">[[packageInfo.description]]</div>
         </div>
 
         <div id="element-cards" class="horizontal layout wrap">
@@ -131,12 +149,13 @@
         viewIcon: {type: String, computed: 'computeViewIcon(view)', value: 'view-module'},
         packages: Array,
         packageInfo: {type: Object, value: {}},
-        elements: Array
+        elements: Array,
+
+        _elementCount: Number
       },
       observers: [
-        'updateURL(q,package,tag,view)',
-        'updateMeta(packageInfo)',
-        'showPackage(package)'
+        'updateURL(q,package,tag,view,elements)',
+        'updateMeta(packageInfo)'
       ],
 
       attached: function() {
@@ -217,15 +236,10 @@
 
         return out.join("&");
       },
-      showPackage: function() {
-        this.$['package-info'].classList.remove('active');
-        setTimeout(function() { this.$['package-info'].classList.add('active'); }.bind(this), 25);
-      },
       updateSearch: function() {
         var params = this._parseQueryString();
         if (params && params.q) {
-          this.querySelector('app-bar').showingSearch = true;
-          this.packageInfo = null;
+          this.async(function() { this.$.query.focus(); });
         }
       },
       updateURL: function(q,package,tag,view) {
@@ -237,14 +251,19 @@
 
         this.renderView();
         this.updateMeta();
+        if (this.elements) {
+          this._elementCount = this.elements.filter(this.filter.bind(this)).length;
+        }
       },
       renderView: function() {
         this.$['element-' + this.view + '-repeat'].render();
       },
       updateMeta: function(packageInfo) {
         if (this.q && this.q.length) {
-          this.pageTitle = "'" + this.q + "' Elements";
-        } else if (packageInfo) {
+          var t = "'" + this.q + "' ";
+          t += this.packageInfo ? this.packageInfo.title : "Elements";
+          this.pageTitle = t;
+        } else if (this.packageInfo) {
           this.pageTitle = this.packageInfo.title;
         } else if (this.tagList.length) {
           this.pageTitle = "Elements Tagged '" + this.tagList.join("' or '") + "'";
