@@ -15,3 +15,5 @@ cache:
   - bower_components
 after_success:
 - "./scripts/travis_deploy"
+notifications:
+  slack: polymer:j3IJDjBbXxqzuGRCIDYJ7tIA
