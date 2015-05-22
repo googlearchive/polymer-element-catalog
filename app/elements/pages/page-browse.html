@@ -103,20 +103,21 @@
               <th class="name">Name</th>
               <th class="description">Description</th>
               <th class="tags">Tags</th>
+              <th class="actions">Action</th>
             </tr>
           </thead>
           <tbody>
             <template id="element-table-repeat" is="dom-repeat" items="[[elements]]" filter="filter">
               <tr on-tap="nav" target$="[[item.name]]">
                 <td class="name" width="100">[[item.name]]</td>
-                <td class="description relative">
-                  <span>[[item.description]]</span>
-                  <element-action-menu element="[[item.name]]" class="fit"></element-action-menu>
-                </td>
+                <td class="description relative">[[item.description]]</td>
                 <td class="tags">
                   <template is="dom-repeat" items="[[item.tags]]">
                     <tag-link name="[[item]]" on-click="updateTag"></tag-link><span>,</span>
                   </template>
+                </td>
+                <td class="actions">
+                  <element-action-menu element="[[item.name]]" icons-only></element-action-menu>
                 </td>
               </tr>
             </template>

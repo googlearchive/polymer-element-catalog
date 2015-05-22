@@ -8,8 +8,7 @@ var stream = require('./utils/stream').obj;
 var packageDetails = require('./utils/package-details');
 var packageElements = require('./utils/package-elements');
 var analyze = require('./utils/analyze');
-
-
+var cleanTags = require('./utils/clean-tags');
 
 module.exports = function (imports) {
 
@@ -22,7 +21,7 @@ module.exports = function (imports) {
 
   return stream.compose(
     stream.parse('packages.*'),
-    stream.filter(function (package) {
+    stream.filter(function(package) {
 
       return deps[package.name];
     }),
@@ -57,7 +56,7 @@ module.exports = function (imports) {
             target: details._target,
             package: package.name,
             description: details.description,
-            tags: details.keywords || []
+            tags: (details.keywords || []).filter(cleanTags)
           });
         });
       }, function(err, output) {

@@ -95,32 +95,21 @@ app-bar .menu-icon {
   margin-top: 8px;
 }
 
-#element-table element-action-menu {
-  color: white;
-  background: #999;
-  display: none;
+#element-table element-action-menu::shadow iron-icon {
+  color: var(--paper-grey-300);
+  margin: 0 4px;
+}
+
+#element-table tr:hover element-action-menu::shadow iron-icon {
+  color: var(--paper-grey-700);
 }
 
 #element-table .description {
   overflow: hidden;
   color: #606060;
-  width: 125px;
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 400px;
-}
-
-#element-table element-action-menu::shadow a {
-  color: rgba(255,255,255,0.85);
-}
-
-#element-table element-action-menu::shadow a:hover {
-  color: white;
-}
-
-#element-table tbody tr:hover element-action-menu {
-  display: flex;
 }
 
 #element-table tbody tr:hover {

@@ -3,21 +3,26 @@
 <dom-module id="element-action-menu">
   <style>
     :host {
-      display: block;
+      @apply(--layout);
+      @apply(--layout-center);
+      @apply(--layout-center-justified);
       position: relative;
       text-align: center;
     }
 
+    a {
+      margin: 0 5px;
+    }
+
     iron-icon {
       margin-right: 5px;
+      --iron-icon-size: 18px;
     }
   </style>
   <template>
-    <div class="horizontal layout center center-justified fit">
-      <a on-tap="cartAdd" class="horizontal layout center center-justified flex"><iron-icon icon="add-shopping-cart"></iron-icon><span>Add</span></a>
-      <a on-tap="nav" view="docs" class="horizontal layout center center-justified flex"><iron-icon icon="description"></iron-icon><span>Docs</span></a>
-      <a on-tap="nav" view="demo" class="horizontal layout center center-justified flex"><iron-icon icon="visibility"></iron-icon><span>Demo</span></a>
-    </div>
+    <a on-tap="cartAdd"><iron-icon icon="add-shopping-cart" title="Add to Cart"></iron-icon><span hidden$="[[iconsOnly]]">Add</span></a>
+    <a on-tap="nav" view="docs"><iron-icon icon="description" title="View Docs"></iron-icon><span hidden$="[[iconsOnly]]">Docs</span></a>
+    <a on-tap="nav" view="demo"><iron-icon icon="visibility" title="View Demo"></iron-icon><span hidden$="[[iconsOnly]]">Demo</span></a>
   </template>
 </dom-module>
 
@@ -25,7 +30,8 @@
 Polymer({
   is: 'element-action-menu',
   properties: {
-    element: String
+    element: String,
+    iconsOnly: {type: Boolean, value: false, reflectToAttribute: true}
   },
   cartAdd: function(e) {
     e.stopPropagation();
