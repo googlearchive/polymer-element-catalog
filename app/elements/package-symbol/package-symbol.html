@@ -2,6 +2,7 @@
   <style>
     :host {
       display: block;
+      position: relative;
       line-height: 34px;
       width: 34px;
       height: 34px;
@@ -15,15 +16,15 @@
     }
 
     :host(.large) {
-      line-height: 62px;
+      line-height: 64px;
       width: 64px;
       height: 64px;
       font-size: 30px;
     }
   </style>
   <template>
-    <theme-color color="[[package.color]]" outline>
-      <div themed>
+    <theme-color color="[[package.color]]">
+      <div themed class="fit">
         <span>[[package.symbol]]</span>
       </div>
     </theme-color>

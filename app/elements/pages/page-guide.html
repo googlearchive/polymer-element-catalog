@@ -1,0 +1,180 @@
+<link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-styles/paper-styles.html">
+<link rel="import" href="../../bower_components/paper-drawer-panel/paper-drawer-panel.html">
+
+<link rel="import" href="../catalog-guide/catalog-guide.html">
+<link rel="import" href="../catalog-data/catalog-data.html">
+
+<dom-module id="page-guide">
+  <style>
+    .content {
+      display: block;
+      padding: 12px 24px;
+    }
+
+    #main {
+      background: #fafafa;
+    }
+
+    .guide-section {
+      background: white;
+      margin: 24px auto;
+      max-width: 800px;
+      padding-bottom: 1px;
+      border: 1px solid #e5e5e5;
+    }
+
+    .guide-section .reference-link {
+      float: right;
+      margin: 20px;
+      color: #999;
+    }
+
+    .guide-section .reference-link:hover {
+      color: #333;
+    }
+
+    .guide-section > h2 {
+      border-bottom: 1px solid #e5e5e5;
+      font-size: 20px;
+      line-height: 28px;
+      padding: 18px;
+    }
+
+    .guide-section h3 {
+      font-size: 18px;
+      margin: 20px 20px 12px 20px;
+      font-weight: bold;
+    }
+
+    .guide-section h4 {
+      font-weight: bold;
+      font-size: 16px;
+      margin: 18px 20px 12px 20px;
+    }
+
+    .guide-section p {
+      margin: 16px 20px;
+    }
+
+    .guide-section pre {
+      padding: 20px;
+      background: #fafafa;
+      border: solid #e5e5e5;
+      border-width: 1px 0;
+    }
+
+    #main > paper-toolbar {
+      --paper-toolbar-background: #fafafa;
+      font-size: 20px;
+    }
+    
+    app-sidebar paper-toolbar {
+      --paper-toolbar-background: white;
+    }
+
+    #guide-list paper-item{
+      cursor: pointer;
+    }
+
+    [paper-drawer-toggle] {
+      margin: 0 10px;
+      cursor: pointer;
+    }
+  </style>
+  <template>
+    <prism-highlighter></prism-highlighter>
+
+    <catalog-data guides="{{guides}}"></catalog-data>
+    <catalog-guide name="[[name]]" data="{{guide}}" content="{{content}}"></catalog-guide>
+
+    <paper-drawer-panel drawer-width="272px" disable-edge-swipe>
+      <app-sidebar drawer>
+        <paper-toolbar>
+          <app-logo class="flex"></app-logo>
+          <app-bar class="horizontal layout center end-justified"></app-bar>
+        </paper-toolbar>
+        <nav id="guide-list">
+          <template is="dom-repeat" items="[[guides]]">
+            <paper-item name$="[[item.name]]" on-tap="nav">[[item.title]]</paper-item>
+          </template>
+        </nav>
+      </app-sidebar>
+      <paper-header-panel mode="waterfall" class="vertical layout fit" id="main" main>
+        <paper-toolbar class="paper-header flex-none">
+          <iron-icon icon="menu" paper-drawer-toggle></iron-icon>
+          <span class="flex">[[guide.title]]</span>
+        </paper-toolbar>
+
+        <div class="content fit">
+          <div id="content"></div>
+        </div>
+      </paper-header-panel>
+    </paper-drawer-panel>
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: 'page-guide',
+    properties: {
+      router: Object,
+      guides: Array,
+      guide: Object,
+      name: {
+        type: String,
+        notify: true
+      },
+      content: String
+    },
+    enableCustomStyleProperties: true,
+    observers: [
+      'contentChanged(content)',
+      'updateMeta(guide)'
+    ],
+    attached: function() {
+      // TODO: Change this when we switch to pushState URLs
+      this.name = window.location.pathname.substring(8);
+    },
+    contentChanged: function() {
+      console.log('contentChanged');
+      this.$.content.innerHTML = this.content;
+      this._decorateHeadings();
+      this._highlight();
+      this.scopeSubtree(this.$.content);
+      if (window.location.hash !== "") {
+        var el = Polymer.dom(this.$.content).querySelector(window.location.hash);
+        if (el) el.scrollIntoView();
+      }
+    },
+    _decorateHeadings: function() {
+      var h2s = this.$.content.querySelectorAll('h2');
+      for (var i = 0; i < h2s.length; i++) {
+        var link = document.createElement('a');
+        link.className = "reference-link";
+        link.href = "#" + h2s[i].id;
+        var icon = document.createElement('iron-icon');
+        icon.icon = 'link';
+        link.appendChild(icon);
+        h2s[i].parentNode.insertBefore(link, h2s[i]);
+      }
+    },
+    _highlight: function() {
+      var els = this.$.content.querySelectorAll('pre code');
+      for (var i = 0; i < els.length; i++) {
+        var code = els[i].innerText;
+        var event = this.fire('syntax-highlight', {code: code});
+        els[i].innerHTML = event.detail.code || code;
+      }
+    },
+    updateMeta: function() {
+      this.fire('page-meta', {title: this.guide.title});
+    },
+    nav: function(e) {
+      if (this.name !== e.currentTarget.name) {
+        this.router.go('/guides/' + e.currentTarget.name);
+      }
+    }
+  });
+</script>
