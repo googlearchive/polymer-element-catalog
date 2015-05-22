@@ -4,8 +4,8 @@
   box-sizing: border-box;
   z-index: 2;
   background: white;
-  @apply(--layout-fit);
   border-right: 1px solid #e5e5e5;
+  @apply(--layout-fit);
 }
 
 ::content paper-toolbar {
