@@ -14,7 +14,7 @@
     computeTextColor: function(color) {
       if (this.color) {
         var lightness = one.color(this.color).lightness();
-        return (lightness > 0.5) ? one.color(this.color).lightness(0.15).hex() : one.color(this.color).lightness(0.92).hex();
+        return (lightness > 0.5) ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.8)';
       } else {
         return null;
       }
