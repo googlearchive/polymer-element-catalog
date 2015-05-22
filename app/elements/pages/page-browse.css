@@ -17,7 +17,7 @@ app-bar .menu-icon {
 
 .elements-title h2 {
   @apply(--paper-font-title);
-  color: #616161;
+  color: #424242;
 }
 
 .elements-title iron-icon {

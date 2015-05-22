@@ -39,8 +39,8 @@
     "paper-styles": "PolymerElements/paper-styles#^0.9.0",
     "marked-element": "PolymerElements/marked-element#^0.9.0",
     "prism-element": "PolymerElements/prism-element#^0.9.0",
-    "iron-component-page": "PolymerElements/iron-component-page#^0.9.4",
-    "iron-doc-viewer": "PolymerElements/iron-doc-viewer#^0.9.3"
+    "iron-component-page": "PolymerElements/iron-component-page#polish",
+    "iron-doc-viewer": "PolymerElements/iron-doc-viewer#polish"
   },
   "resolutions": {
     "iron-flex-layout": "^0.9.1",
@@ -53,6 +53,8 @@
     "iron-iconset-svg": "^0.9.0",
     "iron-meta": "^0.9.0",
     "iron-signals": "^0.9.0",
-    "iron-ajax": "^0.9.4"
+    "iron-ajax": "^0.9.4",
+    "iron-component-page": "polish",
+    "iron-doc-viewer": "polish"
   }
 }

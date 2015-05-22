@@ -2,13 +2,13 @@ body {
   font-family: Roboto, 'Noto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   font-weight: 400;
-  color: #616161;
+  color: #424242;
   line-height: 20px;
   font-size: 13px;
 }
 
 body, a {
-  color: #616161;
+  color: #424242;
 }
 
 pre, code {
@@ -110,7 +110,7 @@ catalog-app {
 }
 
 paper-toolbar {
-  color: #616161;
+  color: #424242;
   transition: height 450ms cubic-bezier(0.55, 0, 0.1, 1);
 }
 
