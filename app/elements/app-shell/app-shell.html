@@ -30,7 +30,7 @@
   </style>
   <template>
     <paper-drawer-panel id="cartpanel" class="flex" force-narrow right-drawer disable-edge-swipe drawer-width="320px">
-      <app-router id="router" class="flex" mode="pushstate" main>
+      <app-router id="router" class="flex" mode="pushstate" main on-activate-route-end="trackPageview">
         <app-route path="/" element="page-packages" bindRouter></app-route>
         <app-route path="/browse" element="page-browse" bindRouter onUrlChange="updateModel"></app-route>
         <app-route path="/elements/:element/:view" element="page-element" bindRouter onUrlChange="updateModel"></app-route>
@@ -89,6 +89,16 @@
     showToast: function(e, detail) {
       this.$.toast.text = detail.text;
       this.$.toast.show();
+    },
+    trackPageview: function(e, detail) {
+      this.debounce('pageview', function() {
+        var loc = window.location.pathname + window.location.search;
+        ga('send', 'pageview', {
+          location: loc,
+          title: document.title
+        });
+        ga('set', 'page', loc);
+      }, 2000);
     }
   });
 </script>

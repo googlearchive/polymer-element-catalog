@@ -87,15 +87,6 @@
       'analyze(importPath)'
     ],
     attached: function() {
-      var links = this.$.links;
-      var tabs = links.querySelectorAll('paper-item');
-      links.addEventListener('iron-select', function(event) {
-        var tabColor = links.style.color;
-        for (var i = 0; i < tabs.length; i++) {
-          tabs[i].style.borderColor = 'transparent';
-        }
-        event.detail.item.style.borderColor = tabColor;
-      });
       this.updateMeta();
     },
     analyze: function() {
