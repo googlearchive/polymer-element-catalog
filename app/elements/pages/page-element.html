@@ -26,9 +26,7 @@
         <app-sidebar drawer>
           <paper-toolbar>
             <app-logo class="flex"></app-logo>
-            <app-bar class="horizontal layout center end-justified">
-              <iron-icon icon="filter-list"></iron-icon>
-            </app-bar>
+            <app-bar class="horizontal layout center end-justified" query="{{q}}"></app-bar>
           </paper-toolbar>
           <div class="content">
             <div class="horizontal layout center" id="package-heading">
@@ -94,13 +92,15 @@
       docs: Object,
       metadata: Object,
       package: Object,
-      router: Object
+      router: Object,
+      q: String
     },
     observers: [
       'updateURL(view)',
       'updateMeta(element)',
       'showElement(element)',
-      'analyze(importPath)'
+      'analyze(importPath)',
+      'search(q)'
     ],
     attached: function() {
       this.updateMeta();
@@ -126,6 +126,11 @@
     },
     baseURI: function(element) {
       return window.location.origin + "/bower_components/" + element + "/" + element + ".html";
+    },
+    search: function(q) {
+      if (q || this.q) {
+        this.router.go('/browse?q=' + (q || this.q));
+      }
     },
     _oneOrFewer: function(arr) {
       return !arr || arr.length <= 1;

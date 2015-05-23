@@ -270,7 +270,7 @@
       updateMeta: function(packageInfo) {
         if (this.q && this.q.length) {
           var t = "'" + this.q + "' ";
-          t += this.packageInfo ? this.packageInfo.title : "Elements";
+          t += (this.packageInfo && this.packageInfo.title) ? this.packageInfo.title : "Elements";
           this.pageTitle = t;
         } else if (this.packageInfo) {
           this.pageTitle = this.packageInfo.title;
