@@ -4,19 +4,21 @@ var hydrolysis = require('hydrolysis');
 var FileLoader = require('hydrolysis/lib/loader/file-loader');
 var FSResolver = require('hydrolysis/lib/loader/fs-resolver');
 
-module.exports = function(root, elementName, callback) {
+module.exports = function(root, destDir, elementName, callback) {
   var elPath = path.join(root, 'bower_components', elementName, elementName + '.html');
   var loader = new FileLoader();
 
   if (fs.existsSync(elPath)) {
     hydrolysis.Analyzer.analyze(elPath, {clean: true}).then(function(data) {
-      var output = data.elements.map(function(el) {
-        console.log('+ writing docs for', el.is, 'to data directory');
-        fs.writeFileSync(path.join(root, '.tmp', 'data', 'elements', el.is + '.json'), JSON.stringify(el));
-        return el;
-      });
-  
-      callback(null, output);
+      var out = {
+        elements: data.elements || [],
+        elementsByTagName: data.elementsByTagName,
+        behaviors: data.behaviors || [],
+        features: data.features || []
+      }
+      fs.writeFileSync(path.join(root, destDir, 'data', 'docs', elementName + '.json'), JSON.stringify(out));
+
+      callback(null, data);
     }, function(err) {
       callback(err);
     });

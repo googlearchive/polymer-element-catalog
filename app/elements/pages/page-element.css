@@ -20,14 +20,39 @@ app-sidebar paper-toolbar {
   padding: 0 16px;
 }
 
-package-symbol {
-  display: inline-block;
-  margin: 0 0 20px;
+#package-heading {
+  height: 48px;
+  line-height: 48px;
+  background: var(--paper-blue-grey-50);
+  border: 1px solid var(--paper-blue-grey-100);
+  border-width: 1px 0;
   cursor: pointer;
+  font-weight: 500;
+}
+
+#package-heading iron-icon {
+  margin: 0 0 0 4px;
+}
+
+#package-heading package-symbol {
+  margin: 0 8px 0 2px;
 }
 
 #element-header {
-  padding: 16px 24px 0 24px;
+  position: relative;
+  padding: 8px 16px;
+}
+
+#element-header .version {
+  position: absolute;
+  top: 24px;
+  right: 16px;
+  font-size: 14px;
+  color: var(--paper-grey-500);
+}
+
+#element-header h2 {
+  margin: 0;
 }
 
 #element-desc p {

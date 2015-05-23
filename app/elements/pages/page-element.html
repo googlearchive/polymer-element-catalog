@@ -5,6 +5,8 @@
 <link rel="import" href="../../bower_components/paper-header-panel/paper-header-panel.html">
 <link rel="import" href="../../bower_components/paper-drawer-panel/paper-drawer-panel.html">
 <link rel="import" href="../../bower_components/iron-component-page/iron-component-page.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
 
 <link rel="import" href="../catalog-element/catalog-element.html">
 <link rel="import" href="../catalog-package/catalog-package.html">
@@ -28,14 +30,24 @@
             </app-bar>
           </paper-toolbar>
           <div class="content">
+            <div class="horizontal layout center" id="package-heading">
+              <iron-icon icon="chevron-left"></iron-icon>
+              <package-symbol package="[[package]]" on-tap="navToPackage"></package-symbol>
+              <span class="name flex">[[package.title]]</span>
+            </div>
             <div id="element-info">
               <div id="element-header">
-                <package-symbol package="[[package]]" on-tap="navToPackage"></package-symbol>
+                <span class="version">[[metadata.version]]</span>
                 <h2 id="element-title">[[element]]</h2>
                 <div id="element-desc">
                   <p>[[metadata.description]]</p>
                 </div>
               </div>
+
+              <iron-selector id="nav" attr-for-selected="name" selected="{{view}}">
+                <paper-item name="docs"><iron-icon icon="description"></iron-icon> <span>Docs</span></paper-item>
+                <paper-item name="demo"><iron-icon icon="visibility"></iron-icon> <span>Demo</span></paper-item>
+              </paper-menu>
 
               <div id="element-tags" class="section">
                 <h5>Tags</h5>
@@ -49,7 +61,7 @@
           </div>
         </app-sidebar>
         <section main class="fit">
-          <iron-component-page src="[[elementSrc(element)]]" _catalog></iron-component-page>
+          <iron-component-page version="[[metadata.version]]" doc-src="[[docSrc(element)]]" base="[[baseURI(element)]]" _catalog view="{{view}}"></iron-component-page>
         </section>
       </paper-drawer-panel>
     </theme-color>
@@ -102,11 +114,11 @@
     navToPackage: function() {
       this.router.go("/browse?package=" + this.package.name);
     },
-    demoSrc: function(element) {
-      return "/bower_components/" + element + "/demo/index.html";
+    docSrc: function(element) {
+      return "/data/docs/" + element + ".json";
     },
-    elementSrc: function(element) {
-      return "/bower_components/" + element + "/" + element + ".html";
+    baseURI: function(element) {
+      return window.location.origin + "/bower_components/" + element + "/" + element + ".html";
     }
   });
 </script>

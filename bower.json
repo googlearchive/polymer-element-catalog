@@ -19,7 +19,7 @@
     "iron-elements": "PolymerElements/iron-elements#master",
     "paper-elements": "PolymerElements/paper-elements#master",
     "gold-elements": "PolymerElements/gold-elements#master",
-    "google-web-components": "GoogleWebComponents/google-web-components#master",
+    "google-web-components": "GoogleWebComponents/google-web-components#db8c4c73",
     "polymer": "Polymer/polymer#master",
     "app-router": "~2.6.0",
     "pushstate-anchor": "~0.3.0",

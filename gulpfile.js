@@ -110,7 +110,7 @@ gulp.task('styles', function () {
       'app/styles/**/*.css'
     ])
     .pipe($.changed('styles', {extension: '.css'}))
-    .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
+    // .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
     .pipe(gulp.dest('.tmp/styles'))
     .pipe(gulp.dest('dist/styles'))
     .pipe($.size({title: 'styles'}));
@@ -120,7 +120,6 @@ gulp.task('elements', function () {
   return gulp.src([
     'app/elements/**/*.css'
     ])
-    .pipe(plumber())
     .pipe($.changed('styles', {extension: '.css'}))
     .pipe(gulp.dest('.tmp/elements'))
     .pipe(gulp.dest('dist/elements'))

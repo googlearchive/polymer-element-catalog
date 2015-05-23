@@ -13,6 +13,7 @@ var cleanTags = require('./utils/clean-tags');
 module.exports = function (imports) {
 
   var root = imports.root;
+  var destDir = imports.destDir;
   var bowerFile = require(root + '/bower.json');
   var deps = bowerFile.dependencies;
 
@@ -44,8 +45,8 @@ module.exports = function (imports) {
           name: elementName
         });
 
-        fs.mkdirsSync(path.join(root, '.tmp', 'data', 'elements'));
-        analyze(root, elementName, function(err, data) {
+        fs.mkdirsSync(path.join(root, destDir, 'data', 'docs'));
+        analyze(root, destDir, elementName, function(err, data) {
           // Set up object schema
           console.log("-",elementName,"(" + details._release + ")");
 

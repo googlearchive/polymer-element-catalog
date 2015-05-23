@@ -59,7 +59,7 @@
     "gulp-uncss": "^0.4.5",
     "gulp-useref": "^0.6.0",
     "gulp-util": "^3.0.4",
-    "hydrolysis": "git://github.com/mbleigh/hydrolysis.git#resolver-crash",
+    "hydrolysis": "git://github.com/Polymer/hydrolysis.git#master",
     "is-stream": "^1.0.1",
     "jshint-stylish": "^0.4.0",
     "lodash": "^3.6.0",
