@@ -44,24 +44,35 @@
                 </div>
               </div>
 
-              <iron-selector id="nav" attr-for-selected="name" selected="{{view}}">
+              <iron-selector id="nav" class="nav" attr-for-selected="name" selected="{{view}}">
                 <paper-item name="docs"><iron-icon icon="description"></iron-icon> <span>Docs</span></paper-item>
                 <paper-item name="demo"><iron-icon icon="visibility"></iron-icon> <span>Demo</span></paper-item>
-              </paper-menu>
+              </iron-selector>
 
-              <div id="element-tags" class="section">
-                <h5>Tags</h5>
-                <p>
-                  <template is="dom-repeat" items="[[metadata.tags]]">
-                    <tag-link name="[[item]]"></tag-link><span>,</span>
+              <section hidden$="[[_oneOrFewer(docElements)]]">
+                <h4>Bundled Elements</h4>
+
+                <iron-selector id="elnav" class="nav" attr-for-selected="name" selected="{{active}}">
+                  <template is="dom-repeat" items="[[docElements]]">
+                    <paper-item name="[[item.is]]">[[item.is]]</paper-item>
                   </template>
-                </p>
-              </div>
+                </iron-selector>
+              </section>
+
+              <section hidden$="[[_oneOrFewer(docBehaviors)]]">
+                <h4>Bundled Behaviors</h4>
+
+                <iron-selector id="elnav" class="nav" attr-for-selected="name" selected="{{active}}">
+                  <template is="dom-repeat" items="[[docBehaviors]]">
+                    <paper-item name="[[item.is]]">[[item.is]]</paper-item>
+                  </template>
+                </iron-selector>
+              </section>
             </div>
           </div>
         </app-sidebar>
         <section main class="fit">
-          <iron-component-page version="[[metadata.version]]" doc-src="[[docSrc(element)]]" base="[[baseURI(element)]]" _catalog view="{{view}}"></iron-component-page>
+          <iron-component-page version="[[metadata.version]]" doc-src="[[docSrc(element)]]" base="[[baseURI(element)]]" _catalog view="{{view}}" doc-elements="{{docElements}}" doc-behaviors="{{docBehaviors}}" active="{{active}}"></iron-component-page>
         </section>
       </paper-drawer-panel>
     </theme-color>
@@ -75,6 +86,9 @@
     properties: {
       element: {type: String, notify: true},
       view: {type: String, notify: true},
+      docElements: Array,
+      docBehaviors: Array,
+      active: String,
       docs: Object,
       metadata: Object,
       package: Object,
@@ -110,6 +124,9 @@
     },
     baseURI: function(element) {
       return window.location.origin + "/bower_components/" + element + "/" + element + ".html";
+    },
+    _oneOrFewer: function(arr) {
+      return !arr || arr.length <= 1;
     }
   });
 </script>

@@ -70,3 +70,38 @@ app-sidebar paper-toolbar {
 paper-item {
   cursor: pointer;
 }
+
+paper-item {
+  font-size: 14px;
+  padding: 4px 16px;
+  min-height: auto;
+}
+
+.nav {
+  display: block;
+  margin-top: 8px;
+}
+
+.nav iron-icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+}
+
+.nav .iron-selected {
+  background: var(--paper-blue-grey-50);
+}
+
+.nav .iron-selected iron-icon {
+  color: var(--paper-blue-a700);
+}
+
+#element-info h4 {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 12px 16px;
+}
+
+#element-info section {
+  border-top: 1px solid #e5e5e5;
+}
