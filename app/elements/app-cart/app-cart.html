@@ -43,10 +43,34 @@
       margin: 0;
     }
 
+    #download > section {
+      margin-bottom: 24px;
+    }
+
+    #download textarea {
+      box-sizing: border-box;
+      display: block;
+      width: 100%;
+      height: 110px;
+      padding: 8px;
+      background: var(--paper-blue-grey-50);
+      border: 1px solid var(--paper-blue-grey-100);
+      border-radius: 2px;
+      font-size: 12px;
+      color: var(--paper-blue-grey-500);
+      resize: none;
+    }
+
     #download paper-button {
       background: #D81B60;
       color: white;
       margin-top: 10px;
+    }
+
+    paper-tabs {
+      --paper-tabs-selection-bar: {
+        background-color: var(--paper-pink-500);
+      }
     }
   </style>
   <template>
@@ -66,20 +90,31 @@
         </template>
       </div>
       <div id="download">
-        <h4>Download Options</h4>
+        <section>
+          <h4>Download Options</h4>
 
-        <paper-radio-group selected="{{downloadMethod}}" id="dl">
-          <paper-radio-button name="bower">
-            <code>bower.json</code> - just the bower.json file, from which
-            you can run bower install to fetch your elements
-          </paper-radio-button>
-          <paper-radio-button name="elements">
-            <code>elements folder</code> - the full source for the latest
-            version of all your selected elements
-          </paper-radio-button>
-        </paper-radio-group>
+          <paper-radio-group selected="{{downloadMethod}}" id="dl">
+            <paper-radio-button name="elements">
+              <code>elements folder</code> - the full source for the latest
+              version of all your selected elements
+            </paper-radio-button>
+            <paper-radio-button name="bower">
+              <code>bower.json</code> - just the bower.json file, from which
+              you can run bower install to fetch your elements
+            </paper-radio-button>
+          </paper-radio-group>
 
-        <paper-button on-tap="download">Download</paper-button>
+          <paper-button raised on-tap="download">Download</paper-button>
+        </section>
+        <section>
+          <h4>Bower Command</h4>
+
+          <p>You can copy the command below and paste it into the terminal to
+          install the elements from your cart into a project that already uses
+          Bower.</p>
+
+          <textarea readonly value="[[_itemsAsBowerCommand(items.*)]]" on-tap="_selectAll"></textarea>
+        </section>
       </div>
     </iron-pages>
   </template>
@@ -152,6 +187,14 @@ Polymer({
     return this.items.map(function(item) {
       return item.name + "=" + encodeURIComponent(item.source + "#" + item.target);
     }).join("&");
+  },
+  _itemsAsBowerCommand: function() {
+    return "bower install --save " + this.items.map(function(item) {
+      return item.source + "#" + item.target;
+    }).join(" ");
+  },
+  _selectAll: function(e) {
+    e.currentTarget.select();
   },
   bowerString: function() {
     return JSON.stringify({
