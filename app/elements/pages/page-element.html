@@ -13,6 +13,7 @@
 <link rel="import" href="../package-symbol/package-symbol.html">
 <link rel="import" href="../responsive-element/responsive-element.html">
 <link rel="import" href="../theme-color/theme-color.html">
+<link rel="import" href="../cart-icon/cart-icon.html">
 
 <dom-module id="page-element">
   <link rel="import" type="css" href="page-element.css">
@@ -73,6 +74,7 @@
         </app-sidebar>
         <section main class="fit">
           <iron-component-page version="[[metadata.version]]" doc-src="[[docSrc(element)]]" base="[[baseURI(element)]]" _catalog view="{{view}}" doc-elements="{{docElements}}" doc-behaviors="{{docBehaviors}}" active="{{active}}"></iron-component-page>
+          <cart-icon></cart-icon>
         </section>
       </paper-drawer-panel>
     </theme-color>
