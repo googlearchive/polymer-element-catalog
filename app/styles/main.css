@@ -157,3 +157,10 @@ p a {
 li p {
     margin: 0;
 }
+
+aside {
+  margin: 40px;
+  padding: 20px 40px;
+  background-color: #fafafa;
+  border: 1px solid #e5e5e5;
+}
