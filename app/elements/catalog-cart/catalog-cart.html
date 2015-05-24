@@ -1,0 +1,85 @@
+<link rel="import" href="../catalog-element/catalog-element.html">
+
+<script>
+(function() {
+  var _instances = [];
+
+  var _store = function() {
+    if (_instances.length) {
+      localStorage['catalog.cart'] = JSON.stringify(_instances[0].items);
+    }
+  }
+
+  var _add = function(name) {
+    var el = document.createElement('catalog-element');
+    el.name = name;
+
+    var check = _instances[0];
+    if (check.items.length === 0 || check.items[0].name > name) {
+      var insertAt = 0;
+    } else {
+      for (var i = 0; i < check.items.length; i++) {
+        if (name > check.items[i].name && (!check.items[i + 1] || name < check.items[i+1].name)) {
+          console.log(name, ">", check.items[i].name);
+          insertAt = i + 1;
+          break;
+        }
+      }
+    }
+
+    _instances.forEach(function(instance) {
+      instance.splice('items',insertAt,0,el.data);
+    });
+    _store()
+    return el.data;
+  }
+
+  var _remove = function(el) {
+    var check = _instances[0];
+    var removeAt = -1;
+    for (var i = 0; i < check.items.length; i++) {
+      if (check.items[i] === el || check.items[i].name === el) {
+        var removeAt = i;
+      }
+    }
+
+    if (removeAt >= 0) {
+      _instances.forEach(function(instance) {
+        instance.splice('items',removeAt,1);
+      });
+      _store();
+    } else {
+      return false;
+    }
+  }
+
+  Polymer({
+    is: 'catalog-cart',
+    properties: {
+      items: {
+        type: Array,
+        notify: true,
+        value: function() {
+          return JSON.parse(localStorage['catalog.cart'] || '[]');
+        }
+      }
+    },
+    created: function() {
+      _instances.push(this);
+    },
+    add: function(name) {
+      if (this.includes(name)) return false;
+      return _add(name);
+    },
+    remove: function(name) {
+      return _remove(name);
+    },
+    includes: function(el) {
+      for (var i = 0; i < this.items.length; i++) {
+        if (this.items[i] === el || this.items[i].name === el) return true;
+      }
+      return false;
+    }
+  });
+})();
+</script>

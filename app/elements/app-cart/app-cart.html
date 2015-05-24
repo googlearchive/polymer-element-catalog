@@ -9,7 +9,7 @@
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 
 <link rel="import" href="../cart-item/cart-item.html">
-<link rel="import" href="../catalog-element/catalog-element.html">
+<link rel="import" href="../catalog-cart/catalog-cart.html">
 
 <dom-module id="app-cart">
   <style>
@@ -66,14 +66,10 @@
       color: white;
       margin-top: 10px;
     }
-
-    paper-tabs {
-      --paper-tabs-selection-bar: {
-        background-color: var(--paper-pink-500);
-      }
-    }
   </style>
   <template>
+    <catalog-cart id="data" items="{{items}}"></catalog-cart>
+
     <paper-toolbar id="toolbar">
       <iron-icon icon="shopping-cart"></iron-icon>
       <span id="toolbar-title" class="flex">Cart</span>
@@ -127,8 +123,7 @@ Polymer({
   properties: {
     items: {
       type: Array,
-      notify: true,
-      value: function() { return []; }
+      notify: true
     },
     downloadMethod: {
       type: String,
@@ -139,6 +134,7 @@ Polymer({
       value: 0
     }
   },
+  log: function() { console.log(arguments); },
   close: function() {
     this.fire('cart-close');
   },
@@ -146,35 +142,21 @@ Polymer({
     if (this.includes(name)) {
       this.fire('toast', {text: "Element " + name + " is already in cart"});
     } else {
-      var el = document.createElement('catalog-element');
-      el.name = name;
-      this.push('items',el.data);
-      this.notifyPath('items.length', this.items.length);
+      this.$.data.add(name);
       this.fire('toast', {text: "Element " + name + " has been added to the cart"});
     }
   },
   remove: function(name) {
-    for (var i = 0; i < this.items.length; i++) {
-      if (this.items[i].name === name) {
-        this._removeItem(this.items[i]);
-      }
-    }
+    this.$.data.remove(name);
   },
   _hasAny: function(arr) {
     return arr && (arr > 0);
   },
   _handleRemove: function(e) {
-    this._removeItem(e.currentTarget.element);
-  },
-  _removeItem: function(item) {
-    this.splice('items',this.items.indexOf(item), 1);
-    this.notifyPath('items.length', this.items.length);
+    this.remove(e.currentTarget.element);
   },
   includes: function(el) {
-    for (var i = 0; i < this.items.length; i++) {
-      if (this.items[i].name === el) return true;
-    }
-    return false;
+    return this.$.data.includes(el);
   },
   _itemsAsDependencies: function() {
     var out = {};

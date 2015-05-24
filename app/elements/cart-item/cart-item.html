@@ -49,7 +49,7 @@ Polymer({
   },
   _nav: function(e) {
     var view = e.currentTarget.getAttribute('view');
-    this.fire('nav', {url: '/elements/' + this.element.name + '/' + view});
+    this.fire('nav', {url: '/elements/' + this.element.name + '?view=' + view});
   }
 });
 </script>
