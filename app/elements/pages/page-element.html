@@ -85,10 +85,10 @@
     enableCustomStyleProperties: true,
     properties: {
       element: {type: String, notify: true},
-      view: {type: String, notify: true},
+      view: {type: String, notify: true, value: 'docs'},
+      active: {type: String, value: ''},
       docElements: Array,
       docBehaviors: Array,
-      active: String,
       docs: Object,
       metadata: Object,
       package: Object,
@@ -96,8 +96,8 @@
       q: String
     },
     observers: [
-      'updateURL(view)',
-      'updateMeta(element)',
+      'updateURL(view,active)',
+      'updateMeta(element,active)',
       'showElement(element)',
       'analyze(importPath)',
       'search(q)'
@@ -108,11 +108,18 @@
     analyze: function() {
       this.$.analyzer.analyze();
     },
-    updateURL: function() {
-      if (this.router) this.router.go("/elements/" + this.element + "/" + this.view, {replace: true});
+    updateURL: function(view,active) {
+      var url = "/elements/" + this.element;
+      
+      var qs = [];
+      if (this.view && this.view.length && this.view !== 'docs') qs.push('view=' + this.view);
+      if (this.active && this.active.length && this.active !== this.element) qs.push('active=' + this.active);
+      if (qs.length) url += "?" + qs.join("&");
+      
+      if (this.router) this.router.go(url, {replace: true});
     },
-    updateMeta: function() {
-      this.fire('page-meta', {title: this.element});
+    updateMeta: function(element,active) {
+      this.fire('page-meta', {title: (this.active && this.active.length) ? this.active : this.element});
     },
     showElement: function() {
       this.$['element-info'].classList.remove('active');

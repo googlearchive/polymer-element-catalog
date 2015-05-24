@@ -45,7 +45,7 @@ Polymer({
   nav: function(e) {
     e.stopPropagation();
     e.preventDefault();
-    this.fire('nav', {url: '/elements/' + this.element + '/' + e.currentTarget.getAttribute('view')});
+    this.fire('nav', {url: '/elements/' + this.element + '?view=' + e.currentTarget.getAttribute('view')});
   }
 });
 </script>

@@ -284,8 +284,8 @@ app-sidebar paper-toolbar {
 }
 
 #search input {
-  height: 48px;
-  line-height: 48px;
+  height: 46px;
+  line-height: 46px;
   border: 0;
   @apply(--paper-font-body1);
   margin-right: 16px;

@@ -219,7 +219,7 @@
         e.preventDefault();
         e.stopPropagation();
         var el = e.currentTarget.getAttribute('target');
-        this.router.go("/elements/" + el + "/docs");
+        this.router.go("/elements/" + el);
       },
       _parseQueryString: function() {
         var query = window.location.search.substring(1);

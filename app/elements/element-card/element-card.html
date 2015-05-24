@@ -69,7 +69,7 @@ Polymer({
     if (Polymer.dom(e).localTarget === this.$.actions) {
       return true;
     } else {
-      this.fire('nav', {url: '/elements/' + this.element + '/docs'});
+      this.fire('nav', {url: '/elements/' + this.element});
     }
   }
 });
