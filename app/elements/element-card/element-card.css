@@ -42,6 +42,10 @@ p {
   border-bottom: 1px solid #e5e5e5;
 }
 
+#el-graphic hero-image {
+  @apply(--layout-fit);
+}
+
 #el-package package-symbol {
   margin: 0 15px 0 0;
 }

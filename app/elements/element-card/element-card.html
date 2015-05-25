@@ -1,9 +1,9 @@
 <link rel="import" href="../../bower_components/iron-icons/maps-icons.html">
-
 <link rel="import" href="../../bower_components/paper-material/paper-material.html">
 
 <link rel="import" href="../catalog-element/catalog-element.html">
 <link rel="import" href="../catalog-package/catalog-package.html">
+<link rel="import" href="../hero-image/hero-image.html">
 <link rel="import" href="../package-symbol/package-symbol.html">
 <link rel="import" href="../element-action-menu/element-action-menu.html">
 
@@ -17,6 +17,7 @@
       <theme-color color="[[package.color]]">
         <div id="el" on-click="nav" target$="[[_element.name]]" view="docs">
           <div id="el-graphic" themed>
+            <hero-image src="[[_element.hero]]"></hero-image>
             <element-action-menu element="[[element]]" id="actions"></element-action-menu>
           </div>
           <h3>[[_element.name]]</h3>
