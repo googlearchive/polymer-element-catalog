@@ -1,4 +1,5 @@
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../catalog-cart/catalog-cart.html">
 
 <dom-module id="cart-icon">
   <style>
@@ -10,8 +11,18 @@
       vertical-align: top;
       cursor: pointer;
     }
+    
+    iron-icon {
+      transition: color 0.2s;
+    }
+
+    :host(.full) iron-icon {
+      color: var(--paper-pink-500);
+    }
   </style>
   <template>
+    <catalog-cart items="{{cartItems}}"></catalog-cart>
+
     <iron-icon icon="shopping-cart"></iron-icon>
   </template>
 </dom-module>
@@ -22,8 +33,28 @@ Polymer({
   listeners: {
     tap: 'openCart'
   },
+  observers: [
+    '_anyItems(cartItems.length)'
+  ],
   openCart: function() {
     this.fire('cart-open');
+  },
+  _anyItems: function() {
+    console.log('_anyItems', this.cartItems);
+    if (this.cartItems.length >= 1) {
+      this.classList.add('full');
+    } else {
+      this.classList.remove('full');
+    }
+  },
+  _pulse: function() {
+    this.classList.remove('pulse');
+    this.async(function() {
+      this.classList.add('pulse');
+    });
+  },
+  _shrink: function() {
+    
   }
 });
 </script>

@@ -66,6 +66,7 @@
     },
     handleNav: function(_, nav) {
       this.$.router.go(nav.url);
+      this.$.cartpanel.closeDrawer();
     },
     updateTitle: function(_, detail) {
       if (detail.title && detail.title.length) {
