@@ -47,7 +47,7 @@ Polymer({
     }, 10);
   },
   toggle: function(e) {
-    this.present ? this.fire('cart-remove', this.element) : this.fire('cart-add', this.element);
+    this.fire(this.present ? 'cart-remove' : 'cart-add', this.element);
   },
   _tapped: function() {
     if (this.tappable) this.toggle();
