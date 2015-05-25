@@ -8,6 +8,7 @@
 <link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
 <link rel="import" href="../../bower_components/paper-item/paper-item.html">
 
+<link rel="import" href="../catalog-data/catalog-data.html">
 <link rel="import" href="../catalog-element/catalog-element.html">
 <link rel="import" href="../catalog-package/catalog-package.html">
 <link rel="import" href="../package-symbol/package-symbol.html">
@@ -21,6 +22,7 @@
   <template>
     <catalog-element name="[[element]]" data="{{metadata}}"></catalog-element>
     <catalog-package name="[[metadata.package]]" data="{{package}}"></catalog-package>
+    <catalog-data elements="{{elements}}"></catalog-data>
 
     <theme-color color="[[package.color]]">
       <paper-drawer-panel drawer-width="272px" disable-edge-swipe>
@@ -30,49 +32,56 @@
             <app-bar class="horizontal layout center end-justified" query="{{q}}"></app-bar>
           </paper-toolbar>
           <div class="content">
-            <div class="horizontal layout center" id="package-heading">
+            <div class="horizontal layout center" id="package-heading" on-tap="navToPackage">
               <iron-icon icon="chevron-left"></iron-icon>
-              <package-symbol package="[[package]]" on-tap="navToPackage"></package-symbol>
+              <package-symbol package="[[package]]"></package-symbol>
               <span class="name flex">[[package.title]]</span>
             </div>
-            <div id="element-info">
-              <div id="element-header">
-                <span class="version">[[metadata.version]]</span>
-                <h2 id="element-title">[[element]]</h2>
-                <div id="element-desc">
-                  <p>[[metadata.description]]</p>
-                </div>
+            <div id="element-header">
+              <span class="version">[[metadata.version]]</span>
+              <h2 id="element-title">[[element]]</h2>
+              <div id="element-desc">
+                <p>[[metadata.description]]</p>
               </div>
-
-              <iron-selector id="nav" class="nav" attr-for-selected="name" selected="{{view}}">
-                <paper-item name="docs"><iron-icon icon="description"></iron-icon> <span>Docs</span></paper-item>
-                <paper-item name="demo"><iron-icon icon="visibility"></iron-icon> <span>Demo</span></paper-item>
-              </iron-selector>
-
-              <div class="nav" id="cart-add">
-                <paper-item on-tap="toggleCart"><cart-item-icon id="cartIcon" element="[[element]]"></cart-item-icon></paper-item>
-              </div>
-
-              <section hidden$="[[_oneOrFewer(docElements)]]">
-                <h4>Bundled Elements</h4>
-
-                <iron-selector id="elnav" class="nav" attr-for-selected="name" selected="{{active}}">
-                  <template is="dom-repeat" items="[[docElements]]">
-                    <paper-item name="[[item.is]]">[[item.is]]</paper-item>
-                  </template>
-                </iron-selector>
-              </section>
-
-              <section hidden$="[[_oneOrFewer(docBehaviors)]]">
-                <h4>Bundled Behaviors</h4>
-
-                <iron-selector id="elnav" class="nav" attr-for-selected="name" selected="{{active}}">
-                  <template is="dom-repeat" items="[[docBehaviors]]">
-                    <paper-item name="[[item.is]]">[[item.is]]</paper-item>
-                  </template>
-                </iron-selector>
-              </section>
             </div>
+
+            <iron-selector id="nav" class="nav" attr-for-selected="name" selected="{{view}}">
+              <paper-item name="docs"><iron-icon icon="description"></iron-icon> <span>Docs</span></paper-item>
+              <paper-item name="demo"><iron-icon icon="visibility"></iron-icon> <span>Demo</span></paper-item>
+            </iron-selector>
+
+            <div class="nav" id="cart-add">
+              <paper-item on-tap="toggleCart"><cart-item-icon id="cartIcon" element="[[element]]"></cart-item-icon></paper-item>
+            </div>
+
+            <section hidden$="[[_oneOrFewer(docElements)]]">
+              <h4>Bundled Elements</h4>
+
+              <iron-selector id="elnav" class="nav" attr-for-selected="name" selected="{{active}}">
+                <template is="dom-repeat" items="[[docElements]]">
+                  <paper-item name="[[item.is]]">[[item.is]]</paper-item>
+                </template>
+              </iron-selector>
+            </section>
+
+            <section hidden$="[[_oneOrFewer(docBehaviors)]]">
+              <h4>Bundled Behaviors</h4>
+
+              <iron-selector id="elnav" class="nav" attr-for-selected="name" selected="{{active}}">
+                <template is="dom-repeat" items="[[docBehaviors]]">
+                  <paper-item name="[[item.is]]">[[item.is]]</paper-item>
+                </template>
+              </iron-selector>
+            </section>
+
+            <section id="other-elements" class="flex nav vertical layout">
+              <h4>Other <span>[[package.title]]</span></h4>
+              <div class="flex list">
+                <template is="dom-repeat" items="[[elements]]" filter="listFilter">
+                  <paper-item on-tap="navToElement" name$="[[item.name]]">[[item.name]]</paper-item>
+                </template>
+              </div>
+            </section>
           </div>
         </app-sidebar>
         <section main class="fit">
@@ -103,7 +112,6 @@
     observers: [
       'updateURL(view,active)',
       'updateMeta(element,active)',
-      'showElement(element)',
       'analyze(importPath)',
       'search(q)'
     ],
@@ -126,12 +134,11 @@
     updateMeta: function(element,active) {
       this.fire('page-meta', {title: (this.active && this.active.length) ? this.active : this.element});
     },
-    showElement: function() {
-      this.$['element-info'].classList.remove('active');
-      setTimeout(function() { this.$['element-info'].classList.add('active'); }.bind(this), 25);
-    },
     navToPackage: function() {
       this.router.go("/browse?package=" + this.package.name);
+    },
+    navToElement: function(e) {
+      this.router.go("/elements/" + e.currentTarget.getAttribute('name'));
     },
     docSrc: function(element) {
       return "/data/docs/" + element + ".json";
@@ -152,6 +159,9 @@
     },
     toggleCart: function() {
       this.$.cartIcon.toggle();
+    },
+    listFilter: function(el) {
+      return el.package === this.package.name && el.name !== this.element;
     }
   });
 </script>

@@ -24,7 +24,8 @@ app-sidebar paper-toolbar {
   height: 48px;
   line-height: 48px;
   background: var(--paper-blue-grey-50);
-  border: 1px solid var(--paper-blue-grey-100);
+  border: solid;
+  border-color: var(--paper-blue-grey-100);
   border-width: 1px 0;
   cursor: pointer;
   font-weight: 500;
@@ -96,13 +97,13 @@ paper-item {
   color: var(--paper-blue-a700);
 }
 
-#element-info h4 {
+app-sidebar h4 {
   font-size: 14px;
   font-weight: 500;
   margin: 12px 16px;
 }
 
-#element-info section {
+app-sidebar section {
   border-top: 1px solid #e5e5e5;
 }
 
@@ -117,4 +118,12 @@ cart-item-icon {
   --cart-item-icon-label: {
     margin-left: 8px;
   };
+}
+
+#other-elements {
+  overflow: hidden;
+}
+
+#other-elements .list {
+  overflow-y: auto;
 }

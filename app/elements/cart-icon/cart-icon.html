@@ -11,7 +11,7 @@
       vertical-align: top;
       cursor: pointer;
     }
-    
+
     iron-icon {
       transition: color 0.2s;
     }
@@ -40,7 +40,6 @@ Polymer({
     this.fire('cart-open');
   },
   _anyItems: function() {
-    console.log('_anyItems', this.cartItems);
     if (this.cartItems.length >= 1) {
       this.classList.add('full');
     } else {
@@ -54,7 +53,7 @@ Polymer({
     });
   },
   _shrink: function() {
-    
+
   }
 });
 </script>

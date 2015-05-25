@@ -15,7 +15,9 @@
 }
 
 ::content .content {
-  height: calc(100% - 64px);
+  @apply(--layout-flex);
+  @apply(--layout);
+  @apply(--layout-vertical);
 }
 
 ::content .section {
