@@ -9,7 +9,7 @@
       position: relative;
       text-align: center;
     }
-    
+
     a, iron-icon {
       color: rgba(0,0,0,0.6);
     }
@@ -24,7 +24,7 @@
     }
   </style>
   <template>
-    <a on-tap="cartAdd"><iron-icon icon="add-shopping-cart" title="Add to Cart"></iron-icon><span hidden$="[[iconsOnly]]">Add</span></a>
+    <a on-tap="cartAdd"><cart-item-icon id="cartItemIcon" element="[[element]]" present-label="Remove" absent-label="Add" no-label="[[iconsOnly]]"></cart-item-icon></a>
     <a on-tap="nav" view="docs"><iron-icon icon="description" title="View Docs"></iron-icon><span hidden$="[[iconsOnly]]">Docs</span></a>
     <a on-tap="nav" view="demo"><iron-icon icon="visibility" title="View Demo"></iron-icon><span hidden$="[[iconsOnly]]">Demo</span></a>
   </template>
@@ -40,7 +40,7 @@ Polymer({
   cartAdd: function(e) {
     e.stopPropagation();
     e.preventDefault();
-    this.fire('cart-add', this.element);
+    this.$.cartItemIcon.toggle();
   },
   nav: function(e) {
     e.stopPropagation();

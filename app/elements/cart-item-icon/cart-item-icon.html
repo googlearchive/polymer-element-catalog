@@ -1,0 +1,56 @@
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+
+<link rel="import" href="../catalog-cart/catalog-cart.html">
+
+<dom-module id="cart-item-icon">
+  <style>
+    iron-icon {
+      width: var(--cart-item-icon-size,24px);
+      height: var(--cart-item-icon-size,24px);
+    }
+
+    span {
+      @apply(--cart-item-icon-label);
+    }
+  </style>
+  <template>
+    <catalog-cart id="cart" on-item-added="_update" on-item-removed="_update" on-items-changed="_update"></catalog-cart>
+
+    <iron-icon icon="[[_icon]]"></iron-icon><span hidden$="[[noLabel]]">[[_label]]</span>
+  </template>
+</dom-module>
+
+<script>
+Polymer({
+  is: 'cart-item-icon',
+  properties: {
+    element: {type: String, observer: '_update'},
+    presentLabel: {type: String, value: 'Remove from Cart', observer: '_update'},
+    absentLabel: {type: String, value: 'Add to Cart', observer: '_update'},
+    present: {type: Boolean, notify: true, readOnly: true, value: false},
+    noLabel: {type: Boolean, value: false},
+    tappable: {type: Boolean, value: false},
+    _label: String,
+    _icon: String
+  },
+  listeners: {
+    tap: '_tapped'
+  },
+  attached: function() {
+    this._update();
+  },
+  _update: function() {
+    this._setPresent(this.$.cart.includes(this.element));
+    this._label = this.present ? this.presentLabel : this.absentLabel;
+    this.debounce('icon', function() {
+      this._icon = this.present ? 'star' : 'add-shopping-cart';
+    }, 10);
+  },
+  toggle: function(e) {
+    this.present ? this.fire('cart-remove', this.element) : this.fire('cart-add', this.element);
+  },
+  _tapped: function() {
+    if (this.tappable) this.toggle();
+  }
+});
+</script>

@@ -147,7 +147,9 @@ Polymer({
     }
   },
   remove: function(name) {
+    if (name.name) name = name.name;
     this.$.data.remove(name);
+    this.fire('toast', {text: "Element " + name + " has been removed from the cart"});
   },
   _hasAny: function(arr) {
     return arr && (arr > 0);

@@ -14,6 +14,7 @@
 <link rel="import" href="../responsive-element/responsive-element.html">
 <link rel="import" href="../theme-color/theme-color.html">
 <link rel="import" href="../cart-icon/cart-icon.html">
+<link rel="import" href="../cart-item-icon/cart-item-icon.html">
 
 <dom-module id="page-element">
   <link rel="import" type="css" href="page-element.css">
@@ -47,6 +48,10 @@
                 <paper-item name="docs"><iron-icon icon="description"></iron-icon> <span>Docs</span></paper-item>
                 <paper-item name="demo"><iron-icon icon="visibility"></iron-icon> <span>Demo</span></paper-item>
               </iron-selector>
+
+              <div class="nav" id="cart-add">
+                <paper-item on-tap="toggleCart"><cart-item-icon id="cartIcon" element="[[element]]"></cart-item-icon></paper-item>
+              </div>
 
               <section hidden$="[[_oneOrFewer(docElements)]]">
                 <h4>Bundled Elements</h4>
@@ -110,12 +115,12 @@
     },
     updateURL: function(view,active) {
       var url = "/elements/" + this.element;
-      
+
       var qs = [];
       if (this.view && this.view.length && this.view !== 'docs') qs.push('view=' + this.view);
       if (this.active && this.active.length && this.active !== this.element) qs.push('active=' + this.active);
       if (qs.length) url += "?" + qs.join("&");
-      
+
       if (this.router) this.router.go(url, {replace: true});
     },
     updateMeta: function(element,active) {
@@ -139,8 +144,14 @@
         this.router.go('/browse?q=' + (q || this.q));
       }
     },
+    cartAdd: function() {
+      this.fire('cart-add', this.element);
+    },
     _oneOrFewer: function(arr) {
       return !arr || arr.length <= 1;
+    },
+    toggleCart: function() {
+      this.$.cartIcon.toggle();
     }
   });
 </script>

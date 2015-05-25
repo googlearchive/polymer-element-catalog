@@ -111,3 +111,10 @@ cart-icon {
   top: 24px;
   right: 24px;
 }
+
+cart-item-icon {
+  --cart-item-icon-size: 18px;
+  --cart-item-icon-label: {
+    margin-left: 8px;
+  };
+}

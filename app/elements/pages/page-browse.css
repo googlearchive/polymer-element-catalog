@@ -98,6 +98,8 @@ app-bar .menu-icon {
 #element-table element-action-menu::shadow iron-icon {
   color: var(--paper-grey-300);
   margin: 0 4px;
+  width: 18px;
+  height: 18px;
 }
 
 #element-table tr:hover element-action-menu::shadow iron-icon {
