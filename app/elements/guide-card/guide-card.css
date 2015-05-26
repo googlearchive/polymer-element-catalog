@@ -1,7 +1,8 @@
 :host {
   display: block;
   width: 456px;
-  margin: 0 20px 20px 0;
+  margin: 0 16px 16px;
+  background: white;
 }
 
 #content {
