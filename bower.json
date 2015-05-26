@@ -50,6 +50,7 @@
     "paper-ripple": "^0.9.0",
     "paper-toolbar": "master",
     "iron-ajax": "^0.9.4",
-    "iron-component-page": "polish"
+    "iron-component-page": "polish",
+    "iron-doc-viewer": "polish"
   }
 }
