@@ -27,7 +27,7 @@
     "hydrolysis": "PolymerLabs/hydrolysis#^1.1.2",
     "iron-ajax": "PolymerElements/iron-ajax#^0.9.4",
     "iron-icons": "PolymerElements/iron-icons#^0.9.0",
-    "iron-icon": "PolymerElements/iron-icon#master",
+    "iron-icon": "PolymerElements/iron-icon#^0.9.0",
     "iron-selector": "PolymerElements/iron-selector#^0.9.0",
     "iron-flex-layout": "PolymerElements/iron-flex-layout#^0.9.0",
     "paper-item": "PolymerElements/paper-item#^0.9.0",
@@ -49,12 +49,7 @@
     "webcomponentsjs": "^0.7.0",
     "paper-ripple": "^0.9.0",
     "paper-toolbar": "master",
-    "iron-icon": "master",
-    "iron-iconset-svg": "^0.9.0",
-    "iron-meta": "^0.9.0",
-    "iron-signals": "^0.9.0",
     "iron-ajax": "^0.9.4",
-    "iron-component-page": "polish",
-    "iron-doc-viewer": "polish"
+    "iron-component-page": "polish"
   }
 }
