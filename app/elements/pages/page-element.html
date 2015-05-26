@@ -77,7 +77,7 @@
             <section id="other-elements" class="flex nav vertical layout">
               <h4>Other <span>[[package.title]]</span></h4>
               <div class="flex list">
-                <template is="dom-repeat" items="[[elements]]" filter="listFilter">
+                <template is="dom-repeat" id="others" items="[[elements]]" filter="listFilter">
                   <paper-item on-tap="navToElement" name$="[[item.name]]">[[item.name]]</paper-item>
                 </template>
               </div>
@@ -98,7 +98,7 @@
     is: 'page-element',
     enableCustomStyleProperties: true,
     properties: {
-      element: {type: String, notify: true},
+      element: {type: String, notify: true, observer: '_elementChanged'},
       view: {type: String, notify: true, value: 'docs'},
       active: {type: String, value: ''},
       docElements: Array,
@@ -162,6 +162,9 @@
     },
     listFilter: function(el) {
       return el.package === this.package.name && el.name !== this.element;
+    },
+    _elementChanged: function() {
+      this.$.others.render();
     }
   });
 </script>
