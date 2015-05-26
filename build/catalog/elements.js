@@ -46,7 +46,8 @@ module.exports = function (imports) {
         });
 
         fs.mkdirsSync(path.join(root, destDir, 'data', 'docs'));
-        analyze(root, destDir, elementName, function(err, data) {
+        if (typeof details.main === 'string') details.main = [details.main];
+        analyze(root, destDir, elementName, details.main || [elementName + '.html'], function(err, data) {
           // Set up object schema
           console.log("-",elementName,"(" + details._release + ")");
 
