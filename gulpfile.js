@@ -229,17 +229,24 @@ gulp.task('pagespeed', function (cb) {
   }, cb);
 });
 
+gulp.task('catalog_assets:dist', function() {
+  return gulp.src('guides/assets/**/*').pipe(gulp.dest('dist/guides/assets'));
+});
+
 // Build element catalog JSON file
-gulp.task('catalog:dist', function () {
+gulp.task('catalog:dist', ['catalog_assets:dist'], function () {
   if (process.env.FIXTURES) return;
 
   return execCatalogTask({
-     destDir: 'dist'
-   });
+    destDir: 'dist'
+  });
 });
 
-gulp.task('catalog:dev', function () {
+gulp.task('catalog_assets:dev', function() {
+  return gulp.src('guides/assets/**/*').pipe(gulp.dest('.tmp/guides/assets'));
+});
 
+gulp.task('catalog:dev', ['catalog_assets:dev'], function () {
   return execCatalogTask({
     destDir: '.tmp',
     space: 2

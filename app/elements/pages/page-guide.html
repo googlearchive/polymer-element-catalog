@@ -75,13 +75,22 @@
       --paper-toolbar-background: white;
     }
 
-    #guide-list paper-item{
+    #guide-list .item {
       cursor: pointer;
+      font-size: 14px;
+      line-height: 24px;
+      padding: 0 24px;
     }
 
     [paper-drawer-toggle] {
       margin: 0 10px;
       cursor: pointer;
+    }
+
+    app-sidebar h4 {
+      font-size: 14px;
+      font-weight: 500;
+      margin: 12px 24px;
     }
   </style>
   <template>
@@ -96,9 +105,10 @@
           <app-logo class="flex"></app-logo>
           <app-bar class="horizontal layout center end-justified"></app-bar>
         </paper-toolbar>
-        <nav id="guide-list">
+        <h4>Guides</h4>
+        <nav id="guide-list" class="flex">
           <template is="dom-repeat" items="[[guides]]">
-            <paper-item name$="[[item.name]]" on-tap="nav">[[item.title]]</paper-item>
+            <div class="item" name$="[[item.name]]" on-tap="nav">[[item.title]]</div>
           </template>
         </nav>
       </app-sidebar>
@@ -173,7 +183,7 @@
       this.fire('page-meta', {title: this.guide.title});
     },
     nav: function(e) {
-      if (this.name !== e.currentTarget.name) {
+      if (this.name !== e.currentTarget.getAttribute('name')) {
         this.router.go('/guides/' + e.currentTarget.name);
       }
     }

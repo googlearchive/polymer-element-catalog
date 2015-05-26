@@ -147,7 +147,7 @@ started because you don't need to install any additional tools.
 
 Expand the ZIP file in your project directory to create a `bower_components` folder.
 
-![](assets/zip-file-contents.png)
+![Example Zip Contents](assets/zip-file-contents.png)
 
 Unlike Bower, the ZIP file doesn't provide a built-in method
 for updating dependencies. You can manually update components with a new ZIP
