@@ -24,7 +24,7 @@
     "app-router": "~2.6.0",
     "pushstate-anchor": "~0.3.0",
     "color": "~2.5.0",
-    "hydrolysis": "PolymerLabs/hydrolysis#^1.1.2",
+    "hydrolysis": "PolymerLabs/hydrolysis#^1.11.0",
     "iron-ajax": "PolymerElements/iron-ajax#^0.9.4",
     "iron-icons": "PolymerElements/iron-icons#^0.9.0",
     "iron-icon": "PolymerElements/iron-icon#^0.9.0",
@@ -39,18 +39,13 @@
     "paper-styles": "PolymerElements/paper-styles#^0.9.0",
     "marked-element": "PolymerElements/marked-element#^0.9.0",
     "prism-element": "PolymerElements/prism-element#^0.9.0",
-    "iron-component-page": "PolymerElements/iron-component-page#polish",
-    "iron-doc-viewer": "PolymerElements/iron-doc-viewer#polish"
+    "iron-component-page": "PolymerElements/iron-component-page#^0.9.0",
+    "iron-doc-viewer": "PolymerElements/iron-doc-viewer#^0.9.0"
   },
   "resolutions": {
-    "iron-flex-layout": "^0.9.1",
     "polymer": "master",
-    "iron-icons": "^0.9.0",
-    "webcomponentsjs": "^0.7.0",
-    "paper-ripple": "^0.9.0",
-    "paper-toolbar": "master",
     "iron-ajax": "^0.9.4",
-    "iron-component-page": "polish",
-    "iron-doc-viewer": "polish"
+    "paper-toolbar": "^0.9.0",
+    "webcomponentsjs": "^0.7.2"
   }
 }

@@ -23,11 +23,19 @@ module.exports = function(root, destDir, elementName, sources, callback) {
     values.forEach(function(data) {
       var els = out.elements.map(function(el){ return el.is });
       var bes = out.behaviors.map(function(be){ return be.is });
-      
+      data.elements.forEach(function(element){
+        element.scriptElement = undefined;
+        element.behaviors && element.behaviors.forEach(function(behavior){
+          behavior.javascriptNode = undefined;
+        });
+        element.properties && element.properties.forEach(function(property){
+          property.javascriptNode = undefined;
+        });
+      })
       out = merge(out, {
-        elements: data.elements.filter(function(el) { return els.indexOf(el.is) < 0 }) || [],
+        elements: data.elements && data.elements.filter(function(el) { return els.indexOf(el.is) < 0 }) || [],
         elementsByTagName: data.elementsByTagName || {},
-        behaviors: data.behaviors.filter(function(be) { return bes.indexOf(be.is) < 0 }) || [],
+        behaviors: data.behaviors && data.behaviors.filter(function(be) { return bes.indexOf(be.is) < 0 }) || [],
         features: data.features || []
       });
     });
