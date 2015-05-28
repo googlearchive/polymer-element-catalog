@@ -20,9 +20,8 @@
     "paper-elements": "PolymerElements/paper-elements#master",
     "gold-elements": "PolymerElements/gold-elements#master",
     "neon-elements": "PolymerElements/neon-elements#master",
-    "platinum-elements": "PolymerElements/platinum-elements#master",
+    "platinum-elements": "PolymerElements/platinum-elements#02b65161",
     "molecules": "PolymerElements/molecules#master",
-
     "google-web-components": "GoogleWebComponents/google-web-components#db8c4c73",
     "polymer": "Polymer/polymer#master",
     "app-router": "~2.6.0",
@@ -50,6 +49,15 @@
     "polymer": "master",
     "iron-ajax": "^0.9.4",
     "paper-toolbar": "^0.9.0",
-    "webcomponentsjs": "^0.7.2"
+    "webcomponentsjs": "^0.7.2",
+    "iron-icons": "^1.0.0",
+    "iron-icon": "^1.0.0",
+    "iron-selector": "^1.0.0",
+    "iron-flex-layout": "^1.0.0",
+    "paper-header-panel": "^1.0.0",
+    "paper-styles": "^1.0.0",
+    "promise-polyfill": "^1.0.0",
+    "iron-iconset-svg": "^1.0.0",
+    "iron-meta": "^1.0.0"
   }
 }
