@@ -8,6 +8,7 @@
   @apply(--layout-fit);
   @apply(--layout);
   @apply(--layout-vertical);
+  overflow: hidden;
 }
 
 ::content paper-toolbar {
@@ -18,6 +19,8 @@
   @apply(--layout-flex);
   @apply(--layout);
   @apply(--layout-vertical);
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 ::content .section {

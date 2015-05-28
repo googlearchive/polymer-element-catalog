@@ -47,7 +47,9 @@
 
             <iron-selector id="nav" class="nav" attr-for-selected="name" selected="{{view}}">
               <paper-item name="docs"><iron-icon icon="description"></iron-icon> <span>Docs</span></paper-item>
-              <paper-item name="demo"><iron-icon icon="visibility"></iron-icon> <span>Demo</span></paper-item>
+              <template is="dom-repeat" items="[[docDemos]]">
+                <paper-item name="[[_demoView(item.path)]]"><iron-icon icon="visibility"></iron-icon> <span>[[_demoName(item.desc)]]</span></paper-item>
+              </template>
             </iron-selector>
 
             <div class="nav" id="cart-add">
@@ -85,7 +87,7 @@
           </div>
         </app-sidebar>
         <section main class="fit">
-          <iron-component-page version="[[metadata.version]]" doc-src="[[docSrc(element)]]" base="[[baseURI(element)]]" _catalog view="{{view}}" doc-elements="{{docElements}}" doc-behaviors="{{docBehaviors}}" active="{{active}}"></iron-component-page>
+          <iron-component-page version="[[metadata.version]]" doc-src="[[docSrc(element)]]" base="[[baseURI(element)]]" _catalog view="{{view}}" doc-elements="{{docElements}}" doc-behaviors="{{docBehaviors}}" doc-demos="{{docDemos}}" active="{{active}}"></iron-component-page>
           <cart-icon></cart-icon>
         </section>
       </paper-drawer-panel>
@@ -103,6 +105,7 @@
       active: {type: String, value: ''},
       docElements: Array,
       docBehaviors: Array,
+      docDemos: Array,
       docs: Object,
       metadata: Object,
       package: Object,
@@ -165,6 +168,12 @@
     },
     _elementChanged: function() {
       this.$.others.render();
+    },
+    _demoView: function(path) {
+      return "demo:" + path;
+    },
+    _demoName: function(name) {
+      return name === 'demo' ? 'Demo' : name;
     }
   });
 </script>
