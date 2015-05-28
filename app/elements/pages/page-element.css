@@ -142,5 +142,6 @@ cart-item-icon {
 }
 
 .shrinkable iron-selector, .shrinkable .list {
+  overflow-x: hidden;
   overflow-y: auto;
 }
