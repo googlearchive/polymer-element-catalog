@@ -20,7 +20,7 @@ features such as data binding.
 
 You can install elements one at a time, or install a whole collection of elements.
 
-Polymer contains two primary collections of elements:
+Polymer contains a few primary collections of elements:
 
 -   [Iron elements](/browse?package=iron-elements). A set of utility
     elements including generic UI elements (such as icons, input and layout
@@ -32,6 +32,9 @@ Polymer contains two primary collections of elements:
 -   [Gold elements](/browse?package=gold-elements). Form elements for ecommerce.
 
 -   [Neon elements](/browse?package=neon-elements). Animation-related elements.
+
+-   [Platinum elements](/browse?package=platinum-elements). Elements for app-like features, 
+    like push notifications and offline caching.
 
 
 If you find a component you want while browsing the docs, simply click **Add to cart** 
