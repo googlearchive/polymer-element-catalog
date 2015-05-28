@@ -42,7 +42,7 @@
     "paper-styles": "PolymerElements/paper-styles#^0.9.0",
     "marked-element": "PolymerElements/marked-element#^0.9.0",
     "prism-element": "PolymerElements/prism-element#^0.9.0",
-    "iron-component-page": "PolymerElements/iron-component-page#multi-demo",
+    "iron-component-page": "PolymerElements/iron-component-page#master",
     "iron-doc-viewer": "PolymerElements/iron-doc-viewer#^0.9.0"
   },
   "resolutions": {
@@ -58,6 +58,10 @@
     "paper-styles": "^1.0.0",
     "promise-polyfill": "^1.0.0",
     "iron-iconset-svg": "^1.0.0",
-    "iron-meta": "^1.0.0"
+    "iron-meta": "^1.0.0",
+    "marked-element": "^1.0.0",
+    "prism-element": "^1.0.0",
+    "iron-component-page": "master",
+    "iron-doc-viewer": "^1.0.0"
   }
 }
