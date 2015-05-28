@@ -6,7 +6,7 @@
   ],
   "description": "A catalog showcasing Google's Web Components",
   "main": "dist/index.html",
-  "license": "MIT",
+  "license": "http://polymer.github.io/LICENSE.txt",
   "ignore": [
     "**/.*",
     "node_modules",
