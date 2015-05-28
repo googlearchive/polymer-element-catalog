@@ -19,6 +19,10 @@
     "iron-elements": "PolymerElements/iron-elements#master",
     "paper-elements": "PolymerElements/paper-elements#master",
     "gold-elements": "PolymerElements/gold-elements#master",
+    "neon-elements": "PolymerElements/neon-elements#master",
+    "platinum-elements": "PolymerElements/platinum-elements#master",
+    "molecules": "PolymerElements/molecules#master",
+
     "google-web-components": "GoogleWebComponents/google-web-components#db8c4c73",
     "polymer": "Polymer/polymer#master",
     "app-router": "~2.6.0",

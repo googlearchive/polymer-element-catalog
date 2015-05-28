@@ -29,34 +29,25 @@
       "tagline":"Ecommerce Elements"
     },
     {
-      "name":"oxygen-elements",
-      "title":"Oxygen Elements",
-      "color":"#81c784",
-      "symbol":"O"
-    },
-    {
       "name":"neon-elements",
       "title":"Neon Elements",
       "color":"#a7ffeb",
-      "symbol":"Ne"
+      "symbol":"Ne",
+      "tagline": "Animation and Special Effects"
     },
     {
-      "name":"carbon-elements",
-      "title":"Carbon Elements",
-      "color":"#b0bec5",
-      "symbol":"C"
+      "name":"platinum-elements",
+      "title":"Platinum Elements",
+      "color":"#cfd8dc",
+      "symbol":"Pt",
+      "tagline":"Offline, push, and more"
     },
     {
       "name":"molecules",
       "title":"Molecules",
       "color":"#ffab91",
-      "symbol":"Mo"
-    },
-    {
-      "name":"service-worker-elements",
-      "title":"Service Worker Elements",
-      "color":"#ffeb3b",
-      "symbol":"Sw"
+      "symbol":"Mo",
+      "tagline": "Wrappers for third-party libraries"
     }
   ]
 }
