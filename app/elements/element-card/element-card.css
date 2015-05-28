@@ -44,6 +44,7 @@ p {
 
 #el-graphic hero-image {
   @apply(--layout-fit);
+  opacity: 0.85;
 }
 
 #el-package package-symbol {

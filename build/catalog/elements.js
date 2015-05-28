@@ -51,6 +51,11 @@ module.exports = function (imports) {
           // Set up object schema
           console.log("-",elementName,"(" + details._release + ")");
 
+          var hero;
+          data.elements.concat(data.behaviors).forEach(function(el) {
+            if (el.hero) hero = '/bower_components/' + elementName + '/' + el.hero;
+          });
+
           cb(err, {
             name: elementName,
             version: details._release,
@@ -58,7 +63,8 @@ module.exports = function (imports) {
             target: details._target,
             package: package.name,
             description: details.description,
-            tags: (details.keywords || []).filter(cleanTags)
+            tags: (details.keywords || []).filter(cleanTags),
+            hero: hero
           });
         });
       }, function(err, output) {
