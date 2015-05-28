@@ -56,7 +56,7 @@
               <paper-item on-tap="toggleCart"><cart-item-icon id="cartIcon" element="[[element]]"></cart-item-icon></paper-item>
             </div>
 
-            <section hidden$="[[_oneOrFewer(docElements)]]">
+            <section hidden$="[[_oneOrFewer(docElements)]]" class="shrinkable">
               <h4>Bundled Elements</h4>
 
               <iron-selector id="elnav" class="nav" attr-for-selected="name" selected="{{active}}">
@@ -66,7 +66,7 @@
               </iron-selector>
             </section>
 
-            <section hidden$="[[_oneOrFewer(docBehaviors)]]">
+            <section class="shrinkable" hidden$="[[_oneOrFewer(docBehaviors)]]">
               <h4>Bundled Behaviors</h4>
 
               <iron-selector id="elnav" class="nav" attr-for-selected="name" selected="{{active}}">
@@ -76,7 +76,7 @@
               </iron-selector>
             </section>
 
-            <section id="other-elements" class="flex nav vertical layout">
+            <section id="other-elements" class="flex nav vertical layout shrinkable">
               <h4>Other <span>[[package.title]]</span></h4>
               <div class="flex list">
                 <template is="dom-repeat" id="others" items="[[elements]]" filter="listFilter">

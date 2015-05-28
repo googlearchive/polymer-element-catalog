@@ -75,7 +75,7 @@ paper-item {
 paper-item {
   font-size: 14px;
   padding: 4px 16px;
-  min-height: auto;
+  min-height: inherit;
 }
 
 .nav {
@@ -122,8 +122,25 @@ cart-item-icon {
 
 #other-elements {
   overflow: hidden;
+  -webkit-flex-shrink: 5;
+  flex-shrink: 5;
 }
 
 #other-elements .list {
+  overflow-y: auto;
+}
+
+#element-header, #package-heading, #nav, #cart-add {
+  -webkit-flex-shrink: 0;
+  flex-shrink: 0;
+}
+
+.shrinkable {
+  overflow: hidden;
+  @apply(--layout);
+  @apply(--layout-vertical);
+}
+
+.shrinkable iron-selector, .shrinkable .list {
   overflow-y: auto;
 }
