@@ -73,12 +73,25 @@ element-action-menu {
   bottom: 0;
   height: 46px;
   padding: 10px 16px;
-  background: rgba(0,0,0,.1);
+  background: rgba(255,255,255,0.95);
   box-sizing: border-box;
-  transform: translate(0, 20px);
-  transition: var(--material-curve-320);
-  opacity: 0;
-  visibility: hidden;
+}
+
+@media (min-width: 640px) {
+  element-action-menu {
+    transform: translate(0, 20px);
+    transition: var(--material-curve-320);
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+@media (max-width: 639px) {
+  #el-graphic {
+    height: 210px !important;
+  }
+  #el-graphic hero-image {
+    bottom: 64px !important;
+  }
 }
 
 #el-graphic:hover element-action-menu {
