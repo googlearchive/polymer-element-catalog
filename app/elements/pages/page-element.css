@@ -142,6 +142,7 @@ cart-item-icon {
 
 #other-elements .list {
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 #element-header, #package-heading, #nav, #cart-add {
@@ -158,4 +159,5 @@ cart-item-icon {
 .shrinkable iron-selector, .shrinkable .list {
   overflow-x: hidden;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
