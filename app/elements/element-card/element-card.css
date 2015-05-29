@@ -43,7 +43,11 @@ p {
 }
 
 #el-graphic hero-image {
-  @apply(--layout-fit);
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  bottom: 8px;
+  right: 8px;
   opacity: 0.85;
 }
 
@@ -71,13 +75,13 @@ element-action-menu {
   position: absolute;
   width: 100%;
   bottom: 0;
-  height: 46px;
+  height: 64px;
   padding: 10px 16px;
   background: rgba(255,255,255,0.95);
   box-sizing: border-box;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 840px) {
   element-action-menu {
     transform: translate(0, 20px);
     transition: var(--material-curve-320);
@@ -85,7 +89,7 @@ element-action-menu {
     visibility: hidden;
   }
 }
-@media (max-width: 639px) {
+@media (max-width: 839px) {
   #el-graphic {
     height: 210px !important;
   }
