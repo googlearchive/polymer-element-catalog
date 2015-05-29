@@ -25,7 +25,7 @@
         _data.packageMap = _generateMap(data.packages);
         _data.elementMap = _generateMap(data.elements);
         _data.guideMap = _generateMap(data.guides);
-        _data.behaviorMap = {}
+        _data.behaviorMap = {};
         _data.elements.forEach(function(el) {
           el.behaviors.forEach(function(be) {
             _data.behaviorMap[be] = el.name;
