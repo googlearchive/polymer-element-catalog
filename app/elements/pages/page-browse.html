@@ -37,7 +37,7 @@
           </div>
           <div class="content">
             <div id="package-tag" hidden$="[[!tag]]">
-              <span>[[tag]]</span> <iron-icon icon="clear" on-click="clearTag"></iron-icon>
+              <span>[[tag]]</span> <iron-icon icon="clear" on-tap="clearTag"></iron-icon>
             </div>
             <div id="package-list">
               <h5>Products</h5>
@@ -80,7 +80,7 @@
               </div>
             </div>-->
             <div hidden$="[[!tag]]" id="current-tag" class="horizontal layout center">
-              <b>Tag:</b> <span class="flex">[[tag]]</span> <iron-icon icon="clear" on-click="clearTag"></iron-icon>
+              <b>Tag:</b> <span class="flex">[[tag]]</span> <iron-icon icon="clear" on-tap="clearTag"></iron-icon>
             </div>
           </div>
         </app-sidebar>
