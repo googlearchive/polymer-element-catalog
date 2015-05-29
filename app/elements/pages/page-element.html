@@ -145,7 +145,11 @@
       this.router.go("/elements/" + e.currentTarget.getAttribute('name'));
     },
     navToBehavior: function(e, detail) {
-      this.router.go("/elements/" + this.behaviorMap[detail] + "?active=" + detail);
+      if (this.behaviorMap[detail]) {
+        this.router.go("/elements/" + this.behaviorMap[detail] + "?active=" + detail);
+      } else {
+        this.fire('toast', {text: "No documentation available for " + detail});
+      }
     },
     docSrc: function(element) {
       return "/data/docs/" + element + ".json";
