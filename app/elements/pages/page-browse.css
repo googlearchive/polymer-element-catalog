@@ -46,7 +46,7 @@ app-bar .menu-icon {
   color: var(--paper-grey-600);
 }
 
-#element-cards, #element-table, .elements-title, #package-heading {
+#element-cards, element-table, .elements-title, #package-heading {
   width: 100%;
   max-width: 920px;
   margin: 10px auto;
@@ -54,99 +54,6 @@ app-bar .menu-icon {
 
 #package-heading {
   margin: 0px auto 16px;
-}
-
-#element-table {
-  border-collapse: collapse;
-  background: white;
-  border-radius: 3px;
-  border: 1px solid #e5e5e5;
-}
-
-#element-table thead th {
-  padding: 0 24px;
-  line-height: 56px;
-  font-size: 12px;
-  font-weight: 500;
-  color: rgba(0, 0, 0, 0.54);
-}
-
-#element-table td, #element-table th {
-  padding: 12px 24px;
-}
-
-#element-table td.tags {
-  font-size: 11px;
-  line-height: 16px;
-  font-weight: 400;
-}
-
-#element-table th {
-  @apply(--paper-font-body1);
-  color: var(--secondary-text-color);
-  text-align: left;
-  border-bottom: 1px solid;
-  border-bottom-color: var(--divider-color);
-}
-
-#element-table tbody tr {
-  cursor: pointer;
-  overflow: hidden;
-  height: 48px;
-}
-
-#element-table tbody tr:first-child {
-  margin-top: 8px;
-}
-
-#element-table element-action-menu::shadow iron-icon {
-  color: var(--paper-grey-300);
-  margin: 0 4px;
-  width: 18px;
-  height: 18px;
-}
-
-#element-table tr:hover element-action-menu::shadow iron-icon {
-  color: var(--paper-grey-700);
-}
-
-#element-table .description {
-  overflow: hidden;
-  color: #606060;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 400px;
-}
-
-#element-table tbody tr:hover {
-  background: #fafafa;
-}
-
-#element-table a {
-  font-weight: bold;
-}
-
-#element-table a, #element-tableiron-icon {
-  cursor: pointer;
-}
-
-[size=xs] #element-table.description {
-  display: none;
-}
-
-#element-table .name {
-  white-space: nowrap;
-  font-weight: 400;
-  font-size: 13px;
-}
-
-#element-table .description {
-  color: var(--secondary-text-color);
-  line-height: 24px;
-}
-
-#element-cards {
-
 }
 
 [size=xs] #element-cards,
@@ -340,9 +247,9 @@ app-sidebar paper-toolbar {
   padding: 2px 16px;
 }
 
-[size=xs] #element-table,
-[size=s] #element-table,
-[size=m] #element-table {
+[size=xs] element-table,
+[size=s] element-table,
+[size=m] element-table {
   margin: 10px 16px;
   width: calc(100% - 32px);
 }
@@ -366,7 +273,7 @@ app-sidebar paper-toolbar {
   display: none;
 }
 
-[view=cards] #element-table {
+[view=cards] element-table {
   display: none;
 }
 

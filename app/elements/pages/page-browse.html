@@ -1,6 +1,7 @@
 <link rel="import" href="../../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../bower_components/iron-icons/av-icons.html">
+<link rel="import" href="../../bower_components/iron-media-query/iron-media-query.html">
 <link rel="import" href="../../bower_components/paper-drawer-panel/paper-drawer-panel.html">
 
 <link rel="import" href="../app-sidebar/app-sidebar.html">
@@ -13,14 +14,16 @@
 <link rel="import" href="../tag-link/tag-link.html">
 <link rel="import" href="../theme-color/theme-color.html">
 <link rel="import" href="../element-action-menu/element-action-menu.html">
+<link rel="import" href="../element-table/element-table.html">
 
 <dom-module id="page-browse">
   <link rel="import" type="css" href="page-browse.css">
   <template>
     <catalog-data elements="{{elements}}" packages="{{packages}}"></catalog-data>
     <catalog-package name="[[package]]" data="{{packageInfo}}"></catalog-package>
+    <iron-media-query query="(max-width: 640px)" query-matches="{{_narrowViewport}}"></iron-media-query>
 
-    <paper-drawer-panel id="drawerPanel" drawer-width="272px" disable-edge-swipe>
+    <paper-drawer-panel id="drawerPanel" responsive-width="900px" drawer-width="272px" disable-edge-swipe>
       <app-sidebar drawer>
         <paper-toolbar>
           <app-logo class="flex"></app-logo>
@@ -80,11 +83,11 @@
         </div>
       </app-sidebar>
 
-      <div id="container" class="fit" view$="[[view]]" main>
+      <div id="container" class="fit" view$="[[_actualView(view,_narrowViewport)]]" main>
         <div class="elements-title horizontal layout center">
           <iron-icon icon="menu" paper-drawer-toggle></iron-icon>
           <h2 class="flex"><span>[[pageTitle]]</span> <span class="count">[[_elementCount]]</span></h2>
-          <iron-icon id="package-view-mode" icon="[[viewIcon]]" on-tap="toggleView"></iron-icon>
+          <iron-icon id="package-view-mode" icon="[[viewIcon]]" on-tap="toggleView" hidden$="[[_forceCards]]"></iron-icon>
           <iron-icon id="cart-toggle" icon="shopping-cart" on-tap="cartOpen"></iron-icon>
         </div>
 
@@ -93,41 +96,16 @@
         </div>
 
         <div id="element-cards" class="horizontal layout wrap">
-          <template is="dom-if" if="[[_stampCards(view)]]">
-            <template name="element-cards-repeat" is="dom-repeat" items="[[elements]]" filter="filter">
+          <template is="dom-if" if="[[_stampCards(view,_forceCards)]]">
+            <template name="element-cards-repeat" is="dom-repeat" items="[[_filteredElements]]">
               <element-card element="[[item.name]]"></element-card>
             </template>
           </template>
         </div>
 
-        <table id="element-table">
-          <thead>
-            <tr>
-              <th class="name">Name</th>
-              <th class="description">Description</th>
-              <th class="tags">Tags</th>
-              <th class="actions">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <template is="dom-if" if="[[_stampTable(view)]]">
-              <template name="element-table-repeat" is="dom-repeat" items="[[elements]]" filter="filter">
-                <tr on-tap="nav" target$="[[item.name]]">
-                  <td class="name" width="100">[[item.name]]</td>
-                  <td class="description relative">[[item.description]]</td>
-                  <td class="tags">
-                    <template is="dom-repeat" items="[[item.tags]]">
-                      <tag-link name="[[item]]" on-click="updateTag"></tag-link><span>,</span>
-                    </template>
-                  </td>
-                  <td class="actions">
-                    <element-action-menu element="[[item.name]]" icons-only></element-action-menu>
-                  </td>
-                </tr>
-              </template>
-            </template>
-          </tbody>
-        </table>
+        <template is="dom-if" if="[[_stampTable(view,_forceCards)]]">
+          <element-table elements="[[_filteredElements]]" on-tag-selected="updateTag"></element-table>
+        </template>
       </div>
     </paper-drawer-panel>
   </template>
@@ -147,7 +125,7 @@
         q: {type: String, notify: true, value: ''},
         tag: {type: String, notify: true, value: ''},
         package: {type: String, notify: true, value: ''},
-        view: {type: String, notify: true, value: 'table'},
+        view: {type: String, notify: true},
 
         tagList: {type: Array, computed: 'arrayParam(tag)', value: function() { return []; }},
         packageList: {type: Array, computed: 'arrayParam(package)', value: function() { return []; }},
@@ -157,7 +135,10 @@
         packageInfo: {type: Object, value: {}},
         elements: Array,
 
-        _elementCount: Number
+        _filteredElements: Array,
+        _elementCount: Number,
+        _narrowViewport: {type: Boolean, observer: '_updateForceCards'},
+        _forceCards: {type: Boolean},
       },
       observers: [
         'updateURL(q,package,tag,view,elements)',
@@ -165,6 +146,11 @@
       ],
       listeners: {
         'update-params': '_handleParamsUpdate'
+      },
+
+      ready: function() {
+        this._updateForceCards();
+        this.view = this._forceCards ? 'cards' : 'table';
       },
 
       attached: function() {
@@ -192,10 +178,10 @@
         return true;
       },
 
-      updateTag: function(e) {
+      updateTag: function(e, detail) {
         e.stopPropagation();
         e.preventDefault();
-        var newTag = e.currentTarget.name;
+        var newTag = detail.name;
         var t = this.tagList.slice(0);
         if (t.indexOf(newTag) < 0) t.push(newTag);
         this.tag = t.join(',');
@@ -217,13 +203,6 @@
         } else {
           this.package = this.prevPackage;
         }
-      },
-
-      nav: function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        var el = e.currentTarget.getAttribute('target');
-        this.router.go("/elements/" + el);
       },
       _parseQueryString: function() {
         var query = window.location.search.substring(1);
@@ -262,14 +241,11 @@
          this.router.go("/browse" + (qs.length ? "?" + qs : ""), {replace: true});
         }
 
-        this.async(this.renderView);
         this.updateMeta();
         if (this.elements) {
-          this._elementCount = this.elements.filter(this.filter.bind(this)).length;
+          this._filteredElements = this.elements.filter(this.filter.bind(this));
+          this._elementCount = this._filteredElements.length;
         }
-      },
-      renderView: function() {
-        this.$$('[name=element-' + this.view + '-repeat]').render();
       },
       updateMeta: function(packageInfo) {
         if (this.q && this.q.length) {
@@ -292,7 +268,6 @@
         } else {
           this.view = 'table';
         }
-        this.async(this.renderView);
       },
       computeViewIcon: function(view) {
         if (view === 'table') {
@@ -308,14 +283,42 @@
       cartOpen: function(e) {
         this.fire('cart-open');
       },
-      _stampCards: function(view) {
-        return view === 'cards';
+      _stampCards: function(view,stamp) {
+        console.log('_stampCards', view, stamp);
+        return stamp || view === 'cards';
       },
-      _stampTable: function(view) {
-        return view === 'table';
+      _stampTable: function(view, skip) {
+        return !skip && view === 'table';
       },
       closeDrawer: function() {
         this.$.drawerPanel.closeDrawer();
+      },
+      _detectIEVersion: function () {
+        // via http://stackoverflow.com/questions/17907445/how-to-detect-ie11
+        var rv = -1;
+        var ua, re;
+        if (navigator.appName === 'Microsoft Internet Explorer')
+        {
+          ua = navigator.userAgent;
+          re  = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+          if (re.exec(ua) !== null)
+            rv = parseFloat( RegExp.$1 );
+        }
+        else if (navigator.appName === 'Netscape')
+        {
+          ua = navigator.userAgent;
+          re  = new RegExp("Trident/.*rv:([0-9]{1,}[\.0-9]{0,})");
+          if (re.exec(ua) !== null)
+            rv = parseFloat( RegExp.$1 );
+        }
+        return rv;
+      },
+      _actualView: function(view, force) {
+        console.log('_actualView', view, force);
+        return force ? 'cards' : view
+      },
+      _updateForceCards: function() {
+        this._forceCards = this._narrowViewport || this._detectIEVersion() > 0;
       }
     });
   })();

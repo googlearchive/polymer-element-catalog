@@ -1,0 +1,149 @@
+<link rel="import" href="../element-action-menu/element-action-menu.html">
+<link rel="import" href="../tag-link/tag-link.html">
+
+<dom-module id="element-table">
+  <style>
+    :host {
+      display: block;
+    }
+
+    #element-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 3px;
+      border: 1px solid #e5e5e5;
+    }
+
+    #element-table thead th {
+      padding: 0 24px;
+      line-height: 56px;
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(0, 0, 0, 0.54);
+    }
+
+    #element-table td, #element-table th {
+      padding: 12px 24px;
+    }
+
+    #element-table td.tags {
+      font-size: 11px;
+      line-height: 16px;
+      font-weight: 400;
+    }
+
+    #element-table th {
+      @apply(--paper-font-body1);
+      color: var(--secondary-text-color);
+      text-align: left;
+      border-bottom: 1px solid;
+      border-bottom-color: #e5e5e5;
+    }
+
+    #element-table tbody tr {
+      cursor: pointer;
+      overflow: hidden;
+      height: 48px;
+    }
+
+    #element-table tbody tr:first-child {
+      margin-top: 8px;
+    }
+
+    #element-table element-action-menu::shadow iron-icon {
+      color: var(--paper-grey-300);
+      margin: 0 4px;
+      width: 18px;
+      height: 18px;
+    }
+
+    #element-table tr:hover element-action-menu::shadow iron-icon {
+      color: var(--paper-grey-700);
+    }
+
+    #element-table .description {
+      overflow: hidden;
+      color: #606060;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 400px;
+    }
+
+    #element-table tbody tr:hover {
+      background: #fafafa;
+    }
+
+    #element-table a {
+      font-weight: bold;
+    }
+
+    #element-table a, #element-tableiron-icon {
+      cursor: pointer;
+    }
+
+    [size=xs] #element-table.description {
+      display: none;
+    }
+
+    #element-table .name {
+      white-space: nowrap;
+      font-weight: 400;
+      font-size: 13px;
+    }
+
+    #element-table .description {
+      color: var(--secondary-text-color);
+      line-height: 24px;
+    }
+  </style>
+
+  <template>
+    <table id="element-table">
+      <thead>
+        <tr>
+          <th class="name">Name</th>
+          <th class="description">Description</th>
+          <th class="tags">Tags</th>
+          <th class="actions">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <template is="dom-repeat" items="[[elements]]">
+          <tr on-tap="nav" target$="[[item.name]]">
+            <td class="name" width="100">[[item.name]]</td>
+            <td class="description relative">[[item.description]]</td>
+            <td class="tags">
+              <template is="dom-repeat" items="[[item.tags]]">
+                <tag-link name="[[item]]" on-tap="tagTapped"></tag-link><span>,</span>
+              </template>
+            </td>
+            <td class="actions">
+              <element-action-menu element="[[item.name]]" icons-only></element-action-menu>
+            </td>
+          </tr>
+        </template>
+      </tbody>
+    </table>
+  </template>
+</dom-module>
+
+<script>
+Polymer({
+  is: 'element-table',
+  properties: {
+    elements: Array
+  },
+  tagTapped: function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    this.fire('tag-selected', {name: e.currentTarget.name});
+  },
+  nav: function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    var el = e.currentTarget.getAttribute('target');
+    this.fire('nav',{url: "/elements/" + el});
+  },
+});
+</script>
