@@ -5,6 +5,7 @@ body {
   color: #424242;
   line-height: 20px;
   font-size: 13px;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 body, a {
