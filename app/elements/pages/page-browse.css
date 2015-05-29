@@ -61,7 +61,6 @@ app-bar .menu-icon {
 [size=m] #element-cards {
   width: 100%;
   margin: 0;
-  padding: 10px 0 10px 16px;
 }
 
 [size=xs] #element-cards element-card {
