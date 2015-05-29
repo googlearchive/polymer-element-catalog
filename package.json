@@ -1,6 +1,6 @@
 {
   "name": "polymer-element-catalog",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A catalog of Google's Web Components",
   "main": "index.js",
   "scripts": {
