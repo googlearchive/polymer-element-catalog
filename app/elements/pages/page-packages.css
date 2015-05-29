@@ -41,7 +41,7 @@ package-tile {
 
 @media (max-width: 489px) {
   package-tile {
-    width: 100%;
+    width: calc(100% - 16px);
   }
 }
 

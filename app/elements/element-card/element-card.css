@@ -43,7 +43,11 @@ p {
 }
 
 #el-graphic hero-image {
-  @apply(--layout-fit);
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  bottom: 8px;
+  right: 8px;
   opacity: 0.85;
 }
 
@@ -71,14 +75,27 @@ element-action-menu {
   position: absolute;
   width: 100%;
   bottom: 0;
-  height: 46px;
+  height: 64px;
   padding: 10px 16px;
-  background: rgba(0,0,0,.1);
+  background: rgba(255,255,255,0.95);
   box-sizing: border-box;
-  transform: translate(0, 20px);
-  transition: var(--material-curve-320);
-  opacity: 0;
-  visibility: hidden;
+}
+
+@media (min-width: 840px) {
+  element-action-menu {
+    transform: translate(0, 20px);
+    transition: var(--material-curve-320);
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+@media (max-width: 839px) {
+  #el-graphic {
+    height: 210px !important;
+  }
+  #el-graphic hero-image {
+    bottom: 64px !important;
+  }
 }
 
 #el-graphic:hover element-action-menu {

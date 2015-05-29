@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 17.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!-- Generator: Adobe Illustrator 17.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="1944px" height="2952px" viewBox="0 0 1944 2952" enable-background="new 0 0 1944 2952" xml:space="preserve">
+	 width="1944px" height="1088.64px" viewBox="0 931.68 1944 1088.64" enable-background="new 0 931.68 1944 1088.64"
+	 xml:space="preserve">
 <g id="background" display="none">
 	<rect y="931.68" display="inline" fill="#B0BEC5" width="1944" height="1088.64"/>
 </g>
-<g id="label">
-</g>
 <g id="art">
-	<g id="ic_x5F_add_x0D_">
-	</g>
 	<circle cx="1373.76" cy="1432.8" r="34.56"/>
 	<circle cx="1123.2" cy="1596.96" r="34.56"/>
 	<circle cx="561.6" cy="1380.96" r="34.56"/>
@@ -27,7 +24,5 @@
 		l21.6,148.608l148.608-89.856L1096.416,1345.536z M1305.504,1399.968l64.8,22.464l76.032-108L1305.504,1399.968z M578.016,1378.368
 		l99.36,38.016l215.136-141.696l-139.104-48.384L578.016,1378.368z M931.392,1270.368l143.424,50.112l-19.008-131.328
 		L931.392,1270.368z"/>
-</g>
-<g id="Guides">
 </g>
 </svg>

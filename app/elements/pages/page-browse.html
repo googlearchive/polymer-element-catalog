@@ -13,6 +13,7 @@
 <link rel="import" href="../tag-link/tag-link.html">
 <link rel="import" href="../theme-color/theme-color.html">
 <link rel="import" href="../element-action-menu/element-action-menu.html">
+<link rel="import" href="../responsive-element/responsive-element.html">
 
 <dom-module id="page-browse">
   <link rel="import" type="css" href="page-browse.css">
@@ -20,116 +21,119 @@
     <catalog-data elements="{{elements}}" packages="{{packages}}"></catalog-data>
     <catalog-package name="[[package]]" data="{{packageInfo}}"></catalog-package>
 
-    <paper-drawer-panel id="drawerPanel" drawer-width="272px" disable-edge-swipe>
-      <app-sidebar drawer>
-        <paper-toolbar>
-          <app-logo class="flex"></app-logo>
-          <app-bar class="horizontal layout center end-justified" no-search></app-bar>
-        </paper-toolbar>
-        <div id="search" class="layout horizontal center">
-          <iron-icon icon="search"></iron-icon>
-          <input id="query" type="search" autocomplete="off" value="{{q::keyup}}" placeholder="Search Elements" class="flex">
-        </div>
-        <div class="content">
-          <div id="package-tag" hidden$="[[!tag]]">
-            <span>[[tag]]</span> <iron-icon icon="clear" on-click="clearTag"></iron-icon>
+    <responsive-element>
+      <paper-drawer-panel id="drawerPanel" drawer-width="272px" disable-edge-swipe>
+        <app-sidebar drawer>
+          <paper-toolbar>
+            <app-logo class="flex"></app-logo>
+            <app-bar class="horizontal layout center end-justified" no-search></app-bar>
+          </paper-toolbar>
+          <div id="search" class="layout horizontal center">
+            <iron-icon icon="search"></iron-icon>
+            <input id="query" type="search" autocomplete="off" value="{{q::keyup}}" placeholder="Search Elements" class="flex">
           </div>
-          <div id="package-list">
-            <h5>Products</h5>
-            <iron-selector attr-for-selected="name" selected="{{package}}" on-iron-activate="closeDrawer">
-              <div class="package" name="">
-                <div class="layout horizontal center">
-                  <div class="all-symbol"><iron-icon icon="apps"></iron-icon></div>
-                  <span class="title flex">All Elements</span>
-                </div>
-              </div>
-              <template is="dom-repeat" items="[[packages]]">
-                <div class="package" name="[[item.name]]">
+          <div class="content">
+            <div id="package-tag" hidden$="[[!tag]]">
+              <span>[[tag]]</span> <iron-icon icon="clear" on-click="clearTag"></iron-icon>
+            </div>
+            <div id="package-list">
+              <h5>Products</h5>
+              <iron-selector attr-for-selected="name" selected="{{package}}" on-iron-activate="closeDrawer">
+                <div class="package" name="">
                   <div class="layout horizontal center">
-                    <package-symbol package="[[item]]"></package-symbol>
-                    <span class="title flex">[[item.title]]</span>
+                    <div class="all-symbol"><iron-icon icon="apps"></iron-icon></div>
+                    <span class="title flex">All Elements</span>
                   </div>
                 </div>
-              </template>
-            </iron-selector>
-          </div>
-          <div id="tags">
-            <!--<h5>Tags</h5>-->
-          </div>
-          <!--<div id="package-info" hidden$="[[!packageInfo.name]]">
-            <div id="package-header">
-              <package-symbol package="[[packageInfo]]" class="large"></package-symbol>
-              <h2 id="package-title">[[packageInfo.title]]</h2>
-              <span id="package-version">[[packageInfo.version]]</span>
-              <h4 id="package-tagline">[[packageInfo.tagline]]</h4>
+                <template is="dom-repeat" items="[[packages]]">
+                  <div class="package" name="[[item.name]]">
+                    <div class="layout horizontal center">
+                      <package-symbol package="[[item]]"></package-symbol>
+                      <span class="title flex">[[item.title]]</span>
+                    </div>
+                  </div>
+                </template>
+              </iron-selector>
             </div>
-            <div id="package-details">
-              <div class="section">
-                <h5>Product Description</h5>
-                <p id="package-desc">[[packageInfo.description]]</p>
-              </div>
-              <div class="section">
-                <h5>Tags</h5>
-
-              </div>
+            <div id="tags">
+              <!--<h5>Tags</h5>-->
             </div>
-          </div>-->
-          <div hidden$="[[!tag]]" id="current-tag" class="horizontal layout center">
-            <b>Tag:</b> <span class="flex">[[tag]]</span> <iron-icon icon="clear" on-click="clearTag"></iron-icon>
+            <!--<div id="package-info" hidden$="[[!packageInfo.name]]">
+              <div id="package-header">
+                <package-symbol package="[[packageInfo]]" class="large"></package-symbol>
+                <h2 id="package-title">[[packageInfo.title]]</h2>
+                <span id="package-version">[[packageInfo.version]]</span>
+                <h4 id="package-tagline">[[packageInfo.tagline]]</h4>
+              </div>
+              <div id="package-details">
+                <div class="section">
+                  <h5>Product Description</h5>
+                  <p id="package-desc">[[packageInfo.description]]</p>
+                </div>
+                <div class="section">
+                  <h5>Tags</h5>
+
+                </div>
+              </div>
+            </div>-->
+            <div hidden$="[[!tag]]" id="current-tag" class="horizontal layout center">
+              <b>Tag:</b> <span class="flex">[[tag]]</span> <iron-icon icon="clear" on-click="clearTag"></iron-icon>
+            </div>
           </div>
-        </div>
-      </app-sidebar>
+        </app-sidebar>
 
-      <div id="container" class="fit" view$="[[view]]" main>
-        <div class="elements-title horizontal layout center">
-          <iron-icon icon="menu" paper-drawer-toggle></iron-icon>
-          <h2 class="flex"><span>[[pageTitle]]</span> <span class="count">[[_elementCount]]</span></h2>
-          <iron-icon id="package-view-mode" icon="[[viewIcon]]" on-tap="toggleView"></iron-icon>
-          <iron-icon id="cart-toggle" icon="shopping-cart" on-tap="cartOpen"></iron-icon>
-        </div>
+        <div id="container" class="fit" view$="[[view]]" main>
+          <div class="elements-title horizontal layout center">
+            <iron-icon icon="menu" paper-drawer-toggle></iron-icon>
+            <h2 class="flex"><span>[[pageTitle]]</span> <span class="count">[[_elementCount]]</span></h2>
+            <iron-icon id="package-view-mode" icon="[[viewIcon]]" on-tap="toggleView"></iron-icon>
+            <iron-icon id="cart-toggle" icon="shopping-cart" on-tap="cartOpen"></iron-icon>
+          </div>
 
-        <div id="package-heading" hidden$="[[!packageInfo]]">
-          <div class="description">[[packageInfo.description]]</div>
-        </div>
+          <div id="package-heading" hidden$="[[!packageInfo]]">
+            <div class="description">[[packageInfo.description]]</div>
+          </div>
 
-        <div id="element-cards" class="horizontal layout wrap">
-          <template is="dom-if" if="[[_stampCards(view)]]">
-            <template name="element-cards-repeat" is="dom-repeat" items="[[elements]]" filter="filter">
-              <element-card element="[[item.name]]"></element-card>
-            </template>
-          </template>
-        </div>
-
-        <table id="element-table">
-          <thead>
-            <tr>
-              <th class="name">Name</th>
-              <th class="description">Description</th>
-              <th class="tags">Tags</th>
-              <th class="actions">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <template is="dom-if" if="[[_stampTable(view)]]">
-              <template name="element-table-repeat" is="dom-repeat" items="[[elements]]" filter="filter">
-                <tr on-tap="nav" target$="[[item.name]]">
-                  <td class="name" width="100">[[item.name]]</td>
-                  <td class="description relative">[[item.description]]</td>
-                  <td class="tags">
-                    <template is="dom-repeat" items="[[item.tags]]">
-                      <tag-link name="[[item]]" on-click="updateTag"></tag-link><span>,</span>
-                    </template>
-                  </td>
-                  <td class="actions">
-                    <element-action-menu element="[[item.name]]" icons-only></element-action-menu>
-                  </td>
-                </tr>
+          <div id="element-cards" class="horizontal layout wrap">
+            <template is="dom-if" if="[[_stampCards(view)]]">
+              <template name="element-cards-repeat" is="dom-repeat" items="[[elements]]" filter="filter">
+                <element-card element="[[item.name]]"></element-card>
               </template>
             </template>
-          </tbody>
-        </table>
-      </div>
-    </paper-drawer-panel>
+          </div>
+
+          <table id="element-table">
+            <thead>
+              <tr>
+                <th class="name">Name</th>
+                <th class="description">Description</th>
+                <th class="tags">Tags</th>
+                <th class="actions">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <template is="dom-if" if="[[_stampTable(view)]]">
+                <template name="element-table-repeat" is="dom-repeat" items="[[elements]]" filter="filter">
+
+                  <tr on-tap="nav" target$="[[item.name]]">
+                    <td class="name" width="100">[[item.name]]</td>
+                    <td class="description relative">[[item.description]]</td>
+                    <td class="tags">
+                      <template is="dom-repeat" items="[[item.tags]]">
+                        <tag-link name="[[item]]" on-click="updateTag"></tag-link><span>,</span>
+                      </template>
+                    </td>
+                    <td class="actions">
+                      <element-action-menu element="[[item.name]]" icons-only></element-action-menu>
+                    </td>
+                  </tr>
+                </template>
+              </template>
+            </tbody>
+          </table>
+        </div>
+      </paper-drawer-panel>
+    </responsive-element>
   </template>
 </dom-module>
 
