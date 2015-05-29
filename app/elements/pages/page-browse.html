@@ -20,7 +20,7 @@
     <catalog-data elements="{{elements}}" packages="{{packages}}"></catalog-data>
     <catalog-package name="[[package]]" data="{{packageInfo}}"></catalog-package>
 
-    <paper-drawer-panel drawer-width="272px" disable-edge-swipe>
+    <paper-drawer-panel id="drawerPanel" drawer-width="272px" disable-edge-swipe>
       <app-sidebar drawer>
         <paper-toolbar>
           <app-logo class="flex"></app-logo>
@@ -36,7 +36,7 @@
           </div>
           <div id="package-list">
             <h5>Products</h5>
-            <iron-selector attr-for-selected="name" selected="{{package}}">
+            <iron-selector attr-for-selected="name" selected="{{package}}" on-iron-activate="closeDrawer">
               <div class="package" name="">
                 <div class="layout horizontal center">
                   <div class="all-symbol"><iron-icon icon="apps"></iron-icon></div>
@@ -82,6 +82,7 @@
 
       <div id="container" class="fit" view$="[[view]]" main>
         <div class="elements-title horizontal layout center">
+          <iron-icon icon="menu" paper-drawer-toggle></iron-icon>
           <h2 class="flex"><span>[[pageTitle]]</span> <span class="count">[[_elementCount]]</span></h2>
           <iron-icon id="package-view-mode" icon="[[viewIcon]]" on-tap="toggleView"></iron-icon>
           <iron-icon id="cart-toggle" icon="shopping-cart" on-tap="cartOpen"></iron-icon>
@@ -312,6 +313,9 @@
       },
       _stampTable: function(view) {
         return view === 'table';
+      },
+      closeDrawer: function() {
+        this.$.drawerPanel.closeDrawer();
       }
     });
   })();

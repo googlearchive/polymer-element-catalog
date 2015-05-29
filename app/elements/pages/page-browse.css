@@ -37,6 +37,10 @@ app-bar .menu-icon {
   margin-left: 16px;
 }
 
+.elements-title > [paper-drawer-toggle] {
+  margin: 0 16px 0 0;
+}
+
 #package-heading .description {
   font-size: 16px;
   color: var(--paper-grey-600);

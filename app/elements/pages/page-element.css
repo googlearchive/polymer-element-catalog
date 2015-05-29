@@ -107,6 +107,20 @@ app-sidebar section {
   border-top: 1px solid #e5e5e5;
 }
 
+section[main] {
+  background: #fafafa;
+}
+
+[narrow] iron-component-page {
+  top: 56px;
+}
+
+[paper-drawer-toggle] {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+}
+
 cart-icon {
   position: absolute;
   top: 24px;
