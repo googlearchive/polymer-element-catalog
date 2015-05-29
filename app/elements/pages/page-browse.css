@@ -336,7 +336,7 @@ app-sidebar paper-toolbar {
 [size=m] .elements-title {
   width: 100%;
   margin: 0;
-  padding: 2px 16px;
+  padding: 2px 0;
 }
 
 [size=xs] #element-table,
