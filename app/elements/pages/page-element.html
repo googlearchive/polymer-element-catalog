@@ -22,7 +22,7 @@
   <template>
     <catalog-element name="[[element]]" data="{{metadata}}"></catalog-element>
     <catalog-package name="[[metadata.package]]" data="{{package}}"></catalog-package>
-    <catalog-data elements="{{elements}}"></catalog-data>
+    <catalog-data elements="{{elements}}" behavior-map="{{behaviorMap}}"></catalog-data>
 
     <theme-color color="[[package.color]]">
       <paper-drawer-panel drawer-width="272px" disable-edge-swipe>
@@ -87,7 +87,7 @@
           </div>
         </app-sidebar>
         <section main class="fit">
-          <iron-component-page version="[[metadata.version]]" doc-src="[[docSrc(element)]]" base="[[baseURI(element)]]" _catalog view="{{view}}" doc-elements="{{docElements}}" doc-behaviors="{{docBehaviors}}" doc-demos="{{docDemos}}" active="{{active}}"></iron-component-page>
+          <iron-component-page on-iron-doc-viewer-component-selected="navToBehavior" version="[[metadata.version]]" doc-src="[[docSrc(element)]]" base="[[baseURI(element)]]" _catalog view="{{view}}" doc-elements="{{docElements}}" doc-behaviors="{{docBehaviors}}" doc-demos="{{docDemos}}" active="{{active}}"></iron-component-page>
           <iron-icon icon="menu" paper-drawer-toggle></iron-icon>
           <cart-icon></cart-icon>
         </section>
@@ -143,6 +143,9 @@
     },
     navToElement: function(e) {
       this.router.go("/elements/" + e.currentTarget.getAttribute('name'));
+    },
+    navToBehavior: function(e, detail) {
+      this.router.go("/elements/" + this.behaviorMap[detail] + "?active=" + detail);
     },
     docSrc: function(element) {
       return "/data/docs/" + element + ".json";

@@ -25,6 +25,12 @@
         _data.packageMap = _generateMap(data.packages);
         _data.elementMap = _generateMap(data.elements);
         _data.guideMap = _generateMap(data.guides);
+        _data.behaviorMap = {}
+        _data.elements.forEach(function(el) {
+          el.behaviors.forEach(function(be) {
+            _data.behaviorMap[be] = el.name;
+          });
+        });
       }
       _els.forEach(function(el){ el.load(_data); });
     };
@@ -76,6 +82,11 @@
           type: Object,
           readOnly: true,
           notify: true
+        },
+        behaviorMap: {
+          type: Object,
+          readOnly: true,
+          notify: true
         }
       },
       load: function(data) {
@@ -86,6 +97,7 @@
           this._setElementMap(data.elementMap);
           this._setGuides(data.guides);
           this._setGuideMap(data.guideMap);
+          this._setBehaviorMap(data.behaviorMap);
           this._setTags(data.tags);
         }
       },
