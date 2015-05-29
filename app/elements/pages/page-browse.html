@@ -92,8 +92,10 @@
         </div>
 
         <div id="element-cards" class="horizontal layout wrap">
-          <template id="element-cards-repeat" is="dom-repeat" items="[[elements]]" filter="filter">
-            <element-card element="[[item.name]]"></element-card>
+          <template is="dom-if" if="[[_stampCards(view)]]">
+            <template name="element-cards-repeat" is="dom-repeat" items="[[elements]]" filter="filter">
+              <element-card element="[[item.name]]"></element-card>
+            </template>
           </template>
         </div>
 
@@ -107,19 +109,21 @@
             </tr>
           </thead>
           <tbody>
-            <template id="element-table-repeat" is="dom-repeat" items="[[elements]]" filter="filter">
-              <tr on-tap="nav" target$="[[item.name]]">
-                <td class="name" width="100">[[item.name]]</td>
-                <td class="description relative">[[item.description]]</td>
-                <td class="tags">
-                  <template is="dom-repeat" items="[[item.tags]]">
-                    <tag-link name="[[item]]" on-click="updateTag"></tag-link><span>,</span>
-                  </template>
-                </td>
-                <td class="actions">
-                  <element-action-menu element="[[item.name]]" icons-only></element-action-menu>
-                </td>
-              </tr>
+            <template is="dom-if" if="[[_stampTable(view)]]">
+              <template name="element-table-repeat" is="dom-repeat" items="[[elements]]" filter="filter">
+                <tr on-tap="nav" target$="[[item.name]]">
+                  <td class="name" width="100">[[item.name]]</td>
+                  <td class="description relative">[[item.description]]</td>
+                  <td class="tags">
+                    <template is="dom-repeat" items="[[item.tags]]">
+                      <tag-link name="[[item]]" on-click="updateTag"></tag-link><span>,</span>
+                    </template>
+                  </td>
+                  <td class="actions">
+                    <element-action-menu element="[[item.name]]" icons-only></element-action-menu>
+                  </td>
+                </tr>
+              </template>
             </template>
           </tbody>
         </table>
@@ -179,7 +183,6 @@
         if (this.tagList.length) {
           var match = false;
           for (var i = 0; i < this.tagList.length; i++) {
-            console.log("checking if", this.tagList[i], "is in",element.tags);
             if (element.tags.join(' ').indexOf(this.tagList[i]) >= 0) match = true;
           }
           if (!match) return false;
@@ -258,14 +261,14 @@
          this.router.go("/browse" + (qs.length ? "?" + qs : ""), {replace: true});
         }
 
-        this.renderView();
+        this.async(this.renderView);
         this.updateMeta();
         if (this.elements) {
           this._elementCount = this.elements.filter(this.filter.bind(this)).length;
         }
       },
       renderView: function() {
-        this.$['element-' + this.view + '-repeat'].render();
+        this.$$('[name=element-' + this.view + '-repeat]').render();
       },
       updateMeta: function(packageInfo) {
         if (this.q && this.q.length) {
@@ -288,7 +291,7 @@
         } else {
           this.view = 'table';
         }
-        this.renderView();
+        this.async(this.renderView);
       },
       computeViewIcon: function(view) {
         if (view === 'table') {
@@ -303,6 +306,12 @@
       },
       cartOpen: function(e) {
         this.fire('cart-open');
+      },
+      _stampCards: function(view) {
+        return view === 'cards';
+      },
+      _stampTable: function(view) {
+        return view === 'table';
       }
     });
   })();
