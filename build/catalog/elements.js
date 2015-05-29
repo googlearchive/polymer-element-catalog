@@ -51,10 +51,20 @@ module.exports = function (imports) {
           // Set up object schema
           console.log("-",elementName,"(" + details._release + ")");
 
+          var combined = data.elements.concat(data.behaviors);
           var hero;
-          data.elements.concat(data.behaviors).forEach(function(el) {
+          combined.forEach(function(el) {
             if (el.hero) hero = '/bower_components/' + elementName + '/' + el.hero;
           });
+
+          var active = null;
+          var demo = null;
+          for (var i in combined) {
+            if (combined[i].demos.length) {
+              active = combined[i].is;
+              demo = (combined[i].demos || [])[0] || null;
+            }
+          }
 
           cb(err, {
             name: elementName,
@@ -64,7 +74,11 @@ module.exports = function (imports) {
             package: package.name,
             description: details.description,
             tags: (details.keywords || []).filter(cleanTags),
-            hero: hero
+            hero: hero,
+            demo: demo,
+            active: active,
+            elements: (data.elements || []).map(function(el){ return el.is; }),
+            behaviors: (data.behaviors || []).map(function(be){ return be.is; }),
           });
         });
       }, function(err, output) {

@@ -287,7 +287,6 @@
         this.fire('cart-open');
       },
       _stampCards: function(view,stamp) {
-        console.log('_stampCards', view, stamp);
         return stamp || view === 'cards';
       },
       _stampTable: function(view, skip) {
@@ -317,7 +316,6 @@
         return rv;
       },
       _actualView: function(view, force) {
-        console.log('_actualView', view, force);
         return force ? 'cards' : view
       },
       _updateForceCards: function() {
