@@ -55,7 +55,7 @@
   </style>
   <template>
     <content></content>
-    <div id="search" class="horizontal layout center" show$="{{showingSearch}}" on-click="toggleSearch">
+    <div id="search" class="horizontal layout center" show$="{{showingSearch}}" on-tap="toggleSearch">
       <iron-icon icon="search" hidden$="[[noSearch]]"></iron-icon>
       <form on-submit="performSearch" class="flex">
         <input type="search" id="query" value="{{query::keyup}}" autocomplete="off" placeholder="Search Elements" on-blur="clearSearch">
