@@ -197,7 +197,7 @@ An example `index.html` file:
         <link rel="import" href="bower_components/paper-input/paper-input.html">
       </head>
       <body>
-        <!-- 3. Declare the element. Configure using its attributes.
+        <!-- 3. Declare the element. Configure using its attributes. -->
         <paper-input label="Your name here"></paper-input>
         <paper-button>Say Hello</paper-button>
         <div id="greeting"></div>
