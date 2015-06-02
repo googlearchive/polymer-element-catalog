@@ -76,13 +76,13 @@
               </iron-selector>
             </section>
 
-            <section id="other-elements" class="flex nav vertical layout shrinkable">
-              <h4>Other <span>[[package.title]]</span></h4>
-              <div class="flex list">
-                <template is="dom-repeat" id="others" items="[[elements]]" filter="listFilter">
-                  <paper-item on-tap="navToElement" name$="[[item.name]]">[[item.name]]</paper-item>
+            <section id="all-elements" class="flex nav vertical layout shrinkable">
+              <h4>All <span>[[package.title]]</span></h4>
+              <iron-selector class="flex nav" attr-for-selected="name" selected="{{element}}">
+                <template is="dom-repeat" id="all" items="[[elements]]" filter="listFilter">
+                  <paper-item name$="[[item.name]]">[[item.name]]</paper-item>
                 </template>
-              </div>
+              </iron-selector>
             </section>
           </div>
         </app-sidebar>
@@ -172,10 +172,7 @@
       this.$.cartIcon.toggle();
     },
     listFilter: function(el) {
-      return el.package === this.package.name && el.name !== this.element;
-    },
-    _elementChanged: function() {
-      this.$.others.render();
+      return el.package === this.package.name;
     },
     _demoView: function(path) {
       return "demo:" + path;
