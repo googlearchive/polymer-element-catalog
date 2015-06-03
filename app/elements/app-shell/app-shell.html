@@ -57,6 +57,13 @@
       'cart-remove': 'cartRemove',
       'toast': 'showToast'
     },
+    ready: function() {
+      document.addEventListener('keydown', this._modifierHandler.bind(this));
+      document.addEventListener('keyup', this._modifierHandler.bind(this));
+    },
+    _modifierHandler: function(e) {
+      this._navNewWindow = e.metaKey || e.ctrlKey;
+    },
     toggleSearch: function() {
       this.$.search.active = !this.$.search.active;
     },
@@ -64,9 +71,16 @@
       e.preventDefault();
       if (this.query.length) this.$.router.go('/elements?q=' + this.query);
     },
-    handleNav: function(_, nav) {
-      this.$.router.go(nav.url);
-      this.$.cartpanel.closeDrawer();
+    handleNav: function(e, nav) {
+      // if (!this._navNewWindow) {
+        var opts = {}
+        if (nav.replace) opts.replace = true;
+        this.$.router.go(nav.url, opts);
+        this.$.cartpanel.closeDrawer();
+      // } else {
+      //   e.detail.newWindow = true;
+      //   window.open(nav.url);
+      // }
     },
     updateTitle: function(_, detail) {
       if (detail.title && detail.title.length) {

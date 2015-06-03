@@ -184,7 +184,7 @@
     },
     nav: function(e) {
       if (this.name !== e.currentTarget.getAttribute('name')) {
-        this.router.go('/guides/' + e.currentTarget.name);
+        this.fire('nav', {url: '/guides/' + e.currentTarget.name});
       }
     }
   });

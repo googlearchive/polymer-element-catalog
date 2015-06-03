@@ -55,14 +55,14 @@
     ],
     search: function(q) {
       if (q || this.q) {
-        this.router.go('/browse?q=' + (q || this.q));
+        this.fire('nav', {url: '/browse?q=' + (q || this.q)});
       }
     },
     select: function(e) {
-      this.router.go('/browse?package=' + e.currentTarget.getAttribute('name'));
+      this.fire('nav', {url: '/browse?package=' + e.currentTarget.getAttribute('name')});
     },
     guideSelect: function(e) {
-      this.router.go('/guides/' + e.currentTarget.guide);
+      this.fire('nav', {url: '/guides/' + e.currentTarget.guide});
     }
   });
 </script>

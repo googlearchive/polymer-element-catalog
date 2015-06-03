@@ -78,7 +78,7 @@
 
             <section id="all-elements" class="flex nav vertical layout shrinkable">
               <h4>All <span>[[package.title]]</span></h4>
-              <iron-selector class="flex nav" attr-for-selected="name" selected="{{element}}">
+              <iron-selector class="flex nav" attr-for-selected="name" selected="[[element]]" on-iron-select="navToElement">
                 <template is="dom-repeat" id="all" items="[[elements]]" filter="listFilter">
                   <paper-item name$="[[item.name]]">[[item.name]]</paper-item>
                 </template>
@@ -133,20 +133,21 @@
       if (this.active && this.active.length && this.active !== this.element) qs.push('active=' + this.active);
       if (qs.length) url += "?" + qs.join("&");
 
-      if (this.router) this.router.go(url, {replace: true});
+      this.fire('nav', {url: url, replace: true});
     },
     updateMeta: function(element,active) {
       this.fire('page-meta', {title: (this.active && this.active.length) ? this.active : this.element});
     },
     navToPackage: function() {
-      this.router.go("/browse?package=" + this.package.name);
+      this.fire('nav', {url: "/browse?package=" + this.package.name});
     },
-    navToElement: function(e) {
-      this.router.go("/elements/" + e.currentTarget.getAttribute('name'));
+    navToElement: function(e, detail) {
+      var elName = detail.item.getAttribute('name');
+      this.fire('nav', {url: "/elements/" + elName});
     },
     navToBehavior: function(e, detail) {
       if (this.behaviorMap[detail]) {
-        this.router.go("/elements/" + this.behaviorMap[detail] + "?active=" + detail);
+        this.fire('nav', {url: "/elements/" + this.behaviorMap[detail] + "?active=" + detail});
       } else {
         this.fire('toast', {text: "No documentation available for " + detail});
       }
@@ -159,7 +160,7 @@
     },
     search: function(q) {
       if (q || this.q) {
-        this.router.go('/browse?q=' + (q || this.q));
+        this.fire('nav', {url: '/browse?q=' + (q || this.q)});
       }
     },
     cartAdd: function() {

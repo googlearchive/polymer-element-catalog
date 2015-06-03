@@ -241,7 +241,7 @@
         var qs = this._buildQueryString();
         if (qs !== _lastNavigated && this.router) {
           _lastNavigated = qs;
-         this.router.go("/browse" + (qs.length ? "?" + qs : ""), {replace: true});
+         this.fire("nav", {url: "/browse" + (qs.length ? "?" + qs : ""), replace: true});
         }
 
         this.updateMeta();
