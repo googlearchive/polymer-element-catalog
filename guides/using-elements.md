@@ -208,7 +208,7 @@ An example `index.html` file:
           document.addEventListener('WebComponentsReady', function() {
             var input = document.querySelector('paper-input');
             var button = document.querySelector('paper-button');
-            var nametag = document.getElementById("greeting");
+            var greeting = document.getElementById("greeting");
             button.addEventListener('click', function() {
               greeting.textContent = 'Hello, ' + input.value;
             });
