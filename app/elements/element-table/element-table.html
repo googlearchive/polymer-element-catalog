@@ -141,11 +141,20 @@ Polymer({
     e.stopPropagation();
     this.fire('tag-selected', {name: e.currentTarget.name});
   },
-  nav: function(e) {
-    e.preventDefault();
+  nav: function(e, detail) {
     e.stopPropagation();
-    var el = e.currentTarget.getAttribute('target');
-    this.fire('nav',{url: "/elements/" + el});
+    e.preventDefault();
+
+    var se = detail.sourceEvent || {};
+    var url = "/elements/" + e.currentTarget.getAttribute('target');
+    if (se.ctrlKey || se.metaKey) {
+      window.open(url);
+    } else {
+      this.fire('nav', {url: url});
+    }
   },
+  _elementLink: function(name) {
+    return "/elements/" + name;
+  }
 });
 </script>
