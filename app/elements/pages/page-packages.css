@@ -77,6 +77,6 @@ guide-card, #coming-soon {
   line-height: 76px;
   text-align: center;
   font-size: 16px;
-  color: var(--paper-grey-500);
+  color: rgba(0, 0, 0, var(--dark-primary-opacity));
   border: 1px dashed #e5e5e5;
 }
