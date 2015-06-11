@@ -32,11 +32,11 @@
             <app-bar class="horizontal layout center end-justified" query="{{q}}"></app-bar>
           </paper-toolbar>
           <div class="content">
-            <div class="horizontal layout center" id="package-heading" on-tap="navToPackage">
+            <a is="app-link" href="[[_packageLink(package.name)]]" class="horizontal layout center" id="package-heading">
               <iron-icon icon="chevron-left"></iron-icon>
               <package-symbol package="[[package]]"></package-symbol>
               <span class="name flex">[[package.title]]</span>
-            </div>
+            </a>
             <div id="element-header">
               <span class="version">[[metadata.version]]</span>
               <h2 id="element-title">[[element]]</h2>
@@ -45,12 +45,12 @@
               </div>
             </div>
 
-            <iron-selector id="nav" class="nav" attr-for-selected="name" selected="{{view}}">
-              <paper-item name="docs"><iron-icon icon="description"></iron-icon> <span>Docs</span></paper-item>
+            <nav id="nav" class="nav" attr-for-selected="name" selected="{{view}}">
+              <a is="app-link" class="item" href="[[_link(active,'docs')]]" active$="[[_isEqual(view,'docs')]]"><iron-icon icon="description"></iron-icon> <span>Docs</span></a>
               <template is="dom-repeat" items="[[docDemos]]">
-                <paper-item name="[[_demoView(item.path)]]"><iron-icon icon="visibility"></iron-icon> <span>[[_demoName(item.desc)]]</span></paper-item>
+                <a is="app-link" class="item" href="[[_demoLink(active,item.path)]]" active$="[[_demoActive(item.path,view)]]"><iron-icon icon="visibility"></iron-icon> <span>[[_demoName(item.desc)]]</span></a>
               </template>
-            </iron-selector>
+            </nav>
 
             <div class="nav" id="cart-add">
               <paper-item on-tap="toggleCart"><cart-item-icon id="cartIcon" element="[[element]]"></cart-item-icon></paper-item>
@@ -59,31 +59,31 @@
             <section hidden$="[[_oneOrFewer(docElements)]]" class="shrinkable">
               <h4>Bundled Elements</h4>
 
-              <iron-selector id="elnav" class="nav" attr-for-selected="name" selected="{{active}}">
+              <nav id="elnav" class="nav">
                 <template is="dom-repeat" items="[[docElements]]">
-                  <paper-item name="[[item.is]]">[[item.is]]</paper-item>
+                  <a is="app-link" class="item" href$="[[_link(item.is,view)]]" active$="[[_isEqual(item.is,active)]]">[[item.is]]</a>
                 </template>
-              </iron-selector>
+              </nav>
             </section>
 
             <section class="shrinkable" hidden$="[[_oneOrFewer(docBehaviors)]]">
               <h4>Bundled Behaviors</h4>
 
-              <iron-selector id="elnav" class="nav" attr-for-selected="name" selected="{{active}}">
+              <nav id="elnav" class="nav" attr-for-selected="name" selected="{{active}}">
                 <template is="dom-repeat" items="[[docBehaviors]]">
                   <paper-item name="[[item.is]]">[[item.is]]</paper-item>
                 </template>
-              </iron-selector>
+              </nav>
             </section>
 
-            <section id="all-elements" class="flex nav vertical layout shrinkable">
+            <!--<section id="all-elements" class="flex nav vertical layout shrinkable">
               <h4>All <span>[[package.title]]</span></h4>
               <iron-selector class="flex nav" attr-for-selected="name" selected="{{element}}">
                 <template is="dom-repeat" id="all" items="[[elements]]" filter="listFilter">
                   <paper-item name$="[[item.name]]">[[item.name]]</paper-item>
                 </template>
               </iron-selector>
-            </section>
+            </section>-->
           </div>
         </app-sidebar>
         <section main class="fit">
@@ -101,7 +101,7 @@
     is: 'page-element',
     enableCustomStyleProperties: true,
     properties: {
-      element: {type: String, notify: true, observer: '_elementChanged'},
+      element: {type: String, notify: true},
       view: {type: String, notify: true, value: 'docs'},
       active: {type: String, value: ''},
       docElements: Array,
@@ -114,7 +114,7 @@
       q: String
     },
     observers: [
-      'updateURL(view,active)',
+      'updateURL(active,view)',
       'updateMeta(element,active)',
       'analyze(importPath)',
       'search(q)'
@@ -125,21 +125,34 @@
     analyze: function() {
       this.$.analyzer.analyze();
     },
-    updateURL: function(view,active) {
+    _link: function(active,view) {
+      return this.getURL(active,view,true);
+    },
+    _demoLink: function(active,path) {
+      return this.getURL(active,'demo:' + path,true);
+    },
+    _demoActive: function(path) {
+      return this.view === 'demo:' + path;
+    },
+    getURL: function(active,view,force) {
       var url = "/elements/" + this.element;
 
       var qs = [];
-      if (this.view && this.view.length && this.view !== 'docs') qs.push('view=' + this.view);
-      if (this.active && this.active.length && this.active !== this.element) qs.push('active=' + this.active);
+      if (force || (view && view.length && view !== 'docs')) qs.push('view=' + view);
+      if (force || (active && active.length && active !== this.element)) qs.push('active=' + active);
       if (qs.length) url += "?" + qs.join("&");
 
+      return url;
+    },
+    updateURL: function(active,view) {
+      var url = this.getURL(active,view);
       if (this.router) this.router.go(url, {replace: true});
     },
     updateMeta: function(element,active) {
       this.fire('page-meta', {title: (this.active && this.active.length) ? this.active : this.element});
     },
-    navToPackage: function() {
-      this.router.go("/browse?package=" + this.package.name);
+    _packageLink: function() {
+      return "/browse?package=" + this.package.name;
     },
     navToElement: function(e) {
       this.router.go("/elements/" + e.currentTarget.getAttribute('name'));
@@ -174,11 +187,11 @@
     listFilter: function(el) {
       return el.package === this.package.name;
     },
-    _demoView: function(path) {
-      return "demo:" + path;
-    },
     _demoName: function(name) {
       return name === 'demo' ? 'Demo' : name;
+    },
+    _isEqual: function(a,b) {
+      return a === b;
     }
   });
 </script>

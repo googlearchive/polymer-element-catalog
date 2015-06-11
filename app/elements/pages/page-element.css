@@ -68,14 +68,13 @@ app-sidebar paper-toolbar {
   display: none;
 }
 
-paper-item {
-  cursor: pointer;
-}
-
-paper-item {
+paper-item, a.item {
+  display: block;
   font-size: 14px;
   padding: 4px 16px;
   min-height: inherit;
+  cursor: pointer;
+  font-weight: 400;
 }
 
 .nav {
@@ -89,7 +88,7 @@ paper-item {
   margin-right: 8px;
 }
 
-.nav .iron-selected {
+.nav [active] {
   background: var(--paper-blue-grey-50);
 }
 
