@@ -4,7 +4,6 @@ var hydrolysis = require('hydrolysis');
 var FileLoader = require('hydrolysis/lib/loader/file-loader');
 var FSResolver = require('hydrolysis/lib/loader/fs-resolver');
 var Promise = require('es6-promise').Promise;
-var merge = require('deepmerge');
 
 module.exports = function(root, destDir, elementName, sources, callback) {
   var elRoot = path.join(root, 'bower_components', elementName);
@@ -32,12 +31,16 @@ module.exports = function(root, destDir, elementName, sources, callback) {
           property.javascriptNode = undefined;
         });
       })
-      out = merge(out, {
-        elements: data.elements && data.elements.filter(function(el) { return els.indexOf(el.is) < 0 }) || [],
-        elementsByTagName: data.elementsByTagName || {},
-        behaviors: data.behaviors && data.behaviors.filter(function(be) { return bes.indexOf(be.is) < 0 }) || [],
-        features: data.features || []
-      });
+
+      out.elements = out.elements.concat(data.elements && data.elements.filter(function(el) { return els.indexOf(el.is) < 0 }) || []);
+      out.behaviors = out.behaviors.concat(data.behaviors && data.behaviors.filter(function(be) { return bes.indexOf(be.is) < 0 }) || []);
+      out.features = out.features.concat(data.features || []);
+
+      for (var elName in data.elementsByTagName) {
+        if (!out.elementsByTagName[elName]) {
+          out.elementsByTagName[elName] = data.elementsByTagName[elName];
+        }
+      }
     });
 
     fs.writeFileSync(path.join(root, destDir, 'data', 'docs', elementName + '.json'), JSON.stringify(out));
