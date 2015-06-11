@@ -6,9 +6,14 @@ Polymer({
     'click': 'navigate'
   },
   navigate: function(e) {
-    e.stopPropagation();
-    e.preventDefault();
-    this.fire('nav', {url: this.href});
+    // allow for ctrl+click to open in new window
+    if (e.ctrlKey || e.metaKey) {
+      return true;
+    } else {
+      e.preventDefault();
+      e.stopPropagation();
+      this.fire('nav', {url: this.href});
+    }
   }
 });
 </script>
