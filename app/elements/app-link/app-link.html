@@ -1,0 +1,14 @@
+<script>
+Polymer({
+  is: 'app-link',
+  extends: 'a',
+  listeners: {
+    'click': 'navigate'
+  },
+  navigate: function(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    this.fire('nav', {url: this.href});
+  }
+});
+</script>

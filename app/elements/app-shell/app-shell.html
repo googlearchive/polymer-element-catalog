@@ -5,6 +5,7 @@
 <link rel="import" href="../../bower_components/paper-toast/paper-toast.html">
 
 <link rel="import" href="../app-styles/app-styles.html">
+<link rel="import" href="../app-link/app-link.html">
 <link rel="import" href="../app-logo/app-logo.html">
 <link rel="import" href="../app-cart/app-cart.html">
 <link rel="import" href="../app-bar/app-bar.html">
@@ -34,7 +35,7 @@
         <app-route path="/" element="page-packages" bindRouter></app-route>
         <app-route path="/browse" element="page-browse" bindRouter onUrlChange="updateModel"></app-route>
         <app-route path="/elements/:element" element="page-element" bindRouter onUrlChange="updateModel"></app-route>
-        <app-route path="/guides/*" element="page-guide" bindRouter onUrlChange="updateModel"></app-route>
+        <app-route path="/guides/*" element="page-guide" bindRouter></app-route>
         <app-route path="*">
           <template><h1>Not Found</h1></template>
         </app-route>

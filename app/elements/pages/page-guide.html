@@ -76,6 +76,8 @@
     }
 
     #guide-list .item {
+      display: block;
+      font-weight: 400;
       cursor: pointer;
       font-size: 14px;
       line-height: 24px;
@@ -108,7 +110,7 @@
         <h4>Guides</h4>
         <nav id="guide-list" class="flex">
           <template is="dom-repeat" items="[[guides]]">
-            <div class="item" name$="[[item.name]]" on-tap="nav">[[item.title]]</div>
+            <a class="item" is="app-link" href$="[[_guideUrl(item.name)]]">[[item.title]]</a>
           </template>
         </nav>
       </app-sidebar>
@@ -149,7 +151,6 @@
       this.name = window.location.pathname.substring(8);
     },
     contentChanged: function() {
-      console.log('contentChanged');
       this.$.content.innerHTML = this.content;
       this._decorateHeadings();
       this._highlight();
@@ -178,6 +179,9 @@
         var event = this.fire('syntax-highlight', {code: code});
         els[i].innerHTML = event.detail.code || code;
       }
+    },
+    _guideUrl: function(name) {
+      return "/guides/" + name;
     },
     updateMeta: function() {
       this.fire('page-meta', {title: this.guide.title});
