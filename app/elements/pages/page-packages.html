@@ -21,7 +21,7 @@
       <div class="content fit">
         <div class="packages layout horizontal wrap">
           <template is="dom-repeat" items="[[packages]]">
-            <package-tile class="flex-none" name$="[[item.name]]" on-tap="select"></package-tile>
+            <a href$="[[_packageLink(item.name)]]" is="app-link" class="flex-none"><package-tile name$="[[item.name]]"></package-tile></a>
           </template>
         </div>
 
@@ -29,9 +29,9 @@
           <h3>Element Guides</h3>
           <div id="guide-list" class="horizontal layout wrap">
             <template is="dom-repeat" items="[[guides]]">
-              <guide-card guide="[[item.name]]" on-tap="guideSelect"></guide-card>
+              <a href$="[[_link('guides',item.name)]]" is="app-link"><guide-card guide="[[item.name]]"></guide-card></a>
             </template>
-            <div id="coming-soon">More guides coming soon, stay tuned!</div>
+            <div id="coming-soon">More guides coming soon, stay tuned!</div>  
           </div>
         </div>
       </div>
@@ -58,8 +58,11 @@
         this.router.go('/browse?q=' + (q || this.q));
       }
     },
-    select: function(e) {
-      this.router.go('/browse?package=' + e.currentTarget.getAttribute('name'));
+    _link: function() {
+      return "/" + Array.prototype.slice.call(arguments).join("/");
+    },
+    _packageLink: function(name) {
+      return "/browse?package=" + name;
     },
     guideSelect: function(e) {
       this.router.go('/guides/' + e.currentTarget.guide);

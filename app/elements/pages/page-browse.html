@@ -41,22 +41,22 @@
             </div>
             <div id="package-list">
               <h5>Products</h5>
-              <iron-selector attr-for-selected="name" selected="{{package}}" on-iron-activate="closeDrawer">
-                <div class="package" name="">
+              <nav>
+                <a class="package" is="app-link" href="/browse?package=" active$="[[_isEqual(package,'')]]">
                   <div class="layout horizontal center">
                     <div class="all-symbol"><iron-icon icon="apps"></iron-icon></div>
                     <span class="title flex">All Elements</span>
                   </div>
-                </div>
+                </a>
                 <template is="dom-repeat" items="[[packages]]">
-                  <div class="package" name="[[item.name]]">
+                  <a class="package" is="app-link" href$="[[_packageLink(item.name)]]" active$="[[_isEqual(package,item.name)]]">
                     <div class="layout horizontal center">
                       <package-symbol package="[[item]]"></package-symbol>
                       <span class="title flex">[[item.title]]</span>
                     </div>
-                  </div>
+                  </a>
                 </template>
-              </iron-selector>
+              </nav>
             </div>
             <div id="tags">
               <!--<h5>Tags</h5>-->
@@ -75,7 +75,7 @@
                 </div>
                 <div class="section">
                   <h5>Tags</h5>
-  
+
                 </div>
               </div>
             </div>-->
@@ -84,7 +84,7 @@
             </div>
           </div>
         </app-sidebar>
-  
+
         <div id="container" class="fit" view$="[[_actualView(view,_narrowViewport)]]" main>
           <div class="elements-title horizontal layout center">
             <iron-icon icon="menu" paper-drawer-toggle></iron-icon>
@@ -92,11 +92,11 @@
             <iron-icon id="package-view-mode" icon="[[viewIcon]]" on-tap="toggleView" hidden$="[[_forceCards]]"></iron-icon>
             <iron-icon id="cart-toggle" icon="shopping-cart" on-tap="cartOpen"></iron-icon>
           </div>
-  
+
           <div id="package-heading" hidden$="[[!packageInfo]]">
             <div class="description">[[packageInfo.description]]</div>
           </div>
-  
+
           <div id="element-cards" class="horizontal layout wrap">
             <template is="dom-if" if="[[_stampCards(view,_forceCards)]]">
               <template name="element-cards-repeat" is="dom-repeat" items="[[_filteredElements]]">
@@ -104,7 +104,7 @@
               </template>
             </template>
           </div>
-  
+
           <template is="dom-if" if="[[_stampTable(view,_forceCards)]]">
             <element-table elements="[[_filteredElements]]" on-tag-selected="updateTag"></element-table>
           </template>
@@ -231,6 +231,9 @@
           this[key] = params[key];
         }
       },
+      _packageLink: function(name) {
+        return "/browse?package=" + name;
+      },
       updateSearch: function() {
         var params = this._parseQueryString();
         if (params && params.q) {
@@ -320,6 +323,9 @@
       },
       _updateForceCards: function() {
         this._forceCards = this._narrowViewport || this._detectIEVersion() > 0;
+      },
+      _isEqual: function(a,b) {
+        return a === b;
       }
     });
   })();
