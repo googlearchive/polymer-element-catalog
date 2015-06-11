@@ -187,8 +187,9 @@
       this.fire('page-meta', {title: this.guide.title});
     },
     nav: function(e) {
-      if (this.name !== e.currentTarget.getAttribute('name')) {
-        this.router.go('/guides/' + e.currentTarget.name);
+      var name = e.currentTarget.getAttribute('name');
+      if (this.name !== name) {
+        this.router.go('/guides/' + name);
       }
     }
   });
