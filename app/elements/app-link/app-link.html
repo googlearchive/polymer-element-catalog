@@ -2,6 +2,9 @@
 Polymer({
   is: 'app-link',
   extends: 'a',
+  properties: {
+    skipNav: Boolean
+  },
   listeners: {
     'click': 'navigate'
   },
@@ -11,8 +14,7 @@ Polymer({
       return true;
     } else {
       e.preventDefault();
-      e.stopPropagation();
-      this.fire('nav', {url: this.href});
+      if (!this.skipNav) this.fire('nav', {url: this.href});
     }
   }
 });

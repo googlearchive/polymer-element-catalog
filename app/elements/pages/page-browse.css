@@ -226,7 +226,7 @@ app-sidebar paper-toolbar {
   border-width: 1px 0;
 }
 
-#package-list .package.iron-selected {
+#package-list .package[active] {
   background: var(--paper-blue-grey-50);
   border-color: var(--paper-blue-grey-100);
 }
