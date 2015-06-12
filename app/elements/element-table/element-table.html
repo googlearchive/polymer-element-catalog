@@ -142,10 +142,12 @@ Polymer({
     this.fire('tag-selected', {name: e.currentTarget.name});
   },
   nav: function(e, detail) {
-    for (var i = 0; i < e.path.length; i++) {
-      if (e.path[i].href && e.path[i].href.indexOf('//') >= 0) {
+    var target = e.target;
+    while (target && target !== e.currentTarget) {
+      if (target.href && target.href.indexOf('//') >= 0) {
         return true;
       }
+      target = target.parentNode;
     }
 
     e.stopPropagation();
