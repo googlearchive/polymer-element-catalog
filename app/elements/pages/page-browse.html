@@ -29,7 +29,7 @@
       <paper-drawer-panel id="drawerPanel" responsive-width="900px" drawer-width="272px" disable-edge-swipe>
         <app-sidebar drawer>
           <paper-toolbar>
-            <app-logo class="flex"></app-logo>
+            <app-logo class="flex" tabindex="1"></app-logo>
             <app-bar class="horizontal layout center end-justified" no-search></app-bar>
           </paper-toolbar>
           <div id="search" class="layout horizontal center">
@@ -43,14 +43,14 @@
             <div id="package-list">
               <h5>Products</h5>
               <nav>
-                <a class="package" is="app-link" href="/browse?package=" active$="[[_isEqual(package,'')]]">
+                <a class="package" is="app-link" href="/browse?package=" active$="[[_isEqual(package,'')]]" tabindex="1">
                   <div class="layout horizontal center">
                     <div class="all-symbol" aria-hidden="true"><iron-icon icon="apps"></iron-icon></div>
                     <span class="title flex">All Elements</span>
                   </div>
                 </a>
                 <template is="dom-repeat" items="[[packages]]">
-                  <a class="package" is="app-link" href$="[[_packageLink(item.name)]]" active$="[[_isEqual(package,item.name)]]">
+                  <a class="package" is="app-link" href$="[[_packageLink(item.name)]]" active$="[[_isEqual(package,item.name)]]" tabindex="1">
                     <div class="layout horizontal center">
                       <package-symbol aria-hidden="true" package="[[item]]"></package-symbol>
                       <span class="title flex">[[item.title]]</span>

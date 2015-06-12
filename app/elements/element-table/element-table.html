@@ -60,7 +60,10 @@
       height: 18px;
     }
 
-    #element-table tr:hover element-action-menu::shadow iron-icon {
+    #element-table tr:hover element-action-menu::shadow iron-icon,
+    #element-table :focus element-action-menu::shadow iron-icon,
+    #element-table element-action-menu::shadow a:focus iron-icon
+    {
       color: #616161;
     }
 
@@ -112,7 +115,7 @@
       </thead>
       <tbody>
         <template is="dom-repeat" items="[[elements]]">
-          <tr on-tap="nav" target$="[[item.name]]">
+          <tr on-tap="nav" target$="[[item.name]]" tabindex="0">
             <td class="name" width="100">[[item.name]]</td>
             <td class="description relative">[[item.description]]</td>
             <td class="tags">

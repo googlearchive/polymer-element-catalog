@@ -32,10 +32,10 @@
   </style>
   <template>
     <catalog-element name="[[element]]" data="{{_element}}"></catalog-element>
-    <a on-tap="cartAdd"><cart-item-icon id="cartItemIcon" element="[[element]]" present-label="Remove" absent-label="Add" no-label="[[iconsOnly]]"></cart-item-icon></a>
-    <a on-tap="navToDocs"><iron-icon icon="description" title="View Docs"></iron-icon><span hidden$="[[iconsOnly]]">Docs</span></a>
-    <a href="[[githubLink(_element.source)]]" target="_blank" title="View Source on GitHub"><iron-icon icon="code"></iron-icon><span hidden$="[[iconsOnly]]">Source</span></a>
-    <a on-tap="navToDemo" disabled$="[[!_element.demo]]"><iron-icon icon="visibility" title="View Demo"></iron-icon><span hidden$="[[iconsOnly]]">Demo</span></a>
+    <a tabindex="0" role="button" on-click="cartAdd"><cart-item-icon id="cartItemIcon" element="[[element]]" present-label="Remove" absent-label="Add" no-label="[[iconsOnly]]"></cart-item-icon></a>
+    <a tabindex="0" role="button" on-click="navToDocs"><iron-icon icon="description" title="View Docs"></iron-icon><span hidden$="[[iconsOnly]]">Docs</span></a>
+    <a tabindex="0" role="button" href="[[githubLink(_element.source)]]" target="_blank" title="View Source on GitHub"><iron-icon icon="code"></iron-icon><span hidden$="[[iconsOnly]]">Source</span></a>
+    <a tabindex="0" role="button" on-click="navToDemo" disabled$="[[!_element.demo]]"><iron-icon icon="visibility" title="View Demo"></iron-icon><span hidden$="[[iconsOnly]]">Demo</span></a>
   </template>
 </dom-module>
 
