@@ -175,9 +175,12 @@
     _highlight: function() {
       var els = this.$.content.querySelectorAll('pre code');
       for (var i = 0; i < els.length; i++) {
-        var code = els[i].innerText;
+        var code = els[i].textContent;
         var event = this.fire('syntax-highlight', {code: code});
-        els[i].innerHTML = event.detail.code || code;
+        if (event.detail.code && !els[i].highlighted) {
+          els[i].highlighted = true;
+          els[i].innerHTML = event.detail.code;
+        }
       }
     },
     _guideUrl: function(name) {
