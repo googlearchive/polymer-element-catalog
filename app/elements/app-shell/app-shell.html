@@ -30,7 +30,7 @@
     }
   </style>
   <template>
-    <paper-drawer-panel id="cartpanel" class="flex" force-narrow right-drawer disable-edge-swipe drawer-width="320px">
+    <paper-drawer-panel id="cartpanel" class="flex" force-narrow right-drawer disable-edge-swipe disable-swipe drawer-width="320px">
       <app-router id="router" class="flex" mode="pushstate" main on-activate-route-end="trackPageview">
         <app-route path="/" element="page-packages" bindRouter></app-route>
         <app-route path="/browse" element="page-browse" bindRouter onUrlChange="updateModel"></app-route>
