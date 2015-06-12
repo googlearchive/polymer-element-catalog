@@ -71,7 +71,7 @@
 
               <nav id="elnav" class="nav" attr-for-selected="name" selected="{{active}}">
                 <template is="dom-repeat" items="[[docBehaviors]]">
-                  <paper-item name="[[item.is]]">[[item.is]]</paper-item>
+                  <a is="app-link" class="item" href$="[[_link(item.is,view)]]" active$="[[_isEqual(item.is,active)]]">[[item.is]]</a>
                 </template>
               </nav>
             </section>
