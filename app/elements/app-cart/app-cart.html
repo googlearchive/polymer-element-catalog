@@ -71,8 +71,8 @@
     <catalog-cart id="data" items="{{items}}"></catalog-cart>
 
     <paper-toolbar id="toolbar">
-      <iron-icon icon="shopping-cart"></iron-icon>
-      <span id="toolbar-title" class="flex">Cart</span>
+      <iron-icon icon="stars"></iron-icon>
+      <span id="toolbar-title" class="flex">My Collection</span>
       <iron-icon icon="chevron-right" on-tap="close"></iron-icon>
     </paper-toolbar>
     <paper-tabs id="tabs" selected="{{_tab}}">
@@ -140,16 +140,16 @@ Polymer({
   },
   add: function(name) {
     if (this.includes(name)) {
-      this.fire('toast', {text: "Element " + name + " is already in cart"});
+      this.fire('toast', {text: "Element " + name + " is already in your collection"});
     } else {
       this.$.data.add(name);
-      this.fire('toast', {text: "Element " + name + " has been added to the cart"});
+      this.fire('toast', {text: "Element " + name + " has been added to your collection"});
     }
   },
   remove: function(name) {
     if (name.name) name = name.name;
     this.$.data.remove(name);
-    this.fire('toast', {text: "Element " + name + " has been removed from the cart"});
+    this.fire('toast', {text: "Element " + name + " has been removed from your collection"});
   },
   _hasAny: function(arr) {
     return arr && (arr > 0);

@@ -7,6 +7,7 @@
 <link rel="import" href="../app-sidebar/app-sidebar.html">
 <link rel="import" href="../app-logo/app-logo.html">
 <link rel="import" href="../app-bar/app-bar.html">
+<link rel="import" href="../cart-icon/cart-icon.html">
 <link rel="import" href="../catalog-data/catalog-data.html">
 <link rel="import" href="../catalog-package/catalog-package.html">
 <link rel="import" href="../element-card/element-card.html">
@@ -90,7 +91,7 @@
             <iron-icon icon="menu" paper-drawer-toggle></iron-icon>
             <h2 class="flex"><span>[[pageTitle]]</span> <span class="count">[[_elementCount]]</span></h2>
             <iron-icon id="package-view-mode" icon="[[viewIcon]]" on-tap="toggleView" hidden$="[[_forceCards]]"></iron-icon>
-            <iron-icon id="cart-toggle" icon="shopping-cart" on-tap="cartOpen"></iron-icon>
+            <cart-icon id="cart-toggle" icon="stars" on-tap="cartOpen"></cart-icon>
           </div>
 
           <div id="package-heading" hidden$="[[!packageInfo]]">

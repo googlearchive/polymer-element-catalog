@@ -25,8 +25,8 @@ Polymer({
   is: 'cart-item-icon',
   properties: {
     element: {type: String, observer: '_update'},
-    presentLabel: {type: String, value: 'Remove from Cart', observer: '_update'},
-    absentLabel: {type: String, value: 'Add to Cart', observer: '_update'},
+    presentLabel: {type: String, value: 'Remove from Collection', observer: '_update'},
+    absentLabel: {type: String, value: 'Add to Collection', observer: '_update'},
     present: {type: Boolean, notify: true, readOnly: true, value: false},
     noLabel: {type: Boolean, value: false},
     tappable: {type: Boolean, value: false},
@@ -43,7 +43,7 @@ Polymer({
     this._setPresent(this.$.cart.includes(this.element));
     this._label = this.present ? this.presentLabel : this.absentLabel;
     this.debounce('icon', function() {
-      this._icon = this.present ? 'star' : 'add-shopping-cart';
+      this._icon = this.present ? 'star' : 'star-border';
     }, 10);
   },
   toggle: function(e) {

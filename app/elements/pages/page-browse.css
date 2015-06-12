@@ -32,7 +32,7 @@ app-bar .menu-icon {
   content: ")";
 }
 
-.elements-title iron-icon {
+.elements-title iron-icon, .elements-title cart-icon {
   cursor: pointer;
   margin-left: 16px;
 }
