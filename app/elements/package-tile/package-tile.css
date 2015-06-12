@@ -1,5 +1,5 @@
 :host {
-  display: flex;
+  display: block;
   transition: var(--material-curve-320);
   transform: translate(0, 60px);
   opacity: 0;
