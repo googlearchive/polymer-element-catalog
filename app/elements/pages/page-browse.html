@@ -45,14 +45,14 @@
               <nav>
                 <a class="package" is="app-link" href="/browse?package=" active$="[[_isEqual(package,'')]]">
                   <div class="layout horizontal center">
-                    <div class="all-symbol"><iron-icon icon="apps"></iron-icon></div>
+                    <div class="all-symbol" aria-hidden="true"><iron-icon icon="apps"></iron-icon></div>
                     <span class="title flex">All Elements</span>
                   </div>
                 </a>
                 <template is="dom-repeat" items="[[packages]]">
                   <a class="package" is="app-link" href$="[[_packageLink(item.name)]]" active$="[[_isEqual(package,item.name)]]">
                     <div class="layout horizontal center">
-                      <package-symbol package="[[item]]"></package-symbol>
+                      <package-symbol aria-hidden="true" package="[[item]]"></package-symbol>
                       <span class="title flex">[[item.title]]</span>
                     </div>
                   </a>
