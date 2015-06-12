@@ -34,13 +34,13 @@ cart-icon {
   }
 }
 
-package-tile {
+a.package {
   width: 220px;
   margin: 8px;
 }
 
 @media (max-width: 489px) {
-  package-tile {
+  a.package {
     width: calc(100% - 16px);
   }
 }

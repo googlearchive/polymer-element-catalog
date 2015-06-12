@@ -21,7 +21,7 @@
       <div class="content fit">
         <div class="packages layout horizontal wrap">
           <template is="dom-repeat" items="[[packages]]">
-            <a href$="[[_packageLink(item.name)]]" is="app-link" class="flex-none"><package-tile name$="[[item.name]]"></package-tile></a>
+            <a href$="[[_packageLink(item.name)]]" is="app-link" class="package flex-none"><package-tile name$="[[item.name]]"></package-tile></a>
           </template>
         </div>
 
