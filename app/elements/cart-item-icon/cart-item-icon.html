@@ -16,7 +16,7 @@
   <template>
     <catalog-cart id="cart" on-item-added="_update" on-item-removed="_update" on-items-changed="_update"></catalog-cart>
 
-    <iron-icon icon="[[_icon]]"></iron-icon><span hidden$="[[noLabel]]">[[_label]]</span>
+    <iron-icon icon="[[_icon]]"></iron-icon><span hidden$="[[noLabel]]">[[ariaLabel]]</span>
   </template>
 </dom-module>
 
@@ -30,7 +30,7 @@ Polymer({
     present: {type: Boolean, notify: true, readOnly: true, value: false},
     noLabel: {type: Boolean, value: false},
     tappable: {type: Boolean, value: false},
-    _label: String,
+    ariaLabel: {type: String, reflectToAttribute: true},
     _icon: String
   },
   listeners: {
@@ -41,7 +41,7 @@ Polymer({
   },
   _update: function() {
     this._setPresent(this.$.cart.includes(this.element));
-    this._label = this.present ? this.presentLabel : this.absentLabel;
+    this.ariaLabel = this.present ? this.presentLabel : this.absentLabel;
     this.debounce('icon', function() {
       this._icon = this.present ? 'star' : 'star-border';
     }, 10);
