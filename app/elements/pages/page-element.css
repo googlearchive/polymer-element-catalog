@@ -92,7 +92,7 @@ paper-item, a.item {
   background: var(--paper-blue-grey-50);
 }
 
-.nav .iron-selected iron-icon {
+.nav [active] iron-icon {
   color: var(--paper-blue-a700);
 }
 
@@ -155,7 +155,7 @@ cart-item-icon {
   @apply(--layout-vertical);
 }
 
-.shrinkable iron-selector, .shrinkable .list {
+.shrinkable .nav, .shrinkable .list {
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
