@@ -119,8 +119,9 @@
             <td class="name" width="100">[[item.name]]</td>
             <td class="description relative">[[item.description]]</td>
             <td class="tags">
-              <template is="dom-repeat" items="[[item.tags]]">
-                <tag-link name="[[item]]" on-tap="tagTapped"></tag-link><span>,</span>
+              <template is="dom-repeat" items="[[item.tags]]" as="tag">
+                <tag-link name="[[tag]]" on-tap="tagTapped"></tag-link><span
+                  hidden$="[[_isLastItem(index, item.tags.length)]]">,</span>
               </template>
             </td>
             <td class="actions">
@@ -166,6 +167,9 @@ Polymer({
   },
   _elementLink: function(name) {
     return "/elements/" + name;
+  },
+  _isLastItem: function(index, length) {
+    return (index === length - 1);
   }
 });
 </script>
