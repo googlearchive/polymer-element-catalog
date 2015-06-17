@@ -241,7 +241,7 @@
           this.async(function() { this.$.query.focus(); });
         }
       },
-      updateURL: function(q,package,tag,view) {
+      updateURL: function(q,p,tag,view) {
         var qs = this._buildQueryString();
         if (qs !== _lastNavigated && this.router) {
           _lastNavigated = qs;
