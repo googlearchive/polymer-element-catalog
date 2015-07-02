@@ -37,11 +37,11 @@ Polymer contains a few primary collections of elements:
     like push notifications and offline caching.
 
 
-If you find a component you want while browsing the docs, simply click **Add to cart** 
-<iron-icon class="inline-icon" icon="add-shopping-cart"></iron-icon>.
-Don't worry — they're all free!
+If you find a component you want while browsing the docs, simply click the 
+star <iron-icon class="inline-icon" icon="star-border"></iron-icon> to add it to 
+your collection.
 
-From the cart, you can download either a `bower.json` file or a ZIP file.
+When you've selected some components, you can download either a `bower.json` file or a ZIP file.
 
 *   `bower.json` file. Just the metadata you need to install the components using
     Bower.
@@ -55,10 +55,10 @@ From the cart, you can download either a `bower.json` file or a ZIP file.
     but doesn't provide a built-in method for updating dependencies. For more information, see
     [Installing from ZIP files](#installing-from-zip-files).
 
-To download the components in your cart:
+To download the components in your collection:
 
-1.  Click the **Cart** <iron-icon class="inline-icon" icon="shopping-cart"></iron-icon> 
-    and select the **Download** tab.
+1.  Click <iron-icon class="inline-icon" icon="stars"></iron-icon> and 
+    select the **Download** tab.
 
 2.  Choose a download format and click **Download**.
 
@@ -80,17 +80,15 @@ installed as well.
 
 #### Project setup
 
-If you haven't created a `bower.json` file for your application, run this
-command from the root of your project:
+If you haven't created a `bower.json` file for your application, 
+download the `bower.json` from the catalog and edit it to add your
+own project name and version.
 
-    bower init
+If you already have a `bower.json` file, merge the 
+`dependencies` section of the downloaded file into your existing
+`bower.json` file. 
 
-This generates a basic `bower.json` file. Some of the questions, like
-"What kind of modules do you expose," can be ignored by pressing Enter.
-
-From the **cart**, select the `bower.json` download and paste the 
-`dependencies` section into your generated `bower.json` file. The resulting
-file should look something like this:
+The resulting file should look something like this:
 
 ```
 {
@@ -226,13 +224,73 @@ polyfill to work properly. This requirement goes away when the API is available 
 If you aren't using the polyfill, you can't rely on the `WebComponentsReady` event. Instead, 
 simply place script at the end of the file (after any custom elements).
 
-###  Passing object and array values in attributes
+## Polymer element APIs
+
+To use Polymer elements effectively, it's important to be familiar with a
+few of the common Polymer element APIs.
+
+### Attribute and properties
+
+The Polymer element docs list element _properties_, but not element attributes. Unless otherwise
+noted, every property on a Polymer element has a corresponding _attribute_. Use the attribute name
+when configuring a property from markup, or when creating a Polymer data binding to a property.
+
+When mapping attribute names to property names:
+
+*   Attribute names are converted to lowercase property names. For example,
+    the _attribute_ `firstName` maps to the property `firstname`.
+
+*   Attribute names with _dashes_ are converted to _camelCase_ property names 
+    by capitalizing the character following each dash, then removing the dashes. 
+    For example, the _attribute_ `first-name` maps to the property `firstName`.
+
+####  Passing object and array values in attributes
 
 [HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes) are string values, but sometimes you need to pass more complicated values into a custom element, such as objects or arrays. Ultimately, it's up to the element author to decide how to decode values passed in as attributes, but many Polymer elements understand attribute values that are a JSON-serialized object or array. For example:
 
     <roster-list persons='[{"name": "John"}, {"name": "Bob"}]'></roster-list>
 
 For Polymer elements, you can find the expected type for each attribute listed in the API docs. If you pass the wrong type, it may be decoded incorrectly.
+
+The same mappings happen in reverse when converting property names to attribute
+names (for example, if a property is defined using `reflectToAttribute: true`.)
+
+#### Data binding
+
+Polymer elements also support data binding, using a format like this:
+
+    <my-element property-name="{{hostProperty}}"></my-element>
+
+These data binding annotations are only supported in two places:
+
+- In the [local DOM template](https://www.polymer-project.org/1.0/docs/devguide/local-dom.html#template-stamping) of a Polymer element.
+
+- Inside an [autobinding template](https://www.polymer-project.org/1.0/docs/devguide/templates.html#dom-bind).
+
+For more information see [Data binding](https://www.polymer-project.org/1.0/docs/devguide/data-binding.html).
+
+### DOM manipulation
+
+Because not all browsers support shadow DOM natively, Polymer uses a shim called shady DOM
+to achieve shadow DOM's goals of composition and style encapsulation. 
+
+As a result, if you are manipulating a Polymer element, you need to use the `Polymer.dom` 
+APIs to maintain the correct DOM structure. This is particularly important when adding or removing
+children from a Polymer element, for example.
+
+For more information, see [DOM API](https://www.polymer-project.org/1.0/docs/devguide/local-dom.html#dom-api).
+
+### Custom CSS properties and mixins
+
+Many of the Polymer elements can be styled using custom CSS properties and mixins. 
+
+Property and mixin values can be specified:
+
+- Inside a Polymer element's `<style>` tag to specify values scoped to that element.
+- Inside a `custom-style` element to specify values in the document scope.
+
+For more information, see [Cross-scope styling](https://www.polymer-project.org/1.0/docs/devguide/styling.html#xscope-styling)
+and [Custom element for document styling (custom-style)](https://www.polymer-project.org/1.0/docs/devguide/styling.html#custom-style).
 
 <!-- 
 ## Next steps
