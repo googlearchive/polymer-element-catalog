@@ -53,7 +53,7 @@
             </nav>
 
             <div class="nav" id="cart-add">
-              <paper-item on-tap="toggleCart"><cart-item-icon id="cartIcon" element="[[element]]"></cart-item-icon></paper-item>
+              <paper-item hidden$="[[!metadata]]" on-tap="toggleCart"><cart-item-icon id="cartIcon" element="[[element]]"></cart-item-icon></paper-item>
             </div>
 
             <section hidden$="[[_oneOrFewer(docElements)]]" class="shrinkable">
@@ -108,7 +108,7 @@
       docBehaviors: Array,
       docDemos: Array,
       docs: Object,
-      metadata: Object,
+      metadata: {type: Object, value: null},
       package: Object,
       router: Object,
       q: String

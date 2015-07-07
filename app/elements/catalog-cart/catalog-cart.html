@@ -9,10 +9,22 @@
       localStorage['catalog.cart'] = JSON.stringify(_instances[0].items);
     }
   };
+  
+  var _retrieve = function() {
+    try {
+      return JSON.parse(localStorage['catalog.cart'] || '[]');
+    } catch (e) {
+      console.log('error retrieving catalog data from localstorage.', e);
+      return [];
+    }
+  };
 
   var _add = function(name) {
     var el = document.createElement('catalog-element');
     el.name = name;
+    if (!el.data) {
+      return;
+    }
 
     var check = _instances[0];
     var insertAt;
@@ -21,7 +33,7 @@
     } else {
       for (var i = 0; i < check.items.length; i++) {
         if (name > check.items[i].name && (!check.items[i + 1] || name < check.items[i+1].name)) {
-          console.log(name, ">", check.items[i].name);
+          //console.log(name, ">", check.items[i].name);
           insertAt = i + 1;
           break;
         }
@@ -63,7 +75,7 @@
         type: Array,
         notify: true,
         value: function() {
-          return JSON.parse(localStorage['catalog.cart'] || '[]');
+          return _retrieve();
         }
       }
     },

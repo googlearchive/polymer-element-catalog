@@ -141,8 +141,7 @@ Polymer({
   add: function(name) {
     if (this.includes(name)) {
       this.fire('toast', {text: "Element " + name + " is already in your collection"});
-    } else {
-      this.$.data.add(name);
+    } else if (this.$.data.add(name)) {
       this.fire('toast', {text: "Element " + name + " has been added to your collection"});
     }
   },
@@ -174,7 +173,9 @@ Polymer({
   },
   _itemsAsBowerCommand: function() {
     return "bower install --save " + this.items.map(function(item) {
-      return item.source + "#" + item.target;
+      if (item) {
+        return item.source + "#" + item.target;
+      }
     }).join(" ");
   },
   _selectAll: function(e) {
