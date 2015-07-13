@@ -56,6 +56,9 @@
               <paper-item hidden$="[[!metadata]]" on-tap="toggleCart"><cart-item-icon id="cartIcon" element="[[element]]"></cart-item-icon></paper-item>
             </div>
 
+            <div class="bower-command-label">Bower Command</div>
+            <input class="bower-command" title="Bower Command" readonly value="[[_bowerCommand(metadata.source)]]" on-tap="_selectAllBowerCommand">
+
             <section hidden$="[[_oneOrFewer(docElements)]]" class="shrinkable">
               <h4>Bundled Elements</h4>
 
@@ -192,6 +195,12 @@
     },
     _isEqual: function(a,b) {
       return a === b;
+    },
+    _bowerCommand: function(source) {
+      return 'bower install --save ' + source;
+    },
+    _selectAllBowerCommand: function(e) {
+      e.currentTarget.select();
     }
   });
 </script>

@@ -160,3 +160,25 @@ cart-item-icon {
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
+
+.bower-command-label {
+  margin: 10px 0 2px 17px;
+  font-size: 10px;
+  line-height: 16px;
+  font-weight: 500;
+}
+
+.bower-command {
+  display: block;
+  height: 32px;
+  -webkit-flex-shrink: 0;
+  flex-shrink: 0;
+  padding: 10px 4px;
+  margin: 0 13px 12px;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 1px solid var(--paper-blue-grey-100);
+  border-radius: 2px;
+  font-size: 12px;
+  color: var(--paper-blue-grey-500);
+}
