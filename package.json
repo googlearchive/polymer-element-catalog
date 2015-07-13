@@ -4,11 +4,13 @@
   "description": "A catalog of Google's Web Components",
   "main": "index.js",
   "scripts": {
-    "serve": "./node_modules/.bin/gulp serve",
-    "serve:dist": "./node_modules/.bin/gulp serve:dist",
-    "build": "./node_modules/.bin/gulp",
-    "clean": "./node_modules/.bin/gulp clean",
-    "deps": "npm install && ./node_modules/.bin/bower install"
+    "serve": "gulp serve",
+    "serve:dist": "gulp serve:dist",
+    "build": "gulp",
+    "clean": "gulp clean",
+    "deps": "npm install && bower install",
+    "deploy": "firebase deploy",
+    "stage": "firebase deploy -f p-catalog-staging"
   },
   "repository": {
     "type": "git",
