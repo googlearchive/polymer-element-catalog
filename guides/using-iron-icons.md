@@ -1,9 +1,9 @@
 ---
-layout: default
-type: elements
-shortname: Elements
-title: Using core icons
-subtitle: Guide
+title: Using iron-icons
+summary: "How to use the Polymer team's standard icons and create your own custom icons."
+tags: ['icons','intermediate']
+elements: ['iron-icon','iron-icons', 'iron-iconset', 'iron-iconset-svg']
+updated: 2015-07-17
 ---
 
 <link rel="import" href="../../components/google-youtube/google-youtube.html">
