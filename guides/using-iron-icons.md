@@ -1,6 +1,6 @@
 ---
-title: Using iron-icons
-summary: "How to use the Polymer team's standard icons and create your own custom icons."
+title: Using Icons
+summary: "How to use the Polymer team's standard icons, and create your own custom icons."
 tags: ['icons','intermediate']
 elements: ['iron-icon','iron-icons', 'iron-iconset', 'iron-iconset-svg']
 updated: 2015-07-17
@@ -8,54 +8,63 @@ updated: 2015-07-17
 
 [//]: # (To-Do: Check link to Google YouTube element.)
 
-<link rel="import" href="../../components/google-youtube/google-youtube.html">
+<link rel="import" href="/bower_components/google-youtube/google-youtube.html">
 
-{{site.project_title}}'s Core Elements provide utility components
-for working with individual icons and icon sets.
+## Introduction
 
-It includes a standard collection of SVG icons (styleable using CSS) as well as elements to
-create your own icon sets using either SVG or bitmap icons.
+<google-youtube
+  video-id="6kkNgVG6LuI"
+  autoplay="0"
+  rel="0"
+  fluid>
+</google-youtube>
+
+
+The Iron package contains four elements for working with icons:
+
+* `iron-icon`, for displaying a single icon
+* `iron-icons`, for using the Polymer team's collection of common icons in your own project
+* `iron-iconset`, for creating your own icon set
+* `iron-iconset-svg`, for styling your SVG icons
+
+In this guide we will teach you how to use each of these elements.
 
 ## Installation
 
-This article describes the usage of four components: `iron-icon`,
-`iron-icons`, `iron-iconset` and `iron-iconset-svg`.
-You can install them using Bower:
+Install the icon elements with Bower. We'll assume that your project can access 
+these elements from `/bower_components/`.
+
+```bash
+bower install Polymer/iron-icon 
+bower install Polymer/iron-icons 
+bower install Polymer/iron-iconset 
+bower install Polymer/iron-iconset-svg 
+```
+
+## Using the Polymer team's built-in icons
+
+You can use the icons that you see on this website in your own project. Let's
+get started by installing the following two elements:
 
     bower install Polymer/iron-icon
     bower install Polymer/iron-icons
-    bower install Polymer/iron-iconset
-    bower install Polymer/iron-iconset-svg
 
-The rest of this article assumes the components are
-installed in the `bower_components` directory.
+The Polymer team's collection of icons ("icon set") is located in the `iron-icons`
+element. To display a single icon you will use `iron-icon`.
 
-## Polymer 0.5 to 1.0 migration note: core-icon* is now iron-icon*
+## Creating your own icon set
 
-[//]: # (To-Do: Add content.)
+## Using `iron-icon` to display an icon
 
-## Basic usage: iron-icon
 
-[//]: # (To-Do: Check if embed works.)
-
-<div class="yt-embed">
-  <google-youtube
-    videoid="jrt7sMq9lO0"
-    thumbnail="/images/polycasts/PC001.jpg"
-    autoplay="0"
-    rel="0"
-    fluid>
-  </google-youtube>
-</div>
-
-The simplest way of using {{site.project_title}} icons is the `iron-icon` element.
-To use it, import *iron-icon.html* and declare an icon in your html:
 
     <link rel="import" href="/bower_components/iron-icon/iron-icon.html">
 
     <iron-icon src="//www.polymer-project.org/images/icons/android.svg"></iron-icon>
 
-Produces: <iron-icon src="/images/icons/android.svg"></iron-icon>
+[//]: # (how do you link to icons?)
+
+Produces: <iron-icon icon="android"></iron-icon>
 
 The source image is scaled to fit the icon size, which defaults to 24px square, and is used as the icon element’s background.
 
@@ -69,15 +78,15 @@ Produces: <iron-icon src="/images/icons/android.svg" style="width: 24px; height:
 <iron-icon src="/images/icons/android.svg" style="width: 32px; height: 32px;"></iron-icon>
 <iron-icon src="/images/icons/android.svg" style="width: 48px; height: 48px;"></iron-icon>
 
-**Note:** In {{site.project_title}} 0.3.4 and earlier, `iron-icon` included a
+**Note:** In Polymer 0.3.4 and earlier, `iron-icon` included a
 `size` attribute and didn't support sizing using CSS.
 {: .alert .alert-info }
 
-The `src` attribute works well when you want to use a single icon. However, most of the time you need more than one, so {{site.project_title}} makes it easy to work with *icon sets*.
+The `src` attribute works well when you want to use a single icon. However, most of the time you need more than one, so Polymer makes it easy to work with *icon sets*.
 
 [//]: # (To-Do: Merge with section above?)
 
-## Using {{site.project_title}}'s built-in icon sets
+## Using `iron-icons` to use the Polymer team's icon set in your project
 
 If you import `iron-icons`, you get access to
 a whole range of predefined icon sets. To use an icon from an icon set, use the `icon` attribute instead of `src`:
@@ -107,7 +116,7 @@ You can browse available icon sets on the
 
 ## Styling icons with CSS {#styling-with-css}
 
-Because icons in {{site.project_title}} iconsets are SVG-based, you can control their appearance
+Because icons in Polymer iconsets are SVG-based, you can control their appearance
 with CSS. In addition to setting standard CSS properties like sizes and background colors,
 you can set SVG-specific CSS properties like `fill`, `stroke` and `stroke-width` for your icons.
 
@@ -133,7 +142,7 @@ can also set the `fill` property directly, but it requires a more specific CSS s
 </style>
 Produces: <iron-icon icon="android"></iron-icon>
 
-## Creating custom icon sets {#roll-your-own}
+## Creating custom icon sets with `iron-iconset` {#roll-your-own}
 
 <div class="yt-embed">
   <google-youtube
@@ -300,7 +309,7 @@ Produces: <iron-icon-button class="outline" icon="av:stop"></iron-icon-button>
 
 ## Summary
 
-You just learned how to import {{site.project_title}}'s ready-made icon sets,
+You just learned how to import Polymer's ready-made icon sets,
 display an icon using the `iron-icon` element and style it with CSS. You also learned
 how to create your own icon set using SVG or bitmap images and how to use icons
 from other elements that support this feature.
