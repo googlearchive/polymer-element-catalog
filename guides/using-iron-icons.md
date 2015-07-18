@@ -6,8 +6,6 @@ elements: ['iron-icon','iron-icons', 'iron-iconset', 'iron-iconset-svg']
 updated: 2015-07-17
 ---
 
-[//]: # (To-Do: Check link to Google YouTube element.)
-
 <link rel="import" href="/bower_components/google-youtube/google-youtube.html">
 
 ## Introduction
@@ -61,8 +59,6 @@ element. To display a single icon you will use `iron-icon`.
     <link rel="import" href="/bower_components/iron-icon/iron-icon.html">
 
     <iron-icon src="//www.polymer-project.org/images/icons/android.svg"></iron-icon>
-
-[//]: # (how do you link to icons?)
 
 Produces: <iron-icon icon="android"></iron-icon>
 
