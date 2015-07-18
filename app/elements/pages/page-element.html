@@ -50,6 +50,7 @@
               <template is="dom-repeat" items="[[docDemos]]">
                 <a is="app-link" class="item" href="[[_demoLink(active,item.path)]]" active$="[[_demoActive(item.path,view)]]"><iron-icon icon="visibility"></iron-icon> <span>[[_demoName(item.desc)]]</span></a>
               </template>
+              <a class="item" href="[[_githubLink(element)]]" target="_blank"><iron-icon icon="code"></iron-icon> <span>Source</span></a>
             </nav>
 
             <div class="nav" id="cart-add">
@@ -136,6 +137,9 @@
     },
     _demoActive: function(path) {
       return this.view === 'demo:' + path;
+    },
+    _githubLink: function(element) {
+      return 'https://github.com/PolymerElements/' + element;
     },
     getURL: function(active,view,force) {
       var url = "/elements/" + this.element;
