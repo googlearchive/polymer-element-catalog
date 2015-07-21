@@ -50,7 +50,9 @@ bower install PolymerElements/iron-iconset-svg
 
 ## Using `iron-icon` to display an icon
 
-Import `iron-icon` to display a single icon.
+To display an icon, import `iron-icon` and specify the source image using
+either the `src` attribute if the image is not part of an icon set,
+or the `icon` attribute if it is.
 
     ...
     <link rel="import" href="/bower_components/iron-icon/iron-icon.html">
@@ -64,7 +66,6 @@ Produces:
 
 The source image is set as the icon's background and is scaled to fit the icon 
 size. It can be bitmap or SVG. `iron-icon` expects the source image to be square.
-
 The default icon size is 24 pixels by 24 pixels. Use CSS to set the icon size.
 
     ...
@@ -79,13 +80,15 @@ Produces:
 <iron-icon src="/images/polymer.svg" style="width: 32px; height: 32px;"></iron-icon>
 <iron-icon src="/images/polymer.svg" style="width: 48px; height: 48px;"></iron-icon>
 
-## Using `iron-icons` to use the Polymer team's icon set
+## Using `iron-icons` to use the Polymer team's icon collection
 
 The Polymer team has created a large collection of free, SVG icons that 
 you can use in your own project. These icons are distributed as an element
-called `iron-icons`.
+called `iron-icons`. Think of `iron-icons` as a collection of icon sets
+(more on icon sets below).
 
-Import the `iron-icons` element into your project:
+To use one of the Polymer team's icons, import the `iron-icons` element 
+into your project and reference the icon via the `icon` attribute:
 
     ...
     <!-- iron-icons loads the default icon set and the iron-icon element -->
@@ -105,27 +108,31 @@ of an icon set.
 
 ### Browsing the `iron-icons` catalog
 
-`iron-icons` contains hundreds of icons, grouped thematically. Below
-is a current list of each of the icon set. Each link takes you to 
-the source code definition of each icon set. Look at the `id` attribute
-of each `g` element to get a general idea of the icons available in that set.
-(Note: there's an outstanding bug on the `iron-icons` demo, which is why
-we are providing this convoluted method for browsing icons)
+`iron-icons` contains hundreds of icons, grouped into the following
+icon sets: 
 
-* [General](https://github.com/PolymerElements/iron-icons/blob/master/image-icons.html)
-* [AV (Audio-Visual)](https://github.com/PolymerElements/iron-icons/blob/master/av-icons.html)
-* [Communication](https://github.com/PolymerElements/iron-icons/blob/master/communication-icons.html)
-* [Device](https://github.com/PolymerElements/iron-icons/blob/master/device-icons.html)
-* [Editor](https://github.com/PolymerElements/iron-icons/blob/master/editor-icons.html)
-* [Hardware](https://github.com/PolymerElements/iron-icons/blob/master/hardware-icons.html)
-* [Images](https://github.com/PolymerElements/iron-icons/blob/master/image-icons.html)
-* [Maps](https://github.com/PolymerElements/iron-icons/blob/master/maps-icons.html)
-* [Notification](https://github.com/PolymerElements/iron-icons/blob/master/notification-icons.html)
-* [Social](https://github.com/PolymerElements/iron-icons/blob/master/social-icons.html)
-* [Update](https://github.com/PolymerElements/iron-icons/blob/master/update-icons.sh)
+* Icon (see note at end of this section)
+* Audio Visual
+* Communication
+* Device
+* Editor
+* Hardware
+* Images
+* Maps
+* Notification
+* Social
+* Update
+
+View all of the icons at the link below.
+
+https://elements.polymer-project.org/elements/iron-icons?view=demo:demo/index.html
 
 To use an icon from one of these groups, import the icon set and then reference
-the icon as `{icon set}:{icon name}`. The example below displays the `cake` icon
+the icon using the following syntax:
+
+    <icon set>:<icon name>
+
+The example below displays the `cake` icon
 from the `social` icon set.
 
     ...
