@@ -84,8 +84,7 @@ Produces:
 
 The Polymer team has created a large collection of free, SVG icons that 
 you can use in your own project. These icons are distributed as an element
-called `iron-icons`. Think of `iron-icons` as a collection of icon sets
-(more on icon sets below).
+called `iron-icons`. 
 
 To use one of the Polymer team's icons, import the `iron-icons` element 
 into your project and reference the icon via the `icon` attribute:
@@ -141,17 +140,31 @@ from the `social` icon set.
     <iron-icon icon="social:cake"></iron-icon>
     ...
 
-## Styling icons with CSS 
+Produces: 
 
-All of the icons in `iron-icons` are SVG-based. In addition to setting standard CSS 
-properties like sizes and background colors, you can set SVG-specific CSS properties 
-like `fill`, `stroke` and `stroke-width` for your icons.
+<iron-icon icon="social:cake"></iron-icon>
 
-By default, icons use `fill: currentcolor`, so they match the current text color.
-The easiest way to override the icon color is to set the `color` property. You
-can also set the `fill` property directly, but it requires a more specific CSS selector.
+Note that the `icon` icon set is the default icon set. If you reference an icon 
+using only the icon name, `iron-icon` will search for the name within 
+the `icon` icon set. For example, the two declarations below reference the 
+same icon.
 
-[//]: # (code is different?)
+    ...
+    <iron-icon icon="refresh"></iron-icon>
+    ...
+    <iron-icon icon="icon:refresh"></iron-icon>
+
+
+### Styling icons with CSS 
+
+All of the icons in `iron-icons` are SVG-based. In addition to setting 
+standard CSS properties like sizes and background colors, you can set 
+SVG-specific CSS properties like `fill`, `stroke` and `stroke-width`.
+
+By default, icons use `fill: currentcolor`, so they match the current text 
+color. The easiest way to override the icon color is to set the 
+`color` property. You can also set the `fill` property directly, but it 
+requires a more specific CSS selector.
 
     <style>
       iron-icon[icon="android"] {
@@ -162,131 +175,14 @@ can also set the `fill` property directly, but it requires a more specific CSS s
     </style>
     <iron-icon icon="android"></iron-icon>
 
-<style>
-  iron-icon[icon="android"] {
-    fill: #9aed00;
-    width: 32px;
-    height: 32px;
-  }
-</style>
+<!-- fill: #9aed00; -->
 
 Produces: 
 
-<iron-icon icon="android"></iron-icon>
-
-## Creating custom bitmap icon sets with `iron-iconset`
-
-[//]: # (delete after aligning video and docs)
-
-<google-youtube
-  video-id="xfiOJP8vuX4"
-  autoplay="0"
-  rel="0"
-  fluid>
-</google-youtube>
-
-[//]: # (does this video explain iron-iconset?)
-
-Use `iron-iconset` to create your own icon set. An icon set is a group of icons,
-distributed as a Polymer element. `iron-icons` above is an example of an icon set.
-
-## Creating SVG icon sets with `iron-iconset-svg`
-
-Use `iron-iconset-svg` to create an icon set of SVG icons.
-
-Import and declare `iron-iconset-svg` in your html and put your
-SVG icon definitions inside the `iron-iconset-svg` element as its children.
-
-    <link rel="import" href="../bower_components/iron-iconset-svg/iron-iconset-svg.html">
-    <iron-iconset-svg id="custom-icons" iconSize="50">
-      <svg>
-        <defs>
-          <g id="fancy-circles">
-            <circle cx="25" cy="25" r="18" />
-            <circle cx="12" cy="12" r="10" />
-            <circle cx="35" cy="40" r="6" />
-          </g>
-        </defs>
-      </svg>
-    </iron-iconset-svg>
-
-[//]: # (move stuff to external file and link, so example works)
-
-This defines a new iconset called `custom-icons` with a single icon, `fancy-circles`.
-
-Because the icons are defined as SVG, you can style them with CSS. Make
-the fancy circles even more fancy by adding some color:
-
-    <style>
-      iron-icon circle {
-        fill: #0b50bf;
-      }
-      iron-icon circle:first-child {
-        fill: #66bbff;
-      }
-      iron-icon circle:last-child {
-        fill: #0083ff;
-      }
-    </style>
-
-Now you can display the icon with `iron-icon` using the same
-<em>iconset-name</em><b>&#8239;:&#8239;</b><em>icon-name</em>
-format used for built-in icon sets. For example, to display the icon
-defined above use `custom-icons:fancy-circles` as the `icon` attribute.
-
-    <iron-icon icon="custom-icons:fancy-circles" size="30"></iron-icon>
-
-<style>
-  iron-icon circle {
-    fill: #0b50bf;
-  }
-  iron-icon circle:first-child {
-    fill: #66bbff;
-  }
-  iron-icon circle:last-child {
-    fill: #0083ff;
-  }
-</style>
-<iron-iconset-svg id="custom-icons" iconSize="50">
-  <svg>
-    <defs>
-      <g id="fancy-circles">
-        <circle cx="25" cy="25" r="18" />
-        <circle cx="12" cy="12" r="10" />
-        <circle cx="35" cy="40" r="6" />
-      </g>
-    </defs>
-  </svg>
-</iron-iconset-svg>
-Tadaa! Here's your brand new icon: <iron-icon icon="custom-icons:fancy-circles" size="30"></iron-icon>
-
-If you prefer to work with more traditional bitmap graphics like *jpg* or *png*,
-there is also an element for that: `iron-iconset`.
-
-For example, if you have a *png* file containing icons:
-
-<a href="../../components/iron-iconset/my-icons.png" target="_blank">
-  <img src="../../components/iron-iconset/my-icons.png">
-</a>
-
-You can set the `src` attribute of `iron-iconset` to point to this file.
-Icons are expected to be square and of the size specified
-by the `iconSize` property. If the icons are arranged over multiple rows, use the `width`
-attribute to specify the width of the image file. List the name of each icon in the `icons` attribute, in the same order as they appear
-in the image file.
-
-    <iron-iconset id="custom-icons-png" src="/components/iron-iconset/my-icons.png" width="96" iconSize="24"
-      icons="location place starta stopb bus car train walk">
-    </iron-iconset>
-
-Now you can use the icons in your custom set just like the built-in icons.
-
-    <iron-icon icon="custom-icons-png:place"></iron-icon>
-
-<iron-iconset id="custom-icons-png" src="../../components/iron-iconset/my-icons.png" width="96" iconSize="24"
-  icons="location place starta stopb bus car train walk">
-</iron-iconset>
-Produces: <iron-icon icon="custom-icons-png:place"></iron-icon>
+<iron-icon icon="android" 
+           style="color: #a4c639;
+                  width: 32px;
+                  height: 32px"></iron-icon>
 
 ## Using icons with other elements 
 
