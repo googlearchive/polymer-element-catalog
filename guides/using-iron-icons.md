@@ -42,10 +42,10 @@ Install the icon elements with Bower. We'll assume that your project can access
 these elements from `/bower_components/`.
 
 ```bash
-bower install Polymer/iron-icon 
-bower install Polymer/iron-icons 
-bower install Polymer/iron-iconset 
-bower install Polymer/iron-iconset-svg 
+bower install PolymerElements/iron-icon 
+bower install PolymerElements/iron-icons 
+bower install PolymerElements/iron-iconset 
+bower install PolymerElements/iron-iconset-svg 
 ```
 
 ## Using `iron-icon` to display an icon
