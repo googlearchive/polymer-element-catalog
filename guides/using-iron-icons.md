@@ -12,6 +12,10 @@ updated: 2015-07-17
 [//]: # (are ::shadow and /deep/ still supported?)
 [//]: # (load dependenices in right order https://github.com/PolymerElements/iron-icon/issues/19)
 [//]: # (get SVG icon set example working)
+[//]: # (use for displaying icons https://elements.polymer-project.org/elements/iron-icons?view=demo:demo/index.html)
+[//]: # (during review, ask about using multiple icon sets, specifying each with namespace syntax)
+[//]: # (instead of trying to display inside of document, create working
+         examples with full index.html)
 
 <link rel="import" href="/bower_components/google-youtube/google-youtube.html">
 
