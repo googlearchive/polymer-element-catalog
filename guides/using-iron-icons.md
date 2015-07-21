@@ -11,7 +11,7 @@ updated: 2015-07-17
 [//]: # (delete core-iconset video after aligning with docs)
 [//]: # (are ::shadow and /deep/ still supported?)
 [//]: # (load dependenices in right order https://github.com/PolymerElements/iron-icon/issues/19)
-
+[//]: # (get SVG icon set example working)
 
 <link rel="import" href="/bower_components/google-youtube/google-youtube.html">
 
@@ -132,13 +132,15 @@ from the `social` icon set.
 
 ## Styling icons with CSS 
 
-Because icons in Polymer iconsets are SVG-based, you can control their appearance
-with CSS. In addition to setting standard CSS properties like sizes and background colors,
-you can set SVG-specific CSS properties like `fill`, `stroke` and `stroke-width` for your icons.
+All of the icons in `iron-icons` are SVG-based. In addition to setting standard CSS 
+properties like sizes and background colors, you can set SVG-specific CSS properties 
+like `fill`, `stroke` and `stroke-width` for your icons.
 
 By default, icons use `fill: currentcolor`, so they match the current text color.
-The easiest way to override the icon color is to set the `color` property. (You
-can also set the `fill` property directly, but it requires a more specific CSS selector.)
+The easiest way to override the icon color is to set the `color` property. You
+can also set the `fill` property directly, but it requires a more specific CSS selector.
+
+[//]: # (code is different?)
 
     <style>
       iron-icon[icon="android"] {
@@ -161,7 +163,7 @@ Produces:
 
 <iron-icon icon="android"></iron-icon>
 
-## Creating custom icon sets with `iron-iconset` 
+## Creating custom bitmap icon sets with `iron-iconset`
 
 [//]: # (delete after aligning video and docs)
 
@@ -174,10 +176,15 @@ Produces:
 
 [//]: # (does this video explain iron-iconset?)
 
-The styling possibilities become even more exciting when you want to make
-your own icon sets. To create a custom icon set with SVG, import and declare
-`iron-iconset-svg` in your html. Because SVG is just markup, you can put your
-SVG icons inside the `iron-iconset-svg` element as its children.
+Use `iron-iconset` to create your own icon set. An icon set is a group of icons,
+distributed as a Polymer element. `iron-icons` above is an example of an icon set.
+
+## Creating SVG icon sets with `iron-iconset-svg`
+
+Use `iron-iconset-svg` to create an icon set of SVG icons.
+
+Import and declare `iron-iconset-svg` in your html and put your
+SVG icon definitions inside the `iron-iconset-svg` element as its children.
 
     <link rel="import" href="../bower_components/iron-iconset-svg/iron-iconset-svg.html">
     <iron-iconset-svg id="custom-icons" iconSize="50">
@@ -191,6 +198,8 @@ SVG icons inside the `iron-iconset-svg` element as its children.
         </defs>
       </svg>
     </iron-iconset-svg>
+
+[//]: # (move stuff to external file and link, so example works)
 
 This defines a new iconset called `custom-icons` with a single icon, `fancy-circles`.
 
