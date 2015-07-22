@@ -33,13 +33,8 @@ updated: 2015-07-17
   fluid>
 </google-youtube>
 
-In this guide we will teach you how to use four Iron elements that make it 
-easier to use icons:
-
-* `iron-icon`, for displaying and styling a single icon
-* `iron-icons`, for using the Polymer team's collection of common icons 
-* `iron-iconset`, for creating your own icon set
-* `iron-iconset-svg`, for styling SVG icons
+In this guide we will teach you how to display icons and how to use the 
+Polymer team's collection of icons in your project.
 
 ## Installation
 
@@ -49,11 +44,9 @@ these elements from `/bower_components/`.
 ```bash
 bower install PolymerElements/iron-icon 
 bower install PolymerElements/iron-icons 
-bower install PolymerElements/iron-iconset 
-bower install PolymerElements/iron-iconset-svg 
 ```
 
-## Using `iron-icon` to display an icon
+## Displaying an icon with `iron-icon`
 
 To display an icon, import `iron-icon` and specify the source image using
 either the `src` attribute if the image is not part of an icon set,
@@ -85,11 +78,13 @@ Produces:
 <iron-icon src="/images/polymer.svg" style="width: 32px; height: 32px;"></iron-icon>
 <iron-icon src="/images/polymer.svg" style="width: 48px; height: 48px;"></iron-icon>
 
-## Using `iron-icons` to use the Polymer team's icon collection
+## Using the Polymer team's icon collection, `iron-icons`
 
 The Polymer team has created a large collection of free, SVG icons that 
 you can use in your own project. These icons are distributed as an element
 called `iron-icons`. 
+
+[View all of the icons here.](https://elements.polymer-project.org/elements/iron-icons?view=demo:demo/index.html)
 
 To use one of the Polymer team's icons, import the `iron-icons` element 
 into your project and reference the icon via the `icon` attribute:
@@ -110,12 +105,17 @@ Note that you reference the image source via the `icon` attribute, not
 the `src` attribute, as is the case when you using an image that is not part
 of an icon set.
 
-### Browsing the `iron-icons` catalog
+The default icon set is called `icons`. If you reference an icon 
+using only the icon name, `iron-icon` will search for the name within 
+the `icons` icon set. For example, the two declarations below reference the 
+same icon.
 
-`iron-icons` contains hundreds of icons, grouped into the following
-icon sets: 
+    <iron-icon icon="refresh"></iron-icon>
+    <iron-icon icon="icons:refresh"></iron-icon>
 
-* Icon (see note at end of this section)
+`iron-icons` contains many more icons, grouped into the following 
+thematic sets: 
+
 * Audio Visual
 * Communication
 * Device
@@ -127,38 +127,36 @@ icon sets:
 * Social
 * Update
 
-View all of the icons at the link below.
-
-https://elements.polymer-project.org/elements/iron-icons?view=demo:demo/index.html
-
 To use an icon from one of these groups, import the icon set and then reference
 the icon using the following syntax:
 
     <icon set>:<icon name>
 
-The example below displays the `cake` icon
-from the `social` icon set.
+[Due to an outstanding bug](https://github.com/PolymerElements/iron-icon/issues/19),
+ if you want to use any of the icons from the 
+thematic sets listed above, you need to load the `iron` dependencies in a specific
+order. The example HTML below successfuly displays the `cake` icon from
+the `social` icon set.
 
-    ...
-    <link rel="import" href="/bower_components/iron-icons/social-icons.html">
-    ...
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="bower_components/polymer/polymer.html">
+    <link rel="import" href="bower_components/iron-meta/iron-meta.html">
+    <link rel="import" href="bower_components/iron-flex-layout/iron-flex-layout.html">
+    <link rel="import" href="bower_components/iron-iconset-svg/iron-iconset-svg.html">
+    <link rel="import" href="bower_components/iron-iconset/iron-iconset.html">
+    <link rel="import" href="bower_components/iron-icons/iron-icons.html">
+    <link rel="import" href="bower_components/iron-icons/social-icons.html">
+    <link rel="import" href="bower_components/iron-icon/iron-icon.html">
+  </head>
+  <body>
     <iron-icon icon="social:cake"></iron-icon>
-    ...
-
-Produces: 
-
-<iron-icon icon="social:cake"></iron-icon>
-
-Note that the `icon` icon set is the default icon set. If you reference an icon 
-using only the icon name, `iron-icon` will search for the name within 
-the `icon` icon set. For example, the two declarations below reference the 
-same icon.
-
-    ...
-    <iron-icon icon="refresh"></iron-icon>
-    ...
-    <iron-icon icon="icon:refresh"></iron-icon>
-
+  </body>
+</html>
+```
 
 ### Styling icons with CSS 
 
@@ -172,91 +170,42 @@ color. The easiest way to override the icon color is to set the
 requires a more specific CSS selector.
 
     <style>
-      iron-icon[icon="android"] {
-        color: #a4c639;
+      iron-icon[icon="save"] {
+        color: green;
         width: 32px;
         height: 32px;
+        opacity: 0.50;
       }
     </style>
-    <iron-icon icon="android"></iron-icon>
+
+    <iron-icon icon="save"></iron-icon>
 
 <!-- fill: #9aed00; -->
 
 Produces: 
 
-<iron-icon icon="android" 
-           style="color: #a4c639;
-                  width: 32px;
-                  height: 32px"></iron-icon>
-
-## Using icons with other elements 
-
-You can use icons on their own, but also use them with other elements, such as buttons. You can use the built-in
-and custom icon sets with any `core-` or `paper-` element that has an `icon` attribute. Remember to include the
-appropriate icon set before referring to an icon, otherwise the icon will not render.
-
-The following examples use `iron-icon-button`, `core-menu-button` and `core-item` with
-icons from the *default* and *av* icon sets. (The required imports for the elements and icon sets
-are omitted here for brevity.)
-
-    <iron-icon-button icon="av:play-arrow"></iron-icon-button>
-
-    <core-menu-button icon="menu">
-      <core-item icon="settings" label="Settings"></core-item>
-    </core-menu-button>
-
-Produces: <iron-icon-button icon="av:play-arrow"></iron-icon-button>
-<core-menu-button icon="menu">
-  <core-item icon="settings" label="Settings"></core-item>
-</core-menu-button>
-
-There are two ways to style the icons inside another element. Since `color` is an
-inherited property, you can set `color` on the parent element:
-
-    <style>
-      iron-icon-button.green {
-        color: lightgreen;
-      }
-    </style>
-    <iron-icon-button class="green" icon="av:play-arrow"></iron-icon-button>
-
 <style>
-  iron-icon-button.green {
-    color: lightgreen;
+  iron-icon[icon="save"] {
+    color: green;
+    width: 32px;
+    height: 32px;
+    opacity: 0.50;
   }
 </style>
-Produces: <iron-icon-button class="green" icon="av:play-arrow"></iron-icon-button>
 
-If you need more control, you can use the `::shadow` pseudo-element or the `/deep/`
-combinator to style the icon directly.
+<iron-icon icon="save"></iron-icon>
 
-    <style shim-shadowdom>
-      iron-icon-button.outline /deep/ iron-icon {
-        fill: red;
-        stroke: black;
-        stroke-width: 1;
-      }
-    </style>
-    <iron-icon-button class="outline" icon="av:stop"></iron-icon-button>
+### Using icons with other elements 
 
-<style shim-shadowdom>
-  iron-icon-button.outline /deep/ iron-icon {
-    fill: red;
-    stroke: black;
-    stroke-width: 1;
-  }
-</style>
-Produces: <iron-icon-button class="outline" icon="av:stop"></iron-icon-button>
+You can use the icons from `iron-icons` with any Iron or Paper element
+that has an `icon` attribute.
 
-## Summary
+For example, to create a `paper-button` element with an icon:
 
-You just learned how to import Polymer's ready-made icon sets,
-display an icon using the `iron-icon` element and style it with CSS. You also learned
-how to create your own icon set using SVG or bitmap images and how to use icons
-from other elements that support this feature.
+    <paper-icon-button style="color: red;" 
+    icon="delete"></paper-icon-button>
 
+Produces:
 
-
-
-
+<paper-icon-button style="color: red;" icon="delete"></paper-icon-button>
 
