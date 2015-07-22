@@ -24,15 +24,6 @@ updated: 2015-07-17
 
 ## Introduction
 
-
-
-<google-youtube
-  video-id="6kkNgVG6LuI"
-  autoplay="0"
-  rel="0"
-  fluid>
-</google-youtube>
-
 In this guide we will teach you how to display icons and how to use the 
 Polymer team's collection of icons in your project.
 
@@ -207,5 +198,17 @@ For example, to create a `paper-button` element with an icon:
 
 Produces:
 
-<paper-icon-button style="color: red;" icon="delete"></paper-icon-button>
+<paper-icon-button icon="favorite"></paper-icon-button>
+
+## Migrating from Polymer 0.5 (`core-icons`) to Polymer 1.0 (`iron-icons`)
+
+Check out Rob Dodson's Polycast below for more information on migrating
+from `core-icons` to `iron-icons`.
+
+<google-youtube
+  video-id="6kkNgVG6LuI"
+  autoplay="0"
+  rel="0"
+  fluid>
+</google-youtube>
 
