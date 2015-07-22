@@ -14,12 +14,17 @@ updated: 2015-07-17
 [//]: # (get SVG icon set example working)
 [//]: # (use for displaying icons https://elements.polymer-project.org/elements/iron-icons?view=demo:demo/index.html)
 [//]: # (during review, ask about using multiple icon sets, specifying each with namespace syntax)
-[//]: # (instead of trying to display inside of document, create working
-         examples with full index.html)
+[//]: # (instead of trying to display inside of document, create working examples with full index.html)
+[//]: # (how to style icons embedded in other elements?)
+[//]: # (delete video if it mentions iron-iconset*)
+[//]: # (color not inheriting on paper-icon-button)
+
 
 <link rel="import" href="/bower_components/google-youtube/google-youtube.html">
 
 ## Introduction
+
+
 
 <google-youtube
   video-id="6kkNgVG6LuI"
