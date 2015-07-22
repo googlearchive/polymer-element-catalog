@@ -1,4 +1,6 @@
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
 
 <link rel="import" href="../catalog-element/catalog-element.html">
 
@@ -29,13 +31,39 @@
       visibility: hidden;
       pointer-events: none;
     }
+
+    paper-dialog {
+      padding: 15px;
+      min-width: 300px;
+    }
+
+    paper-dialog a {
+        padding: 0;
+        margin: 0;
+    }
   </style>
   <template>
     <catalog-element name="[[element]]" data="{{_element}}"></catalog-element>
     <a tabindex="0" role="button" on-tap="cartAdd"><cart-item-icon id="cartItemIcon" element="[[element]]" present-label="Remove" absent-label="Add" no-label="[[iconsOnly]]"></cart-item-icon></a>
     <a tabindex="0" role="button" on-click="navToDocs" aria-label="View Docs"><iron-icon icon="description" title="View Docs"></iron-icon><span hidden$="[[iconsOnly]]">Docs</span></a>
-    <a tabindex="0" role="button" href="[[githubLink(_element.source)]]" target="_blank" title="View Source on GitHub" aria-label="View Source on GitHub"><iron-icon icon="code"></iron-icon><span hidden$="[[iconsOnly]]">Source</span></a>
+    <template is="dom-if" if="{{isGithubLink}}">
+      <a tabindex="0" role="button" href="[[sourceLink(_element.source)]]" target="_blank" title="View Source" aria-label="View Source"><iron-icon icon="code"></iron-icon><span hidden$="[[iconsOnly]]">Source</span></a>
+    </template>
+    <template is="dom-if" if="{{!isGithubLink}}">
+      <a tabindex="0" role="button" on-click="showUrlDialog" title="Get Source URL" aria-label="Get Source URL">
+        <iron-icon icon="code"></iron-icon><span hidden$="[[iconsOnly]]">Source</span>
+      </a>
+    </template>
     <a tabindex="0" role="button" on-click="navToDemo" disabled$="[[!_element.demo]]" aria-label="View Demo"><iron-icon icon="visibility" title="View Demo"></iron-icon><span hidden$="[[iconsOnly]]">Demo</span></a>
+      <paper-dialog id="sourceDialog" modal>
+        <a tabindex="0" on-click="_rejectClick">
+          Source URL
+          <paper-input type="text" id="sourceLink"></paper-input>
+        </a>
+        <div class="buttons">
+          <a tabindex="0" role="button" on-click="closeUrlDialog">Close</a>
+        </div>
+      </paper-dialog>
   </template>
 </dom-module>
 
@@ -47,8 +75,30 @@ Polymer({
     _element: Object,
     iconsOnly: {type: Boolean, value: false, reflectToAttribute: true}
   },
-  githubLink: function(source) {
-    return "https://github.com/" + source;
+  ready: function () {
+    this.isGithubLink = !!this.sourceLink(this._element.source).match(/github/);
+  },
+  sourceLink: function(source) {
+    if (source.match(/^file:\//)) {
+      return source.replace(/\.git$/, '');
+    }
+
+    if (source.match(/^[\w\-_]+\/[\w\-_]+$/)) {
+      return "https://github.com/" + source;
+    }
+
+    return source;
+  },
+  showUrlDialog: function (e) {
+    e.stopPropagation();
+    e.preventDefault();
+    this.$.sourceLink.value = this.sourceLink(this._element.source);
+    this.$.sourceDialog.open();
+  },
+  closeUrlDialog: function (e) {
+    e.stopPropagation();
+    e.preventDefault();
+    this.$.sourceDialog.close();
   },
   cartAdd: function(e) {
     e.stopPropagation();
@@ -65,6 +115,10 @@ Polymer({
     e.preventDefault();
     if (e.currentTarget.hasAttribute('disabled')) return false;
     this.fire('nav', {url: '/elements/' + this.element + '?active=' + this._element.active + "&view=demo:" + this._element.demo.path});
+  },
+  _rejectClick: function(e) {
+    e.stopPropagation();
+    e.preventDefault();
   }
 });
 </script>
