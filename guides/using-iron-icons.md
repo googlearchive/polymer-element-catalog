@@ -27,6 +27,12 @@ updated: 2015-07-17
 In this guide we will teach you how to display icons and how to use the 
 Polymer team's collection of icons in your project.
 
+We discuss two elements:
+
+* `iron-icon`, for displaying and styling an icon
+* `iron-icons`, for using the Polymer team's collection of icons
+  in your project
+
 ## Installation
 
 Install the icon elements with Bower. We'll assume that your project can access 
@@ -68,6 +74,30 @@ Produces:
 <iron-icon src="/images/polymer.svg" style="width: 24px; height: 24px;"></iron-icon>
 <iron-icon src="/images/polymer.svg" style="width: 32px; height: 32px;"></iron-icon>
 <iron-icon src="/images/polymer.svg" style="width: 48px; height: 48px;"></iron-icon>
+
+### Globally styling width and height
+
+To create style rules that affect the size of all icons, create a theme file
+and use the `--iron-icon-width` and `iron-icon-height` mixins.
+
+```html
+<!-- custom-icon.html -->
+<style is="custom-icon">
+  iron-icon {
+    --iron-icon-width: 100px;
+    --iron-icon-height: 100px;
+  }
+</style>
+```
+
+Import the theme file into your page and style the icons with your custom class:
+
+```html
+   ...
+   <link rel="import" href="custom-icon.html">
+   ...
+   <iron-icon class="custom-icon" icon="accessibility"></iron-icon>
+```
 
 ## Using the Polymer team's icon collection, `iron-icons`
 
@@ -193,8 +223,7 @@ that has an `icon` attribute.
 
 For example, to create a `paper-button` element with an icon:
 
-    <paper-icon-button style="color: red;" 
-    icon="delete"></paper-icon-button>
+    <paper-icon-button icon="favorite"></paper-icon-button>
 
 Produces:
 
