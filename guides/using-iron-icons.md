@@ -1,6 +1,6 @@
 ---
 title: Using Icons
-summary: "How to use the Polymer team's standard icons, and create your own custom icons."
+summary: "How to display and style icons, and how to use the Polymer team's icon collection in your own project."
 tags: ['icons','intermediate']
 elements: ['iron-icon','iron-icons', 'iron-iconset', 'iron-iconset-svg']
 updated: 2015-07-17
