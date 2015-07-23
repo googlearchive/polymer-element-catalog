@@ -8,21 +8,26 @@ updated: 2015-07-23
 
 <link rel="import" href="/bower_components/google-youtube/google-youtube.html">
 
+
+[//]: # (delete?)
 <style shim-shadowdom>
 .app-demo {
   border: 1px solid #aaa;
 }
 </style>
 
-The core-elements and paper-elements collections include a number of elements that can be used to structure your app’s layout. These include:
+## Introduction
 
-- `<core-header-panel>`. A simple container with a header section and content section. The header can either stay in place or scroll with the content.
+This guide teaches you how to use Paper elements to create a responsive layout.
+We will use the following elements:
 
-- `<core-toolbar>`.  Can be used for an app bar or a toolbar on a smaller UI component, such as a card. The toolbar can serve as a container for controls, such as tabs and buttons.
+- `<paper-header-panel>`. A simple container with a header section and content section. The header can either stay in place or scroll with the content.
 
-- `<core-drawer-panel>`. A responsive container that combines a left- or right-side drawer panel for navigation or other options and a main content area.
+- `<paper-toolbar>`.  Can be used for an app bar or a toolbar on a smaller UI component, such as a card. The toolbar can serve as a container for controls, such as tabs and buttons.
 
-- `<core-scaffold>`.  A quick responsive app layout that includes a navigation drawer, main app bar and content area (implemented using a core-drawer-panel, core-header-panel and core-toolbar.) The core-scaffold element is a quick way to structure an app's UI.
+- `<paper-drawer-panel>`. A responsive container that combines a left- or right-side drawer panel for navigation or other options and a main content area.
+
+- `<paper-scaffold>`.  A quick responsive app layout that includes a navigation drawer, main app bar and content area (implemented using a paper-drawer-panel, paper-header-panel and paper-toolbar.) The paper-scaffold element is a quick way to structure an app's UI.
 
 ## App Bars and Toolbars
 
@@ -36,14 +41,14 @@ The core-elements and paper-elements collections include a number of elements th
   </google-youtube>
 </div>
 
-[`<core-header-panel>`](core-header-panel.html) is often combined with a
-[`<core-toolbar>`](core-toolbar.html). When you use a `<core-toolbar>`, the panel automatically places it in the header area.  You can also use any type of element in your header by adding the `core-header` class to its class list.
+[`<paper-header-panel>`](paper-header-panel.html) is often combined with a
+[`<paper-toolbar>`](paper-toolbar.html). When you use a `<paper-toolbar>`, the panel automatically places it in the header area.  You can also use any type of element in your header by adding the `paper-header` class to its class list.
 
-Other elements placed in the core-header-panel end up in the content area.
+Other elements placed in the paper-header-panel end up in the content area.
 
-`<core-header-panel>` is `position: relative`, and always needs to have a height set on it explicitly. An easy way to go about this is to use [layout attributes](../polymer/layout-attrs.html). Add `fullbleed`, `vertical`, and `layout` attributes to the `<body>` and then add a `flex` attribute to the `<core-header-panel>` itself.
+`<paper-header-panel>` is `position: relative`, and always needs to have a height set on it explicitly. An easy way to go about this is to use [layout attributes](../polymer/layout-attrs.html). Add `fullbleed`, `vertical`, and `layout` attributes to the `<body>` and then add a `flex` attribute to the `<paper-header-panel>` itself.
 
-The following example app uses a `<core-header-panel>` as its top-level layout:
+The following example app uses a `<paper-header-panel>` as its top-level layout:
 
 <a href="../../samples/layout-elements/header-app.vulcanized.html" target="_blank">
   <img class="app-demo" src="/images/layout-elements/header-app.png">
@@ -71,16 +76,16 @@ Use the following code to create the header panel app.
   </demo-tab>
 </demo-tabs>
 
-The following example uses a plain `<div>` as the header element, using the `core-header` class:
+The following example uses a plain `<div>` as the header element, using the `paper-header` class:
 
-    <core-header-panel flex>
-      <div class="core-header">
+    <paper-header-panel flex>
+      <div class="paper-header">
          My App
       </div>
       <div>
         My app content.
       </div>
-    </core-header-panel>
+    </paper-header-panel>
 
 Setting the `mode` attribute on the header panel controls how the header area and content area interact. There are several modes:
 
@@ -91,7 +96,7 @@ Setting the `mode` attribute on the header panel controls how the header area an
 - `scroll`. The header is seamed with the content and scrolls with the content.
 - `cover`. The content scrolls over the header. This mode is designed to be used with narrow content (for example cards).
 
-See the [`<core-header-panel>` demo](../../components/core-header-panel/demo.html) for examples of all of the modes in action.
+See the [`<paper-header-panel>` demo](../../components/paper-header-panel/demo.html) for examples of all of the modes in action.
 
 <div class="yt-embed">
   <google-youtube
@@ -103,7 +108,7 @@ See the [`<core-header-panel>` demo](../../components/core-header-panel/demo.htm
   </google-youtube>
 </div>
 
-In addition, you manually choose from several sizes of toolbar by adding one of the following classes to the core-toolbar's class list:
+In addition, you manually choose from several sizes of toolbar by adding one of the following classes to the paper-toolbar's class list:
 
 -  medium-tall (2x normal height)
 -  tall (3x normal height)
@@ -136,14 +141,14 @@ Use the following code to create the toolbar shown above:
   </demo-tab>
 </demo-tabs>
 
-If the core-header-panel is in `waterfall-tall` mode, it controls the height of the toolbar automatically, so you shouldn't set `medium-tall` or `tall` on the toolbar yourself.
+If the paper-header-panel is in `waterfall-tall` mode, it controls the height of the toolbar automatically, so you shouldn't set `medium-tall` or `tall` on the toolbar yourself.
 
-**Tip:** For fancy scrolling effects where the toolbar animates between tall and condensed states, you can use [`<core-scroll-header-panel>`](core-scroll-header-panel.html). See  the [demos](../../components/core-scroll-header-panel/demo.html) here. You may need to look at the source for the demos to implement the more complicated effects.
+**Tip:** For fancy scrolling effects where the toolbar animates between tall and condensed states, you can use [`<paper-scroll-header-panel>`](paper-scroll-header-panel.html). See  the [demos](../../components/paper-scroll-header-panel/demo.html) here. You may need to look at the source for the demos to implement the more complicated effects.
 {: .alert .alert-info }
 
 ## Responsive side nav
 
-The [`<core-drawer-panel>`](core-drawer-panel.html)
+The [`<paper-drawer-panel>`](paper-drawer-panel.html)
 element creates a left or right side nav area alongside
 the main content area. On narrow screens, the nav area acts as a drawer that can
 be hidden or revealed by calling the drawer panel's `togglePanel` method.
@@ -161,8 +166,8 @@ Any children with the `main` attribute are placed in the main panel.
   </google-youtube>
 </div>
 
-You can nest `<core-header-panel>` and `<core-toolbar>` elements inside a
-`<core-drawer-panel>` to create the layout for the content area and navigation
+You can nest `<paper-header-panel>` and `<paper-toolbar>` elements inside a
+`<paper-drawer-panel>` to create the layout for the content area and navigation
 drawer, as shown in the following example:
 
 <a href="../../samples/layout-elements/drawer-app.vulcanized.html" target="_blank">
@@ -201,11 +206,11 @@ On narrow screens, you can press the button or swipe from the left to show the d
 On desktop, resize the browser window to see the different modes.
 {: .alert .alert-info }
 
-### Side nav with `<core-scaffold>`
+### Side nav with `<paper-scaffold>`
 
-The [`<core-scaffold>`](core-scaffold.html) element
+The [`<paper-scaffold>`](paper-scaffold.html) element
 assembles a commonly-used combination of components:
-a `<core-drawer-panel>` with a `<core-header-panel>` and `<core-toolbar>` for the
+a `<paper-drawer-panel>` with a `<paper-header-panel>` and `<paper-toolbar>` for the
 main content area. It also includes a button to display the navigation drawer.
 
 The following example produces the same basic layout as the drawer panel example above:
