@@ -21,13 +21,19 @@ updated: 2015-07-23
 This guide teaches you how to use Paper elements to create a responsive layout.
 We will use the following elements:
 
-- `<paper-header-panel>`. A simple container with a header section and content section. The header can either stay in place or scroll with the content.
+- `paper-header-panel`, a container with a section for a header and a section
+  for content. The header can stay in place or scroll with the content.
+ 
+- `paper-toolbar`, a toolbar that can also be used as a card or a 
+  container for controls.
+ 
+- `paper-drawer-panel`, a responsive container with two sections, 1) a 
+  left-side or right-side drawer panel for navigation or other options, 
+  and 2) a main content area.
 
-- `<paper-toolbar>`.  Can be used for an app bar or a toolbar on a smaller UI component, such as a card. The toolbar can serve as a container for controls, such as tabs and buttons.
-
-- `<paper-drawer-panel>`. A responsive container that combines a left- or right-side drawer panel for navigation or other options and a main content area.
-
-- `<paper-scaffold>`.  A quick responsive app layout that includes a navigation drawer, main app bar and content area (implemented using a paper-drawer-panel, paper-header-panel and paper-toolbar.) The paper-scaffold element is a quick way to structure an app's UI.
+- `paper-scaffold`, a complete layout that enables you to rapidly build
+  your UI. `paper-scaffold` includes a navigation drawer, a toolbar, and 
+  a main content area. It is implemented with the three elements above. 
 
 ## App Bars and Toolbars
 
