@@ -1,9 +1,9 @@
 ---
-layout: default
-type: elements
-shortname: Elements
-title: Layout elements
-subtitle: Guide
+title: Using Paper's Layout Elements
+summary: "How to create a responsive, mobile-first layout with Paper elements."
+tags: ['layout']
+elements: ['paper-header-panel','paper-toolbar','paper-drawer-panel','paper-scaffold']
+updated: 2015-07-23
 ---
 
 <link rel="import" href="../../components/google-youtube/google-youtube.html">
