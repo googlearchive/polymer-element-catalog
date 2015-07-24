@@ -217,39 +217,4 @@ On narrow screens, you can press the button or swipe from the left to show the d
 On desktop, resize the browser window to see the different modes.
 {: .alert .alert-info }
 
-### Side nav with `<paper-scaffold>`
-
-The [`<paper-scaffold>`](paper-scaffold.html) element
-assembles a commonly-used combination of components:
-a `<paper-drawer-panel>` with a `<paper-header-panel>` and `<paper-toolbar>` for the
-main content area. It also includes a button to display the navigation drawer.
-
-The following example produces the same basic layout as the drawer panel example above:
-
-<a href="../../samples/layout-elements/scaffold-app.vulcanized.html" target="_blank">
-  <img class="app-demo" src="/images/layout-elements/scaffold-app.png">
-</a>
-
-<a href="../../samples/layout-elements/scaffold-app.vulcanized.html" target="_blank">Click image for demo</a>
-
-Use the following code to create the scaffold app:
-
-<demo-tabs selected="0">
-  <demo-tab heading="HTML">
-{% highlight html %}
-{% include_external /samples/layout-elements/scaffold-app.html html version_prefix:0.5 %}
-{% endhighlight %}
-  </demo-tab>
-  <demo-tab heading="CSS">
-{% highlight html %}
-{% include_external /samples/layout-elements/scaffold-app.html styles version_prefix:0.5 %}
-{% endhighlight %}
-  </demo-tab>
-  <demo-tab heading="Imports">
-{% highlight html %}
-{% include_external /samples/layout-elements/scaffold-app.html imports version_prefix:0.5 %}
-{% endhighlight %}
-  </demo-tab>
-</demo-tabs>
-
 
