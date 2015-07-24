@@ -74,6 +74,7 @@ Think of `paper-header-panel` as a panel with a header. `paper-header-panel`
 is the container of the page and `paper-toolbar` is the header. All other
 children are automatically placed in the content area. 
 
+### Using other elements 
 
 You can use another element as a header by adding the 
 `paper-header` class to the element. 
@@ -88,6 +89,8 @@ You can use another element as a header by adding the
   </paper-header-panel>
 </body>
 ```
+
+### Adding icons
 
 Use `paper-icon-button` and `iron-icons` to add icons to your header:
 
@@ -104,12 +107,14 @@ Use `paper-icon-button` and `iron-icons` to add icons to your header:
 </body>
 ```
 
-[//]: # fix link below
+[//]: # (fix link below)
 
 `paper-icon-button` displays the icon and handles the icon's behavior.
 `iron-icons` is the Polymer teams's collection of
 icons which you can use for free in your project. Check out the
 [icons guide](#) for more information on using icons.
+
+### Setting the height
 
 Use the `medium-tall` (2x regular height) and `tall` (3x regular height) style 
 classes to change the height of `paper-toolbar`.
@@ -125,7 +130,9 @@ classes to change the height of `paper-toolbar`.
 </body>
 ```
 
-This is particularly useful if you want to add tabs to your toolbar:
+### Adding tabs
+
+Use `paper-tabs` to add tabs to your header:
 
 ```hmtl
 <body class="fullbleed vertical layout">
@@ -146,6 +153,7 @@ This is particularly useful if you want to add tabs to your toolbar:
 </body>
 ```
 
+### Modifying header display and behavior
 
 Use the `mode` attribute of `paper-header-panel` to control how the 
 header displays and responds to scrolling:
