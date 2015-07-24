@@ -39,15 +39,12 @@ We will use the following elements:
 
 ## Creating a header
 
-[//]: # (review layout article for your own understanding, and link for readers)
+[//]: # (write introduction)
 
-[//]: # (fullbleed makes body take up full viewport, not sure if it works on div)
+### Creating a standard header with `paper-toolbar`
 
-[//]: # (layout and vertical go together, layout or vertical by self is meaningless)
-
-Use `paper-header-panel` and `paper-toolbar` to create a header panel
-at the top of your pages. We'll use `iron-flex-layout` classes to create a 
-responsive layout.
+The standard way to create a header is to make a `paper-toolbar` element
+a child of a `paper-header-panel` element.
 
 ```hmtl
 <body class="fullbleed vertical layout">
