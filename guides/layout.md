@@ -1,6 +1,7 @@
 ---
-title: Using Paper's Layout Elements
-summary: "How to create a responsive, mobile-first layout with Paper elements."
+title: Using layout elements and classes
+summary: "How to create a responsive, mobile-first layout with Paper
+elements and flexbox classes."
 tags: ['layout']
 elements: ['paper-header-panel','paper-toolbar','paper-drawer-panel','paper-scaffold']
 updated: 2015-07-23
@@ -36,103 +37,135 @@ We will use the following elements:
   your UI. `paper-scaffold` includes a navigation drawer, a toolbar, and 
   a main content area. It is implemented with the three elements above. 
 
-## App Bars and Toolbars
+## Creating a header
+
+[//]: # (review layout article for your own understanding, and link for readers)
+
+[//]: # (fullbleed makes body take up full viewport, not sure if it works on div)
+
+[//]: # (layout and vertical go together, layout or vertical by self is meaningless)
+
+Use `paper-header-panel` and `paper-toolbar` to create a header panel
+at the top of your pages. We'll use `iron-flex-layout` classes to create a 
+responsive layout.
+
+```hmtl
+<body class="fullbleed vertical layout">
+  <paper-header-panel class="flex">
+    <paper-toolbar style="background-color:green;">
+      <div>Hello, Header!</div>
+    </paper-toolbar>
+    <div style="background-color:grey">Hello, Content!</div>
+  </paper-header-panel>
+</body>
+```
+
+`fullbleed`, `vertical`, `layout`, and `flex` are part 
+of the `iron-flex-layout`
+class. We use them in our examples as an easy way to create a responsive 
+design, but the `paper` elements do not depend on them. `fullbleed` 
+instructs `body` to occupy the entire viewport. `vertical` and `layout`
+instructs `body` to stack elements vertically (use `vertical horizontal`
+to stack horizontally). `flex` instructs `paper-panel-header` to stretch
+to the entire size of its parent, in this case `body` (which is set to
+fill the entire viewport, hence achieving a responsive design).
+
+Think of `paper-header-panel` as a panel with a header. `paper-header-panel`
+is the container of the page and `paper-toolbar` is the header. All other
+children are automatically placed in the content area. 
 
 
-[`<paper-header-panel>`](paper-header-panel.html) is often combined with a
-[`<paper-toolbar>`](paper-toolbar.html). When you use a `<paper-toolbar>`, the panel automatically places it in the header area.  You can also use any type of element in your header by adding the `paper-header` class to its class list.
+You can use another element as a header by adding the 
+`paper-header` class to the element. 
 
-Other elements placed in the paper-header-panel end up in the content area.
+```html
+<body class="fullbleed vertical layout">
+  <paper-header-panel class="flex">
+    <div class="paper-header" style="background-color:green;">
+      Hello, Header!
+    </div>
+    <div style="background-color:grey">Hello, Content!</div>
+  </paper-header-panel>
+</body>
+```
 
-`<paper-header-panel>` is `position: relative`, and always needs to have a height set on it explicitly. An easy way to go about this is to use [layout attributes](../polymer/layout-attrs.html). Add `fullbleed`, `vertical`, and `layout` attributes to the `<body>` and then add a `flex` attribute to the `<paper-header-panel>` itself.
+Use `paper-icon-button` and `iron-icons` to add icons to your header:
 
-The following example app uses a `<paper-header-panel>` as its top-level layout:
+```html
+<body class="fullbleed vertical layout">
+  <paper-header-panel class="flex">
+    <paper-toolbar style="background-color:green;">
+      <div>Hello, Header!</div>
+      <span class="flex"></span>
+      <paper-icon-button icon="search"></paper-button-icon>
+    </paper-toolbar>
+    <div style="background-color:grey">Hello, Content!</div>
+  </paper-header-panel>
+</body>
+```
 
-<a href="../../samples/layout-elements/header-app.vulcanized.html" target="_blank">
-  <img class="app-demo" src="/images/layout-elements/header-app.png">
-</a>
+[//]: # fix link below
 
-<a href="../../samples/layout-elements/header-app.vulcanized.html" target="_blank">Click image for demo</a>
+`paper-icon-button` displays the icon and handles the icon's behavior.
+`iron-icons` is the Polymer teams's collection of
+icons which you can use for free in your project. Check out the
+[icons guide](#) for more information on using icons.
 
-Use the following code to create the header panel app.
+Use the `medium-tall` (2x regular height) and `tall` (3x regular height) style 
+classes to change the height of `paper-toolbar`.
 
-<demo-tabs selected="0">
-  <demo-tab heading="HTML">
-{% highlight html %}
-{% include_external /samples/layout-elements/header-app.html html version_prefix:0.5 %}
-{% endhighlight %}
-  </demo-tab>
-  <demo-tab heading="CSS">
-{% highlight html %}
-{% include_external /samples/layout-elements/header-app.html styles version_prefix:0.5 %}
-{% endhighlight %}
-  </demo-tab>
-  <demo-tab heading="Imports">
-{% highlight html %}
-{% include_external /samples/layout-elements/header-app.html imports version_prefix:0.5 %}
-{% endhighlight %}
-  </demo-tab>
-</demo-tabs>
+```hmtl
+<body class="fullbleed vertical layout">
+  <paper-header-panel class="flex">
+    <paper-toolbar style="background-color:green;" class="tall">
+      <div>Hello, Header!</div>
+    </paper-toolbar>
+    <div style="background-color:grey">Hello, Content!</div>
+  </paper-header-panel>
+</body>
+```
 
-The following example uses a plain `<div>` as the header element, using the `paper-header` class:
+This is particularly useful if you want to add tabs to your toolbar:
 
-    <paper-header-panel flex>
-      <div class="paper-header">
-         My App
-      </div>
-      <div>
-        My app content.
-      </div>
-    </paper-header-panel>
+```hmtl
+<body class="fullbleed vertical layout">
+  <paper-header-panel class="flex">
+    <paper-toolbar class="medium-tall">
+      <paper-icon-button id="navicon"
+                         icon="menu"></paper-icon-button>
+      <span class="flex">Title</span>
+      <paper-icon-button id="morebutton"
+                         icon="more-vert"></paper-icon-button>
+      <paper-tabs class="bottom fit" selected="0">
+        <paper-tab style="background-color:red">ONE</paper-tab>
+        <paper-tab style="background-color:blue">TWO</paper-tab>
+      </paper-tabs>
+    </paper-toolbar>
+    <div style="background-color:grey">Hello, Content!</div>
+  </paper-header-panel>
+</body>
+```
 
-Setting the `mode` attribute on the header panel controls how the header area and content area interact. There are several modes:
 
-- `standard`. The header appears at a higher level than the content area, with a drop shadow. Content scrolls under the header.
-- `seamed`. The header appears at the same level as the content area, with a seam between the two (no drop shadow). Content scrolls under the header.
-- `waterfall`. The header initially presents as seamed. When content scrolls under the header, the header raises up and casts a drop shadow (as in `standard` mode).
-- `waterfall-tall`. Like waterfall, except that the toolbar starts off tall (3x standard height) and condenses to a standard-height toolbar as the user scrolls.
-- `scroll`. The header is seamed with the content and scrolls with the content.
-- `cover`. The content scrolls over the header. This mode is designed to be used with narrow content (for example cards).
+Use the `mode` attribute of `paper-header-panel` to control how the 
+header displays and responds to scrolling:
 
-See the [`<paper-header-panel>` demo](../../components/paper-header-panel/demo.html) for examples of all of the modes in action.
+* `standard`: The header appears at a higher level than the content area, 
+  with a drop shadow. Content scrolls under the header.
+* `seamed`: The header appears at the same level as the content area, 
+  with a seam between the two (no drop shadow). Content scrolls under the header.
+* `waterfall`: The header initially presents as seamed. When content scrolls 
+  under the header, the header raises up and casts a drop shadow (as in 
+  standard mode).
+* `waterfall-tall`: Like waterfall, except that the toolbar starts off 
+  tall (3x standard height) and condenses to a standard-height 
+  toolbar as the user scrolls. In this mode, `paper-header-panel` controls
+  the height of the toolbar, so you should not set it yourself (via
+  `medium-tall` or `tall`).
+* `scroll`: The header is seamed with the content and scrolls with the content.
+* `cover`: The content scrolls over the header. This mode is designed to 
+  be used with narrow content (for example cards).
 
-In addition, you manually choose from several sizes of toolbar by adding one of the following classes to the paper-toolbar's class list:
-
--  medium-tall (2x normal height)
--  tall (3x normal height)
-
-Taller toolbars are useful when you want to create an app bar with tabs, for example:
-
-<a href="../../samples/layout-elements/toolbar-sample.vulcanized.html" target="_blank">
-  <img class="app-demo" src="/images/layout-elements/toolbar-sample.png">
-</a>
-
-<a href="../../samples/layout-elements/toolbar-sample.vulcanized.html" target="_blank">Click image for demo</a>
-
-Use the following code to create the toolbar shown above:
-
-<demo-tabs selected="0">
-  <demo-tab heading="HTML">
-{% highlight html %}
-{% include_external /samples/layout-elements/toolbar-sample.html html version_prefix:0.5 %}
-{% endhighlight %}
-  </demo-tab>
-  <demo-tab heading="CSS">
-{% highlight html %}
-{% include_external /samples/layout-elements/toolbar-sample.html styles version_prefix:0.5 %}
-{% endhighlight %}
-  </demo-tab>
-  <demo-tab heading="Imports">
-{% highlight html %}
-{% include_external /samples/layout-elements/toolbar-sample.html imports version_prefix:0.5 %}
-{% endhighlight %}
-  </demo-tab>
-</demo-tabs>
-
-If the paper-header-panel is in `waterfall-tall` mode, it controls the height of the toolbar automatically, so you shouldn't set `medium-tall` or `tall` on the toolbar yourself.
-
-**Tip:** For fancy scrolling effects where the toolbar animates between tall and condensed states, you can use [`<paper-scroll-header-panel>`](paper-scroll-header-panel.html). See  the [demos](../../components/paper-scroll-header-panel/demo.html) here. You may need to look at the source for the demos to implement the more complicated effects.
-{: .alert .alert-info }
 
 ## Responsive side nav
 
