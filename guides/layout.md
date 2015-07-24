@@ -10,6 +10,7 @@ updated: 2015-07-23
 
 
 [//]: # (delete?)
+
 <style shim-shadowdom>
 .app-demo {
   border: 1px solid #aaa;
@@ -37,15 +38,6 @@ We will use the following elements:
 
 ## App Bars and Toolbars
 
-<div class="yt-embed">
-  <google-youtube
-    videoid="qDhHdi8RtwI"
-    thumbnail="/images/polycasts/PC003.jpg"
-    autoplay="0"
-    rel="0"
-    fluid>
-  </google-youtube>
-</div>
 
 [`<paper-header-panel>`](paper-header-panel.html) is often combined with a
 [`<paper-toolbar>`](paper-toolbar.html). When you use a `<paper-toolbar>`, the panel automatically places it in the header area.  You can also use any type of element in your header by adding the `paper-header` class to its class list.
@@ -104,16 +96,6 @@ Setting the `mode` attribute on the header panel controls how the header area an
 
 See the [`<paper-header-panel>` demo](../../components/paper-header-panel/demo.html) for examples of all of the modes in action.
 
-<div class="yt-embed">
-  <google-youtube
-    videoid="ZAc51_0Xa_M"
-    thumbnail="/images/polycasts/PC004.jpg"
-    autoplay="0"
-    rel="0"
-    fluid>
-  </google-youtube>
-</div>
-
 In addition, you manually choose from several sizes of toolbar by adding one of the following classes to the paper-toolbar's class list:
 
 -  medium-tall (2x normal height)
@@ -161,16 +143,6 @@ be hidden or revealed by calling the drawer panel's `togglePanel` method.
 
 Any children with the `drawer` attribute set are placed in the navigation area.
 Any children with the `main` attribute are placed in the main panel.
-
-<div class="yt-embed">
-  <google-youtube
-    videoid="GAjpaM4HcCQ"
-    thumbnail="/images/polycasts/PC005.jpg"
-    autoplay="0"
-    rel="0"
-    fluid>
-  </google-youtube>
-</div>
 
 You can nest `<paper-header-panel>` and `<paper-toolbar>` elements inside a
 `<paper-drawer-panel>` to create the layout for the content area and navigation
