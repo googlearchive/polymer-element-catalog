@@ -7,7 +7,7 @@ elements: ['paper-header-panel','paper-toolbar','paper-drawer-panel','paper-scaf
 updated: 2015-07-23
 ---
 
-<link rel="import" href="/bower_components/google-youtube/google-youtube.html">
+[//]: # (watch youtube videos and align)
 
 
 [//]: # (delete?)
