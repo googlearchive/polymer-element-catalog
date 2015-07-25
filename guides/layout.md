@@ -172,54 +172,36 @@ header displays and responds to scrolling:
   be used with narrow content (for example cards).
 
 
-## Responsive side nav
+## Creating a responsive side navigation
 
-The [`<paper-drawer-panel>`](paper-drawer-panel.html)
-element creates a left or right side nav area alongside
-the main content area. On narrow screens, the nav area acts as a drawer that can
-be hidden or revealed by calling the drawer panel's `togglePanel` method.
+Use `paper-drawer-panel` to create a left-side or right-side
+navigation menu. 
+
+```html
+<body class="fullbleed vertical layout">
+<paper-drawer-panel class="flex">
+  <paper-header-panel drawer>
+    <paper-toolbar>
+      <div>Application</div>
+    </paper-toolbar>
+    <div> Drawer content... </div>
+  </paper-header-panel>
+  <paper-header-panel main>
+    <paper-toolbar>
+      <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
+      <div>Title</div>
+    </paper-toolbar>
+    <div> Main content... </div>
+  </paper-header-panel>
+</paper-drawer-panel>
+</body>
+```
+
+On narrow screens, the drawer can be hidden or revealed via the `togglePanel` 
+method. The user can touch the button or swipe in order to display the drawer.
+On wide screens, the drawer is always open and the button to open
+the drawer is hidden.
 
 Any children with the `drawer` attribute set are placed in the navigation area.
 Any children with the `main` attribute are placed in the main panel.
-
-You can nest `<paper-header-panel>` and `<paper-toolbar>` elements inside a
-`<paper-drawer-panel>` to create the layout for the content area and navigation
-drawer, as shown in the following example:
-
-<a href="../../samples/layout-elements/drawer-app.vulcanized.html" target="_blank">
-  <img class="app-demo" src="/images/layout-elements/drawer-app-closed.png">
-</a>
-
-<a href="../../samples/layout-elements/drawer-app.vulcanized.html" target="_blank">Click image for demo</a>
-
-Use the following code to create the drawer panel app:
-
-<demo-tabs selected="0">
-  <demo-tab heading="HTML">
-{% highlight html %}
-{% include_external /samples/layout-elements/drawer-app.html html version_prefix:0.5 %}
-{% endhighlight %}
-  </demo-tab>
-  <demo-tab heading="JS">
-{% highlight html %}
-{% include_external /samples/layout-elements/drawer-app.html javascript version_prefix:0.5 %}
-{% endhighlight %}
-  </demo-tab>
-  <demo-tab heading="CSS">
-{% highlight html %}
-{% include_external /samples/layout-elements/drawer-app.html styles version_prefix:0.5 %}
-{% endhighlight %}
-  </demo-tab>
-  <demo-tab heading="Imports">
-{% highlight html %}
-{% include_external /samples/layout-elements/drawer-app.html imports version_prefix:0.5 %}
-{% endhighlight %}
-  </demo-tab>
-</demo-tabs>
-
-**Note:** On wide screens, the drawer is always open and the menu button is hidden.
-On narrow screens, you can press the button or swipe from the left to show the drawer.
-On desktop, resize the browser window to see the different modes.
-{: .alert .alert-info }
-
 
