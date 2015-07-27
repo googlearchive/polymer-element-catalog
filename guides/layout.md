@@ -1,9 +1,10 @@
 ---
 title: Using layout elements
-summary: "How to create a responsive, mobile-first layout with Paper
-elements and flexbox classes."
+summary: "How to create a responsive layout with Paper and Iron elements.."
 tags: ['layout']
-elements: ['paper-header-panel','paper-toolbar','paper-drawer-panel','paper-scaffold']
+elements: ['paper-header-panel','paper-toolbar','paper-drawer-panel',
+'paper-icon-button','paper-tabs','paper-tab','paper-drawer-panel', 'iron-icons',
+'iron-flex-layout']
 updated: 2015-07-23
 ---
 
