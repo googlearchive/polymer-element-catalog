@@ -10,6 +10,9 @@ updated: 2015-07-23
 
 [//]: # (watch youtube videos and align)
 
+[//]: # (dark blue #3F51B5)
+[//]: # (pink D81B60)
+
 ## Introduction
 
 This guide teaches you how to use Paper elements to create a responsive
@@ -23,15 +26,17 @@ do not need to install all of these elements. Read the guide and decide
 how you want to implement your layout, and then install only the elements
 that you need.
 
-* bower install -S PolymerElements/paper-header-panel
-* bower install -S PolymerElements/paper-toolbar
-* bower install -S PolymerElements/paper-drawer-panel
-* bower install -S PolymerElements/paper-icon-button
-* bower install -S PolymerElements/paper-tabs
-* bower install -S PolymerElements/paper-tab
-* bower install -S PolymerElements/paper-drawer-panel
-* bower install -S PolymerElements/iron-icons
-* bower install -S PolymerElements/iron-flex-layout
+```
+bower install -S PolymerElements/paper-header-panel
+bower install -S PolymerElements/paper-toolbar
+bower install -S PolymerElements/paper-drawer-panel
+bower install -S PolymerElements/paper-icon-button
+bower install -S PolymerElements/paper-tabs
+bower install -S PolymerElements/paper-tab
+bower install -S PolymerElements/paper-drawer-panel
+bower install -S PolymerElements/iron-icons
+bower install -S PolymerElements/iron-flex-layout
+```
 
 We'll assume that you can import these elements from `/bower_components/`.
 
@@ -55,27 +60,31 @@ a child of a `paper-header-panel` element.
 ...
 <body class="fullbleed vertical layout">
   <paper-header-panel class="flex">
-    <paper-toolbar style="background-color:green;">
-      <div>Hello, Header!</div>
+    <paper-toolbar>
+      <div>Header</div>
     </paper-toolbar>
-    <div style="background-color:grey">Hello, Content!</div>
+    <div>Content</div>
   </paper-header-panel>
 </body>
 ```
-
-`fullbleed`, `vertical`, `layout`, and `flex` are part 
-of the `iron-flex-layout`
-class. We use them in our examples as an easy way to create a responsive 
-design, but the `paper` elements do not depend on them. `fullbleed` 
-instructs `body` to occupy the entire viewport. `vertical` and `layout`
-instructs `body` to stack elements vertically (use `vertical horizontal`
-to stack horizontally). `flex` instructs `paper-panel-header` to stretch
-to the entire size of its parent, in this case `body` (which is set to
-fill the entire viewport, hence achieving a responsive design).
-
 Think of `paper-header-panel` as a panel with a header. `paper-header-panel`
-is the container of the page and `paper-toolbar` is the header. All other
+is the container of the page and `paper-toolbar` is the header. When 
+`paper-header-panel` finds a `paper-toolbar` element as one of its children, it
+automatically places the toolbar in the header area. All other
 children are automatically placed in the content area. 
+
+`fullbleed`, `vertical`, `layout`, and `flex` are part of the 
+`iron-flex-layout` class. We use them in our examples as an easy way 
+to create a responsive design, but the `paper` elements do not depend 
+on them. Below is a description of each class used in the example above:
+ 
+* `fullbleed` instructs `body` to occupy the entire viewport. 
+* `vertical` and `layout` instructs `body` to stack elements 
+vertically (use `vertical horizontal` to stack horizontally). 
+* `flex` instructs `paper-panel-header` to stretch to the entire 
+size of its parent, in this case `body` (which is set to fill the entire 
+viewport, hence achieving a responsive design).
+
 
 ### Using other elements 
 
@@ -91,10 +100,10 @@ You can use another element as a header by adding the
 ...
 <body class="fullbleed vertical layout">
   <paper-header-panel class="flex">
-    <div class="paper-header" style="background-color:green;">
-      Hello, Header!
+    <div class="paper-header">
+      Header
     </div>
-    <div style="background-color:grey">Hello, Content!</div>
+    <div>Content</div>
   </paper-header-panel>
 </body>
 ```
@@ -118,20 +127,22 @@ Use `paper-icon-button` and `iron-icons` to add icons to your header:
 ...
 <body class="fullbleed vertical layout">
   <paper-header-panel class="flex">
-    <paper-toolbar style="background-color:green;">
-      <div>Hello, Header!</div>
+    <paper-toolbar>
+      <div>Header</div>
       <span class="flex"></span>
       <paper-icon-button icon="search"></paper-button-icon>
     </paper-toolbar>
-    <div style="background-color:grey">Hello, Content!</div>
+    <div>Content</div>
   </paper-header-panel>
 </body>
 ```
 
 `paper-icon-button` displays the icon and handles the icon's behavior.
 `iron-icons` is the Polymer teams's collection of
-icons which you can use for free in your project. Check out the
-[icons guide](/guides/using-iron-icons) for more information on using icons.
+icons which you can use for free in your project. 
+
+Check out the [icons guide](/guides/using-iron-icons) for more 
+information on using icons.
 
 ### Setting the height
 
@@ -139,12 +150,21 @@ Use the `medium-tall` (2x regular height) and `tall` (3x regular height) style
 classes to change the height of your header.
 
 ```hmtl
+<head>
+  <link rel="import" 
+        href="/bower_components/paper-header-panel/paper-header-panel.html">
+  <link rel="import" 
+        href="/bower_components/paper-toolbar/paper-toolbar.html">
+  <link rel="import" 
+        href="/bower_components/iron-flex-layout/iron-flex-layout.html">
+...
+
 <body class="fullbleed vertical layout">
   <paper-header-panel class="flex">
-    <paper-toolbar style="background-color:green;" class="tall">
-      <div>Hello, Header!</div>
+    <paper-toolbar class="tall">
+      <div>Header</div>
     </paper-toolbar>
-    <div style="background-color:grey">Hello, Content!</div>
+    <div>Content</div>
   </paper-header-panel>
 </body>
 ```
@@ -173,15 +193,17 @@ Use `paper-tabs` to add tabs to your header:
     <paper-toolbar class="medium-tall">
       <paper-icon-button id="navicon"
                          icon="menu"></paper-icon-button>
+      <!-- flex class forces span to fill space between icons -->
       <span class="flex">Title</span>
+      <!-- icon displays at right because of span class above -->
       <paper-icon-button id="morebutton"
                          icon="more-vert"></paper-icon-button>
       <paper-tabs class="bottom fit" selected="0">
-        <paper-tab style="background-color:red">ONE</paper-tab>
-        <paper-tab style="background-color:blue">TWO</paper-tab>
+        <paper-tab>ONE</paper-tab>
+        <paper-tab>TWO</paper-tab>
       </paper-tabs>
     </paper-toolbar>
-    <div style="background-color:grey">Hello, Content!</div>
+    <div>Content</div>
   </paper-header-panel>
 </body>
 ```
