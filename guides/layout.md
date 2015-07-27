@@ -67,6 +67,9 @@ a child of a `paper-header-panel` element.
   </paper-header-panel>
 </body>
 ```
+
+`paper-header-panel` *must have an explicit height*.
+
 Think of `paper-header-panel` as a panel with a header. `paper-header-panel`
 is the container of the page and `paper-toolbar` is the header. When 
 `paper-header-panel` finds a `paper-toolbar` element as one of its children, it
