@@ -1,5 +1,5 @@
 ---
-title: Using layout elements and classes
+title: Using layout elements
 summary: "How to create a responsive, mobile-first layout with Paper
 elements and flexbox classes."
 tags: ['layout']
