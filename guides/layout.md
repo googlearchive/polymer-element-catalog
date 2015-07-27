@@ -1,6 +1,6 @@
 ---
 title: Using layout elements
-summary: "How to create a responsive layout with Paper and Iron elements.."
+summary: "How to create a responsive layout with Paper and Iron elements."
 tags: ['layout']
 elements: ['paper-header-panel','paper-toolbar','paper-drawer-panel',
 'paper-icon-button','paper-tabs','paper-tab','paper-drawer-panel', 'iron-icons',
@@ -10,37 +10,32 @@ updated: 2015-07-23
 
 [//]: # (watch youtube videos and align)
 
-
-[//]: # (delete?)
-
-<style shim-shadowdom>
-.app-demo {
-  border: 1px solid #aaa;
-}
-</style>
-
 ## Introduction
 
-This guide teaches you how to use Paper elements to create a responsive layout.
-We will use the following elements:
-
-- `paper-header-panel`, a container with a section for a header and a section
-  for content. The header can stay in place or scroll with the content.
- 
-- `paper-toolbar`, a toolbar that can also be used as a card or a 
-  container for controls.
- 
-- `paper-drawer-panel`, a responsive container with two sections, 1) a 
-  left-side or right-side drawer panel for navigation or other options, 
-  and 2) a main content area.
-
-- `paper-scaffold`, a complete layout that enables you to rapidly build
-  your UI. `paper-scaffold` includes a navigation drawer, a toolbar, and 
-  a main content area. It is implemented with the three elements above. 
+This guide teaches you how to use Paper elements to create a responsive
+header and side navigation menu.
 
 ## Creating a header
 
 [//]: # (write introduction)
+
+## Installation
+
+Below is a list of commands for installing all of the elements mentioned
+in this document. You probably
+do not need to install all of these elements. Read the guide and decide
+how you want to implement your layout, and then install only the elements
+that you need.
+
+* bower install -S PolymerElements/paper-header-panel
+* bower install -S PolymerElements/paper-toolbar
+* bower install -S PolymerElements/paper-drawer-panel
+* bower install -S PolymerElements/paper-icon-button
+* bower install -S PolymerElements/paper-tabs
+* bower install -S PolymerElements/paper-tab
+* bower install -S PolymerElements/paper-drawer-panel
+* bower install -S PolymerElements/iron-icons
+* bower install -S PolymerElements/iron-flex-layout
 
 ### Creating a standard header with `paper-toolbar`
 
