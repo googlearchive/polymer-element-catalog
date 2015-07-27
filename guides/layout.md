@@ -15,10 +15,6 @@ updated: 2015-07-23
 This guide teaches you how to use Paper elements to create a responsive
 header and side navigation menu.
 
-## Creating a header
-
-[//]: # (write introduction)
-
 ## Installation
 
 Below is a list of commands for installing all of the elements mentioned
@@ -37,12 +33,26 @@ that you need.
 * bower install -S PolymerElements/iron-icons
 * bower install -S PolymerElements/iron-flex-layout
 
-### Creating a standard header with `paper-toolbar`
+We'll assume that you can import these elements from `/bower_components/`.
 
-The standard way to create a header is to make a `paper-toolbar` element
+## Creating a header
+
+[//]: # (write introduction)
+
+### Creating a header with `paper-toolbar`
+
+The easiest way to create a header is to make a `paper-toolbar` element
 a child of a `paper-header-panel` element.
 
 ```hmtl
+<head>
+  <link rel="import" 
+        href="/bower_components/paper-header-panel/paper-header-panel.html">
+  <link rel="import" 
+        href="/bower_components/paper-toolbar/paper-toolbar.html">
+  <link rel="import" 
+        href="/bower_components/iron-flex-layout/iron-flex-layout.html">
+...
 <body class="fullbleed vertical layout">
   <paper-header-panel class="flex">
     <paper-toolbar style="background-color:green;">
@@ -73,6 +83,12 @@ You can use another element as a header by adding the
 `paper-header` class to the element. 
 
 ```html
+<head>
+  <link rel="import" 
+        href="/bower_components/paper-header-panel/paper-header-panel.html">
+  <link rel="import" 
+        href="/bower_components/iron-flex-layout/iron-flex-layout.html">
+...
 <body class="fullbleed vertical layout">
   <paper-header-panel class="flex">
     <div class="paper-header" style="background-color:green;">
@@ -88,6 +104,18 @@ You can use another element as a header by adding the
 Use `paper-icon-button` and `iron-icons` to add icons to your header:
 
 ```html
+<head>
+  <link rel="import" 
+        href="/bower_components/paper-header-panel/paper-header-panel.html">
+  <link rel="import" 
+        href="/bower_components/paper-toolbar/paper-toolbar.html">
+  <link rel="import" 
+        href="/bower_components/paper-icon-button/paper-icon-button.html">
+  <link rel="import" 
+        href="/bower_components/iron-icons/iron-icons.html">
+  <link rel="import" 
+        href="/bower_components/iron-flex-layout/iron-flex-layout.html">
+...
 <body class="fullbleed vertical layout">
   <paper-header-panel class="flex">
     <paper-toolbar style="background-color:green;">
@@ -100,17 +128,15 @@ Use `paper-icon-button` and `iron-icons` to add icons to your header:
 </body>
 ```
 
-[//]: # (fix link below)
-
 `paper-icon-button` displays the icon and handles the icon's behavior.
 `iron-icons` is the Polymer teams's collection of
 icons which you can use for free in your project. Check out the
-[icons guide](#) for more information on using icons.
+[icons guide](/guides/using-iron-icons) for more information on using icons.
 
 ### Setting the height
 
 Use the `medium-tall` (2x regular height) and `tall` (3x regular height) style 
-classes to change the height of `paper-toolbar`.
+classes to change the height of your header.
 
 ```hmtl
 <body class="fullbleed vertical layout">
@@ -128,6 +154,20 @@ classes to change the height of `paper-toolbar`.
 Use `paper-tabs` to add tabs to your header:
 
 ```hmtl
+<head>
+  <link rel="import" 
+        href="/bower_components/paper-header-panel/paper-header-panel.html">
+  <link rel="import" 
+        href="/bower_components/paper-toolbar/paper-toolbar.html">
+  <link rel="import" 
+        href="/bower_components/paper-icon-button/paper-icon-button.html">
+  <link rel="import"
+        href="/bower_components/paper-tabs/paper-tabs.html">
+  <link rel="import" 
+        href="/bower_components/iron-icons/iron-icons.html">
+  <link rel="import" 
+        href="/bower_components/iron-flex-layout/iron-flex-layout.html">
+...
 <body class="fullbleed vertical layout">
   <paper-header-panel class="flex">
     <paper-toolbar class="medium-tall">
@@ -149,7 +189,8 @@ Use `paper-tabs` to add tabs to your header:
 ### Modifying header display and behavior
 
 Use the `mode` attribute of `paper-header-panel` to control how the 
-header displays and responds to scrolling:
+header displays and responds to scrolling. The list below describes 
+the different valid values for `mode`:
 
 * `standard`: The header appears at a higher level than the content area, 
   with a drop shadow. Content scrolls under the header.
@@ -167,29 +208,42 @@ header displays and responds to scrolling:
 * `cover`: The content scrolls over the header. This mode is designed to 
   be used with narrow content (for example cards).
 
-
 ## Creating a responsive side navigation
 
 Use `paper-drawer-panel` to create a left-side or right-side
 navigation menu. 
 
 ```html
+<head>
+  <link rel="import"
+        href="/bower_components/paper-drawer-panel/paper-drawer-panel.html">
+  <link rel="import" 
+        href="/bower_components/paper-header-panel/paper-header-panel.html">
+  <link rel="import" 
+        href="/bower_components/paper-toolbar/paper-toolbar.html">
+  <link rel="import" 
+        href="/bower_components/paper-icon-button/paper-icon-button.html">
+  <link rel="import" 
+        href="/bower_components/iron-icons/iron-icons.html">
+  <link rel="import" 
+        href="/bower_components/iron-flex-layout/iron-flex-layout.html">
+...
 <body class="fullbleed vertical layout">
-<paper-drawer-panel class="flex">
-  <paper-header-panel drawer>
-    <paper-toolbar>
-      <div>Application</div>
-    </paper-toolbar>
-    <div> Drawer content... </div>
-  </paper-header-panel>
-  <paper-header-panel main>
-    <paper-toolbar>
-      <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
-      <div>Title</div>
-    </paper-toolbar>
-    <div> Main content... </div>
-  </paper-header-panel>
-</paper-drawer-panel>
+  <paper-drawer-panel class="flex">
+    <paper-header-panel drawer>
+      <paper-toolbar>
+        <div>Application</div>
+      </paper-toolbar>
+      <div> Drawer content... </div>
+    </paper-header-panel>
+    <paper-header-panel main>
+      <paper-toolbar>
+        <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
+        <div>Title</div>
+      </paper-toolbar>
+      <div> Main content... </div>
+    </paper-header-panel>
+  </paper-drawer-panel>
 </body>
 ```
 
