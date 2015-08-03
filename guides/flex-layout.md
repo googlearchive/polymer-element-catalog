@@ -171,7 +171,7 @@ Class | Mixin | Result
 
 **Example: mixins** 
 
-    <dom-module is="mixin-demo">
+    <dom-module id="mixin-demo">
 
       <style>
         .container {
@@ -219,7 +219,7 @@ Class | Mixin | Result
 
 **Example: mixins** 
 
-    <dom-module is="mixin-demo">
+    <dom-module id="mixin-demo">
 
       <style>
         .container {
@@ -262,7 +262,7 @@ The same rules can be used for children in vertical layouts.
 
 **Example: mixins**
 
-    <dom-module is="mixin-demo">
+    <dom-module id="mixin-demo">
 
       <style>
         .container {
@@ -312,7 +312,7 @@ For example, the following examples make "Gamma" 2x larger than "Beta" and "Alph
 
 **Example: mixins**
 
-    <dom-module is="mixin-demo">
+    <dom-module id="mixin-demo">
 
       <style>
         .container {
@@ -405,7 +405,7 @@ by adding the `center` class or applying the `--layout-center` mixin.
 
 **Example: mixins, cross-axis center**
 
-    <dom-module is="mixin-demo">
+    <dom-module id="mixin-demo">
 
       <style>
         .container {
@@ -440,7 +440,7 @@ classes, or by applying the `--layout-start` or `--layout-end` mixins.
 
 **Example: mixins, cross-axis start**
 
-    <dom-module is="mixin-demo">
+    <dom-module id="mixin-demo">
 
       <style>
         .container {
@@ -472,7 +472,7 @@ classes, or by applying the `--layout-start` or `--layout-end` mixins.
 
 **Example: mixins, cross-axis end**
 
-    <dom-module is="mixin-demo">
+    <dom-module id="mixin-demo">
 
       <style>
         .container {
@@ -526,7 +526,7 @@ Class | Mixin | Result
 
 **Example: mixins, center justified**
 
-    <dom-module is="mixin-demo">
+    <dom-module id="mixin-demo">
 
       <style>
         .container {
@@ -563,7 +563,7 @@ Class | Mixin | Result
 
 **Example: mixins, equal space between elements**
 
-    <dom-module is="mixin-demo">
+    <dom-module id="mixin-demo">
 
       <style>
         .container {
@@ -624,7 +624,7 @@ Class | Mixin | Result
 
 **Example: mixins**
 
-    <dom-module is="mixin-demo">
+    <dom-module id="mixin-demo">
 
       <style>
         .container {
@@ -708,7 +708,7 @@ Class | Mixin | Result
 
 **Example: mixins**
 
-    <dom-module is="mixin-demo">
+    <dom-module id="mixin-demo">
 
       <style>
         .container {
