@@ -50,6 +50,7 @@
               <template is="dom-repeat" items="[[docDemos]]">
                 <a is="app-link" class="item" href="[[_demoLink(active,item.path)]]" active$="[[_demoActive(item.path,view)]]"><iron-icon icon="visibility"></iron-icon> <span>[[_demoName(item.desc)]]</span></a>
               </template>
+              <a class="item" href="[[githubLink(metadata.source)]]" target="_blank" title="View Source on GitHub" aria-label="View Source on GitHub"><iron-icon icon="code"></iron-icon><span hidden$="[[iconsOnly]]"> Source</span></a>
             </nav>
 
             <div class="nav" id="cart-add">
@@ -177,6 +178,9 @@
       if (q || this.q) {
         this.router.go('/browse?q=' + (q || this.q));
       }
+    },
+    githubLink: function(src) {
+      return "https://github.com/" + src
     },
     cartAdd: function() {
       this.fire('cart-add', this.element);
