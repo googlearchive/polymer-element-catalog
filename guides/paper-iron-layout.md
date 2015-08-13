@@ -9,10 +9,6 @@ elements: ['paper-header-panel','paper-toolbar','paper-drawer-panel',
 updated: 2015-07-23
 ---
 
-[//]: # (watch youtube videos and align)
-[//]: # (dark blue #3F51B5)
-[//]: # (pink D81B60)
-
 ## Introduction
 
 This guide teaches you how to use Paper and Iron elements to create a 
@@ -126,7 +122,6 @@ You can use another element as a header by adding the
   </paper-header-panel>
 </body>
 ```
-<!-- doesn't look good... -->
 
 [Demonstration](assets/custom-header.html)
 
