@@ -9,14 +9,13 @@ updated: 2015-07-23
 ---
 
 [//]: # (watch youtube videos and align)
-
 [//]: # (dark blue #3F51B5)
 [//]: # (pink D81B60)
 
 ## Introduction
 
 This guide teaches you how to use Paper elements to create a responsive
-header and side navigation menu.
+layout.
 
 ## Installation
 
@@ -26,7 +25,7 @@ do not need to install all of these elements. Read the guide and decide
 how you want to implement your layout, and then install only the elements
 that you need.
 
-```
+```bash
 bower install -S PolymerElements/paper-header-panel
 bower install -S PolymerElements/paper-toolbar
 bower install -S PolymerElements/paper-drawer-panel
@@ -46,8 +45,11 @@ We'll assume that you can import these elements from `/bower_components/`.
 
 ### Creating a header with `paper-toolbar`
 
-The easiest way to create a header is to make a `paper-toolbar` element
-a child of a `paper-header-panel` element.
+The code below uses a `paper-header-panel` as the container of the
+page and a `paper-toolbar` as a header. When a `paper-toolbar` is a 
+child of `paper-header-panel`, the panel automatically displays 
+the toolbar as the header. All other 
+children are placed in the content area.
 
 ```hmtl
 <head>
@@ -70,26 +72,22 @@ a child of a `paper-header-panel` element.
 
 `paper-header-panel` *must have an explicit height*.
 
-Think of `paper-header-panel` as a panel with a header. `paper-header-panel`
-is the container of the page and `paper-toolbar` is the header. When 
-`paper-header-panel` finds a `paper-toolbar` element as one of its children, it
-automatically places the toolbar in the header area. All other
-children are automatically placed in the content area. 
-
 `fullbleed`, `vertical`, `layout`, and `flex` are part of the 
 `iron-flex-layout` class. We use them in our examples as an easy way 
 to create a responsive design, but the `paper` elements do not depend 
 on them. Below is a description of each class used in the example above:
  
 * `fullbleed` instructs `body` to occupy the entire viewport. 
-* `vertical` and `layout` instructs `body` to stack elements 
-vertically (use `vertical horizontal` to stack horizontally). 
+* `vertical` and `layout` instruct `body` to stack elements 
+  vertically (use `vertical horizontal` to stack horizontally). `vertical`
+  must be accompanied by `vertical` or `horizontal`. It is meaningless
+  on its own.
 * `flex` instructs `paper-panel-header` to stretch to the entire 
-size of its parent, in this case `body` (which is set to fill the entire 
-viewport, hence achieving a responsive design).
+  size of its parent, in this case `body` (which is set to fill the entire 
+  viewport, hence achieving a responsive design).
 
 
-### Using other elements 
+### Using other elements for the header
 
 You can use another element as a header by adding the 
 `paper-header` class to the element. 
@@ -140,12 +138,11 @@ Use `paper-icon-button` and `iron-icons` to add icons to your header:
 </body>
 ```
 
-`paper-icon-button` displays the icon and handles the icon's behavior.
-`iron-icons` is the Polymer teams's collection of
-icons which you can use for free in your project. 
+<!-- update per Arthur's feedback -->
 
-Check out the [icons guide](/guides/using-iron-icons) for more 
-information on using icons.
+`paper-icon-button` displays the icon and handles the icon's behavior.
+`iron-icons` is a collection of SVG icons which you can use for free 
+in your project. 
 
 ### Setting the height
 
