@@ -1,6 +1,7 @@
 ---
-title: Using layout elements
-summary: "How to create a responsive layout with Paper and Iron elements."
+title: Responsive layouts with Paper and Iron
+summary: "How to create responsive headers, tabs, side drawers, and 
+icons with Paper and Iron elements."
 tags: ['layout']
 elements: ['paper-header-panel','paper-toolbar','paper-drawer-panel',
 'paper-icon-button','paper-tabs','paper-tab','paper-drawer-panel', 'iron-icons',
@@ -14,8 +15,8 @@ updated: 2015-07-23
 
 ## Introduction
 
-This guide teaches you how to use Paper elements to create a responsive
-layout.
+This guide teaches you how to use Paper and Iron elements to create a 
+responsive layout.
 
 ## Installation
 
@@ -41,7 +42,15 @@ We'll assume that you can import these elements from `/bower_components/`.
 
 ## Creating a header
 
-[//]: # (write introduction)
+This section shows you how to:
+
+* create a standard layout with `paper-header-panel` and `paper-toolbar`,
+  which is probably the most common and easiest layout
+* use a custom element for a header 
+* add icons to a header
+* set the height of a header
+* add tabs to a header
+* modify the disply and behavior of a header
 
 ### Creating a header with `paper-toolbar`
 
@@ -52,7 +61,9 @@ the toolbar as the header. All other
 children are placed in the content area.
 
 ```hmtl
+...
 <head>
+...
   <link rel="import" 
         href="/bower_components/paper-header-panel/paper-header-panel.html">
   <link rel="import" 
@@ -61,6 +72,7 @@ children are placed in the content area.
         href="/bower_components/iron-flex-layout/iron-flex-layout.html">
 ...
 <body class="fullbleed vertical layout">
+  <!-- paper-header-panel must have an explicit height -->
   <paper-header-panel class="flex">
     <paper-toolbar>
       <div>Header</div>
@@ -68,9 +80,13 @@ children are placed in the content area.
     <div>Content</div>
   </paper-header-panel>
 </body>
+...
 ```
 
-`paper-header-panel` *must have an explicit height*.
+[Demonstration](assets/header-and-toolbar.html)
+
+`paper-header-panel` **must have an explicit height**. See the list item
+on `flex` below for an explanation of why the code above works.
 
 `fullbleed`, `vertical`, `layout`, and `flex` are part of the 
 `iron-flex-layout` class. We use them in our examples as an easy way 
@@ -86,6 +102,8 @@ on them. Below is a description of each class used in the example above:
   size of its parent, in this case `body` (which is set to fill the entire 
   viewport, hence achieving a responsive design).
 
+See [Flexbox layout with iron-flex-layout](/guides/flex-layout) for more
+on `iron-flex-layout`.
 
 ### Using other elements for the header
 
@@ -108,13 +126,18 @@ You can use another element as a header by adding the
   </paper-header-panel>
 </body>
 ```
+<!-- doesn't look good... -->
+
+[Demonstration](assets/custom-header.html)
 
 ### Adding icons
 
 Use `paper-icon-button` and `iron-icons` to add icons to your header:
 
 ```html
+...
 <head>
+...
   <link rel="import" 
         href="/bower_components/paper-header-panel/paper-header-panel.html">
   <link rel="import" 
@@ -138,11 +161,20 @@ Use `paper-icon-button` and `iron-icons` to add icons to your header:
 </body>
 ```
 
-<!-- update per Arthur's feedback -->
+[Demonstration](assets/icons.html)
 
 `paper-icon-button` displays the icon and handles the icon's behavior.
 `iron-icons` is a collection of SVG icons which you can use for free 
 in your project. 
+
+How does the search icon display on the right side? The trick
+is the `span` between the `div` and the `paper-icon-button`. 
+The `div` containing the text `Header` only takes up as 
+much space as is needed to display 
+the text content. Same with the `paper-icon-button`; it only takes up
+as much space as is needed to display the icon. The `flex`
+class forces the `span` to fill the entire space between the `div` and
+the `paper-icon-button`.
 
 ### Setting the height
 
@@ -150,7 +182,9 @@ Use the `medium-tall` (2x regular height) and `tall` (3x regular height) style
 classes to change the height of your header.
 
 ```hmtl
+...
 <head>
+...
   <link rel="import" 
         href="/bower_components/paper-header-panel/paper-header-panel.html">
   <link rel="import" 
@@ -158,7 +192,6 @@ classes to change the height of your header.
   <link rel="import" 
         href="/bower_components/iron-flex-layout/iron-flex-layout.html">
 ...
-
 <body class="fullbleed vertical layout">
   <paper-header-panel class="flex">
     <paper-toolbar class="tall">
@@ -167,14 +200,19 @@ classes to change the height of your header.
     <div>Content</div>
   </paper-header-panel>
 </body>
+...
 ```
+
+[Demonstration](assets/tall-header.html)
 
 ### Adding tabs
 
 Use `paper-tabs` to add tabs to your header:
 
 ```hmtl
+...
 <head>
+...
   <link rel="import" 
         href="/bower_components/paper-header-panel/paper-header-panel.html">
   <link rel="import" 
@@ -206,13 +244,17 @@ Use `paper-tabs` to add tabs to your header:
     <div>Content</div>
   </paper-header-panel>
 </body>
+...
 ```
+
+[Demonstration](assets/tabs.html)
 
 ### Modifying header display and behavior
 
 Use the `mode` attribute of `paper-header-panel` to control how the 
 header displays and responds to scrolling. The list below describes 
-the different valid values for `mode`:
+the different valid values for `mode`. See the link below for a 
+demonstration of all modes.
 
 * `standard`: The header appears at a higher level than the content area, 
   with a drop shadow. Content scrolls under the header.
@@ -229,6 +271,8 @@ the different valid values for `mode`:
 * `scroll`: The header is seamed with the content and scrolls with the content.
 * `cover`: The content scrolls over the header. This mode is designed to 
   be used with narrow content (for example cards).
+
+[Demonstration](/elements/paper-header-panel?view=demo:demo/index.html)
 
 ## Creating a responsive side navigation
 
@@ -268,6 +312,8 @@ navigation menu.
   </paper-drawer-panel>
 </body>
 ```
+
+[Demonstration](assets/drawer.html)
 
 On narrow screens, the drawer can be hidden or revealed via the `togglePanel` 
 method. The user can touch the button or swipe in order to display the drawer.
