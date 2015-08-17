@@ -313,7 +313,7 @@
         else if (navigator.appName === 'Netscape')
         {
           ua = navigator.userAgent;
-          re  = new RegExp("Trident/.*rv:([0-9]{1,}[\.0-9]{0,})");
+          re  = new RegExp("Trident/.*rv:([0-9]{1,}[\.0-9]{0,})|Edge/([0-9]{1,}[\.0-9]{0,})");
           if (re.exec(ua) !== null)
             rv = parseFloat( RegExp.$1 );
         }
