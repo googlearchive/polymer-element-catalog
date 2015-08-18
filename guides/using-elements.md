@@ -34,7 +34,7 @@ Polymer contains a few primary collections of elements:
 -   [Neon elements](/browse?package=neon-elements). Animation-related elements.
 
 -   [Platinum elements](/browse?package=platinum-elements). Elements for app-like features, 
-    like push notifications and offline caching.
+    like push notifications, offline caching and bluetooth.
 
 
 If you find a component you want while browsing the docs, simply click the 
