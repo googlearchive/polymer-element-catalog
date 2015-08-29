@@ -146,7 +146,8 @@
       },
       observers: [
         'updateURL(q,package,tag,view,elements)',
-        'updateMeta(packageInfo)'
+        'updateMeta(packageInfo)',
+        'scrollToTop(package)'
       ],
       listeners: {
         'update-params': '_handleParamsUpdate'
@@ -294,6 +295,9 @@
         // when a user clicks on the (x) button we need to be sure to
         // clear the query
         this.q = this.$.query.value;
+      },
+      scrollToTop: function() {
+        this.$.container.scrollTop = 0;
       },
       _stampCards: function(view,stamp) {
         return stamp || view === 'cards';
