@@ -23,15 +23,15 @@ how you want to implement your layout, and then install only the elements
 that you need.
 
 ```bash
-bower install -S PolymerElements/paper-header-panel
-bower install -S PolymerElements/paper-toolbar
-bower install -S PolymerElements/paper-drawer-panel
-bower install -S PolymerElements/paper-icon-button
-bower install -S PolymerElements/paper-tabs
-bower install -S PolymerElements/paper-tab
-bower install -S PolymerElements/paper-drawer-panel
-bower install -S PolymerElements/iron-icons
-bower install -S PolymerElements/iron-flex-layout
+bower install --save PolymerElements/paper-header-panel
+bower install --save PolymerElements/paper-toolbar
+bower install --save PolymerElements/paper-drawer-panel
+bower install --save PolymerElements/paper-icon-button
+bower install --save PolymerElements/paper-tabs
+bower install --save PolymerElements/paper-tab
+bower install --save PolymerElements/paper-drawer-panel
+bower install --save PolymerElements/iron-icons
+bower install --save PolymerElements/iron-flex-layout
 ```
 
 We'll assume that you can import these elements from `/bower_components/`.
