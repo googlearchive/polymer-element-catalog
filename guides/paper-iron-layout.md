@@ -40,13 +40,13 @@ We'll assume that you can import these elements from `/bower_components/`.
 
 This section shows you how to:
 
-* create a standard layout with `paper-header-panel` and `paper-toolbar`,
-  which is probably the most common and easiest layout
-* use a custom element for a header 
-* add icons to a header
-* set the height of a header
-* add tabs to a header
-* modify the disply and behavior of a header
+* Create a standard layout with `paper-header-panel` and `paper-toolbar`,
+  which is probably the most common and easiest layout.
+* Use a custom element for a header.
+* Add icons to a header.
+* Set the height of a header.
+* Add tabs to a header.
+* Modify the disply and behavior of a header.
 
 ### Creating a header with `paper-toolbar`
 
