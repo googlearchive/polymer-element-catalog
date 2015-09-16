@@ -84,14 +84,15 @@ children are placed in the content area.
 `paper-header-panel` **must have an explicit height**. See the list item
 on `flex` below for an explanation of why the code above works.
 
-`fullbleed`, `vertical`, `layout`, and `flex` are part of the 
-`iron-flex-layout` class. We use them in our examples as an easy way 
-to create a responsive design, but the `paper` elements do not depend 
+`fullbleed`, `vertical`, `layout`, and `flex` are helper classes from
+`iron-flex-layout.html`. We use them in our examples as an easy way 
+to create a responsive design with [Flexbox](http://www.smashingmagazine.com/2015/08/flexible-future-for-web-design-with-flexbox/), 
+but the `paper` elements do not depend 
 on them. Below is a description of each class used in the example above:
  
 * `fullbleed` instructs `body` to occupy the entire viewport. 
 * `vertical` and `layout` instruct `body` to stack elements 
-  vertically (use `vertical horizontal` to stack horizontally). `vertical`
+  vertically (use `vertical horizontal` to stack horizontally). `layout`
   must be accompanied by `vertical` or `horizontal`. It is meaningless
   on its own.
 * `flex` instructs `paper-panel-header` to stretch to the entire 
@@ -311,10 +312,13 @@ navigation menu.
 [Demonstration](assets/drawer.html)
 
 On narrow screens, the drawer can be hidden or revealed via the `togglePanel` 
-method. The user can touch the button or swipe in order to display the drawer.
+method. Or, you can add the `paper-drawer-toggle` attribute to an element. That
+element acts as an open / close button and there is no need to call `togglePanel`
+explicitly.
+
+The user can touch the button or swipe in order to display the drawer.
 On wide screens, the drawer is always open and the button to open
 the drawer is hidden.
 
 Any children with the `drawer` attribute set are placed in the navigation area.
 Any children with the `main` attribute are placed in the main panel.
-
