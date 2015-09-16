@@ -192,6 +192,8 @@ Polymer({
   },
   download: function() {
     var link = document.createElement('a');
+    ga('send', 'event', 'download');
+
     switch (this.downloadMethod) {
       case 'bower':
         var blob = new Blob([this.bowerString()], {type: 'application/json'});
