@@ -1,7 +1,7 @@
 ---
-title: Responsive layouts with Paper and Iron
-summary: "How to create responsive headers, tabs, side drawers, and 
-icons with Paper and Iron elements."
+title: Responsive Material Design layouts
+summary: "How to create responsive Material Design layouts
+with Paper and Iron elements."
 tags: ['layout']
 elements: ['paper-header-panel','paper-toolbar','paper-drawer-panel',
 'paper-icon-button','paper-tabs','paper-tab','paper-drawer-panel', 'iron-icons',
