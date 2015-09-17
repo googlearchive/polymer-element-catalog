@@ -9,6 +9,13 @@ elements: ['paper-header-panel','paper-toolbar','paper-drawer-panel',
 updated: 2015-07-23
 ---
 
+<style>
+  paper-button {
+    background: #81C784;
+    color: white;
+  }
+</style>
+
 ## Introduction
 
 This guide teaches you how to use Paper and Iron elements to create a 
@@ -79,7 +86,9 @@ children are placed in the content area.
 ...
 ```
 
-[Demonstration](assets/header-and-toolbar.html)
+<a href="assets/header-and-toolbar.html" target="_blank">
+  <paper-button noink>Demonstration</paper-button>
+</a>
 
 `paper-header-panel` **must have an explicit height**. See the list item
 on `flex` below for an explanation of why the code above works.
@@ -124,7 +133,9 @@ You can use another element as a header by adding the
 </body>
 ```
 
-[Demonstration](assets/custom-header.html)
+<a href="assets/custom-header.html" target="_blank">
+  <paper-button noink>Demonstration</paper-button>
+</a>
 
 ### Adding icons
 
@@ -157,7 +168,9 @@ Use `paper-icon-button` and `iron-icons` to add icons to your header:
 </body>
 ```
 
-[Demonstration](assets/icons.html)
+<a href="assets/icons.html" target="_blank">
+  <paper-button noink>Demonstration</paper-button>
+</a>
 
 `paper-icon-button` displays the icon and handles the icon's behavior.
 `iron-icons` is a collection of SVG icons which you can use for free 
@@ -199,7 +212,9 @@ classes to change the height of your header.
 ...
 ```
 
-[Demonstration](assets/tall-header.html)
+<a href="assets/tall-header.html" target="_blank">
+  <paper-button noink>Demonstration</paper-button>
+</a>
 
 ### Adding tabs
 
@@ -243,7 +258,9 @@ Use `paper-tabs` to add tabs to your header:
 ...
 ```
 
-[Demonstration](assets/tabs.html)
+<a href="assets/tabs.html" target="_blank">
+  <paper-button noink>Demonstration</paper-button>
+</a>
 
 ### Modifying header display and behavior
 
@@ -268,7 +285,9 @@ demonstration of all modes.
 * `cover`: The content scrolls over the header. This mode is designed to 
   be used with narrow content (for example cards).
 
-[Demonstration](/elements/paper-header-panel?view=demo:demo/index.html)
+<a href="/elements/paper-header-panel?view=demo:demo/index.html" target="_blank">
+  <paper-button noink>Demonstration</paper-button>
+</a>
 
 ## Creating a responsive navigation drawer
 
@@ -309,7 +328,9 @@ navigation menu.
 </body>
 ```
 
-[Demonstration](assets/drawer.html)
+<a href="assets/drawer.html" target="_blank">
+  <paper-button noink>Demonstration</paper-button>
+</a>
 
 On narrow screens, the drawer is hidden by default. The user can 
 touch the button or swipe in order to display the drawer.
