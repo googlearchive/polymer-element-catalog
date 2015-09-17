@@ -270,7 +270,7 @@ demonstration of all modes.
 
 [Demonstration](/elements/paper-header-panel?view=demo:demo/index.html)
 
-## Creating a responsive side navigation
+## Creating a responsive navigation drawer
 
 Use `paper-drawer-panel` to create a left-side or right-side
 navigation menu. 
