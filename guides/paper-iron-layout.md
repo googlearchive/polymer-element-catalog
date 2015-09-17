@@ -311,14 +311,15 @@ navigation menu.
 
 [Demonstration](assets/drawer.html)
 
-On narrow screens, the drawer can be hidden or revealed via the `togglePanel` 
-method. Or, you can add the `paper-drawer-toggle` attribute to an element. That
-element acts as an open / close button and there is no need to call `togglePanel`
-explicitly.
-
-The user can touch the button or swipe in order to display the drawer.
+On narrow screens, the drawer is hidden by default. The user can 
+touch the button or swipe in order to display the drawer.
 On wide screens, the drawer is always open and the button to open
 the drawer is hidden.
+
+Use the `togglePanel` method to hide or reveal the drawer 
+programmatically. Or, add the `paper-drawer-toggle` attribute to an 
+element. This attribute makes the element act as an open / close button and 
+removes the need to call `togglePanel` explicitly.
 
 Any children with the `drawer` attribute set are placed in the navigation area.
 Any children with the `main` attribute are placed in the main panel.
