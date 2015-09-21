@@ -50,7 +50,7 @@
               <template is="dom-repeat" items="[[docDemos]]">
                 <a is="app-link" class="item" href="[[_demoLink(active,item.path)]]" active$="[[_demoActive(item.path,view)]]"><iron-icon icon="visibility"></iron-icon> <span>[[_demoName(item.desc)]]</span></a>
               </template>
-              <a class="item" href="[[_githubLink(metadata.source)]]" target="_blank"><iron-icon icon="code"></iron-icon> <span>Source</span></a>
+              <a class="item" href="[[repositoryLink(metadata.source)]]" target="_blank"><iron-icon icon="code"></iron-icon> <span>Source</span></a>
             </nav>
 
             <div class="nav" id="cart-add">
@@ -137,6 +137,9 @@
     },
     _demoActive: function(path) {
       return this.view === 'demo:' + path;
+    },
+    repositoryLink: function(source) {
+      return (source.indexOf('http') >= 0) ? source : githubLink(source);
     },
     _githubLink: function(source) {
       return 'https://github.com/' + source;
