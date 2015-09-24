@@ -139,7 +139,7 @@
       return this.view === 'demo:' + path;
     },
     repositoryLink: function(source) {
-      return (source.indexOf('http') >= 0) ? source : githubLink(source);
+      return (source.indexOf('http') >= 0) ? source : this._githubLink(source);
     },
     _githubLink: function(source) {
       return 'https://github.com/' + source;
