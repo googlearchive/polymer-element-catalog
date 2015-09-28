@@ -48,7 +48,7 @@ Polymer({
     iconsOnly: {type: Boolean, value: false, reflectToAttribute: true}
   },
   repositoryLink: function(source) {
-    return (source.indexOf('http') >= 0) ? source : this._githubLink(source);
+    return (source.indexOf('http') === 0) ? source : this._githubLink(source);
   },
   _githubLink: function(source) {
     return "https://github.com/" + source;
