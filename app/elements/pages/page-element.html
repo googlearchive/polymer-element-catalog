@@ -60,7 +60,7 @@
             <div class="bower-command-label">Bower Command</div>
             <input class="bower-command" title="Bower Command" readonly value="[[_bowerCommand(metadata.source)]]" on-tap="_selectAllBowerCommand">
 
-            <section hidden$="[[_oneOrFewer(docElements)]]" class="shrinkable">
+            <section hidden$="[[_oneOrFewer(docElements, docBehaviors)]]" class="shrinkable">
               <h4>Bundled Elements</h4>
 
               <nav id="elnav" class="nav">
@@ -70,7 +70,7 @@
               </nav>
             </section>
 
-            <section class="shrinkable" hidden$="[[_oneOrFewer(docBehaviors)]]">
+            <section class="shrinkable" hidden$="[[_oneOrFewer(docBehaviors, docElements)]]">
               <h4>Bundled Behaviors</h4>
 
               <nav id="elnav" class="nav" attr-for-selected="name" selected="{{active}}">
@@ -186,6 +186,18 @@
       this.fire('cart-add', this.element);
     },
     _oneOrFewer: function(arr) {
+      if (arguments.length > 1) {
+        var additionalArgLengths = Array.prototype.slice.call(arguments, 1).map(function (arg) {
+          return (arg && arg.length) || 0;
+        }).reduce(function (total, argLength) {
+          return total + argLength;
+        });
+
+        if (additionalArgLengths) {
+          return false;
+        }
+      }
+
       return !arr || arr.length <= 1;
     },
     toggleCart: function() {
