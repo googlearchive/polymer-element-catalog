@@ -186,6 +186,10 @@
       this.fire('cart-add', this.element);
     },
     _oneOrFewer: function(arr) {
+      if (!arr || arr && !arr.length) {
+        return true;
+      }
+
       if (arguments.length > 1) {
         var additionalArgLengths = Array.prototype.slice.call(arguments, 1).map(function (arg) {
           return (arg && arg.length) || 0;
@@ -198,7 +202,7 @@
         }
       }
 
-      return !arr || arr.length <= 1;
+      return arr.length <= 1;
     },
     toggleCart: function() {
       this.$.cartIcon.toggle();
