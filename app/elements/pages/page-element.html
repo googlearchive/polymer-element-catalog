@@ -60,7 +60,7 @@
             <div class="bower-command-label">Bower Command</div>
             <input class="bower-command" title="Bower Command" readonly value="[[_bowerCommand(metadata.source)]]" on-tap="_selectAllBowerCommand">
 
-            <section hidden$="[[_oneOrFewer(docElements)]]" class="shrinkable">
+            <section hidden$="[[_oneOrFewer(docElements, docBehaviors)]]" class="shrinkable">
               <h4>Bundled Elements</h4>
 
               <nav id="elnav" class="nav">
@@ -70,7 +70,7 @@
               </nav>
             </section>
 
-            <section class="shrinkable" hidden$="[[_oneOrFewer(docBehaviors)]]">
+            <section class="shrinkable" hidden$="[[_oneOrFewer(docBehaviors, docElements)]]">
               <h4>Bundled Behaviors</h4>
 
               <nav id="elnav" class="nav" attr-for-selected="name" selected="{{active}}">
@@ -143,7 +143,6 @@
     },
     getURL: function(active,view,force) {
       var url = "/elements/" + this.element;
-
       var qs = [];
       if (force || (view && view.length && view !== 'docs')) qs.push('view=' + view);
       if (force || (active && active.length && active !== this.element)) qs.push('active=' + active);
@@ -185,8 +184,14 @@
     cartAdd: function() {
       this.fire('cart-add', this.element);
     },
-    _oneOrFewer: function(arr) {
-      return !arr || arr.length <= 1;
+    _oneOrFewer: function(arr1, arr2) {
+      if (!arr1 || arr1.length === 0) {
+        return true;
+      }
+      if (!arr2) {
+        return arr1.length <= 1;
+      }
+      return arr1.length + arr2.length <= 1;
     },
     toggleCart: function() {
       this.$.cartIcon.toggle();
