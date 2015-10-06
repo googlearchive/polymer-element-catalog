@@ -1,53 +1,38 @@
 ---
-title: Using Icons
-summary: "How to display and style icons, and how to use the Polymer team's icon collection in your own project."
+title: Using icons
+summary: "How to display and style icons using Iron elements."
 tags: ['icons','intermediate']
 elements: ['iron-icon','iron-icons', 'iron-iconset', 'iron-iconset-svg']
-updated: 2015-07-17
+updated: 2015-10-01
 ---
-
-[//]: # (align docs with videos)
-[//]: # (figure out how to display iron-icons, provide a gist?)
-[//]: # (delete core-iconset video after aligning with docs)
-[//]: # (are ::shadow and /deep/ still supported?)
-[//]: # (load dependenices in right order https://github.com/PolymerElements/iron-icon/issues/19)
-[//]: # (get SVG icon set example working)
-[//]: # (use for displaying icons https://elements.polymer-project.org/elements/iron-icons?view=demo:demo/index.html)
-[//]: # (during review, ask about using multiple icon sets, specifying each with namespace syntax)
-[//]: # (instead of trying to display inside of document, create working examples with full index.html)
-[//]: # (how to style icons embedded in other elements?)
-[//]: # (delete video if it mentions iron-iconset*)
-[//]: # (color not inheriting on paper-icon-button)
-
 
 <link rel="import" href="/bower_components/google-youtube/google-youtube.html">
 
 ## Introduction
 
-In this guide we will teach you how to display icons and how to use the 
-Polymer team's collection of icons in your project.
-
-We discuss two elements:
-
-* `iron-icon`, for displaying and styling an icon
-* `iron-icons`, for using the Polymer team's collection of icons
-  in your project
+In this guide you learn how to display icons with the `iron-icon` element,
+and the `iron-icons` package of SVG icons.
 
 ## Installation
 
-Install the icon elements with Bower. We'll assume that your project can access 
-these elements from `/bower_components/`.
+Install the icon elements with Bower. This guide assumes that your project 
+can access these elements from `/bower_components/`.
 
 ```bash
-bower install PolymerElements/iron-icon 
-bower install PolymerElements/iron-icons 
+bower install --save PolymerElements/iron-icon 
+bower install --save PolymerElements/iron-icons 
 ```
 
 ## Displaying an icon with `iron-icon`
 
 To display an icon, import `iron-icon` and specify the source image using
-either the `src` attribute if the image is not part of an icon set,
-or the `icon` attribute if it is.
+either: 
+
+* The `src` attribute, if the image is not part of the `iron-icons` package.
+* The `icon` attribute, if it is.
+
+The code below shows how to declare an `iron-icon` element, using an image
+that is not part of the `iron-icons` package.
 
     ...
     <link rel="import" href="/bower_components/iron-icon/iron-icon.html">
@@ -59,9 +44,12 @@ Produces:
 
 <iron-icon src="/images/polymer.svg"></iron-icon>
 
-The source image is set as the icon's background and is scaled to fit the icon 
-size. It can be bitmap or SVG. `iron-icon` expects the source image to be square.
-The default icon size is 24 pixels by 24 pixels. Use CSS to set the icon size.
+The source image is set as the icon's background. The image is scaled to 
+fit the icon size. The image can be bitmap or SVG. `iron-icon` expects 
+the source image to be square. The default icon size is 24 pixels by 
+24 pixels. Use CSS to set the icon size.
+
+The code below demonstrates how you can use CSS to set the size of an icon.
 
     ...
     <iron-icon src="/images/polymer.svg" style="width: 24px; height: 24px;"></iron-icon>
@@ -90,28 +78,35 @@ and use the `--iron-icon-width` and `iron-icon-height` mixins.
 </style>
 ```
 
+The attribute-value pair `is="custom-style"` enables you to define
+styles in the main document. See [Custom element for documenting
+styling](https://www.polymer-project.org/1.0/docs/devguide/styling.html#custom-style) for more information.
+
 Import the theme file into your page and use the icons normally:
 
 ```html
-   ...
-   <link rel="import" href="theme.html">
-   ...
-   <iron-icon icon="accessibility"></iron-icon>
+...
+<link rel="import" href="theme.html">
+...
+<iron-icon icon="accessibility"></iron-icon>
 ```
 
-## Using the Polymer team's icon collection, `iron-icons`
+## Using the `iron-icons` collection
 
-The Polymer team has created a large collection of free, SVG icons that 
-you can use in your own project. These icons are distributed as an element
-called `iron-icons`. 
+`iron-icons` is a package of hundreds of SVG icons. They are ready
+to use with the `iron-icon` element. And, since they are SVG, you can 
+style and manipulate them with CSS.
+
+The package is divided up into numerous "icon sets". Each icon set is grouped
+thematically. For example, one icon set contains icons common to social
+media websites, another contains audio-visual icons, and so on.
 
 [View all of the icons here.](https://elements.polymer-project.org/elements/iron-icons?view=demo:demo/index.html)
 
-To use one of the Polymer team's icons, import the `iron-icons` element 
+To use an icon from `iron-icons`, import the `iron-icons` element 
 into your project and reference the icon via the `icon` attribute:
 
     ...
-    <!-- iron-icons loads the default icon set and the iron-icon element -->
     <link rel="import" href="/bower_components/iron-icons/iron-icons.html">
     ...
     <iron-icon icon="refresh"></iron-icon>
@@ -123,7 +118,7 @@ Produces:
 <iron-icon icon="refresh"></iron-icon>
 
 Note that you reference the image source via the `icon` attribute, not
-the `src` attribute, as is the case when you using an image that is not part
+the `src` attribute, as is the case when declaring an image that is not part
 of an icon set.
 
 The default icon set is called `icons`. If you reference an icon 
@@ -151,30 +146,39 @@ thematic sets:
 To use an icon from one of these groups, import the icon set and then reference
 the icon using the following syntax:
 
-    <icon set>:<icon name>
+<code><var>set</var>:<var>name</var></code>
+
+Where <var>set</var> is the name of the icon set, and <var>name</var> is 
+the name of the icon.
+
+For example, if you wanted to use the `cake` icon from the `social` icon
+set, you would declare your element as follows:
+
+    <iron-icon icon="social:cake"></iron-icon>
 
 ### Styling icons with CSS 
 
 All of the icons in `iron-icons` are SVG-based. In addition to setting 
 standard CSS properties like sizes and background colors, you can set 
-SVG-specific CSS properties like `fill`, `stroke` and `stroke-width`.
+SVG-specific CSS properties like `fill`, `stroke`, and `stroke-width`.
 
-By default, icons use `fill: currentcolor`, so they match the current text 
+By default, icons use `fill:currentcolor`, so they match the current text 
 color. The easiest way to override the icon color is to set the 
 `color` property. You can also set the `fill` property directly, but it 
-requires a more specific CSS selector.
+requires a [CSS attribute selector](https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors).
 
-    <style>
-      iron-icon[icon="save"] {
-        color: green;
-        width: 32px;
-        height: 32px;
-        opacity: 0.50;
-      }
-    </style>
+```html
+<style>
+  iron-icon[icon="save"] {
+    color: green;
+    width: 32px;
+    height: 32px;
+    opacity: 0.50;
+  }
+</style>
 
-    <iron-icon icon="save"></iron-icon>
-
+<iron-icon icon="save"></iron-icon>
+```
 <!-- fill: #9aed00; -->
 
 Produces: 
