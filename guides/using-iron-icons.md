@@ -81,8 +81,8 @@ To create style rules that affect the size of all icons, create a theme file
 and use the `--iron-icon-width` and `iron-icon-height` mixins.
 
 ```html
-<!-- custom-icon.html -->
-<style is="custom-icon">
+<!-- theme.html -->
+<style is="custom-style">
   iron-icon {
     --iron-icon-width: 100px;
     --iron-icon-height: 100px;
@@ -90,13 +90,13 @@ and use the `--iron-icon-width` and `iron-icon-height` mixins.
 </style>
 ```
 
-Import the theme file into your page and style the icons with your custom class:
+Import the theme file into your page and use the icons normally:
 
 ```html
    ...
-   <link rel="import" href="custom-icon.html">
+   <link rel="import" href="theme.html">
    ...
-   <iron-icon class="custom-icon" icon="accessibility"></iron-icon>
+   <iron-icon icon="accessibility"></iron-icon>
 ```
 
 ## Using the Polymer team's icon collection, `iron-icons`
