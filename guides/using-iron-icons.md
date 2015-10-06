@@ -153,32 +153,6 @@ the icon using the following syntax:
 
     <icon set>:<icon name>
 
-[Due to an outstanding bug](https://github.com/PolymerElements/iron-icon/issues/19),
- if you want to use any of the icons from the 
-thematic sets listed above, you need to load the `iron` dependencies in a specific
-order. The example HTML below successfuly displays the `cake` icon from
-the `social` icon set.
-
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
-    <link rel="import" href="bower_components/polymer/polymer.html">
-    <link rel="import" href="bower_components/iron-meta/iron-meta.html">
-    <link rel="import" href="bower_components/iron-flex-layout/iron-flex-layout.html">
-    <link rel="import" href="bower_components/iron-iconset-svg/iron-iconset-svg.html">
-    <link rel="import" href="bower_components/iron-iconset/iron-iconset.html">
-    <link rel="import" href="bower_components/iron-icons/iron-icons.html">
-    <link rel="import" href="bower_components/iron-icons/social-icons.html">
-    <link rel="import" href="bower_components/iron-icon/iron-icon.html">
-  </head>
-  <body>
-    <iron-icon icon="social:cake"></iron-icon>
-  </body>
-</html>
-```
-
 ### Styling icons with CSS 
 
 All of the icons in `iron-icons` are SVG-based. In addition to setting 
