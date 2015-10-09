@@ -15,15 +15,6 @@
   --paper-toolbar-background: white;
 }
 
-::content .content {
-  @apply(--layout-flex);
-  @apply(--layout);
-  @apply(--layout-vertical);
-  overflow-x: hidden;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
 ::content .section {
   margin-bottom: 20px;
   opacity: 0;

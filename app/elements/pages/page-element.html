@@ -73,7 +73,7 @@
             <section class="shrinkable" hidden$="[[_oneOrFewer(docBehaviors, docElements)]]">
               <h4>Bundled Behaviors</h4>
 
-              <nav id="elnav" class="nav" attr-for-selected="name" selected="{{active}}">
+              <nav id="elnav" class="nav" attr-for-selected="name" selected="[[active]]">
                 <template is="dom-repeat" items="[[docBehaviors]]">
                   <a is="app-link" class="item" href$="[[_link(item.is,view)]]" active$="[[_isEqual(item.is,active)]]">[[item.is]]</a>
                 </template>
@@ -105,8 +105,8 @@
     is: 'page-element',
     enableCustomStyleProperties: true,
     properties: {
-      element: {type: String, notify: true},
-      view: {type: String, notify: true, value: 'docs'},
+      element: String,
+      view: {type: String, value: 'docs'},
       active: {type: String, value: ''},
       docElements: Array,
       docBehaviors: Array,
@@ -118,7 +118,6 @@
       q: String
     },
     observers: [
-      'updateURL(active,view)',
       'updateMeta(element,active)',
       'analyze(importPath)',
       'search(q)'
@@ -130,10 +129,10 @@
       this.$.analyzer.analyze();
     },
     _link: function(active,view) {
-      return this.getURL(active,view,true);
+      return this.getURL(active,view);
     },
     _demoLink: function(active,path) {
-      return this.getURL(active,'demo:' + path,true);
+      return this.getURL(active, 'demo:' + path, true);
     },
     _demoActive: function(path) {
       return this.view === 'demo:' + path;
@@ -147,12 +146,7 @@
       if (force || (view && view.length && view !== 'docs')) qs.push('view=' + view);
       if (force || (active && active.length && active !== this.element)) qs.push('active=' + active);
       if (qs.length) url += "?" + qs.join("&");
-
       return url;
-    },
-    updateURL: function(active,view) {
-      var url = this.getURL(active,view);
-      if (this.router) this.router.go(url, {replace: true});
     },
     updateMeta: function(element,active) {
       this.fire('page-meta', {title: (this.active && this.active.length) ? this.active : this.element});

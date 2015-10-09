@@ -137,7 +137,7 @@
       guide: Object,
       name: {
         type: String,
-        notify: true
+        observer: '_nameChanged'
       },
       content: String
     },
@@ -146,10 +146,7 @@
       'contentChanged(content)',
       'updateMeta(guide)'
     ],
-    attached: function() {
-      // TODO: Change this when we switch to pushState URLs
-      this.name = window.location.pathname.substring(8);
-    },
+
     contentChanged: function() {
       this.$.content.innerHTML = this.content;
       this._decorateHeadings();
@@ -160,6 +157,11 @@
         if (el) el.scrollIntoView();
       }
     },
+
+    _nameChanged: function() {
+      this.$.content.innerHTML = '';
+    },
+
     _decorateHeadings: function() {
       var h2s = this.$.content.querySelectorAll('h2');
       for (var i = 0; i < h2s.length; i++) {

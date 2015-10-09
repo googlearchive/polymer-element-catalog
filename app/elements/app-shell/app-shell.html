@@ -35,7 +35,7 @@
         <app-route path="/" element="page-packages" bindRouter></app-route>
         <app-route path="/browse" element="page-browse" bindRouter onUrlChange="updateModel"></app-route>
         <app-route path="/elements/:element" element="page-element" bindRouter onUrlChange="updateModel"></app-route>
-        <app-route path="/guides/*" element="page-guide" bindRouter></app-route>
+        <app-route path="/guides/:name" element="page-guide" bindRouter></app-route>
         <app-route path="*">
           <template><h1>Not Found</h1></template>
         </app-route>

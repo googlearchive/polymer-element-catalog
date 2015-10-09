@@ -24,7 +24,7 @@
     "google-web-components": "GoogleWebComponents/google-web-components#^1.0.0",
     "molecules": "PolymerElements/molecules#^1.0.0",
     "polymer": "Polymer/polymer#^1.0.0",
-    "app-router": "~2.6.0",
+    "app-router": "blasten/app-router#master",
     "pushstate-anchor": "~0.3.0",
     "color": "~2.5.0",
     "hydrolysis": "PolymerLabs/hydrolysis#^1.11.0"
