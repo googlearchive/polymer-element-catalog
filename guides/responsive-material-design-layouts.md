@@ -36,7 +36,6 @@ bower install --save PolymerElements/paper-drawer-panel
 bower install --save PolymerElements/paper-icon-button
 bower install --save PolymerElements/paper-tabs
 bower install --save PolymerElements/paper-tab
-bower install --save PolymerElements/paper-drawer-panel
 bower install --save PolymerElements/iron-icons
 bower install --save PolymerElements/iron-flex-layout
 ```
