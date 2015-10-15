@@ -41,7 +41,6 @@
               <span>[[tag]]</span> <iron-icon icon="clear" on-tap="clearTag"></iron-icon>
             </div>
             <div id="package-list">
-              <h5>Products</h5>
               <nav>
                 <a class="package" is="app-link" href="/browse?package=" active$="[[_isEqual(package,'')]]" tabindex="1">
                   <div class="layout horizontal center">
@@ -89,7 +88,7 @@
         <div id="container" class="fit" view$="[[_actualView(view,_narrowViewport)]]" main>
           <div class="elements-title horizontal layout center">
             <iron-icon icon="menu" paper-drawer-toggle></iron-icon>
-            <h2 class="flex"><span>[[pageTitle]]</span> <span class="count">[[_elementCount]]</span></h2>
+            <h2 class="flex">[[pageTitle]]</h2>
             <iron-icon id="package-view-mode" icon="[[viewIcon]]" on-tap="toggleView" hidden$="[[_forceCards]]"></iron-icon>
             <cart-icon id="cart-toggle" icon="stars" on-tap="cartOpen"></cart-icon>
           </div>
@@ -107,7 +106,7 @@
           </div>
 
           <template is="dom-if" if="[[_stampTable(view,_forceCards)]]">
-            <element-table elements="[[_filteredElements]]" on-tag-selected="updateTag"></element-table>
+            <element-table color="[[packageInfo.color]]" elements="[[_filteredElements]]" on-tag-selected="updateTag"></element-table>
           </template>
         </div>
       </paper-drawer-panel>

@@ -10,8 +10,6 @@ responsive-element[size=xs].layout {
 app-sidebar paper-toolbar {
   --paper-toolbar-background: white;
   --paper-toolbar: {
-    border-bottom: 1px solid;
-    border-bottom-color: var(--divider-color);
     box-sizing: border-box;
   }
 }
