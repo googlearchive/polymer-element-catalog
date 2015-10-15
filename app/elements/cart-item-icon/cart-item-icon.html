@@ -5,8 +5,8 @@
 <dom-module id="cart-item-icon">
   <style>
     iron-icon {
-      width: var(--cart-item-icon-size,24px);
-      height: var(--cart-item-icon-size,24px);
+      width: var(--cart-item-icon-size, 18px);
+      height: var(--cart-item-icon-size, 18px);
     }
 
     span {
@@ -16,7 +16,8 @@
   <template>
     <catalog-cart id="cart" on-item-added="_update" on-item-removed="_update" on-items-changed="_update"></catalog-cart>
 
-    <iron-icon icon="[[_icon]]"></iron-icon><span hidden$="[[noLabel]]">[[_label]]</span>
+    <iron-icon icon="[[_icon]]" title$="[[_label]]"></iron-icon>
+    <span hidden$="[[noLabel]]">[[_label]]</span>
   </template>
 </dom-module>
 

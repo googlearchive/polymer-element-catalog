@@ -45,3 +45,7 @@
   padding: 0 24px;
   margin: 0;
 }
+
+::content .content {
+  @apply(--layout-vertical);
+}

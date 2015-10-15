@@ -25,7 +25,7 @@
     <catalog-data elements="{{elements}}" behavior-map="{{behaviorMap}}"></catalog-data>
 
     <theme-color color="[[package.color]]">
-      <paper-drawer-panel drawer-width="272px" disable-edge-swipe>
+      <paper-drawer-panel id="drawerPanel" drawer-width="272px" disable-edge-swipe>
         <app-sidebar drawer>
           <paper-toolbar>
             <app-logo class="flex"></app-logo>
@@ -72,7 +72,6 @@
 
             <section class="shrinkable" hidden$="[[_oneOrFewer(docBehaviors, docElements)]]">
               <h4>Bundled Behaviors</h4>
-
               <nav id="elnav" class="nav" attr-for-selected="name" selected="[[active]]">
                 <template is="dom-repeat" items="[[docBehaviors]]">
                   <a is="app-link" class="item" href$="[[_link(item.is,view)]]" active$="[[_isEqual(item.is,active)]]">[[item.is]]</a>
@@ -93,7 +92,7 @@
         <section main class="fit">
           <iron-component-page on-iron-doc-viewer-component-selected="navToBehavior" version="[[metadata.version]]" doc-src="[[docSrc(element)]]" base="[[baseURI(element)]]" _catalog view="{{view}}" doc-elements="{{docElements}}" doc-behaviors="{{docBehaviors}}" doc-demos="{{docDemos}}" active="{{active}}"></iron-component-page>
           <iron-icon icon="menu" paper-drawer-toggle></iron-icon>
-          <cart-icon></cart-icon>
+          <cart-icon fade-out$="[[_isCartIconHidden(view)]]"></cart-icon>
         </section>
       </paper-drawer-panel>
     </theme-color>
@@ -119,6 +118,7 @@
     },
     observers: [
       'updateMeta(element,active)',
+      'viewUpdated(view)',
       'analyze(importPath)',
       'search(q)'
     ],
@@ -149,7 +149,11 @@
       return url;
     },
     updateMeta: function(element,active) {
+      this.$.drawerPanel.closeDrawer();
       this.fire('page-meta', {title: (this.active && this.active.length) ? this.active : this.element});
+    },
+    viewUpdated: function() {
+      this.$.drawerPanel.closeDrawer();
     },
     _packageLink: function() {
       return "/browse?package=" + this.package.name;
@@ -204,6 +208,9 @@
     },
     _selectAllBowerCommand: function(e) {
       e.currentTarget.select();
+    },
+    _isCartIconHidden: function(view) {
+      return view.indexOf('demo:') === 0;
     }
   });
 </script>

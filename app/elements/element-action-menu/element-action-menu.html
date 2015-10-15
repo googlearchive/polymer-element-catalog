@@ -3,39 +3,72 @@
 <link rel="import" href="../catalog-element/catalog-element.html">
 
 <dom-module id="element-action-menu">
-  <style>
-    :host {
-      @apply(--layout);
-      @apply(--layout-center);
-      @apply(--layout-center-justified);
-      position: relative;
-      text-align: center;
-    }
-
-    a, iron-icon {
-      color: rgba(0,0,0,0.6);
-    }
-
-    a {
-      margin: 0 5px;
-    }
-
-    iron-icon {
-      margin-right: 5px;
-      --iron-icon-size: 18px;
-    }
-
-    a[disabled] {
-      visibility: hidden;
-      pointer-events: none;
-    }
-  </style>
   <template>
+    <style>
+      :host {
+        @apply(--layout);
+        @apply(--layout-center);
+        @apply(--layout-center-justified);
+        position: relative;
+        text-align: center;
+        padding-top: 15px;
+        margin-right: 5px;
+      }
+
+      a, iron-icon {
+        font-size: 12px;
+        color: #666;
+        outline: none;
+      }
+
+      a {
+        margin: 0 5px;
+        cursor: pointer;
+      }
+
+      span {
+        width: 40px;
+        display: block;
+      }
+
+      a:hover,
+      a:hover iron-icon {
+        color: black;
+      }
+
+      iron-icon {
+        --iron-icon-width: 18px;
+        --iron-icon-height: 18px;
+      }
+
+      cart-item-icon {
+        --cart-item-icon-label: { 
+          display: block;
+          width: 40px;
+        };
+      }
+
+    </style>
     <catalog-element name="[[element]]" data="{{_element}}"></catalog-element>
-    <a tabindex="0" role="button" on-tap="cartAdd"><cart-item-icon id="cartItemIcon" element="[[element]]" present-label="Remove" absent-label="Add" no-label="[[iconsOnly]]"></cart-item-icon></a>
-    <a tabindex="0" role="button" on-click="navToDocs" aria-label="View Docs"><iron-icon icon="description" title="View Docs"></iron-icon><span hidden$="[[iconsOnly]]">Docs</span></a>
-    <a tabindex="0" role="button" href="[[githubLink(_element.source)]]" target="_blank" title="View Source on GitHub" aria-label="View Source on GitHub"><iron-icon icon="code"></iron-icon><span hidden$="[[iconsOnly]]">Source</span></a>
-    <a tabindex="0" role="button" on-click="navToDemo" disabled$="[[!_element.demo]]" aria-label="View Demo"><iron-icon icon="visibility" title="View Demo"></iron-icon><span hidden$="[[iconsOnly]]">Demo</span></a>
+
+    <a tabindex="0" role="button" on-tap="cartAdd">
+      <cart-item-icon id="cartItemIcon" element="[[element]]" present-label="Remove" absent-label="Add" no-label="[[iconsOnly]]"></cart-item-icon>
+    </a>
+
+    <a tabindex="0" role="button" on-click="navToDocs" aria-label="View Docs">
+      <iron-icon icon="description" title="View Docs"></iron-icon>
+      <span hidden$="[[iconsOnly]]">Docs</span>
+    </a>
+
+    <a tabindex="0" role="button" href="[[githubLink(_element.source)]]" target="_blank" title="View Source on GitHub" aria-label="View Source on GitHub">
+      <iron-icon icon="code"></iron-icon>
+      <span hidden$="[[iconsOnly]]">Source</span>
+    </a>
+
+    <a tabindex="0" role="button" on-click="navToDemo" hidden$="[[!_element.demo]]" aria-label="View Demo">
+      <iron-icon icon="visibility" title="View Demo"></iron-icon>
+      <span hidden$="[[iconsOnly]]">Demo</span>
+    </a>
   </template>
 </dom-module>
 
