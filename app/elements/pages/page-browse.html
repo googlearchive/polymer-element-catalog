@@ -90,8 +90,8 @@
           <div class="elements-title horizontal layout center">
             <iron-icon icon="menu" paper-drawer-toggle></iron-icon>
             <h2 class="flex"><span>[[pageTitle]]</span> <span class="count">[[_elementCount]]</span></h2>
-            <iron-icon id="package-view-mode" icon="[[viewIcon]]" on-tap="toggleView" hidden$="[[_forceCards]]"></iron-icon>
-            <cart-icon id="cart-toggle" icon="stars" on-tap="cartOpen"></cart-icon>
+            <iron-icon id="package-view-mode" icon="[[viewIcon]]" on-tap="toggleView" hidden$="[[_forceCards]]" tabindex="1"></iron-icon>
+            <cart-icon id="cart-toggle" icon="stars" on-tap="cartOpen" tabindex="1"></cart-icon>
           </div>
 
           <div id="package-heading" hidden$="[[!packageInfo]]">
