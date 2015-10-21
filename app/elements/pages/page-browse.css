@@ -20,18 +20,6 @@ app-bar .menu-icon {
   color: #424242;
 }
 
-.elements-title .count {
-  color: var(--paper-grey-600);
-}
-
-.elements-title .count:before {
-  content: "(";
-}
-
-.elements-title .count:after {
-  content: ")";
-}
-
 .elements-title iron-icon, .elements-title cart-icon {
   cursor: pointer;
   margin-left: 16px;
@@ -46,10 +34,10 @@ app-bar .menu-icon {
   color: var(--paper-grey-600);
 }
 
-#element-cards, element-table, .elements-title, #package-heading {
-  width: 100%;
+#element-cards, element-table, 
+.elements-title, #package-heading {
   max-width: 920px;
-  margin: 10px auto;
+  margin: 20px auto;
 }
 
 #package-heading {
@@ -90,8 +78,6 @@ responsive-element[size=xs].layout {
 app-sidebar paper-toolbar {
   --paper-toolbar-background: white;
   --paper-toolbar: {
-    border-bottom: 1px solid;
-    border-bottom-color: var(--divider-color);
     box-sizing: border-box;
   }
 }
@@ -185,23 +171,40 @@ app-sidebar paper-toolbar {
 
 #search {
   height: 48px;
-  border-bottom: 1px solid #e5e5e5;
-  border-top: 1px solid #e5e5e5;
   line-height: 48px;
   margin-bottom: 12px;
+  position: relative;
 }
 
 #search iron-icon {
   margin-left: 16px;
   margin-right: 8px;
+  position: absolute;
+  top: 12px;
+  left: 2px;
 }
 
 #search input {
   height: 46px;
+  -webkit-appearance: none;
   line-height: 46px;
   border: 0;
+  margin: 0;
+  padding-left: 50px;
+  border-bottom: 1px solid #e5e5e5;
+  border-top: 1px solid #e5e5e5;
   @apply(--paper-font-body1);
-  margin-right: 16px;
+}
+
+#search input:focus {
+  outline: 0;
+  background-color: #eceff1;
+  border-color: #cfd8dc;
+}
+
+#search input::-webkit-search-cancel-button{
+  position: relative;
+  right: 15px;
 }
 
 #package-list {
@@ -222,13 +225,11 @@ app-sidebar paper-toolbar {
   color: rgba(0,0,0,.87);
   text-transform: none;
   cursor: pointer;
-  border: 1px solid transparent;
   border-width: 1px 0;
 }
 
 #package-list .package[active] {
   background: var(--paper-blue-grey-50);
-  border-color: var(--paper-blue-grey-100);
 }
 
 #package-list .package .all-symbol {
@@ -237,21 +238,6 @@ app-sidebar paper-toolbar {
 
 #package-list .package package-symbol, #package-list .package .all-symbol {
   margin-right: 15px;
-}
-
-[size=xs] .elements-title,
-[size=s] .elements-title,
-[size=m] .elements-title {
-  width: 100%;
-  margin: 0;
-  padding: 2px 0;
-}
-
-[size=xs] element-table,
-[size=s] element-table,
-[size=m] element-table {
-  margin: 10px 16px;
-  width: calc(100% - 32px);
 }
 
 #current-tag {

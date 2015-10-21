@@ -10,8 +10,6 @@ responsive-element[size=xs].layout {
 app-sidebar paper-toolbar {
   --paper-toolbar-background: white;
   --paper-toolbar: {
-    border-bottom: 1px solid;
-    border-bottom-color: var(--divider-color);
     box-sizing: border-box;
   }
 }
@@ -110,6 +108,12 @@ section[main] {
   background: #fafafa;
 }
 
+iron-component-page {
+  --iron-component-page-container: {
+  };
+  --iron-component-page-max-width: 920px;
+}
+
 [narrow] iron-component-page {
   top: 56px;
 }
@@ -181,4 +185,13 @@ cart-item-icon {
   border-radius: 2px;
   font-size: 12px;
   color: var(--paper-blue-grey-500);
+}
+
+cart-icon {
+  transition: opacity 0.2;
+  -webkit-transition: opacity 0.2s;
+}
+
+cart-icon[fade-out] {
+  opacity: 0;
 }

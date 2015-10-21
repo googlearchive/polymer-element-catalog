@@ -1,6 +1,5 @@
 :host {
   height: 100%;
-  box-shadow: 0 0 8px rgba(0,0,0,0.4);
   box-sizing: border-box;
   z-index: 2;
   background: white;
@@ -45,4 +44,8 @@
   color: var(--secondary-text-color);
   padding: 0 24px;
   margin: 0;
+}
+
+::content .content {
+  @apply(--layout-vertical);
 }

@@ -23,8 +23,6 @@
   <template>
     <catalog-data elements="{{elements}}" packages="{{packages}}"></catalog-data>
     <catalog-package name="[[package]]" data="{{packageInfo}}"></catalog-package>
-    <iron-media-query query="(max-width: 640px)" query-matches="{{_narrowViewport}}"></iron-media-query>
-
     <responsive-element>
       <paper-drawer-panel id="drawerPanel" responsive-width="900px" drawer-width="272px" disable-edge-swipe>
         <app-sidebar drawer>
@@ -41,7 +39,6 @@
               <span>[[tag]]</span> <iron-icon icon="clear" on-tap="clearTag"></iron-icon>
             </div>
             <div id="package-list">
-              <h5>Products</h5>
               <nav>
                 <a class="package" is="app-link" href="/browse?package=" active$="[[_isEqual(package,'')]]" tabindex="1">
                   <div class="layout horizontal center">
@@ -59,37 +56,16 @@
                 </template>
               </nav>
             </div>
-            <div id="tags">
-              <!--<h5>Tags</h5>-->
-            </div>
-            <!--<div id="package-info" hidden$="[[!packageInfo.name]]">
-              <div id="package-header">
-                <package-symbol package="[[packageInfo]]" class="large"></package-symbol>
-                <h2 id="package-title">[[packageInfo.title]]</h2>
-                <span id="package-version">[[packageInfo.version]]</span>
-                <h4 id="package-tagline">[[packageInfo.tagline]]</h4>
-              </div>
-              <div id="package-details">
-                <div class="section">
-                  <h5>Product Description</h5>
-                  <p id="package-desc">[[packageInfo.description]]</p>
-                </div>
-                <div class="section">
-                  <h5>Tags</h5>
-
-                </div>
-              </div>
-            </div>-->
             <div hidden$="[[!tag]]" id="current-tag" class="horizontal layout center">
               <b>Tag:</b> <span class="flex">[[tag]]</span> <iron-icon icon="clear" on-tap="clearTag"></iron-icon>
             </div>
           </div>
         </app-sidebar>
 
-        <div id="container" class="fit" view$="[[_actualView(view,_narrowViewport)]]" main>
+        <div id="container" class="fit" view$="[[_actualView(view)]]" main>
           <div class="elements-title horizontal layout center">
             <iron-icon icon="menu" paper-drawer-toggle></iron-icon>
-            <h2 class="flex"><span>[[pageTitle]]</span> <span class="count">[[_elementCount]]</span></h2>
+            <h2 class="flex">[[pageTitle]]</h2>
             <iron-icon id="package-view-mode" icon="[[viewIcon]]" on-tap="toggleView" hidden$="[[_forceCards]]"></iron-icon>
             <cart-icon id="cart-toggle" icon="stars" on-tap="cartOpen"></cart-icon>
           </div>
@@ -99,15 +75,15 @@
           </div>
 
           <div id="element-cards" class="horizontal layout wrap">
-            <template is="dom-if" if="[[_stampCards(view,_forceCards)]]">
+            <template is="dom-if" if="[[_stampCards(view)]]" restamp>
               <template name="element-cards-repeat" is="dom-repeat" items="[[_filteredElements]]">
                 <element-card element="[[item.name]]"></element-card>
               </template>
             </template>
           </div>
 
-          <template is="dom-if" if="[[_stampTable(view,_forceCards)]]">
-            <element-table elements="[[_filteredElements]]" on-tag-selected="updateTag"></element-table>
+          <template is="dom-if" if="[[_stampTable(view)]]" restamp>
+            <element-table color="[[packageInfo.color]]" elements="[[_filteredElements]]" on-tag-selected="updateTag"></element-table>
           </template>
         </div>
       </paper-drawer-panel>
@@ -141,7 +117,6 @@
 
         _filteredElements: Array,
         _elementCount: Number,
-        _narrowViewport: {type: Boolean, observer: '_updateForceCards'},
         _forceCards: {type: Boolean},
       },
       observers: [
@@ -154,7 +129,6 @@
       },
 
       ready: function() {
-        this._updateForceCards();
         this.view = this._forceCards ? 'cards' : 'table';
       },
 
@@ -264,7 +238,7 @@
           var t = "'" + this.q + "' ";
           t += (this.packageInfo && this.packageInfo.title) ? this.packageInfo.title : "Elements";
           this.pageTitle = t;
-        } else if (this.packageInfo) {
+        } else if (this.packageInfo && this.packageInfo.title) {
           this.pageTitle = this.packageInfo.title;
         } else if (this.tagList.length) {
           this.pageTitle = "Elements Tagged '" + this.tagList.join("' or '") + "'";
@@ -273,6 +247,7 @@
         }
 
         this.fire('page-meta', { title: this.pageTitle });
+        this.$.drawerPanel.closeDrawer();
       },
       toggleView: function() {
         if (this.view === 'table') {
@@ -303,40 +278,17 @@
       scrollToTop: function() {
         this.$.container.scrollTop = 0;
       },
-      _stampCards: function(view,stamp) {
-        return stamp || view === 'cards';
+      _stampCards: function(view) {
+        return view === 'cards';
       },
-      _stampTable: function(view, skip) {
-        return !skip && view === 'table';
+      _stampTable: function(view) {
+        return view === 'table';
       },
       closeDrawer: function() {
         this.$.drawerPanel.closeDrawer();
       },
-      _detectIEVersion: function () {
-        // via http://stackoverflow.com/questions/17907445/how-to-detect-ie11
-        var rv = -1;
-        var ua, re;
-        if (navigator.appName === 'Microsoft Internet Explorer')
-        {
-          ua = navigator.userAgent;
-          re  = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
-          if (re.exec(ua) !== null)
-            rv = parseFloat( RegExp.$1 );
-        }
-        else if (navigator.appName === 'Netscape')
-        {
-          ua = navigator.userAgent;
-          re  = new RegExp("Trident/.*rv:([0-9]{1,}[\.0-9]{0,})|Edge/([0-9]{1,}[\.0-9]{0,})");
-          if (re.exec(ua) !== null)
-            rv = parseFloat( RegExp.$1 );
-        }
-        return rv;
-      },
       _actualView: function(view, force) {
         return force ? 'cards' : view;
-      },
-      _updateForceCards: function() {
-        this._forceCards = this._narrowViewport || this._detectIEVersion() > 0;
       },
       _isEqual: function(a,b) {
         return a === b;
