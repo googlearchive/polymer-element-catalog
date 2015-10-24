@@ -110,24 +110,25 @@ section[main] {
 
 iron-component-page {
   --iron-component-page-container: {
+    padding: 10px;
   };
   --iron-component-page-max-width: 920px;
 }
 
 [narrow] iron-component-page {
-  top: 56px;
+  top: 64px;
 }
 
 [paper-drawer-toggle] {
   position: absolute;
-  top: 24px;
-  left: 24px;
+  top: 12px;
+  left: 10px;
 }
 
 cart-icon {
   position: absolute;
-  top: 24px;
-  right: 24px;
+  top: 12px;
+  right: 10px;
 }
 
 cart-item-icon {

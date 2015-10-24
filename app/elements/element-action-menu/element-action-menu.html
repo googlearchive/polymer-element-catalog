@@ -9,10 +9,23 @@
         @apply(--layout);
         @apply(--layout-center);
         @apply(--layout-center-justified);
-        position: relative;
+        position: absolute;
         text-align: center;
         padding-top: 15px;
         margin-right: 5px;
+        opacity: 1;
+        transition: opacity 0.2s;
+        -webkit-transition: opacity 0.2s;
+      }
+
+      :host(.cards) {
+        background-color: rgba(255, 255, 255, 0.9);
+        margin-right: 0px;
+      }
+
+      :host(.hidden) {
+        pointer-events: none;
+        opacity: 0;
       }
 
       a, iron-icon {

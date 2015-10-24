@@ -11,6 +11,34 @@ a {
   background: #fafafa;
 }
 
+.paper-header [paper-drawer-toggle] {
+  margin-left: 10px;
+}
+
+.paper-header {
+  @apply(--layout-horizontal);
+  @apply(--layout-center);
+}
+
+.paper-header h2 {
+  margin-left: 20px;
+  @apply(--layout-flex);
+}
+
+.paper-header .toggleViewButton {
+  --paper-icon-button-ink-color: transparent;
+}
+
+.paper-header .cartButton {
+  margin-right: 10px;
+}
+
+#content {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 10px;
+}
+
 app-bar .menu-icon {
   margin-right: 15px;
 }
@@ -44,20 +72,8 @@ app-bar .menu-icon {
   margin: 0px auto 16px;
 }
 
-[size=xs] #element-cards,
-[size=s] #element-cards,
-[size=m] #element-cards {
-  width: 100%;
-  margin: 0;
-}
-
-[size=xs] #element-cards element-card {
-  width: 100%;
-  margin: 0 0 20px;
-}
-
-[size=s] #element-cards element-card {
-  width: calc(50% - 20px);
+[size=xs] > * {
+  display: none;
 }
 
 responsive-element[size=xs].layout {
@@ -80,12 +96,6 @@ app-sidebar paper-toolbar {
   --paper-toolbar: {
     box-sizing: border-box;
   }
-}
-
-#container {
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-  padding: 0 24px;
 }
 
 #package-tag {

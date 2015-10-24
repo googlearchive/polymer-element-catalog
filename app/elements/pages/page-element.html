@@ -24,7 +24,6 @@
     <catalog-package name="[[metadata.package]]" data="{{package}}"></catalog-package>
     <catalog-data elements="{{elements}}" behavior-map="{{behaviorMap}}"></catalog-data>
 
-    <theme-color color="[[package.color]]">
       <paper-drawer-panel id="drawerPanel" drawer-width="272px" disable-edge-swipe>
         <app-sidebar drawer>
           <paper-toolbar>
@@ -34,7 +33,7 @@
           <div class="content">
             <a is="app-link" href="[[_packageLink(package.name)]]" class="horizontal layout center" id="package-heading">
               <iron-icon icon="chevron-left"></iron-icon>
-              <package-symbol package="[[package]]"></package-symbol>
+              <package-symbol color="[[package.color]]" symbol="[[package.symbol]]"></package-symbol>
               <span class="name flex">[[package.title]]</span>
             </a>
             <div id="element-header">
@@ -78,24 +77,14 @@
                 </template>
               </nav>
             </section>
-
-            <!--<section id="all-elements" class="flex nav vertical layout shrinkable">
-              <h4>All <span>[[package.title]]</span></h4>
-              <iron-selector class="flex nav" attr-for-selected="name" selected="{{element}}">
-                <template is="dom-repeat" id="all" items="[[elements]]" filter="listFilter">
-                  <paper-item name$="[[item.name]]">[[item.name]]</paper-item>
-                </template>
-              </iron-selector>
-            </section>-->
           </div>
         </app-sidebar>
         <section main class="fit">
           <iron-component-page on-iron-doc-viewer-component-selected="navToBehavior" version="[[metadata.version]]" doc-src="[[docSrc(element)]]" base="[[baseURI(element)]]" _catalog view="{{view}}" doc-elements="{{docElements}}" doc-behaviors="{{docBehaviors}}" doc-demos="{{docDemos}}" active="{{active}}"></iron-component-page>
-          <iron-icon icon="menu" paper-drawer-toggle></iron-icon>
+          <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
           <cart-icon fade-out$="[[_isCartIconHidden(view)]]"></cart-icon>
         </section>
       </paper-drawer-panel>
-    </theme-color>
   </template>
 </dom-module>
 

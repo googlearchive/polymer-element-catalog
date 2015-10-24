@@ -5,15 +5,15 @@
   <style>
     :host {
       display: inline-block;
-      line-height: 24px;
-      width: 24px;
-      height: 24px;
-      vertical-align: top;
+      line-height: 40px;
+      width: 40px;
+      height: 40px;
       cursor: pointer;
+      text-align: center;
     }
 
     iron-icon {
-      transition: color 0.2s;
+      margin-top: -2px;
     }
 
     :host(.full) iron-icon {
@@ -22,7 +22,6 @@
   </style>
   <template>
     <catalog-cart items="{{cartItems}}"></catalog-cart>
-
     <iron-icon icon="stars"></iron-icon>
   </template>
 </dom-module>
