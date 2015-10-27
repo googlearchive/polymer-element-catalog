@@ -166,9 +166,11 @@
       color: String,
       packageSymbol: String
     },
+
     observers: [
       '_updatePackage(_element)'
     ],
+
     attached: function() {
       this.style.opacity = 0;
 
@@ -180,8 +182,13 @@
     detached: function() {
       if (activeCard === this) {
         activeCard = null;
+        if (sharedActionMenu) {
+          Polymer.dom(this.parentNode).removeChild(sharedActionMenu);
+          sharedActionMenu = null;
+        }
       }
     },
+
     _tagClicked: function(e) {
       e.stopPropagation();
       this.fire('update-params', {tag: e.currentTarget.name});
