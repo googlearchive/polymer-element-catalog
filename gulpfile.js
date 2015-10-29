@@ -14,7 +14,8 @@ var reload = browserSync.reload;
 var merge = require('merge-stream');
 var superstatic = require('superstatic');
 var plumber = require('gulp-plumber');
-var polybuild = require('polybuild');
+var polybuild = require('./polybuild');
+var inlinesource = require('gulp-inline-source');
 
 var stream = require('./build/catalog/utils/stream').obj;
 var catalogBuilder = require('./build/catalog');
@@ -131,6 +132,7 @@ gulp.task('html', function () {
   var assets = $.useref.assets({searchPath: ['.tmp', 'app', 'dist']});
 
   return gulp.src(['app/**/*.html', '!app/{elements,test}/**/*.html'])
+    .pipe(inlinesource())
     // Replace path for build assets
     .pipe($.if('*.html', $.replace('elements/elements.html', 'elements/elements.build.html')))
     .pipe(assets)
@@ -254,7 +256,6 @@ gulp.task('catalog:dev', ['catalog_assets:dev'], function () {
 });
 
 function execCatalogTask (options) {
-
   var destDir = options.destDir;
   var space = options.space;
   var destFilepath = path.join('.', destDir, 'catalog.json');

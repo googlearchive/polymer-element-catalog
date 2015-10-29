@@ -150,7 +150,7 @@
     if (activeCard) {
       activeCard.showActions();
     }
-  };
+  }
 
   function mouseLeave() {
     if (activeCard) {
@@ -203,11 +203,11 @@
       return src && src.length ? src : '/images/hero/random-' + Math.ceil(Math.random() * 4) + '.svg';
     },
 
-    _getPackageLink: function(package) {
-      return '/browse?package=' + package + '&view=cards';
+    _getPackageLink: function(packageName) {
+      return '/browse?package=' + packageName + '&view=cards';
     },
 
-    _getTagLink: function(package, tag) {
+    _getTagLink: function(packageName, tag) {
       return '/browse?tag=' + tag + '&view=cards';
     },
 
@@ -234,7 +234,7 @@
       sharedActionMenu.style.left = left + 'px';
       sharedActionMenu.style.width = width + 'px';
 
-      sharedActionMenu.offsetTop &&
+      this._layoutIfNeeded(sharedActionMenu);
       sharedActionMenu.classList.remove('hidden');
       this.classList.add('hover');
       sharedActionMenu.cancelDebouncer('hide');
@@ -256,6 +256,10 @@
 
     _mouseLeave: function(e) {
       mouseLeave();
+    },
+
+    _layoutIfNeeded: function(el) {
+      return el.offsetTop;
     }
   });
 

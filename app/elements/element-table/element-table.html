@@ -196,7 +196,7 @@
       sharedActionMenu.element = this.elements[index].name;
       sharedActionMenu.style.top = rowOffsetTop + 'px';
 
-      sharedActionMenu.offsetTop && 
+      this._layoutIfNeeded(sharedActionMenu);
       sharedActionMenu.classList.remove('hidden');
       row.classList.add('hover');
 
@@ -231,6 +231,10 @@
       this.async(function() {
         this.classList.remove('hidden');
       }, 1);
+    },
+
+     _layoutIfNeeded: function(el) {
+      return el.offsetTop;
     }
   });
 </script>

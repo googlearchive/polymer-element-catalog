@@ -19,7 +19,7 @@
     <div id="cards" on-tap="_tap">
      <!--  
       Waiting for Kevin :)
-      <template name="element-cards-repeat" is="dom-repeat" items="[[elements]]">
+      <template name="element-cards-repeat" is="dom-repeat" items="[[elements]]" initial-count="3" pool-size="100">
         <element-card item="[[item]]"></element-card>
       </template> 
       -->
@@ -73,8 +73,7 @@
 
         var head = 0;
         var batchSize = 3;
-
-        function flush() {
+        var flush = function() {
           if (head + batchSize >= elements.length) {
             batchSize = elements.length - head;
           }
@@ -94,14 +93,13 @@
             Polymer.dom(this.$.cards).appendChild(el);
           }
           return true;
-        }
-
-        function batch() {
+        };
+        var batch = function() {
           if (flush.call(this)) {
             batchSize = 10;
             requestAnimationFrame(batch.bind(this));
           }
-        }
+        };
 
         batch.call(this);
       }
