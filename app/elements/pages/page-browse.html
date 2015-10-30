@@ -114,8 +114,8 @@
         _forceCards: {type: Boolean},
       },
       observers: [
-        'updateURL(q,package,tag,view,elements)',
-        'updateMeta(packageInfo)',
+        'updateURL(q,package, tag, view, elements)',
+        'updateMeta(package, packageInfo)',
         'scrollToTop(package)'
       ],
       listeners: {
@@ -124,10 +124,6 @@
 
       ready: function() {
         this.view = this._forceCards ? 'cards' : 'table';
-      },
-
-      attached: function() {
-        this.updateMeta();
       },
 
       filter: function(element) {
@@ -214,27 +210,27 @@
           });
         }
       },
-      updateURL: function(q,p,tag,view) {
+      updateURL: function(q, packageName, packageInfo, tag, view) {
         var qs = this._buildQueryString();
         if (qs !== _lastNavigated && this.router) {
           _lastNavigated = qs;
-         this.router.go("/browse" + (qs.length ? "?" + qs : ""), {replace: true});
+          this.router.go('/browse' + (qs.length ? '?' + qs : ''), {replace: true});
         }
+        this.updateMeta(packageName, this.packageInfo);
 
-        this.updateMeta();
         if (this.elements) {
           this._filteredElements = this.elements.filter(this.filter.bind(this));
           this._elementCount = this._filteredElements.length;
         }
         this.scrollToTop();
       },
-      updateMeta: function(packageInfo) {
+      updateMeta: function(packageName, packageInfo) {
         if (this.q && this.q.length) {
           var t = "'" + this.q + "' ";
-          t += (this.packageInfo && this.packageInfo.title) ? this.packageInfo.title : "Elements";
+          t += (packageInfo && packageInfo.title) ? packageInfo.title : "Elements";
           this.pageTitle = t;
-        } else if (this.packageInfo && this.packageInfo.title) {
-          this.pageTitle = this.packageInfo.title;
+        } else if (packageInfo && packageInfo.title) {
+          this.pageTitle = packageInfo.title;
         } else if (this.tagList.length) {
           this.pageTitle = "Elements Tagged '" + this.tagList.join("' or '") + "'";
         } else {
