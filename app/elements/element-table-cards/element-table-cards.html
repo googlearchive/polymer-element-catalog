@@ -17,12 +17,12 @@
   <template>
     <catalog-data package-map="{{packages}}"></catalog-data>
     <div id="cards" on-tap="_tap">
-     <!--  
-      Waiting for Kevin :)
-      <template name="element-cards-repeat" is="dom-repeat" items="[[elements]]" initial-count="3" pool-size="100">
-        <element-card item="[[item]]"></element-card>
+    <!-- 
+      Waiting for Kevin :) 
+      <template name="element-cards-repeat" is="dom-repeat" items="[[elements]]" initial-count="10" chunk-count="10">
+        <element-card item="[[item]]" color="[[_getColor(item)]]" package-symbol="[[_getPackageSymbol(item)]]"></element-card>
       </template> 
-      -->
+     -->
     </div>
   </template>
 </dom-module>
@@ -65,6 +65,14 @@
         }
         e.preventDefault();
       }
+    },
+
+    _getColor: function(item) {
+      return this.packages[item.package].color;
+    },
+
+    _getPackageSymbol: function(item) {
+      return this.packages[item.package].symbol;
     },
 
     _render: function(elements, packages) {
