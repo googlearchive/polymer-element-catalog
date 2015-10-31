@@ -115,6 +115,43 @@ iron-component-page {
   --iron-component-page-max-width: 920px;
 }
 
+:host([package-name=iron-elements]) iron-component-page {
+  --iron-doc-viewer-header: {
+    background-color: #81c784;
+  };
+}
+
+:host([package-name=gold-elements]) iron-component-page {
+  --iron-doc-viewer-header: {
+    background-color: #ffb74d;
+  };
+}
+
+:host([package-name=google-web-components]) iron-component-page {
+  --iron-doc-viewer-header: {
+    background-color: #64B5F6;
+  };
+}
+
+:host([package-name=neon-elements]) iron-component-page {
+  --iron-doc-viewer-header: {
+    background-color: #a7ffeb;
+  };
+}
+
+:host([package-name=platinum-elements]) iron-component-page {
+  --iron-doc-viewer-header: {
+    background-color: #cfd8dc;
+  };
+}
+
+:host([package-name=molecules]) iron-component-page {
+  --iron-doc-viewer-header: {
+    background-color: #ffab91;
+  };
+}
+
+
 [narrow] iron-component-page {
   top: 64px;
 }

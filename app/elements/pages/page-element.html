@@ -80,7 +80,7 @@
           </div>
         </app-sidebar>
         <section main class="fit">
-          <iron-component-page on-iron-doc-viewer-component-selected="navToBehavior" version="[[metadata.version]]" doc-src="[[docSrc(element)]]" base="[[baseURI(element)]]" _catalog view="{{view}}" doc-elements="{{docElements}}" doc-behaviors="{{docBehaviors}}" doc-demos="{{docDemos}}" active="{{active}}" on-iron-component-page-error="_handleError"></iron-component-page>
+          <iron-component-page id="componentPage" package$="[[package.name]]" on-iron-doc-viewer-component-selected="navToBehavior" version="[[metadata.version]]" doc-src="[[docSrc(element)]]" base="[[baseURI(element)]]" _catalog view="{{view}}" doc-elements="{{docElements}}" doc-behaviors="{{docBehaviors}}" doc-demos="{{docDemos}}" active="{{active}}" on-iron-component-page-error="_handleError"></iron-component-page>
           <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
           <cart-icon fade-out$="[[_isCartIconHidden(view)]]"></cart-icon>
         </section>
@@ -103,13 +103,19 @@
       metadata: {type: Object, value: null},
       package: Object,
       router: Object,
-      q: String
+      q: String,
+      packageName: {
+        type: String,
+        reflectToAttribute: true
+      }
+
     },
     observers: [
       'updateMeta(element,active)',
       'viewUpdated(view)',
       'analyze(importPath)',
-      'search(q)'
+      'search(q)',
+      '_updateStyles(package)'
     ],
     attached: function() {
       this.updateMeta();
@@ -204,6 +210,11 @@
 
     _handleError: function() {
       this.router.go('/404');
+    },
+
+    _updateStyles: function(packageInfo) {
+      this.packageName = packageInfo.name;
+      this.async(this.$.componentPage.updateStyles, 2);
     }
   });
 </script>
