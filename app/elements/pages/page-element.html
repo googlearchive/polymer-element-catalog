@@ -23,9 +23,7 @@
     <catalog-element name="[[element]]" data="{{metadata}}"></catalog-element>
     <catalog-package name="[[metadata.package]]" data="{{package}}"></catalog-package>
     <catalog-data elements="{{elements}}" behavior-map="{{behaviorMap}}"></catalog-data>
-
-    <theme-color color="[[package.color]]">
-      <paper-drawer-panel id="drawerPanel" drawer-width="272px" disable-edge-swipe>
+    <paper-drawer-panel id="drawerPanel" narrow="{{narrowDrawer}}" responsive-width="900px" drawer-width="272px" disable-edge-swipe>
         <app-sidebar drawer>
           <paper-toolbar>
             <app-logo class="flex"></app-logo>
@@ -34,7 +32,7 @@
           <div class="content">
             <a is="app-link" href="[[_packageLink(package.name)]]" class="horizontal layout center" id="package-heading">
               <iron-icon icon="chevron-left"></iron-icon>
-              <package-symbol package="[[package]]"></package-symbol>
+              <package-symbol color="[[package.color]]" symbol="[[package.symbol]]"></package-symbol>
               <span class="name flex">[[package.title]]</span>
             </a>
             <div id="element-header">
@@ -78,24 +76,29 @@
                 </template>
               </nav>
             </section>
-
-            <!--<section id="all-elements" class="flex nav vertical layout shrinkable">
-              <h4>All <span>[[package.title]]</span></h4>
-              <iron-selector class="flex nav" attr-for-selected="name" selected="{{element}}">
-                <template is="dom-repeat" id="all" items="[[elements]]" filter="listFilter">
-                  <paper-item name$="[[item.name]]">[[item.name]]</paper-item>
-                </template>
-              </iron-selector>
-            </section>-->
           </div>
         </app-sidebar>
         <section main class="fit">
-          <iron-component-page on-iron-doc-viewer-component-selected="navToBehavior" version="[[metadata.version]]" doc-src="[[docSrc(element)]]" base="[[baseURI(element)]]" _catalog view="{{view}}" doc-elements="{{docElements}}" doc-behaviors="{{docBehaviors}}" doc-demos="{{docDemos}}" active="{{active}}"></iron-component-page>
-          <iron-icon icon="menu" paper-drawer-toggle></iron-icon>
+          <iron-component-page 
+            _catalog
+            id="componentPage"
+            scroll-mode="[[_getScrollMode(narrowDrawer)]]"
+            package$="[[package.name]]"
+            version="[[metadata.version]]"
+            doc-src="[[docSrc(element)]]"
+            base="[[baseURI(element)]]"
+            view="{{view}}"
+            doc-elements="{{docElements}}"
+            doc-behaviors="{{docBehaviors}}"
+            doc-demos="{{docDemos}}"
+            active="{{active}}"
+            on-iron-doc-viewer-component-selected="navToBehavior"
+            on-iron-component-page-error="_handleError">
+          </iron-component-page>
+          <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
           <cart-icon fade-out$="[[_isCartIconHidden(view)]]"></cart-icon>
         </section>
       </paper-drawer-panel>
-    </theme-color>
   </template>
 </dom-module>
 
@@ -114,13 +117,19 @@
       metadata: {type: Object, value: null},
       package: Object,
       router: Object,
-      q: String
+      q: String,
+      packageName: {
+        type: String,
+        reflectToAttribute: true
+      },
+      narrowDrawer: Boolean
     },
     observers: [
       'updateMeta(element,active)',
       'viewUpdated(view)',
       'analyze(importPath)',
-      'search(q)'
+      'search(q)',
+      '_updateStyles(package)'
     ],
     attached: function() {
       this.updateMeta();
@@ -211,6 +220,18 @@
     },
     _isCartIconHidden: function(view) {
       return view.indexOf('demo:') === 0;
+    },
+
+    _handleError: function() {
+      this.router.go('/404');
+    },
+
+    _updateStyles: function(packageInfo) {
+      this.packageName = packageInfo.name;
+      this.async(this.$.componentPage.updateStyles, 2);
+    },
+    _getScrollMode: function(narrowDrawer) {
+      return narrowDrawer ? 'waterfall' : 'scroll';
     }
   });
 </script>

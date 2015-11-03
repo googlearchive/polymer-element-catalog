@@ -1,8 +1,9 @@
 <link rel="import" href="../../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../bower_components/iron-icons/av-icons.html">
-<link rel="import" href="../../bower_components/iron-media-query/iron-media-query.html">
 <link rel="import" href="../../bower_components/paper-drawer-panel/paper-drawer-panel.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/paper-header-panel/paper-header-panel.html">
 
 <link rel="import" href="../app-sidebar/app-sidebar.html">
 <link rel="import" href="../app-logo/app-logo.html">
@@ -10,12 +11,12 @@
 <link rel="import" href="../cart-icon/cart-icon.html">
 <link rel="import" href="../catalog-data/catalog-data.html">
 <link rel="import" href="../catalog-package/catalog-package.html">
-<link rel="import" href="../element-card/element-card.html">
 <link rel="import" href="../package-symbol/package-symbol.html">
 <link rel="import" href="../tag-link/tag-link.html">
 <link rel="import" href="../theme-color/theme-color.html">
 <link rel="import" href="../element-action-menu/element-action-menu.html">
 <link rel="import" href="../element-table/element-table.html">
+<link rel="import" href="../element-table-cards/element-table-cards.html">
 <link rel="import" href="../responsive-element/responsive-element.html">
 
 <dom-module id="page-browse">
@@ -23,8 +24,7 @@
   <template>
     <catalog-data elements="{{elements}}" packages="{{packages}}"></catalog-data>
     <catalog-package name="[[package]]" data="{{packageInfo}}"></catalog-package>
-    <responsive-element>
-      <paper-drawer-panel id="drawerPanel" responsive-width="900px" drawer-width="272px" disable-edge-swipe>
+      <paper-drawer-panel id="drawerPanel" responsive-width="900px" narrow="{{narrowMode}}" drawer-width="272px" disable-edge-swipe>
         <app-sidebar drawer>
           <paper-toolbar>
             <app-logo class="flex" tabindex="1"></app-logo>
@@ -49,7 +49,7 @@
                 <template is="dom-repeat" items="[[packages]]">
                   <a class="package" is="app-link" href$="[[_packageLink(item.name)]]" active$="[[_isEqual(package,item.name)]]" tabindex="1">
                     <div class="layout horizontal center">
-                      <package-symbol aria-hidden="true" package="[[item]]"></package-symbol>
+                      <package-symbol aria-hidden="true" symbol="[[item.symbol]]" color="[[item.color]]"></package-symbol>
                       <span class="title flex">[[item.title]]</span>
                     </div>
                   </a>
@@ -61,33 +61,27 @@
             </div>
           </div>
         </app-sidebar>
-
-        <div id="container" class="fit" view$="[[_actualView(view)]]" main>
-          <div class="elements-title horizontal layout center">
-            <iron-icon icon="menu" paper-drawer-toggle></iron-icon>
+        <paper-header-panel id="container" mode="[[_getMode(narrowMode)]]" view$="[[_actualView(view)]]" main>
+          <div class="paper-header">
+            <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
             <h2 class="flex">[[pageTitle]]</h2>
-            <iron-icon id="package-view-mode" icon="[[viewIcon]]" on-tap="toggleView" hidden$="[[_forceCards]]"></iron-icon>
-            <cart-icon id="cart-toggle" icon="stars" on-tap="cartOpen"></cart-icon>
+            <paper-icon-button class="toggleViewButton" icon="[[viewIcon]]" on-tap="toggleView" hidden$="[[_forceCards]]"></paper-icon-button>
+            <cart-icon class="cartButton" id="cart-toggle" icon="stars" on-tap="cartOpen"></cart-icon>
           </div>
+          <div id="content">
+            <div id="package-heading" hidden$="[[!packageInfo]]">
+              <div class="description">[[packageInfo.description]]</div>
+            </div>
 
-          <div id="package-heading" hidden$="[[!packageInfo]]">
-            <div class="description">[[packageInfo.description]]</div>
-          </div>
-
-          <div id="element-cards" class="horizontal layout wrap">
             <template is="dom-if" if="[[_stampCards(view)]]" restamp>
-              <template name="element-cards-repeat" is="dom-repeat" items="[[_filteredElements]]">
-                <element-card element="[[item.name]]"></element-card>
-              </template>
+              <element-table-cards id="element-cards" elements="[[_filteredElements]]"></element-table-cards>
+            </template>
+            <template is="dom-if" if="[[_stampTable(view)]]" restamp>
+              <element-table color="[[_getColor(packageInfo)]]" elements="[[_filteredElements]]" on-tag-selected="updateTag"></element-table>
             </template>
           </div>
-
-          <template is="dom-if" if="[[_stampTable(view)]]" restamp>
-            <element-table color="[[packageInfo.color]]" elements="[[_filteredElements]]" on-tag-selected="updateTag"></element-table>
-          </template>
-        </div>
+        </paper-header-panel>
       </paper-drawer-panel>
-    </responsive-element>
   </template>
 </dom-module>
 
@@ -120,8 +114,8 @@
         _forceCards: {type: Boolean},
       },
       observers: [
-        'updateURL(q,package,tag,view,elements)',
-        'updateMeta(packageInfo)',
+        'updateURL(q,package, tag, view, elements)',
+        'updateMeta(package, packageInfo)',
         'scrollToTop(package)'
       ],
       listeners: {
@@ -130,10 +124,6 @@
 
       ready: function() {
         this.view = this._forceCards ? 'cards' : 'table';
-      },
-
-      attached: function() {
-        this.updateMeta();
       },
 
       filter: function(element) {
@@ -220,26 +210,27 @@
           });
         }
       },
-      updateURL: function(q,p,tag,view) {
+      updateURL: function(q, packageName, packageInfo, tag, view) {
         var qs = this._buildQueryString();
         if (qs !== _lastNavigated && this.router) {
           _lastNavigated = qs;
-         this.router.go("/browse" + (qs.length ? "?" + qs : ""), {replace: true});
+          this.router.go('/browse' + (qs.length ? '?' + qs : ''), {replace: true});
         }
+        this.updateMeta(packageName, this.packageInfo);
 
-        this.updateMeta();
         if (this.elements) {
           this._filteredElements = this.elements.filter(this.filter.bind(this));
           this._elementCount = this._filteredElements.length;
         }
+        this.scrollToTop();
       },
-      updateMeta: function(packageInfo) {
+      updateMeta: function(packageName, packageInfo) {
         if (this.q && this.q.length) {
           var t = "'" + this.q + "' ";
-          t += (this.packageInfo && this.packageInfo.title) ? this.packageInfo.title : "Elements";
+          t += (packageInfo && packageInfo.title) ? packageInfo.title : "Elements";
           this.pageTitle = t;
-        } else if (this.packageInfo && this.packageInfo.title) {
-          this.pageTitle = this.packageInfo.title;
+        } else if (packageInfo && packageInfo.title) {
+          this.pageTitle = packageInfo.title;
         } else if (this.tagList.length) {
           this.pageTitle = "Elements Tagged '" + this.tagList.join("' or '") + "'";
         } else {
@@ -276,7 +267,7 @@
         this.q = this.$.query.value;
       },
       scrollToTop: function() {
-        this.$.container.scrollTop = 0;
+        this.$.container.scroller.scrollTop = 0;
       },
       _stampCards: function(view) {
         return view === 'cards';
@@ -292,6 +283,13 @@
       },
       _isEqual: function(a,b) {
         return a === b;
+      },
+      _getColor: function() {
+        return this.packageInfo && this.packageInfo.color ? this.packageInfo.color : '';
+      },
+
+      _getMode: function(narrow) {
+        return narrow ? 'waterfall' : 'scroll';
       }
     });
   })();

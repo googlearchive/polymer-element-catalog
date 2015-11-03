@@ -10,8 +10,15 @@
         display: block;
         position: relative;
         background: white;
-        border: 1px solid #e5e5e5;
+        border: 1px solid #d0d0d0;
         border-radius: 3px;
+        opacity: 1;
+        transition: opacity 0.4s;
+      }
+
+      :host(.hidden) {
+        transition: none;
+        opacity: 0;
       }
 
       .header {
@@ -62,6 +69,7 @@
 
       .name {
         min-width: 250px;
+        font-weight: 500;
       }
 
       .name .narrow {
@@ -83,7 +91,6 @@
       }
 
       #actions element-action-menu {
-        position: absolute;
         right: 0;
       }
 
@@ -110,9 +117,17 @@
     is: 'element-table',
 
     properties: {
-      elements: Array,
-      color: String,
-      narrowViewport: {type: Boolean, reflectToAttribute: true}
+      elements: {
+        type: Array,
+        observer: '_elementsChanged'
+      },
+      color: {
+        type: String
+      },
+      narrowViewport: {
+        type: Boolean,
+        reflectToAttribute: true
+      }
     },
 
     listeners: {
@@ -172,6 +187,7 @@
 
       if (!sharedActionMenu) {
         this._sharedActionMenu = document.createElement('element-action-menu');
+        this._sharedActionMenu.classList.add('hidden');
         Polymer.dom(this.$.actions).appendChild(this._sharedActionMenu);
         sharedActionMenu = this._sharedActionMenu;
       }
@@ -179,7 +195,9 @@
       sharedActionMenu.iconsOnly = true;
       sharedActionMenu.element = this.elements[index].name;
       sharedActionMenu.style.top = rowOffsetTop + 'px';
-      sharedActionMenu.style.display = '';
+
+      this._layoutIfNeeded(sharedActionMenu);
+      sharedActionMenu.classList.remove('hidden');
       row.classList.add('hover');
 
       this._currentRowIndex = index;
@@ -192,7 +210,7 @@
 
       if (row) {
         if (sharedActionMenu) {
-          sharedActionMenu.style.display = 'none';
+          sharedActionMenu.classList.add('hidden');
         }
         row.classList.remove('hover');
         this._currentRowIndex = -1;
@@ -206,6 +224,17 @@
 
     _getHeaderStyle: function(color) {
       return 'background-color: '+ color+';';
+    },
+
+    _elementsChanged: function() {
+      this.classList.add('hidden');
+      this.async(function() {
+        this.classList.remove('hidden');
+      }, 1);
+    },
+
+     _layoutIfNeeded: function(el) {
+      return el.offsetTop;
     }
   });
 </script>

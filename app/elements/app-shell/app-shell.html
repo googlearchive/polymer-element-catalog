@@ -15,6 +15,7 @@
 <link rel="import" href="../pages/page-browse.html">
 <link rel="import" href="../pages/page-element.html">
 <link rel="import" href="../pages/page-guide.html">
+<link rel="import" href="../pages/page-not-found.html">
 
 <dom-module id="app-shell">
   <style>
@@ -31,18 +32,17 @@
   </style>
   <template>
     <paper-drawer-panel id="cartpanel" class="flex" force-narrow right-drawer disable-edge-swipe disable-swipe drawer-width="320px">
-      <app-router id="router" class="flex" mode="pushstate" main on-activate-route-end="trackPageview">
-        <app-route path="/" element="page-packages" bindRouter></app-route>
-        <app-route path="/browse" element="page-browse" bindRouter onUrlChange="updateModel"></app-route>
-        <app-route path="/elements/:element" element="page-element" bindRouter onUrlChange="updateModel"></app-route>
-        <app-route path="/guides/:name" element="page-guide" bindRouter></app-route>
-        <app-route path="*">
-          <template><h1>Not Found</h1></template>
-        </app-route>
-      </app-router>
+      <div id="main"  main>
+        <app-router id="router" class="flex" mode="pushstate" on-activate-route-end="trackPageview">
+          <app-route path="/" element="page-packages" bindRouter></app-route>
+          <app-route path="/browse" element="page-browse" bindRouter onUrlChange="updateModel"></app-route>
+          <app-route path="/elements/:element" element="page-element" bindRouter onUrlChange="updateModel"></app-route>
+          <app-route path="/guides/:name" element="page-guide" bindRouter></app-route>
+          <app-route path="*" element="page-not-found"></app-route>
+        </app-router>
+      </div>
       <app-cart id="cart" drawer></app-cart>
     </paper-drawer-panel>
-    <paper-toast id="toast"></paper-toast>
   </template>
 </dom-module>
 <script>
@@ -57,6 +57,8 @@
       'cart-remove': 'cartRemove',
       'toast': 'showToast'
     },
+    _toast: null,
+
     toggleSearch: function() {
       this.$.search.active = !this.$.search.active;
     },
@@ -88,9 +90,14 @@
       this.$.cart.remove(el);
     },
     showToast: function(e, detail) {
-      this.$.toast.text = detail.text;
-      this.$.toast.show();
+      if (!this._toast) {
+        this._toast = document.createElement('paper-toast');
+        Polymer.dom(this.$.router).appendChild(this._toast);
+      }
+      this._toast.text = detail.text;
+      this.async(this._toast.show.bind(this._toast), 1);
     },
+
     trackPageview: function(e, detail) {
       this.debounce('pageview', function() {
         var loc = window.location.pathname + window.location.search;

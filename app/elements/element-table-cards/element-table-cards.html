@@ -1,0 +1,116 @@
+<link rel="import" href="../element-card/element-card.html">
+<link rel="import" href="../catalog-data/catalog-data.html">
+
+<dom-module id="element-table-cards">
+  <style>
+    :host {
+      display: block;
+      max-width: 920px;
+    }
+    #cards {
+      @apply(--layout-horizontal);
+      @apply(--layout-wrap);
+      
+      margin-right: -10px;
+    }
+  </style>
+  <template>
+    <catalog-data package-map="{{packages}}"></catalog-data>
+    <div id="cards" on-tap="_tap">
+    <!-- 
+      Waiting for Kevin :) 
+      <template name="element-cards-repeat" is="dom-repeat" items="[[elements]]" initial-count="10" chunk-count="10">
+        <element-card item="[[item]]" color="[[_getColor(item)]]" package-symbol="[[_getPackageSymbol(item)]]"></element-card>
+      </template> 
+     -->
+    </div>
+  </template>
+</dom-module>
+<script>
+  Polymer({
+    is: 'element-table-cards',
+
+    properties: {
+      packages: {
+        type: Array
+      },
+
+      elements: {
+        type: Array
+      }
+    },
+
+    observers: [
+      '_render(elements, packages, isAttached)'
+    ],
+
+    _findAncestor: function(node, fn) {
+      while (node && fn.call(this, node)) {
+        node = node.parentNode;
+      }
+      return node;
+    },
+
+    _tap: function(e) {
+      var sourceEvent = e.detail.sourceEvent;
+      var A = this._findAncestor(e.target, function(node) {
+        return node != this && node.tagName !== 'A';
+      });
+
+      if (A && A.tagName === 'A' && A.href.indexOf(location.host) > 0) {
+        if (sourceEvent.ctrlKey || sourceEvent.metaKey) {
+          window.open(A.href);
+        } else {
+          this.fire('nav', {url: A.href});
+        }
+        e.preventDefault();
+      }
+    },
+
+    _getColor: function(item) {
+      return this.packages[item.package].color;
+    },
+
+    _getPackageSymbol: function(item) {
+      return this.packages[item.package].symbol;
+    },
+
+    _render: function(elements, packages) {
+      if (elements) {
+        this.$.cards.innerHTML = '';
+
+        var head = 0;
+        var batchSize = 3;
+        var flush = function() {
+          if (head + batchSize >= elements.length) {
+            batchSize = elements.length - head;
+          }
+
+          if (batchSize <= 0) {
+            return false;
+          }
+          var el;
+          var firstHead = head;
+          var lastHead = firstHead + batchSize;
+
+          for (; head < lastHead; head++) {
+            el = document.createElement('element-card');
+            el.item = elements[head];
+            el.color = packages[el.item.package].color;
+            el.packageSymbol = packages[el.item.package].symbol;
+            Polymer.dom(this.$.cards).appendChild(el);
+          }
+          return true;
+        };
+        var batch = function() {
+          if (flush.call(this)) {
+            batchSize = 10;
+            requestAnimationFrame(batch.bind(this));
+          }
+        };
+
+        batch.call(this);
+      }
+    }
+  });
+</script>
