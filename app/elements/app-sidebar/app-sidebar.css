@@ -4,7 +4,6 @@
   z-index: 2;
   background: white;
   border-right: 1px solid #e5e5e5;
-  @apply(--layout-fit);
   @apply(--layout);
   @apply(--layout-vertical);
   overflow-x: hidden;
