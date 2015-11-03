@@ -23,8 +23,7 @@
     <catalog-element name="[[element]]" data="{{metadata}}"></catalog-element>
     <catalog-package name="[[metadata.package]]" data="{{package}}"></catalog-package>
     <catalog-data elements="{{elements}}" behavior-map="{{behaviorMap}}"></catalog-data>
-
-      <paper-drawer-panel id="drawerPanel" responsive-width="900px" drawer-width="272px" disable-edge-swipe>
+    <paper-drawer-panel id="drawerPanel" narrow="{{narrowDrawer}}" responsive-width="900px" drawer-width="272px" disable-edge-swipe>
         <app-sidebar drawer>
           <paper-toolbar>
             <app-logo class="flex"></app-logo>
@@ -80,7 +79,22 @@
           </div>
         </app-sidebar>
         <section main class="fit">
-          <iron-component-page id="componentPage" package$="[[package.name]]" on-iron-doc-viewer-component-selected="navToBehavior" version="[[metadata.version]]" doc-src="[[docSrc(element)]]" base="[[baseURI(element)]]" _catalog view="{{view}}" doc-elements="{{docElements}}" doc-behaviors="{{docBehaviors}}" doc-demos="{{docDemos}}" active="{{active}}" on-iron-component-page-error="_handleError"></iron-component-page>
+          <iron-component-page 
+            _catalog
+            id="componentPage"
+            scroll-mode="[[_getScrollMode(narrowDrawer)]]"
+            package$="[[package.name]]"
+            version="[[metadata.version]]"
+            doc-src="[[docSrc(element)]]"
+            base="[[baseURI(element)]]"
+            view="{{view}}"
+            doc-elements="{{docElements}}"
+            doc-behaviors="{{docBehaviors}}"
+            doc-demos="{{docDemos}}"
+            active="{{active}}"
+            on-iron-doc-viewer-component-selected="navToBehavior"
+            on-iron-component-page-error="_handleError">
+          </iron-component-page>
           <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
           <cart-icon fade-out$="[[_isCartIconHidden(view)]]"></cart-icon>
         </section>
@@ -107,8 +121,8 @@
       packageName: {
         type: String,
         reflectToAttribute: true
-      }
-
+      },
+      narrowDrawer: Boolean
     },
     observers: [
       'updateMeta(element,active)',
@@ -215,6 +229,9 @@
     _updateStyles: function(packageInfo) {
       this.packageName = packageInfo.name;
       this.async(this.$.componentPage.updateStyles, 2);
+    },
+    _getScrollMode: function(narrowDrawer) {
+      return narrowDrawer ? 'waterfall' : 'scroll';
     }
   });
 </script>
