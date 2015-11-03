@@ -167,6 +167,9 @@ gulp.task('polybuild', function () {
 // Clean Output Directory
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 
+// Clean everything
+gulp.task('distclean', ['clean'], del.bind(null, ['bower_components']));
+
 // Watch Files For Changes & Reload
 gulp.task('serve', ['styles', 'elements', 'catalog:dev'], function () {
   var dirs = ['.tmp','app'];

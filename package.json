@@ -10,7 +10,8 @@
     "clean": "gulp clean",
     "deps": "npm install && bower install",
     "deploy": "firebase deploy",
-    "stage": "firebase deploy -f p-catalog-staging"
+    "stage": "firebase deploy -f p-catalog-staging",
+    "deploy-from-scratch":"gulp distclean && bower install && gulp && firebase deploy"
   },
   "repository": {
     "type": "git",
