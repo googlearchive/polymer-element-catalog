@@ -99,7 +99,7 @@
     <prism-highlighter></prism-highlighter>
 
     <catalog-data guides="{{guides}}"></catalog-data>
-    <catalog-guide name="[[name]]" data="{{guide}}" content="{{content}}"></catalog-guide>
+    <catalog-guide name="[[name]]" data="{{guide}}" content="{{content}}" on-catalog-guide-error="_catalogGuideError"></catalog-guide>
 
     <paper-drawer-panel drawer-width="272px" disable-edge-swipe>
       <app-sidebar drawer>
@@ -148,13 +148,17 @@
     ],
 
     contentChanged: function() {
-      this.$.content.innerHTML = this.content;
-      this._decorateHeadings();
-      this._highlight();
-      this.scopeSubtree(this.$.content);
-      if (window.location.hash !== "") {
-        var el = Polymer.dom(this.$.content).querySelector(window.location.hash);
-        if (el) el.scrollIntoView();
+      if (this.content.indexOf('<!doctype') >= 0) {
+        this._catalogGuideError();
+      } else { console.log( this.content);
+        this.$.content.innerHTML = this.content;
+        this._decorateHeadings();
+        this._highlight();
+        this.scopeSubtree(this.$.content);
+        if (window.location.hash !== "") {
+          var el = Polymer.dom(this.$.content).querySelector(window.location.hash);
+          if (el) el.scrollIntoView();
+        }
       }
     },
 
@@ -196,6 +200,9 @@
       if (this.name !== name) {
         this.router.go('/guides/' + name);
       }
+    },
+    _catalogGuideError: function() {
+      this.router.go('/404');
     }
   });
 </script>

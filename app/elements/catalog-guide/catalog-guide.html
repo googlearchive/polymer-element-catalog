@@ -3,7 +3,7 @@
 <dom-module id="catalog-guide">
   <template>
     <catalog-data guide-map="{{_guides}}"></catalog-data>
-    <iron-ajax id="req" auto url="[[src]]" method="get" handle-as="text" last-response="{{content}}"></iron-ajax>
+    <iron-ajax id="req" auto url="[[src]]" method="get" handle-as="text" last-response="{{content}}" on-error="_didReceiveError"></iron-ajax>
   </template>
 </dom-module>
 <script>
@@ -23,6 +23,9 @@
     },
     getSrc: function(name) {
       return "/data/guides/" + name + ".html";
+    },
+    _didReceiveError: function(e) {
+      this.fire('catalog-guide-error', e.detail);
     }
   });
 </script>
