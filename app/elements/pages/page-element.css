@@ -94,6 +94,12 @@ paper-item, a.item {
   color: var(--paper-blue-a700);
 }
 
+.nav .item {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 app-sidebar h4 {
   font-size: 14px;
   font-weight: 500;
