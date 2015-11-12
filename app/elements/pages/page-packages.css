@@ -73,7 +73,7 @@ guide-card, #coming-soon {
 }
 
 #coming-soon {
-  cursor: normal;
+  cursor: default;
   line-height: 76px;
   text-align: center;
   font-size: 16px;
