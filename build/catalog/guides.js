@@ -103,7 +103,7 @@ function getGuideName (filepath) {
 function formatParsedGuideFilepath (srcPath, destDir) {
 
   var relativeSrcPath = srcPath
-    .replace(process.cwd() + path.sep, '')
+    .replace((process.cwd() + path.sep).replace(/\\/g, '/'), '')
     .split('/')
     .filter(function (segment) {
 
