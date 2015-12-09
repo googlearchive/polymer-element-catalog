@@ -159,7 +159,7 @@ Create a flex container that lays out its children vertically or horizontally.
 Class | Mixin | Result 
 :-|:-|:-
 <code>layout horizontal</code>| <code>&#8209;&#8209;layout-horizontal</code> | Horizontal layout container.
-<code>layout vertical</code> | <code>&#8209;&#8209;layout-verical</code> | Vertical layout container.
+<code>layout vertical</code> | <code>&#8209;&#8209;layout-vertical</code> | Vertical layout container.
 
 **Example: classes** 
 
@@ -703,7 +703,7 @@ Layout direction can be mirrored using the following rules:
 Class | Mixin | Result 
 :-|:-|:-
 <code>layout horizontal&#8209;reverse</code>| <code>&#8209;&#8209;layout-horizontal-reverse</code> | Horizontal layout with children laid out in reverse order (last-to-first).
-<code>layout verical&#8209;reverse</code> | <code>&#8209;&#8209;layout-verical-reverse</code> | Vertical layout with children laid out in reverse order.
+<code>layout vertical&#8209;reverse</code> | <code>&#8209;&#8209;layout-vertical-reverse</code> | Vertical layout with children laid out in reverse order.
 <code>layout wrap&#8209;reverse</code> | <code>&#8209;&#8209;layout-wrap-reverse</code> | Wrap layout with wrapped rows placed in the reverse order (for example, in a vertical layout, the second row is placed above the first row, instead of below).
 
 **Example: mixins**
