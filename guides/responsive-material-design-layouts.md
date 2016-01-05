@@ -160,7 +160,7 @@ Use `paper-icon-button` and `iron-icons` to add icons to your header:
     <paper-toolbar>
       <div>Header</div>
       <span class="flex"></span>
-      <paper-icon-button icon="search"></paper-button-icon>
+      <paper-icon-button icon="search"></paper-icon-button>
     </paper-toolbar>
     <div>Content</div>
   </paper-header-panel>
