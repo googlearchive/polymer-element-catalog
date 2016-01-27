@@ -55,15 +55,6 @@
       "description":"--TBD--"
     },
     {
-      "name":"molecules",
-      "title":"Molecules",
-      "symbol":"Mo",
-      "color":"#ffab91",
-      "version":"1.0.0",
-      "tagline":"Third-party library wrappers",
-      "description":"--TBD--"
-    },
-    {
       "name":"service-worker-elements",
       "title":"Service Worker Elements",
       "symbol":"Sw",
