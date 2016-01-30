@@ -151,13 +151,6 @@ iron-component-page {
   };
 }
 
-:host([package-name=molecules]) iron-component-page {
-  --iron-doc-viewer-header: {
-    background-color: #ffab91;
-  };
-}
-
-
 [narrow] iron-component-page {
   top: 64px;
 }
