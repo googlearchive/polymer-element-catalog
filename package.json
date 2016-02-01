@@ -11,7 +11,8 @@
     "deps": "npm install && bower install",
     "deploy": "firebase deploy",
     "stage": "firebase deploy -f p-catalog-staging",
-    "deploy-from-scratch":"gulp distclean && bower install && gulp && firebase deploy"
+    "stage-from-scratch": "gulp distclean && bower install && npm run build && npm run stage",
+    "deploy-from-scratch": "gulp distclean && bower install && npm run build && npm run deploy"
   },
   "repository": {
     "type": "git",
@@ -38,7 +39,7 @@
     "del": "^0.1.2",
     "end-of-stream": "^1.1.0",
     "es6-promise": "^2.1.1",
-    "firebase-tools": "^1.1.6",
+    "firebase-tools": "^2.2.1",
     "from2": "^1.3.0",
     "front-matter": "^1.0.0",
     "fs-extra": "^0.18.2",
