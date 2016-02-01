@@ -1,6 +1,6 @@
 {
   "name": "polymer-element-catalog",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "authors": [
     "Google"
   ],
@@ -20,7 +20,7 @@
     "paper-elements": "PolymerElements/paper-elements#^1.0.0",
     "gold-elements": "PolymerElements/gold-elements#^1.0.0",
     "neon-elements": "PolymerElements/neon-elements#^1.0.0",
-    "platinum-elements": "PolymerElements/platinum-elements#^1.0.0",
+    "platinum-elements": "PolymerElements/platinum-elements#^2.0.0",
     "google-web-components": "GoogleWebComponents/google-web-components#^1.0.0",
     "molecules": "PolymerElements/molecules#^1.0.0",
     "polymer": "Polymer/polymer#^1.0.0",
