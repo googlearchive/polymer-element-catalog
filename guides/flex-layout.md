@@ -158,8 +158,8 @@ Create a flex container that lays out its children vertically or horizontally.
 
 Class | Mixin | Result 
 :-|:-|:-
-<code>layout horizontal</code>| <code>&#8209;&#8209;layout-horizontal</code> | Horizontal layout container.
-<code>layout vertical</code> | <code>&#8209;&#8209;layout-vertical</code> | Vertical layout container.
+<code>layout horizontal</code>| <code>--layout-horizontal</code> | Horizontal layout container.
+<code>layout vertical</code> | <code>--layout-vertical</code> | Vertical layout container.
 
 **Example: classes** 
 
@@ -203,10 +203,10 @@ Children of a flex container can use flex to control their own sizing.
 
 Class | Mixin | Result 
 :-|:-|:-
-<code>flex</code>| <code>&#8209;&#8209;layout-flex</code> | Expand the child to fill available space in the main axis.
-<code>flex-<var>ratio</var></code>| <code>&#8209;&#8209;layout-flex-<var>ratio</var></code> | Assign a flex ratio of 1 to 12.
-<code>flex-none</code>| <code>&#8209;&#8209;layout-flex-none</code> | Don't flex the child.
-<code>flex-auto</code>| <code>&#8209;&#8209;layout-flex-auto</code> | Sets flex `flex-basis` to `auto` and `flex-grow` and `flex-shrink` to 1.
+<code>flex</code>| <code>--layout-flex</code> | Expand the child to fill available space in the main axis.
+<code>flex-<var>ratio</var></code>| <code>--layout-flex-<var>ratio</var></code> | Assign a flex ratio of 1 to 12.
+<code>flex-none</code>| <code>--layout-flex-none</code> | Don't flex the child.
+<code>flex-auto</code>| <code>--layout-flex-auto</code> | Sets flex `flex-basis` to `auto` and `flex-grow` and `flex-shrink` to 1.
 
 
 **Example: classes** 
@@ -504,11 +504,11 @@ by specifying  one of the following.
 
 Class | Mixin | Result 
 :-|:-|:-
-`start-justified`| <code>&#8209;&#8209;layout-start-justified</code> | Aligns contents at the start of the main axis.
-`center-justified` | <code>&#8209;&#8209;layout-center-justified</code> | Centers contents along the main axis.
-`end-justified` | <code>&#8209;&#8209;layout-end-justified</code> | Aligns contents to the end of the main axis.
-`justified` | <code>&#8209;&#8209;layout-justified</code> | Aligns contents with equal spaces between children. 
-`around-justified` | <code>&#8209;&#8209;layout-around-justified</code> | Aligns contents with equal spaces arround children. 
+`start-justified`| <code>--layout-start-justified</code> | Aligns contents at the start of the main axis.
+`center-justified` | <code>--layout-center-justified</code> | Centers contents along the main axis.
+`end-justified` | <code>--layout-end-justified</code> | Aligns contents to the end of the main axis.
+`justified` | <code>--layout-justified</code> | Aligns contents with equal spaces between children. 
+`around-justified` | <code>--layout-around-justified</code> | Aligns contents with equal spaces arround children. 
 
 
 
@@ -608,10 +608,10 @@ Alignment can also be set per-child (instead of using the layout container's rul
 
 Class | Mixin | Result 
 :-|:-|:-
-`self-start`| <code>&#8209;&#8209;layout-self-start</code> | Aligns the child at the start of the cross-axis.
-`self-center` | <code>&#8209;&#8209;layout-self-center</code> | Centers the child along the cross-axis.
-`self-end` | <code>&#8209;&#8209;layout-self-end</code> | Aligns the child at the end of the cross-axis.
-`self-stretch` | <code>&#8209;&#8209;self-stretch</code> | Stretches the child to fit the cross-axis. 
+`self-start`| <code>--layout-self-start</code> | Aligns the child at the start of the cross-axis.
+`self-center` | <code>--layout-self-center</code> | Centers the child along the cross-axis.
+`self-end` | <code>--layout-self-end</code> | Aligns the child at the end of the cross-axis.
+`self-stretch` | <code>--self-stretch</code> | Stretches the child to fit the cross-axis. 
 
 **Example: classes**
 
@@ -702,9 +702,9 @@ Layout direction can be mirrored using the following rules:
 
 Class | Mixin | Result 
 :-|:-|:-
-<code>layout horizontal&#8209;reverse</code>| <code>&#8209;&#8209;layout-horizontal-reverse</code> | Horizontal layout with children laid out in reverse order (last-to-first).
-<code>layout vertical&#8209;reverse</code> | <code>&#8209;&#8209;layout-vertical-reverse</code> | Vertical layout with children laid out in reverse order.
-<code>layout wrap&#8209;reverse</code> | <code>&#8209;&#8209;layout-wrap-reverse</code> | Wrap layout with wrapped rows placed in the reverse order (for example, in a vertical layout, the second row is placed above the first row, instead of below).
+<code>layout horizontal&#8209;reverse</code>| <code>--layout-horizontal-reverse</code> | Horizontal layout with children laid out in reverse order (last-to-first).
+<code>layout vertical&#8209;reverse</code> | <code>--layout-vertical-reverse</code> | Vertical layout with children laid out in reverse order.
+<code>layout wrap&#8209;reverse</code> | <code>--layout-wrap-reverse</code> | Wrap layout with wrapped rows placed in the reverse order (for example, in a vertical layout, the second row is placed above the first row, instead of below).
 
 **Example: mixins**
 
