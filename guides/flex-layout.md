@@ -611,7 +611,7 @@ Class | Mixin | Result
 `self-start`| <code>&#8209;&#8209;layout-self-start</code> | Aligns the child at the start of the cross-axis.
 `self-center` | <code>&#8209;&#8209;layout-self-center</code> | Centers the child along the cross-axis.
 `self-end` | <code>&#8209;&#8209;layout-self-end</code> | Aligns the child at the end of the cross-axis.
-`self-stretch` | <code>&#8209;&#8209;self-stretch</code> | Stretches the child to fit the cross-axis. 
+`self-stretch` | <code>&#8209;&#8209;layout-self-stretch</code> | Stretches the child to fit the cross-axis. 
 
 **Example: classes**
 
