@@ -150,7 +150,7 @@
     contentChanged: function() {
       if (this.content.indexOf('<!doctype') >= 0) {
         this._catalogGuideError();
-      } else { console.log( this.content);
+      } else {
         this.$.content.innerHTML = this.content;
         this._decorateHeadings();
         this._highlight();
