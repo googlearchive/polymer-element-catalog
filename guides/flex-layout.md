@@ -69,7 +69,8 @@ Then include the module(s) that you need:
     <!-- include classes in the main document -->
     <style is="custom-style" include="iron-flex iron-flex-alignment">
 
-or
+or:
+
     <!-- import classes in an element -->
     <style include="iron-flex iron-flex-alignment">
 
@@ -137,7 +138,7 @@ There are 5 modules available:
       </script>
 
     </dom-module>
-    
+
 
 It's important to note that unlike the previous layout class stylesheets
 (found in `/classes/iron-flex-layout.html`), the new version does not use the `/deep/`
@@ -652,7 +653,7 @@ The classes listed here are included in the `iron-flex-alignment` module of the 
 
         ...
 
-**Example output, equal space between elements**        
+**Example output, equal space between elements**
 
 <div class="horizontal justified layout demo">
   <div>justified</div>
