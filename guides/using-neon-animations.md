@@ -6,7 +6,7 @@ elements: ['neon-animation','neon-animated-pages']
 updated: 2015-05-26
 ---
 
-# neon-animation
+## Overview
 
 `neon-animation` is a suite of elements and behaviors to implement pluggable animated transitions for Polymer Elements using [Web Animations](https://w3c.github.io/web-animations/).
 
