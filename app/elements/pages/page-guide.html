@@ -151,10 +151,10 @@
       if (this.content.indexOf('<!doctype') >= 0) {
         this._catalogGuideError();
       } else { console.log( this.content);
-        this.$.content.innerHTML = this.content;
+        Polymer.dom(this.$.content).innerHTML = this.content;
         this._decorateHeadings();
         this._highlight();
-        this.scopeSubtree(this.$.content);
+        // this.scopeSubtree(this.$.content);
         if (window.location.hash !== "") {
           var el = Polymer.dom(this.$.content).querySelector(window.location.hash);
           if (el) el.scrollIntoView();
@@ -167,7 +167,7 @@
     },
 
     _decorateHeadings: function() {
-      var h2s = this.$.content.querySelectorAll('h2');
+      var h2s = Polymer.dom(this.$.content).querySelectorAll('h2');
       for (var i = 0; i < h2s.length; i++) {
         var link = document.createElement('a');
         link.className = "reference-link";
@@ -175,17 +175,21 @@
         var icon = document.createElement('iron-icon');
         icon.icon = 'link';
         link.appendChild(icon);
-        h2s[i].parentNode.insertBefore(link, h2s[i]);
+        var parent = Polymer.dom(h2s[i]).parentNode;
+        Polymer.dom(parent).insertBefore(link, h2s[i]);
       }
     },
     _highlight: function() {
-      var els = this.$.content.querySelectorAll('pre code');
+      // Ensure that the prism-highligher element is upgraded
+      // before firing the highlight event. See: Polymer/polymer-element-catalog#207
+      Polymer.dom.flush();
+      var els = Polymer.dom(this.$.content).querySelectorAll('pre code');
       for (var i = 0; i < els.length; i++) {
         var code = els[i].textContent;
         var event = this.fire('syntax-highlight', {code: code});
         if (event.detail.code && !els[i].highlighted) {
           els[i].highlighted = true;
-          els[i].innerHTML = event.detail.code;
+          Polymer.dom(els[i]).innerHTML = event.detail.code;
         }
       }
     },
