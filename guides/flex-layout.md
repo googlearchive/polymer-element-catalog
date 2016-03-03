@@ -59,29 +59,27 @@ good primer.</aside>
 
 ### Using layout classes
 
-To use layout classes import the `iron-flex-layout-classes` file. You
-must do this in any element that uses any of the `iron-flex-layout` styles.
+The `iron-flex-layout-classes` file provides a set of style modules, so you can include only
+the classes you need. To use the classes, you must import the file, then include the style
+modules you want.
 
-    <link rel="import" href="bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+1.  Import `iron-flex-layout.classes.html`:
 
-Then include the module(s) that you need:
+        <link rel="import" href="bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 
-    <!-- include classes in the main document -->
-    <style is="custom-style" include="iron-flex iron-flex-alignment">
+2.  Include the module(s) that you need:
 
-or:
+        <!-- include classes in the main document -->
+        <style is="custom-style" include="iron-flex iron-flex-alignment">
 
-    <!-- import classes in an element -->
-    <style include="iron-flex iron-flex-alignment">
+    Or:
 
-Then simply apply the classes to any element.
+        <!-- import classes in an element -->
+        <style include="iron-flex iron-flex-alignment">
 
-    <div class="layout horizontal wrap">
+3.  Apply the classes to any element in the current scope.
 
-Many of the layout rules involve combinations of multiple classes (such as `layout horizontal wrap` above),
-and will need a combination of modules.
-The order in which the classes are specified doesn't matter, so `layout horizontal` and `horizontal layout`
-are equivalent.
+        <div class="layout horizontal wrap">
 
 There are 5 modules available:
 - `iron-flex`. Basic flex layouts.
@@ -90,18 +88,22 @@ There are 5 modules available:
 - `iron-flex-factors`. All the available flex factors.
 - `iron-positioning`. Generic, non-flexbox positioning helpers.
 
+
+Many of the layout rules involve combinations of multiple classes (such as `layout horizontal wrap` above),
+and may need a combination of modules.
+The order in which the classes are specified doesn't matter, so `layout horizontal` and `horizontal layout`
+are equivalent.
+
 **Example: using classes in the main document**
 
     <head>
 
       ...
 
+      <!-- import style modules -->
       <link rel="import" href="bower_components/iron-flex-layout/iron-flex-layout-classes.html">
-
-      ...
-
       <!-- main document -- include the module you need in a custom-style element -->
-      <style is="custom-style" include="iron-flex></style>
+      <style is="custom-style" include="iron-flex"></style>
 
     </head>
     <body>
@@ -122,10 +124,10 @@ There are 5 modules available:
 
     <dom-module id="mixin-demo">
 
-      <!-- inside an element -- include the module you need in a standard style element -->
-      <style include="iron-flex"></style>
-
       <template>
+        <!-- inside an element -- include the module you need in a standard style element -->
+        <style include="iron-flex"></style>
+
         <div class="layout horizontal">
           <div>One</div>
           <div>Two</div>
@@ -188,15 +190,15 @@ main document. (They cannot be applied in the main document without a `custom-st
 
     <dom-module id="mixin-demo">
 
-      <!-- inside an element -- apply mixins in a standard style element -->
-      <style>
-        .container {
-          @apply(--layout-horizontal);
-          @apply(--layout-wrap);
-        }
-      </style>
-
       <template>
+        <!-- inside an element -- apply mixins in a standard style element -->
+        <style>
+          .container {
+            @apply(--layout-horizontal);
+            @apply(--layout-wrap);
+          }
+        </style>
+
         <div class="container">
           <div>One</div>
           <div>Two</div>
@@ -241,13 +243,12 @@ The classes listed here are included in the `iron-flex` module of the `iron-flex
 
     <dom-module id="mixin-demo">
 
-      <style>
-        .container {
-          @apply(--layout-horizontal);
-        }
-      </style>
-
       <template>
+        <style>
+          .container {
+            @apply(--layout-horizontal);
+          }
+        </style>
 
         <div class="container">
           <div>One</div>
@@ -290,16 +291,17 @@ The classes listed here are included in the `iron-flex` module of the `iron-flex
 
     <dom-module id="mixin-demo">
 
-      <style>
-        .container {
-          @apply(--layout-horizontal);
-        }
-        .flexchild {
-          @apply(--layout-flex);
-        }
-      </style>
+
 
       <template>
+        <style>
+          .container {
+            @apply(--layout-horizontal);
+          }
+          .flexchild {
+            @apply(--layout-flex);
+          }
+        </style>
 
         <div class="container">
           <div>One</div>
@@ -333,16 +335,15 @@ The same rules can be used for children in vertical layouts.
 
     <dom-module id="mixin-demo">
 
-      <style>
-        .container {
-          @apply(--layout-vertical);
-        }
-        .flexchild {
-          @apply(--layout-flex);
-        }
-      </style>
-
       <template>
+        <style>
+          .container {
+            @apply(--layout-vertical);
+          }
+          .flexchild {
+            @apply(--layout-flex);
+          }
+        </style>
 
         <div class="container">
           <div>One</div>
@@ -385,22 +386,21 @@ The classes listed here are included in the `iron-flex-factors` module of the `i
 
     <dom-module id="mixin-demo">
 
-      <style>
-        .container {
-          @apply(--layout-horizontal);
-        }
-        .flexchild {
-          @apply(--layout-flex);
-        }
-        .flex2child {
-          @apply(--layout-flex-2);
-        }
-        .flex3child {
-          @apply(--layout-flex-3);
-        }
-      </style>
-
       <template>
+        <style>
+          .container {
+            @apply(--layout-horizontal);
+          }
+          .flexchild {
+            @apply(--layout-flex);
+          }
+          .flex2child {
+            @apply(--layout-flex-2);
+          }
+          .flex3child {
+            @apply(--layout-flex-3);
+          }
+        </style>
 
         <div class="container">
           <div class="flex3child">One</div>
@@ -417,41 +417,6 @@ The classes listed here are included in the `iron-flex-factors` module of the `i
   <div class="flex">Beta</div>
   <div class="flex-2">Gamma</div>
 </div>
-
-<!--
-### Auto-vertical
-
-For vertical layouts, you can use the `auto-vertical` attribute
-on a child element to set an automatic flex basis on that element.
-Use this attribute for responsive designs
-if you want elements laid out horizontally when the display is wide
-or vertically when narrow.
-
-The following code uses `core-media-query` to get the screen size.
-If it's smaller than 640 pixels,
-the layout becomes vertical and the elements layout on a flex basis.
-Otherwise, the layout becomes horizontal and the elements are laid out
-normally.
-
-{% raw %}
-    <template is="auto-binding">
-      <core-media-query query="max-width: 640px"
-                        queryMatches="{{phoneScreen}}"></core-media-query>
-      <div layout vertical?="{{phoneScreen}}"
-           horizontal?="{{!phoneScreen}}">
-        <div auto-vertical>Alpha</div>
-        <div auto-vertical>Beta</div>
-        <div auto-vertical>Gamma</div>
-      </div>
-    </template>
-{% endraw %}
-
-<div vertical layout class="demo" style="height:170px">
-  <div auto-vertical>Alpha</div>
-  <div auto-vertical>Beta</div>
-  <div auto-vertical>Gamma</div>
-</div>
--->
 
 ### Cross-axis alignment
 
@@ -478,14 +443,13 @@ by adding the `center` class or applying the `--layout-center` mixin.
 
     <dom-module id="mixin-demo">
 
-      <style>
-        .container {
-          @apply(--layout-horizontal);
-          @apply(--layout-center);
-        }
-      </style>
-
       <template>
+        <style>
+          .container {
+            @apply(--layout-horizontal);
+            @apply(--layout-center);
+          }
+        </style>
 
         <div class="container">
           <div>Center</div>
@@ -513,14 +477,13 @@ classes, or by applying the `--layout-start` or `--layout-end` mixins.
 
     <dom-module id="mixin-demo">
 
-      <style>
-        .container {
-          @apply(--layout-horizontal);
-          @apply(--layout-start);
-        }
-      </style>
-
       <template>
+        <style>
+          .container {
+            @apply(--layout-horizontal);
+            @apply(--layout-start);
+          }
+        </style>
 
         <div class="container">
           <div>start</div>
@@ -545,14 +508,13 @@ classes, or by applying the `--layout-start` or `--layout-end` mixins.
 
     <dom-module id="mixin-demo">
 
-      <style>
-        .container {
-          @apply(--layout-horizontal);
-          @apply(--layout-end);
-        }
-      </style>
-
       <template>
+        <style>
+          .container {
+            @apply(--layout-horizontal);
+            @apply(--layout-end);
+          }
+        </style>
 
         <div class="container">
           <div>end</div>
@@ -599,14 +561,13 @@ The classes listed here are included in the `iron-flex-alignment` module of the 
 
     <dom-module id="mixin-demo">
 
-      <style>
-        .container {
-          @apply(--layout-horizontal);
-          @apply(--layout-center-justified);
-        }
-      </style>
-
       <template>
+        <style>
+          .container {
+            @apply(--layout-horizontal);
+            @apply(--layout-center-justified);
+          }
+        </style>
 
         <div class="container">
           <div>center-justified</div>
@@ -636,14 +597,13 @@ The classes listed here are included in the `iron-flex-alignment` module of the 
 
     <dom-module id="mixin-demo">
 
-      <style>
-        .container {
-          @apply(--layout-horizontal);
-          @apply(--layout-justified);
-        }
-      </style>
-
       <template>
+        <style>
+          .container {
+            @apply(--layout-horizontal);
+            @apply(--layout-justified);
+          }
+        </style>
 
         <div class="container">
           <div>justified</div>
@@ -697,30 +657,29 @@ Class | Mixin | Result
 
     <dom-module id="mixin-demo">
 
-      <style>
-        .container {
-          @apply(--layout-horizontal);
-          @apply(--layout-justified);
-          height: 120px;
-        }
-        .container div {
-          @apply(--layout-flex);
-        }
-        .child1 {
-          @apply(--layout-self-start);
-        }
-        .child2 {
-          @apply(--layout-self-center);
-        }
-        .child3 {
-          @apply(--layout-self-end);
-        }
-        .child4 {
-          @apply(--layout-self-stretch);
-        }
-      </style>
-
       <template>
+        <style>
+          .container {
+            @apply(--layout-horizontal);
+            @apply(--layout-justified);
+            height: 120px;
+          }
+          .container div {
+            @apply(--layout-flex);
+          }
+          .child1 {
+            @apply(--layout-self-start);
+          }
+          .child2 {
+            @apply(--layout-self-center);
+          }
+          .child3 {
+            @apply(--layout-self-end);
+          }
+          .child4 {
+            @apply(--layout-self-stretch);
+          }
+        </style>
 
         <div class="container">
           <div class="child1">Alpha</div>
@@ -783,13 +742,12 @@ The classes listed here are included in the `iron-flex-reverse` module of the `i
 
     <dom-module id="mixin-demo">
 
-      <style>
-        .container {
-          @apply(--layout-horizontal-reverse);
-        }
-      </style>
-
       <template>
+        <style>
+          .container {
+            @apply(--layout-horizontal-reverse);
+          }
+        </style>
 
         <div class="container">
           <div>Alpha</div>
