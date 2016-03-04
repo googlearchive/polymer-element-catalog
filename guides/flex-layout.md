@@ -63,7 +63,7 @@ The `iron-flex-layout-classes` file provides a set of style modules, so you can 
 the classes you need. To use the classes, you must import the file, then include the style
 modules you want.
 
-1.  Import `iron-flex-layout.classes.html`:
+1.  Import `iron-flex-layout-classes.html`:
 
         <link rel="import" href="bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 
