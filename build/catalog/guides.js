@@ -102,13 +102,9 @@ function getGuideName (filepath) {
 
 function formatParsedGuideFilepath (srcPath, destDir) {
 
-  var relativeSrcPath = srcPath
-    .replace((process.cwd() + path.sep).replace(/\\/g, '/'), '')
-    .split('/')
-    .filter(function (segment) {
-
-      return segment !== 'bower_components';
-    });
+  var relativeSrcPath = path.relative(process.cwd(), srcPath).split(path.sep).filter(function (segment) {
+    return segment !== 'bower_components';
+  });
 
   // Elements in the bower_components directory
   // need to have the guides segment put before the
