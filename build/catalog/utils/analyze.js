@@ -1,8 +1,9 @@
 var path = require('path');
 var fs = require('fs-extra');
-var Analyzer = require('hydrolysis').Analyzer;
-var FileLoader = require('hydrolysis/lib/loader/file-loader');
-var FSResolver = require('hydrolysis/lib/loader/fs-resolver');
+var hydrolysis = require('hydrolysis');
+var Analyzer = hydrolysis.Analyzer;
+var FileLoader = hydrolysis.Loader;
+var FSResolver = hydrolysis.FSResolver;
 var Promise = require('es6-promise').Promise;
 
 module.exports = function(root, destDir, elementName, sources, callback) {

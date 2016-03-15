@@ -28,7 +28,7 @@ var htmlPipe = lazypipe()
     stripExcludes: ['bower_components/hydrolysis/hydrolysis-analyzer.html']
   })
   // remove whitespace from inline css
-  .pipe(polyclean.cleanCss)
+  //.pipe(polyclean.cleanCss)
 ;
 
   // remove javascript whitespace

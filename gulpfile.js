@@ -1,4 +1,5 @@
 'use strict';
+// jshint node: true
 
 var path = require('path');
 
@@ -9,7 +10,6 @@ var $ = require('gulp-load-plugins')();
 var del = require('del');
 var runSequence = require('run-sequence');
 var browserSync = require('browser-sync');
-var pagespeed = require('psi');
 var reload = browserSync.reload;
 var merge = require('merge-stream');
 var superstatic = require('superstatic');
@@ -19,33 +19,6 @@ var inlinesource = require('gulp-inline-source');
 
 var stream = require('./build/catalog/utils/stream').obj;
 var catalogBuilder = require('./build/catalog');
-
-function serve(directories, callback) {
-  var port = process.env.PORT || 3000;
-  var dev = connect();
-  directories.forEach(function (directory) {
-    dev.use(superstatic({ config: { root: directory } }));
-  });
-  dev.listen(port, function () {
-    var url = 'http://localhost:' +  port;
-    $.util.log('Local server started at: ', $.util.colors.cyan(url));
-    if (typeof callback === 'function') {
-      callback(null, url);
-    }
-  });
-}
-
-var AUTOPREFIXER_BROWSERS = [
-  'ie >= 10',
-  'ie_mob >= 10',
-  'ff >= 30',
-  'chrome >= 34',
-  'safari >= 7',
-  'opera >= 23',
-  'ios >= 7',
-  'android >= 4.4',
-  'bb >= 10'
-];
 
 var CATALOG_FILEPATH = __dirname + '/catalog.json';
 
@@ -111,7 +84,6 @@ gulp.task('styles', function () {
       'app/styles/**/*.css'
     ])
     .pipe($.changed('styles', {extension: '.css'}))
-    // .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
     .pipe(gulp.dest('.tmp/styles'))
     .pipe(gulp.dest('dist/styles'))
     .pipe($.size({title: 'styles'}));
@@ -132,23 +104,12 @@ gulp.task('html', function () {
   var assets = $.useref.assets({searchPath: ['.tmp', 'app', 'dist']});
 
   return gulp.src(['app/**/*.html', '!app/{elements,test}/**/*.html'])
-    .pipe(inlinesource())
+    .pipe(inlinesource({compress: false}))
     // Replace path for build assets
     .pipe($.if('*.html', $.replace('elements/elements.html', 'elements/elements.build.html')))
     .pipe(assets)
-    // Concatenate And Minify JavaScript
-    .pipe($.if('*.js', $.uglify({preserveComments: 'some'})))
-    // Concatenate And Minify Styles
-    // In case you are still using useref build blocks
-    .pipe($.if('*.css', $.cssmin()))
     .pipe(assets.restore())
     .pipe($.useref())
-    // Minify Any HTML
-    .pipe($.if('*.html', $.minifyHtml({
-      quotes: true,
-      empty: true,
-      spare: true
-    })))
     // Output Files
     .pipe(gulp.dest('dist'))
     .pipe($.size({title: 'html'}));
@@ -181,7 +142,7 @@ gulp.task('serve', ['styles', 'elements', 'catalog:dev'], function () {
     },
     superstatic({config: {root: '.tmp'}}),
     superstatic({config: {root: 'app'}})
-  ]
+  ];
   if (process.env.FIXTURES) mw.unshift(superstatic({config: {root: 'fixtures'}}));
 
   browserSync({
@@ -220,18 +181,6 @@ gulp.task('default', ['clean'], function (cb) {
     'catalog:dist',
     'polybuild',
     cb);
-});
-
-// Run PageSpeed Insights
-// Update `url` below to the public URL for your site
-gulp.task('pagespeed', function (cb) {
-  // Update the below URL to the public URL of your site
-  pagespeed.output('example.com', {
-    strategy: 'mobile',
-    // By default we use the PageSpeed Insights free (no API key) tier.
-    // Use a Google Developer API key if you have one: http://goo.gl/RkN0vE
-    // key: 'YOUR_API_KEY'
-  }, cb);
 });
 
 gulp.task('catalog_assets:dist', function() {
