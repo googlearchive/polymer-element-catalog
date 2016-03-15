@@ -14,10 +14,6 @@ app-sidebar paper-toolbar {
   }
 }
 
-[size=xs] app-sidebar paper-toolbar /deep/ #topBar {
-  padding: 0 16px;
-}
-
 #package-heading {
   height: 48px;
   line-height: 48px;

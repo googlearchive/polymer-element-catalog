@@ -10,6 +10,7 @@
 <dom-module id="page-packages">
   <link rel="import" type="css" href="page-packages.css">
   <template>
+    <style include="iron-flex iron-flex-alignment iron-positioning"></style>
     <catalog-data packages="{{packages}}" guides="{{guides}}"></catalog-data>
     <paper-header-panel mode="seamed" class="fit">
       <paper-toolbar class="paper-header">
@@ -31,7 +32,7 @@
             <template is="dom-repeat" items="[[guides]]">
               <a href$="[[_link('guides',item.name)]]" is="app-link"><guide-card guide="[[item.name]]"></guide-card></a>
             </template>
-            <div id="coming-soon">More guides coming soon, stay tuned!</div>  
+            <div id="coming-soon">More guides coming soon, stay tuned!</div>
           </div>
         </div>
       </div>

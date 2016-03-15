@@ -20,6 +20,7 @@
 <dom-module id="page-element">
   <link rel="import" type="css" href="page-element.css">
   <template>
+    <style include="iron-flex iron-flex-alignment"></style>
     <catalog-element name="[[element]]" data="{{metadata}}"></catalog-element>
     <catalog-package name="[[metadata.package]]" data="{{package}}"></catalog-package>
     <catalog-data elements="{{elements}}" behavior-map="{{behaviorMap}}"></catalog-data>
@@ -79,7 +80,7 @@
           </div>
         </app-sidebar>
         <section main class="fit">
-          <iron-component-page 
+          <iron-component-page
             catalog
             id="componentPage"
             scroll-mode="[[_getScrollMode(narrowDrawer)]]"

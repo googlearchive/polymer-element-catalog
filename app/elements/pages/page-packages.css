@@ -49,13 +49,6 @@ a.package {
   left: 15px;
 }
 
-@media (max-width: 639px) {
-  paper-toolbar /deep/ #topBar {
-    margin-top: 4px;
-    padding: 0 16px;
-  }
-}
-
 guide-card, #coming-soon {
   width: 456px;
   cursor: pointer;
