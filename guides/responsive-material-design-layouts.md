@@ -73,7 +73,9 @@ children are placed in the content area.
   <link rel="import" 
         href="/bower_components/iron-flex-layout/iron-flex-layout.html">
   <link rel="import"
-        href="/bower_components/paper-styles/paper-styles.html">
+        href="bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+    
+  <style is="custom-style" include="iron-flex iron-positioning"></style>
 ...
 <body class="fullbleed vertical layout">
   <!-- paper-header-panel must have an explicit height -->
@@ -124,7 +126,10 @@ You can use another element as a header by adding the
   <link rel="import" 
         href="/bower_components/iron-flex-layout/iron-flex-layout.html">
   <link rel="import"
-        href="/bower_components/paper-styles/paper-styles.html">
+        href="bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+  
+  <style is="custom-style" include="iron-flex iron-positioning"></style>
+  
 ...
 <body class="fullbleed vertical layout">
   <paper-header-panel class="flex">
@@ -159,7 +164,9 @@ Use `paper-icon-button` and `iron-icons` to add icons to your header:
   <link rel="import" 
         href="/bower_components/iron-flex-layout/iron-flex-layout.html">
   <link rel="import"
-        href="/bower_components/paper-styles/paper-styles.html">
+        href="bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+    
+  <style is="custom-style" include="iron-flex iron-positioning"></style>
 ...
 <body class="fullbleed vertical layout">
   <paper-header-panel class="flex">
@@ -206,7 +213,9 @@ classes to change the height of your header.
   <link rel="import" 
         href="/bower_components/iron-flex-layout/iron-flex-layout.html">
   <link rel="import"
-        href="/bower_components/paper-styles/paper-styles.html">
+        href="bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+    
+  <style is="custom-style" include="iron-flex iron-positioning"></style>
 ...
 <body class="fullbleed vertical layout">
   <paper-header-panel class="flex">
@@ -244,7 +253,9 @@ Use `paper-tabs` to add tabs to your header:
   <link rel="import" 
         href="/bower_components/iron-flex-layout/iron-flex-layout.html">
   <link rel="import"
-        href="/bower_components/paper-styles/paper-styles.html">
+        href="bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+    
+  <style is="custom-style" include="iron-flex iron-positioning"></style>
 ...
 <body class="fullbleed vertical layout">
   <paper-header-panel class="flex">
@@ -318,7 +329,9 @@ navigation menu.
   <link rel="import" 
         href="/bower_components/iron-flex-layout/iron-flex-layout.html">
   <link rel="import"
-        href="/bower_components/paper-styles/paper-styles.html">
+        href="bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+    
+  <style is="custom-style" include="iron-flex iron-positioning"></style>
 ...
 <body class="fullbleed vertical layout">
   <paper-drawer-panel class="flex">
