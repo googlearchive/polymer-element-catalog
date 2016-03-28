@@ -21,6 +21,7 @@
     "gold-elements": "PolymerElements/gold-elements#^1.0.0",
     "neon-elements": "PolymerElements/neon-elements#^1.0.0",
     "platinum-elements": "PolymerElements/platinum-elements#^2.0.0",
+    "carbon-elements": "PolymerElements/carbon-elements#master",
     "google-web-components": "GoogleWebComponents/google-web-components#^1.0.0",
     "molecules": "PolymerElements/molecules#^1.0.0",
     "polymer": "Polymer/polymer#^1.0.0",

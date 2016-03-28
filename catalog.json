@@ -48,6 +48,13 @@
       "color":"#ffab91",
       "symbol":"Mo",
       "tagline": "Wrappers for third-party libraries"
+    },
+    {
+      "name":"carbon-elements",
+      "title":"Carbon Elements",
+      "color":"#adadad",
+      "symbol":"C",
+      "tagline": "App-level elements"
     }
   ]
 }
