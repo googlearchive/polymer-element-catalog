@@ -38,7 +38,7 @@ module.exports = function (imports) {
         }))
         .pipe(stream.concat(function (guides) {
 
-          package.version = details._release;
+          package.version = /^[0-9]+\.[0-9]+/.test(details._release) ? details._release : '';
           package.description = details.description;
           package.elements = elements;
           package.guides = _.pluck(guides, 'name');
