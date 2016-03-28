@@ -2,24 +2,24 @@
   "packages": [
     {
       "name":"app-elements",
-      "title":"App Elements",
+      "title":"App elements",
       "color":"#ddc9e6",
       "symbol":"App",
       "tagline": "App elements"
     },
     {
       "name":"iron-elements",
-      "title":"Iron Elements",
+      "title":"Iron elements",
       "color":"#81c784",
       "symbol": "Fe",
       "tagline":"Polymer core elements"
     },
     {
       "name":"paper-elements",
-      "title":"Paper Elements",
+      "title":"Paper elements",
       "color":"#ffffff",
       "symbol": "Md",
-      "tagline":"Material design elements"
+      "tagline":"Material Design elements"
     },
     {
       "name":"google-web-components",
@@ -31,20 +31,20 @@
     {
       "name":"gold-elements",
       "color":"#ffb74d",
-      "title":"Gold Elements",
+      "title":"Gold elements",
       "symbol": "Au",
-      "tagline":"Ecommerce Elements"
+      "tagline":"Ecommerce elements"
     },
     {
       "name":"neon-elements",
-      "title":"Neon Elements",
+      "title":"Neon elements",
       "color":"#a7ffeb",
       "symbol":"Ne",
-      "tagline": "Animation and Special Effects"
+      "tagline": "Animation and special effects"
     },
     {
       "name":"platinum-elements",
-      "title":"Platinum Elements",
+      "title":"Platinum elements",
       "color":"#cfd8dc",
       "symbol":"Pt",
       "tagline":"Offline, push, and more"
