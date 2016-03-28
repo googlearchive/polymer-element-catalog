@@ -62,7 +62,7 @@ app-bar .menu-icon {
   color: var(--paper-grey-600);
 }
 
-#element-cards, element-table, 
+#element-cards, element-table,
 .elements-title, #package-heading {
   max-width: 920px;
   margin: 20px auto;
@@ -85,10 +85,6 @@ responsive-element[size=xs].layout {
 [size=xs] app-sidebar {
   min-width: 100%;
   height: auto;
-}
-
-[size=xs] app-sidebar paper-toolbar /deep/ #topBar {
-  padding: 0 16px;
 }
 
 app-sidebar paper-toolbar {
