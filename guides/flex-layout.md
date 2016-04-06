@@ -101,7 +101,7 @@ There are 5 modules available:
       ...
 
       <!-- main document -- include the module you need in a custom-style element -->
-      <style is="custom-style" include="iron-flex></style>
+      <style is="custom-style" include="iron-flex"></style>
 
     </head>
     <body>
