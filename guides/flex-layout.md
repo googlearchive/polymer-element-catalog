@@ -815,7 +815,7 @@ It's common to want the entire `<body>` to fit to the viewport. By themselves, P
 `<body>` don't achieve the result. You can make `<body>` take up the entire viewport by adding the `fullbleed` class:
 
     <body class="fullbleed vertical layout">
-      <div flex>Fitting a fullbleed body.</div>
+      <div class="flex">Fitting a fullbleed body.</div>
     </body>
 
 This removes its margins and maximizes its height to the viewport. There is no equivalent mixin, but the same result can
