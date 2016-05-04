@@ -826,6 +826,8 @@ be achieved in CSS very simply:
       height: 100vh;
     }
 
+This class is included in the `iron-positioning` module of the `iron-flex-layout-classes` file.
+
 Note that the `fullbleed` class **only works on the `<body>` tag.** This is the only rule in the
 stylesheet that is scoped to a particular tag.
 
