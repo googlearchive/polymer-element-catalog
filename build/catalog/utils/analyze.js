@@ -10,7 +10,7 @@ module.exports = function(root, destDir, elementName, sources, callback) {
   var elRoot = path.join(root, 'bower_components', elementName);
   var elPath = path.join(elRoot, elementName + '.html');
   var sourcePaths = sources.map(function(source) {
-    return (source.indexOf('/') >= 0) ? source : path.join(elRoot,source);
+    return (source.indexOf('/') === 0) ? source : path.join(elRoot,source);
   });
   var loader = new FileLoader();
 
