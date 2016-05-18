@@ -24,7 +24,9 @@
     <catalog-element name="[[element]]" data="{{metadata}}"></catalog-element>
     <catalog-package name="[[metadata.package]]" data="{{package}}"></catalog-package>
     <catalog-data elements="{{elements}}" behavior-map="{{behaviorMap}}"></catalog-data>
-    <paper-drawer-panel id="drawerPanel" narrow="{{narrowDrawer}}" responsive-width="900px" drawer-width="272px" disable-edge-swipe>
+
+    <paper-drawer-panel id="drawerPanel" narrow="{{narrowDrawer}}"
+        responsive-width="900px" drawer-width="272px" disable-edge-swipe disable-swipe>
         <app-sidebar drawer>
           <paper-toolbar>
             <app-logo class="flex"></app-logo>
