@@ -1,0 +1,25 @@
+{
+  "name": "Polymer Element Catalog",
+  "short_name": "Polymer Catalog",
+  "icons": [
+    {
+      "src": "images/manifest/icon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+	{
+      "src": "images/manifest/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+	{
+      "src": "images/manifest/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/?homescreen=1",
+  "display": "standalone",
+  "background_color": "#fff",
+  "theme_color": "#1e88e5"
+}
