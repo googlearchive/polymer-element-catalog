@@ -1,6 +1,8 @@
 <link rel="import" href="../../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../../bower_components/paper-toast/paper-toast.html">
 <link rel="import" href="../../bower_components/paper-item/paper-item.html">
 <link rel="import" href="../../bower_components/paper-header-panel/paper-header-panel.html">
 <link rel="import" href="../../bower_components/paper-drawer-panel/paper-drawer-panel.html">
@@ -60,7 +62,9 @@
 
             <div class="bower-command-label">Bower Command</div>
             <input class="bower-command" title="Bower Command" readonly value="[[_bowerCommand(metadata.source)]]" on-tap="_selectAllBowerCommand">
-
+            <paper-button on-tap="_copyCommand">Copy</paper-button>
+            <paper-toast id="copyResultToast"></paper-toast>
+            
             <section hidden$="[[_oneOrFewer(docElements, docBehaviors)]]" class="shrinkable">
               <h4>Bundled Elements</h4>
 
@@ -224,7 +228,48 @@
     _isCartIconHidden: function(view) {
       return view.indexOf('demo:') === 0;
     },
+    // Copy bower command to the clipboard
+    _copyCommand: function() {
+      var textArea = document.createElement("textarea");
 
+      // Place in top-left corner of screen regardless of scroll position.
+      textArea.style.position = 'fixed';
+      textArea.style.top = 0;
+      textArea.style.left = 0;
+    
+      // Ensure it has a small width and height. Setting to 1px / 1em
+      // doesn't work as this gives a negative w/h on some browsers.
+      textArea.style.width = '2em';
+      textArea.style.height = '2em';
+    
+      // We don't need padding, reducing the size if it does flash render.
+      textArea.style.padding = 0;
+    
+      // Clean up any borders.
+      textArea.style.border = 'none';
+      textArea.style.outline = 'none';
+      textArea.style.boxShadow = 'none';
+    
+      // Avoid flash of white box if rendered for any reason.
+      textArea.style.background = 'transparent';
+    
+    
+      textArea.value = this._bowerCommand(this.metadata.source);
+    
+      document.body.appendChild(textArea);
+    
+      textArea.select();
+    
+      try {
+        var successful = document.execCommand('copy');
+        var msg = successful ? 'Copied' : 'Oops, unable to copy';
+        this.copyResultToast.show(msg);
+      } catch (err) {
+        this.copyResultToast.show('Oops, unable to copy');
+      }
+      document.body.removeChild(textArea);
+    },
+    
     _handleError: function() {
       this.router.go('/404');
     },
