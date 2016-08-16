@@ -18,13 +18,19 @@
 
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:900">
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-39334307-10', 'auto');
-  // ga('send', 'pageview');
+  <script>
+    (function(c){
+      var e={"google-apis":1,"google-feeds":1,"google-map":1,"google-signin":1,"google-sheets":1,"google-youtube":1,"google-analytics":1,"google-calendar":1,"google-chart":1,"google-castable-video":1,"google-hangout-button":1,"google-url-shortener":1,"google-youtube-upload":1,"google-streetview-pano":1,"firebase-element":1,polymerfire:1},d=c.location.pathname.split("/"),b=[],a=function(b){var a=b.replace(/^\?/,"").split("&");b={};a.forEach(function(a){a=a.split("=");b[decodeURIComponent(a[0])]=
+decodeURIComponent(a[1])});return b}(c.location.search);
+      null!=a.redirect&&c.localStorage.setItem("redirect",a.redirect);"custom-elements.appspot.com"===c.localStorage.redirect&&("elements"===d[1]?(b.push("element"),b.push(e.hasOwnProperty(d[2])?"GoogleWebComponents":"PolymerElements"),b.push(d[2]),a.active&&a.active!=d[2]&&b.push(a.active),/^demo\:/.test(a.view)&&(b.push("demo"),b.push(a.view.substr(5)))):"browse"===d[1]&&(b.push("author"),b.push("google-web-components"===a.a?"GoogleWebComponents":
+"PolymerElements")),c.location.replace("//custom-elements.appspot.com/"+b.join("/")))})(window);
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-39334307-10', 'auto');
+    // ga('send', 'pageview');
   </script>
 </head>
 

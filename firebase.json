@@ -1,6 +1,5 @@
 {
   "hosting": {
-    "firebase": "sizzling-inferno-6187",
     "public": "dist",
     "ignore": [
       "firebase.json",
