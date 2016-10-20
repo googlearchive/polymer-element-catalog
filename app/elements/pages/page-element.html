@@ -150,7 +150,11 @@
       return this.view === 'demo:' + path;
     },
     _githubLink: function(source) {
-      return 'https://github.com/' + source;
+      if(source && source.trim().substring(0, 4) === 'http'){
+        return source;
+      } else {
+        return 'https://github.com/' + source;
+      }
     },
     getURL: function(active,view,force) {
       var url = "/elements/" + this.element;
