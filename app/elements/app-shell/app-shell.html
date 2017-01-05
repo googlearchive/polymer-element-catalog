@@ -32,11 +32,7 @@
   </style>
   <template>
     <paper-drawer-panel id="cartpanel" class="flex" force-narrow right-drawer disable-edge-swipe disable-swipe drawer-width="320px">
-      <div id="main"  main>
-      <!--  <paper-toast class="toast-webcomponents" opened duration="0">
-          Try the new <a href="/?redirect=beta.webcomponents.org">beta.webcomponents.org</a>
-          <paper-icon-button icon="close" alt="Dismiss"></paper-icon-button>
-       </paper-toast> -->
+      <div id="main" main>
         <app-router id="router" class="flex" mode="pushstate" on-activate-route-end="trackPageview">
           <app-route path="/" element="page-packages" bindRouter></app-route>
           <app-route path="/browse" element="page-browse" bindRouter onUrlChange="updateModel"></app-route>
