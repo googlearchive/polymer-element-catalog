@@ -16,6 +16,7 @@
 <link rel="import" href="../theme-color/theme-color.html">
 <link rel="import" href="../cart-icon/cart-icon.html">
 <link rel="import" href="../cart-item-icon/cart-item-icon.html">
+<link rel="import" href="../deprecated-warning/deprecated-warning.html">
 
 <dom-module id="page-element">
   <link rel="import" type="css" href="page-element.css">
@@ -97,6 +98,7 @@
             active="{{active}}"
             on-iron-doc-viewer-component-selected="navToBehavior"
             on-iron-component-page-error="_handleError">
+            <deprecated-warning class="warning"></deprecated-warning>
           </iron-component-page>
           <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
           <cart-icon fade-out$="[[_isCartIconHidden(view)]]"></cart-icon>

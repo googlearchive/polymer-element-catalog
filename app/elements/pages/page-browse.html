@@ -18,6 +18,7 @@
 <link rel="import" href="../element-action-menu/element-action-menu.html">
 <link rel="import" href="../element-table/element-table.html">
 <link rel="import" href="../element-table-cards/element-table-cards.html">
+<link rel="import" href="../deprecated-warning/deprecated-warning.html">
 
 <link rel="import" href="../responsive-element/responsive-element.html">
 
@@ -73,6 +74,8 @@
             <cart-icon class="cartButton" id="cart-toggle" icon="stars" on-tap="cartOpen"></cart-icon>
           </div>
           <div id="content">
+            <deprecated-warning></deprecated-warning>
+
             <div id="package-heading" hidden$="[[!packageInfo]]">
               <div class="description">[[packageInfo.description]]</div>
             </div>

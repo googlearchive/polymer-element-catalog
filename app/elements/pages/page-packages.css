@@ -73,3 +73,8 @@ guide-card, #coming-soon {
   color: rgba(0, 0, 0, var(--dark-primary-opacity));
   border: 1px dashed #e5e5e5;
 }
+
+deprecated-warning {
+  max-width: 1100px;
+  padding: 10px 10px;
+}

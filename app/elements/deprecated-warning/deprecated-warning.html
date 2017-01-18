@@ -1,0 +1,51 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+
+<dom-module id="deprecated-warning">
+  <template>
+    <style>
+      :host {
+        display: block;
+        padding: 10px 0;
+        margin: 0 auto 20px auto;
+        box-sizing: border-box;
+        border-top: 1px solid #e5e5e5;
+        border-bottom: 1px solid #e5e5e5;
+        max-width: 920px;
+      }
+      a {
+        cursor: pointer;
+      }
+      h1 {
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: bold;
+      }
+      h1, p {
+        margin: 0;
+      }
+      .feedback, .feedback a {
+        color: #666;
+      }
+    </style>
+  
+
+    <h1>This site is now deprecated in favor of the new webcomponents.org.</h1>
+    <p>
+      <a on-click="_redirect">Always use webcomponents.org</a> &mdash;
+      <span class="feedback">Don't love the new catalog? <a href="https://github.com/webcomponents/webcomponents.org/issues">Let us know how we can help make it better</a></span>
+    </p>
+   
+   
+  </template>
+  <script>
+    Polymer({
+      is: 'deprecated-warning',
+
+      _redirect: function() {
+        window.localStorage.setItem('redirect', 'webcomponents.org');
+        window.location.reload();
+      }
+    });
+  </script>
+</dom-module>
