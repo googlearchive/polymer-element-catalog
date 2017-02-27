@@ -52,7 +52,7 @@
                   </div>
                 </a>
                 <template is="dom-repeat" items="[[packages]]">
-                  <a class="package" is="app-link" href$="[[_packageLink(item.name)]]" active$="[[_isEqual(package,item.name)]]" tabindex="1">
+                  <a class="package" href$="[[_packageLink(item.name)]]" active$="[[_isEqual(package,item.name)]]" tabindex="1">
                     <div class="layout horizontal center">
                       <package-symbol aria-hidden="true" symbol="[[item.symbol]]" color="[[item.color]]"></package-symbol>
                       <span class="title flex">[[item.title]]</span>
@@ -204,7 +204,8 @@
         }
       },
       _packageLink: function(name) {
-        return "/browse?package=" + name;
+        var org = name.indexOf('google') === 0 ? 'GoogleWebComponents' : 'PolymerElements';
+        return "https://www.webcomponents.org/collection/" + org + "/" + name;
       },
       _qChanged: function(q) {
         if (q) {

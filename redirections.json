@@ -1,0 +1,1099 @@
+{
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "https://www.webcomponents.org/",
+      "type": 301
+    },
+    {
+      "source": "/elements/app-layout",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/app-layout",
+      "type": 301
+    },
+    {
+      "source": "/elements/app-localize-behavior",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/app-localize-behavior",
+      "type": 301
+    },
+    {
+      "source": "/elements/app-pouchdb",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/app-pouchdb",
+      "type": 301
+    },
+    {
+      "source": "/elements/app-route",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/app-route",
+      "type": 301
+    },
+    {
+      "source": "/elements/app-storage",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/app-storage",
+      "type": 301
+    },
+    {
+      "source": "/elements/firebase-element",
+      "destination": "https://www.webcomponents.org/element/GoogleWebComponents/firebase-element",
+      "type": 301
+    },
+    {
+      "source": "/elements/gold-cc-cvc-input",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/gold-cc-cvc-input",
+      "type": 301
+    },
+    {
+      "source": "/elements/gold-cc-expiration-input",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/gold-cc-expiration-input",
+      "type": 301
+    },
+    {
+      "source": "/elements/gold-cc-input",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/gold-cc-input",
+      "type": 301
+    },
+    {
+      "source": "/elements/gold-email-input",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/gold-email-input",
+      "type": 301
+    },
+    {
+      "source": "/elements/gold-phone-input",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/gold-phone-input",
+      "type": 301
+    },
+    {
+      "source": "/elements/gold-zip-input",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/gold-zip-input",
+      "type": 301
+    },
+    {
+      "source": "/elements/google-analytics",
+      "destination": "https://www.webcomponents.org/element/GoogleWebComponents/google-analytics",
+      "type": 301
+    },
+    {
+      "source": "/elements/google-apis",
+      "destination": "https://www.webcomponents.org/element/GoogleWebComponents/google-apis",
+      "type": 301
+    },
+    {
+      "source": "/elements/google-calendar",
+      "destination": "https://www.webcomponents.org/element/GoogleWebComponents/google-calendar",
+      "type": 301
+    },
+    {
+      "source": "/elements/google-castable-video",
+      "destination": "https://www.webcomponents.org/element/GoogleWebComponents/google-castable-video",
+      "type": 301
+    },
+    {
+      "source": "/elements/google-chart",
+      "destination": "https://www.webcomponents.org/element/GoogleWebComponents/google-chart",
+      "type": 301
+    },
+    {
+      "source": "/elements/google-feeds",
+      "destination": "https://www.webcomponents.org/element/GoogleWebComponents/google-feeds",
+      "type": 301
+    },
+    {
+      "source": "/elements/google-hangout-button",
+      "destination": "https://www.webcomponents.org/element/GoogleWebComponents/google-hangout-button",
+      "type": 301
+    },
+    {
+      "source": "/elements/google-map",
+      "destination": "https://www.webcomponents.org/element/GoogleWebComponents/google-map",
+      "type": 301
+    },
+    {
+      "source": "/elements/google-sheets",
+      "destination": "https://www.webcomponents.org/element/GoogleWebComponents/google-sheets",
+      "type": 301
+    },
+    {
+      "source": "/elements/google-signin",
+      "destination": "https://www.webcomponents.org/element/GoogleWebComponents/google-signin",
+      "type": 301
+    },
+    {
+      "source": "/elements/google-streetview-pano",
+      "destination": "https://www.webcomponents.org/element/GoogleWebComponents/google-streetview-pano",
+      "type": 301
+    },
+    {
+      "source": "/elements/google-url-shortener",
+      "destination": "https://www.webcomponents.org/element/GoogleWebComponents/google-url-shortener",
+      "type": 301
+    },
+    {
+      "source": "/elements/google-youtube",
+      "destination": "https://www.webcomponents.org/element/GoogleWebComponents/google-youtube",
+      "type": 301
+    },
+    {
+      "source": "/elements/google-youtube-upload",
+      "destination": "https://www.webcomponents.org/element/GoogleWebComponents/google-youtube-upload",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-a11y-announcer",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-a11y-announcer",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-a11y-keys",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-a11y-keys",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-a11y-keys-behavior",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-a11y-keys-behavior",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-ajax",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-ajax",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-autogrow-textarea",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-autogrow-textarea",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-behaviors",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-behaviors",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-checked-element-behavior",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-checked-element-behavior",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-collapse",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-collapse",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-component-page",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-component-page",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-demo-helpers",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-demo-helpers",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-doc-viewer",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-doc-viewer",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-dropdown",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-dropdown",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-fit-behavior",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-fit-behavior",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-flex-layout",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-flex-layout",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-form",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-form",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-form-element-behavior",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-form-element-behavior",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-icon",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-icon",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-icons",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-icons",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-iconset",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-iconset",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-iconset-svg",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-iconset-svg",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-image",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-image",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-input",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-input",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-jsonp-library",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-jsonp-library",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-label",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-label",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-list",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-list",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-localstorage",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-localstorage",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-location",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-location",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-media-query",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-media-query",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-menu-behavior",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-menu-behavior",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-meta",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-meta",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-overlay-behavior",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-overlay-behavior",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-pages",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-pages",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-range-behavior",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-range-behavior",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-resizable-behavior",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-resizable-behavior",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-scroll-target-behavior",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-scroll-target-behavior",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-scroll-threshold",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-scroll-threshold",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-selector",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-selector",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-signals",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-signals",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-swipeable-container",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-swipeable-container",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-test-helpers",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-test-helpers",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-validatable-behavior",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-validatable-behavior",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-validator-behavior",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-validator-behavior",
+      "type": 301
+    },
+    {
+      "source": "/elements/marked-element",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/marked-element",
+      "type": 301
+    },
+    {
+      "source": "/elements/neon-animation",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/neon-animation",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-badge",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-badge",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-behaviors",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-behaviors",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-button",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-button",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-card",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-card",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-checkbox",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-checkbox",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-dialog",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-dialog",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-dialog-behavior",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-dialog-behavior",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-dialog-scrollable",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-dialog-scrollable",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-drawer-panel",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-drawer-panel",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-dropdown-menu",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-dropdown-menu",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-fab",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-fab",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-header-panel",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-header-panel",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-icon-button",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-icon-button",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-input",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-input",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-item",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-item",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-listbox",
+      "destination": "https://www.webcomponents.org/element/polymerelements/paper-listbox",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-material",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-material",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-menu",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-menu",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-menu-button",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-menu-button",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-progress",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-progress",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-radio-button",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-radio-button",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-radio-group",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-radio-group",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-ripple",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-ripple",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-scroll-header-panel",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-scroll-header-panel",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-slider",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-slider",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-spinner",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-spinner",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-styles",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-styles",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-tabs",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-tabs",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-toast",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-toast",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-toggle-button",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-toggle-button",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-toolbar",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-toolbar",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-tooltip",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-tooltip",
+      "type": 301
+    },
+    {
+      "source": "/elements/platinum-bluetooth",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/platinum-bluetooth",
+      "type": 301
+    },
+    {
+      "source": "/elements/platinum-https-redirect",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/platinum-https-redirect",
+      "type": 301
+    },
+    {
+      "source": "/elements/platinum-push-messaging",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/platinum-push-messaging",
+      "type": 301
+    },
+    {
+      "source": "/elements/platinum-sw",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/platinum-sw",
+      "type": 301
+    },
+    {
+      "source": "/elements/polymerfire",
+      "destination": "https://www.webcomponents.org/element/firebase/polymerfire",
+      "type": 301
+    },
+    {
+      "source": "/elements/prism-element",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/prism-element",
+      "type": 301
+    },
+    {
+      "source": "/elements/app-layout?view=demo:app-toolbar/demo/index.html&active=app-layout",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/app-layout/demo/app-toolbar/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/app-localize-behavior?view=demo:demo/index.html&active=app-localize-behavior",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/app-localize-behavior/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/app-route?view=demo:demo/index.html&active=app-route",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/app-route/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/firebase-element?view=demo:demo/index.html&active=firebase-element",
+      "destination": "https://www.webcomponents.org/element/GoogleWebComponents/firebase-element/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/gold-cc-cvc-input?view=demo:demo/index.html&active=gold-cc-cvc-input",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/gold-cc-cvc-input/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/gold-cc-expiration-input?view=demo:demo/index.html&active=gold-cc-expiration-input",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/gold-cc-expiration-input/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/gold-cc-input?view=demo:demo/index.html&active=gold-cc-input",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/gold-cc-input/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/gold-email-input?view=demo:demo/index.html&active=gold-email-input",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/gold-email-input/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/gold-phone-input?view=demo:demo/index.html&active=gold-phone-input",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/gold-phone-input/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/gold-zip-input?view=demo:demo/index.html&active=gold-zip-input",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/gold-zip-input/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/google-analytics?view=demo:demo/index.html&active=google-analytics",
+      "destination": "https://www.webcomponents.org/element/GoogleWebComponents/google-analytics/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/google-apis?view=demo:demo/index.html&active=google-apis",
+      "destination": "https://www.webcomponents.org/element/GoogleWebComponents/google-apis/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/google-calendar?view=demo:demo/index.html&active=google-calendar",
+      "destination": "https://www.webcomponents.org/element/GoogleWebComponents/google-calendar/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/google-castable-video?view=demo:demo/index.html&active=google-castable-video",
+      "destination": "https://www.webcomponents.org/element/GoogleWebComponents/google-castable-video/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/google-chart?view=demo:demo/index.html&active=google-chart",
+      "destination": "https://www.webcomponents.org/element/GoogleWebComponents/google-chart/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/google-feeds?view=demo:demo/index.html&active=google-feeds",
+      "destination": "https://www.webcomponents.org/element/GoogleWebComponents/google-feeds/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/google-hangout-button?view=demo:demo/index.html&active=google-hangout-button",
+      "destination": "https://www.webcomponents.org/element/GoogleWebComponents/google-hangout-button/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/google-map?view=demo:demo/index.html&active=google-map",
+      "destination": "https://www.webcomponents.org/element/GoogleWebComponents/google-map/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/google-sheets?view=demo:demo/index.html&active=google-sheets",
+      "destination": "https://www.webcomponents.org/element/GoogleWebComponents/google-sheets/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/google-signin?view=demo:demo/index.html&active=google-signin",
+      "destination": "https://www.webcomponents.org/element/GoogleWebComponents/google-signin/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/google-streetview-pano?view=demo:demo/index.html&active=google-streetview-pano",
+      "destination": "https://www.webcomponents.org/element/GoogleWebComponents/google-streetview-pano/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/google-url-shortener?view=demo:demo/index.html&active=google-url-shortener",
+      "destination": "https://www.webcomponents.org/element/GoogleWebComponents/google-url-shortener/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/google-youtube?view=demo:demo/index.html&active=google-youtube",
+      "destination": "https://www.webcomponents.org/element/GoogleWebComponents/google-youtube/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/google-youtube-upload?view=demo:demo/index.html&active=google-youtube-upload",
+      "destination": "https://www.webcomponents.org/element/GoogleWebComponents/google-youtube-upload/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-a11y-announcer?view=demo:demo/index.html&active=iron-a11y-announcer",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-a11y-announcer/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-a11y-keys?view=demo:demo/index.html&active=iron-a11y-keys",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-a11y-keys/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-a11y-keys-behavior?view=demo:demo/index.html&active=iron-a11y-keys-behavior",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-a11y-keys-behavior/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-ajax?view=demo:demo/index.html&active=iron-ajax",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-ajax/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-autogrow-textarea?view=demo:demo/index.html&active=iron-autogrow-textarea",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-autogrow-textarea/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-behaviors?view=demo:demo/index.html&active=iron-behaviors",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-behaviors/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-checked-element-behavior?view=demo:demo/index.html&active=iron-checked-element-behavior",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-checked-element-behavior/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-collapse?view=demo:demo/index.html&active=iron-collapse",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-collapse/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-demo-helpers?view=demo:demo/url-bar.html&active=iron-demo-helpers",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-demo-helpers/demo/demo/url-bar.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-doc-viewer?view=demo:demo/index.html&active=iron-doc-viewer",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-doc-viewer/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-dropdown?view=demo:demo/index.html&active=iron-dropdown",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-dropdown/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-fit-behavior?view=demo:demo/index.html&active=iron-fit-behavior",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-fit-behavior/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-flex-layout?view=demo:demo/index.html&active=iron-flex-layout",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-flex-layout/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-form?view=demo:demo/index.html&active=iron-form",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-form/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-form-element-behavior?view=demo:demo/index.html&active=iron-form-element-behavior",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-form-element-behavior/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-icon?view=demo:demo/index.html&active=iron-icon",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-icon/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-icons?view=demo:demo/index.html&active=iron-icons",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-icons/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-iconset?view=demo:demo/index.html&active=iron-iconset",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-iconset/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-iconset-svg?view=demo:demo/index.html&active=iron-iconset-svg",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-iconset-svg/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-image?view=demo:demo/index.html&active=iron-image",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-image/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-input?view=demo:demo/index.html&active=iron-input",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-input/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-jsonp-library?view=demo:demo/index.html&active=iron-jsonp-library",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-jsonp-library/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-label?view=demo:demo/index.html&active=iron-label",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-label/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-list?view=demo:demo/index.html&active=iron-list",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-list/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-localstorage?view=demo:demo/index.html&active=iron-localstorage",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-localstorage/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-location?view=demo:demo/index.html&active=iron-location",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-location/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-media-query?view=demo:demo/index.html&active=iron-media-query",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-media-query/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-menu-behavior?view=demo:demo/index.html&active=iron-menu-behavior",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-menu-behavior/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-meta?view=demo:demo/index.html&active=iron-meta",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-meta/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-overlay-behavior?view=demo:demo/index.html&active=iron-overlay-behavior",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-overlay-behavior/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-pages?view=demo:demo/index.html&active=iron-pages",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-pages/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-range-behavior?view=demo:demo/index.html&active=iron-range-behavior",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-range-behavior/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-resizable-behavior?view=demo:demo/index.html&active=iron-resizable-behavior",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-resizable-behavior/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-scroll-target-behavior?view=demo:demo/scrolling-region.html&active=iron-scroll-target-behavior",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-scroll-target-behavior/demo/demo/scrolling-region.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-scroll-threshold?view=demo:demo/scrolling-region.html&active=iron-scroll-threshold",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-scroll-threshold/demo/demo/scrolling-region.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-selector?view=demo:demo/index.html&active=iron-selector",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-selector/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-signals?view=demo:demo/index.html&active=iron-signals",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-signals/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-swipeable-container?view=demo:demo/index.html&active=iron-swipeable-container",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-swipeable-container/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-validatable-behavior?view=demo:demo/index.html&active=iron-validatable-behavior",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-validatable-behavior/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/iron-validator-behavior?view=demo:demo/index.html&active=iron-validator-behavior",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/iron-validator-behavior/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/marked-element?view=demo:demo/index.html&active=marked-element",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/marked-element/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/neon-animation?view=demo:demo/index.html&active=neon-animation",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/neon-animation/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-badge?view=demo:demo/index.html&active=paper-badge",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-badge/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-button?view=demo:demo/index.html&active=paper-button",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-button/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-card?view=demo:demo/index.html&active=paper-card",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-card/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-checkbox?view=demo:demo/index.html&active=paper-checkbox",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-checkbox/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-dialog?view=demo:demo/index.html&active=paper-dialog",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-dialog/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-dialog-behavior?view=demo:demo/index.html&active=paper-dialog-behavior",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-dialog-behavior/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-dialog-scrollable?view=demo:demo/index.html&active=paper-dialog-scrollable",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-dialog-scrollable/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-drawer-panel?view=demo:demo/index.html&active=paper-drawer-panel",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-drawer-panel/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-dropdown-menu?view=demo:demo/index.html&active=paper-dropdown-menu",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-dropdown-menu/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-fab?view=demo:demo/index.html&active=paper-fab",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-fab/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-header-panel?view=demo:demo/index.html&active=paper-header-panel",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-header-panel/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-icon-button?view=demo:demo/paper-icon-button-light.html&active=paper-icon-button",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-icon-button/demo/demo/paper-icon-button-light.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-input?view=demo:demo/index.html&active=paper-input",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-input/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-item?view=demo:demo/index.html&active=paper-item",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-item/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-listbox?view=demo:demo/index.html&active=paper-listbox",
+      "destination": "https://www.webcomponents.org/element/polymerelements/paper-listbox/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-material?view=demo:demo/index.html&active=paper-material",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-material/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-menu?view=demo:demo/index.html&active=paper-menu",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-menu/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-menu-button?view=demo:demo/index.html&active=paper-menu-button",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-menu-button/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-progress?view=demo:demo/index.html&active=paper-progress",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-progress/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-radio-button?view=demo:demo/index.html&active=paper-radio-button",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-radio-button/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-radio-group?view=demo:demo/index.html&active=paper-radio-group",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-radio-group/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-ripple?view=demo:demo/index.html&active=paper-ripple",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-ripple/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-scroll-header-panel?view=demo:demo/transform-header-1.html&active=paper-scroll-header-panel",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-scroll-header-panel/demo/demo/transform-header-1.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-slider?view=demo:demo/index.html&active=paper-slider",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-slider/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-spinner?view=demo:demo/index.html&active=paper-spinner",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-spinner/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-styles?view=demo:demo/index.html&active=paper-styles",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-styles/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-tabs?view=demo:demo/index.html&active=paper-tabs",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-tabs/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-toast?view=demo:demo/index.html&active=paper-toast",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-toast/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-toggle-button?view=demo:demo/index.html&active=paper-toggle-button",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-toggle-button/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-toolbar?view=demo:demo/index.html&active=paper-toolbar",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-toolbar/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/paper-tooltip?view=demo:demo/index.html&active=paper-tooltip",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/paper-tooltip/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/platinum-bluetooth?view=demo:demo/&active=platinum-bluetooth",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/platinum-bluetooth/demo/demo/",
+      "type": 301
+    },
+    {
+      "source": "/elements/platinum-https-redirect?view=demo:demo/index.html&active=platinum-https-redirect",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/platinum-https-redirect/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/platinum-push-messaging?view=demo:demo/&active=platinum-push-messaging",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/platinum-push-messaging/demo/demo/",
+      "type": 301
+    },
+    {
+      "source": "/elements/platinum-sw?view=demo:demo/index.html&active=platinum-sw",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/platinum-sw/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/elements/prism-element?view=demo:demo/index.html&active=prism-element",
+      "destination": "https://www.webcomponents.org/element/PolymerElements/prism-element/demo/demo/index.html",
+      "type": 301
+    },
+    {
+      "source": "/browse?package=app-elements",
+      "destination": "https://www.webcomponents.org/collection/PolymerElements/app-elements",
+      "type": 301
+    },
+    {
+      "source": "/browse?package=iron-elements",
+      "destination": "https://www.webcomponents.org/collection/PolymerElements/iron-elements",
+      "type": 301
+    },
+    {
+      "source": "/browse?package=paper-elements",
+      "destination": "https://www.webcomponents.org/collection/PolymerElements/paper-elements",
+      "type": 301
+    },
+    {
+      "source": "/browse?package=google-web-components",
+      "destination": "https://www.webcomponents.org/collection/GoogleWebComponents/google-web-components",
+      "type": 301
+    },
+    {
+      "source": "/browse?package=gold-elements",
+      "destination": "https://www.webcomponents.org/collection/PolymerElements/gold-elements",
+      "type": 301
+    },
+    {
+      "source": "/browse?package=neon-elements",
+      "destination": "https://www.webcomponents.org/collection/PolymerElements/neon-elements",
+      "type": 301
+    },
+    {
+      "source": "/browse?package=platinum-elements",
+      "destination": "https://www.webcomponents.org/collection/PolymerElements/platinum-elements",
+      "type": 301
+    },
+    {
+      "source": "/browse?package=molecules",
+      "destination": "https://www.webcomponents.org/collection/PolymerElements/molecules",
+      "type": 301
+    }
+  ]
+}

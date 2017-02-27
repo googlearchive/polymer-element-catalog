@@ -26,7 +26,7 @@
         <deprecated-warning></deprecated-warning>
         <div class="packages layout horizontal wrap">
           <template is="dom-repeat" items="[[packages]]">
-            <a href$="[[_packageLink(item.name)]]" is="app-link" class="package flex-none"><package-tile name$="[[item.name]]"></package-tile></a>
+            <a href$="[[_packageLink(item.name)]]" class="package flex-none"><package-tile name$="[[item.name]]"></package-tile></a>
           </template>
         </div>
 
@@ -67,7 +67,8 @@
       return "/" + Array.prototype.slice.call(arguments).join("/");
     },
     _packageLink: function(name) {
-      return "/browse?package=" + name;
+      var org = name.indexOf('google') === 0 ? 'GoogleWebComponents' : 'PolymerElements';
+      return "https://www.webcomponents.org/collection/" + org + "/" + name;
     },
     guideSelect: function(e) {
       this.router.go('/guides/' + e.currentTarget.guide);
