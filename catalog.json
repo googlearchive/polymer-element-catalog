@@ -1,59 +1,59 @@
 {
   "packages": [
     {
-      "name":"app-elements",
-      "title":"App Elements",
-      "color":"#ddc9e6",
-      "symbol":"App",
+      "name": "app-elements",
+      "title": "App elements",
+      "color": "#ddc9e6",
+      "symbol": "App",
       "tagline": "App elements"
     },
     {
-      "name":"iron-elements",
-      "title":"Iron Elements",
-      "color":"#81c784",
+      "name": "iron-elements",
+      "title": "Iron elements",
+      "color": "#81c784",
       "symbol": "Fe",
-      "tagline":"Polymer core elements"
+      "tagline": "Polymer core elements"
     },
     {
-      "name":"paper-elements",
-      "title":"Paper Elements",
-      "color":"#ffffff",
+      "name": "paper-elements",
+      "title": "Paper elements",
+      "color": "#ffffff",
       "symbol": "Md",
-      "tagline":"Material design elements"
+      "tagline": "Material Design elements"
     },
     {
-      "name":"google-web-components",
-      "title":"Google Web Components",
-      "color":"#64B5F6",
-      "symbol":"Go",
-      "tagline":"Components for Google's APIs and services"
+      "name": "google-web-components",
+      "title": "Google Web Components",
+      "color": "#64B5F6",
+      "symbol": "Go",
+      "tagline": "Components for Google's APIs and services"
     },
     {
-      "name":"gold-elements",
-      "color":"#ffb74d",
-      "title":"Gold Elements",
+      "name": "gold-elements",
+      "color": "#ffb74d",
+      "title": "Gold elements",
       "symbol": "Au",
-      "tagline":"Ecommerce Elements"
+      "tagline": "Ecommerce elements"
     },
     {
-      "name":"neon-elements",
-      "title":"Neon Elements",
-      "color":"#a7ffeb",
-      "symbol":"Ne",
-      "tagline": "Animation and Special Effects"
+      "name": "neon-elements",
+      "title": "Neon elements",
+      "color": "#a7ffeb",
+      "symbol": "Ne",
+      "tagline": "Animation and special effects"
     },
     {
-      "name":"platinum-elements",
-      "title":"Platinum Elements",
-      "color":"#cfd8dc",
-      "symbol":"Pt",
-      "tagline":"Offline, push, and more"
+      "name": "platinum-elements",
+      "title": "Platinum elements",
+      "color": "#cfd8dc",
+      "symbol": "Pt",
+      "tagline": "Offline, push, and more"
     },
     {
-      "name":"molecules",
-      "title":"Molecules",
-      "color":"#ffab91",
-      "symbol":"Mo",
+      "name": "molecules",
+      "title": "Molecules",
+      "color": "#ffab91",
+      "symbol": "Mo",
       "tagline": "Wrappers for third-party libraries"
     }
   ]
