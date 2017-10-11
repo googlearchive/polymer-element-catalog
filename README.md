@@ -1,5 +1,7 @@
 # Polymer Element Catalog
 
+**:warning: This catalog is no longer maintained. There is a non-Polymer specific catalog available on https://www.webcomponents.org/ :warning:**
+
 ## Getting Started
 
 To work on the Polymer Elements Catalog, clone the repository.
