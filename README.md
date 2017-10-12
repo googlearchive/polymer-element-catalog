@@ -1,6 +1,6 @@
 # Polymer Element Catalog
 
-**:warning: This catalog is no longer maintained. There is a non-Polymer specific catalog available on https://www.webcomponents.org/ :warning:**
+**:warning: This catalog is no longer maintained. There is a non-Polymer specific catalog available on https://www.webcomponents.org/ A self-hosting catalog is available at https://github.com/PolymerLabs/indie-catalog :warning:**
 
 ## Getting Started
 
