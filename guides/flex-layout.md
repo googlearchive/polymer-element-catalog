@@ -59,6 +59,10 @@ good primer.</aside>
 
 ### Using layout classes
 
+<aside>
+<b>Note:</b> This guide is compatible with `iron-flex-layout` version [1.3.0](https://github.com/PolymerElements/iron-flex-layout/releases/tag/v1.3.0) and higher.
+</aside>
+
 To use layout classes import the `iron-flex-layout-classes` file. You
 must do this in any element that uses any of the `iron-flex-layout` styles.
 
