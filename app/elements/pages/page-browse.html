@@ -242,7 +242,6 @@
         }
 
         this.fire('page-meta', { title: this.pageTitle });
-        this.$.drawerPanel.closeDrawer();
       },
       toggleView: function() {
         if (this.view === 'table') {
@@ -266,9 +265,10 @@
         this.fire('cart-open');
       },
       onSearch: function(e) {
-        // when a user clicks on the (x) button we need to be sure to
-        // clear the query
+        // when a user clicks on the (x) button/presses the enter key
+        // update the query & close the drawer
         this.q = this.$.query.value;
+        this.$.drawerPanel.closeDrawer();
       },
       scrollToTop: function() {
         this.$.container.scroller.scrollTop = 0;
